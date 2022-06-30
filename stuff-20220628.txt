@@ -1,0 +1,217 @@
+Tue 28 Jun 2022 01:46:29 PM EDT
+
+https://code.visualstudio.com/download
+https://code.visualstudio.com/docs/setup/linux
+
+https://www.digitalocean.com/community/tutorials/how-to-install-mysql-on-ubuntu-20-04
+https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-20-04
+https://www.digitalocean.com/community/tutorials/how-to-install-linux-apache-mysql-php-lamp-stack-on-ubuntu-20-04
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -   
+
+https://www.digitalocean.com/community/tutorials/how-to-install-mysql-on-ubuntu-20-04
+
+sudo apt update
+sudo apt install mysql-server
+sudo systemctl start mysql.service
+sudo mysql_secure_installation
+
+mysql -u root -p
+CREATE USER 'username'@'host' IDENTIFIED WITH authentication_plugin BY 'password';
+
+As an alternative, you can leave out the WITH authentication_plugin portion of the syntax entirely to have the user authenticate with MySQL’s default plugin, caching_sha2_password. The MySQL documentation recommends this plugin for users who want to log in with a password due to its strong security features.
+
+Run the following command to create a user that authenticates with caching_sha2_password. Be sure to change sammy to your preferred username and password to a strong password of your choosing:
+
+CREATE USER 'sammy'@'localhost' IDENTIFIED BY 'password';
+CREATE USER 'sammy'@'localhost' IDENTIFIED WITH mysql_native_password BY 'password';
+ALTER USER 'sammy'@'localhost' IDENTIFIED WITH mysql_native_password BY 'password';
+GRANT PRIVILEGE ON database.table TO 'username'@'host';
+FLUSH PRIVILEGES;
+exit
+mysql -u sammy -p
+
+systemctl status mysql.service
+● mysql.service - MySQL Community Server
+     Loaded: loaded (/lib/systemd/system/mysql.service; enabled; vendor preset: enabled)
+     Active: active (running) since Tue 2020-04-21 12:56:48 UTC; 6min ago
+   Main PID: 10382 (mysqld)
+     Status: "Server is operational"
+      Tasks: 39 (limit: 1137)
+     Memory: 370.0M
+     CGroup: /system.slice/mysql.service
+             └─10382 /usr/sbin/mysqld
+
+sudo mysqladmin -p -u sammy version
+mysqladmin  Ver 8.0.19-0ubuntu5 for Linux on x86_64 ((Ubuntu))
+Copyright (c) 2000, 2020, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Server version        8.0.19-0ubuntu5
+Protocol version    10
+Connection        Localhost via UNIX socket
+UNIX socket        /var/run/mysqld/mysqld.sock
+Uptime:            10 min 44 sec
+
+Threads: 2  Questions: 25  Slow queries: 0  Opens: 149  Flush tables: 3  Open tables: 69  Queries per second avg: 0.038
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+https://www.digitalocean.com/community/tutorials/how-to-install-the-latest-mysql-on-ubuntu-20-04
+
+cd /tmp
+curl -OL https://dev.mysql.com/get/mysql-apt-config_0.8.18-1_all.deb
+ls
+sudo dpkg -i mysql-apt-config*
+sudo apt update
+rm mysql-apt-config*
+sudo apt install mysql-server
+systemctl status mysql
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+https://dev.mysql.com/downloads/mysql/
+https://dev.mysql.com/downloads/mysql/
+
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+david@mmrxps17:~$ 
+david@mmrxps17:~$ cd Downloads/
+david@mmrxps17:~/Downloads$
+david@mmrxps17:~/Downloads$ pwd
+/home/david/Downloads
+david@mmrxps17:~/Downloads$ ls -latr
+total 310856
+-rw-rw-r--  1 david david  83667280 Jun 28 13:48 code_1.68.1-1655263094_amd64.deb
+-rw-rw-r--  1 david david 117711933 Jun 28 13:49 code-1.68.1-1655263151.el7.x86_64.rpm
+-rw-rw-r--  1 david david 116922965 Jun 28 13:49 code-stable-x64-1655263335.tar.gz
+drwxr-xr-x  2 david david      4096 Jun 28 13:49 .
+drwxr-xr-x 15 david david      4096 Jun 28 14:09 ..
+david@mmrxps17:~/Downloads$ 
+david@mmrxps17:~/Downloads$ sudo apt install ./code_1.68.1-1655263094_amd64.deb
+Reading package lists... Done
+Building dependency tree       
+Reading state information... Done
+Note, selecting 'code' instead of './code_1.68.1-1655263094_amd64.deb'
+The following packages were automatically installed and are no longer required:
+  chromium-codecs-ffmpeg-extra gstreamer1.0-vaapi libgstreamer-plugins-bad1.0-0 libnvidia-cfg1-510 libnvidia-common-510 libnvidia-decode-510
+  libnvidia-encode-510 libnvidia-extra-510 libnvidia-fbc1-510 libnvidia-gl-510 libva-wayland2 libx11-xcb1:i386 libxnvctrl0 nvidia-compute-utils-510
+  nvidia-kernel-source-510 nvidia-settings nvidia-utils-510 screen-resolution-extra xserver-xorg-video-nvidia-510
+Use 'sudo apt autoremove' to remove them.
+The following NEW packages will be installed:
+  code
+0 upgraded, 1 newly installed, 0 to remove and 204 not upgraded.
+Need to get 0 B/83.7 MB of archives.
+After this operation, 350 MB of additional disk space will be used.
+Get:1 /home/david/Downloads/code_1.68.1-1655263094_amd64.deb code amd64 1.68.1-1655263094 [83.7 MB]
+Selecting previously unselected package code.
+(Reading database ... 179724 files and directories currently installed.)
+Preparing to unpack .../code_1.68.1-1655263094_amd64.deb ...
+Unpacking code (1.68.1-1655263094) ...
+Setting up code (1.68.1-1655263094) ...
+Processing triggers for mime-support (3.64ubuntu1) ...
+Processing triggers for gnome-menus (3.36.0-1ubuntu1) ...
+Processing triggers for shared-mime-info (1.15-1) ...
+Processing triggers for desktop-file-utils (0.24-1ubuntu3) ...
+david@mmrxps17:~/Downloads$ 
+david@mmrxps17:~/Downloads$ ls -latr
+total 647528
+-rw-rw-r--  1 david david  83667280 Jun 28 13:48 code_1.68.1-1655263094_amd64.deb
+-rw-rw-r--  1 david david 117711933 Jun 28 13:49 code-1.68.1-1655263151.el7.x86_64.rpm
+-rw-rw-r--  1 david david 116922965 Jun 28 13:49 code-stable-x64-1655263335.tar.gz
+drwxr-xr-x 17 david david      4096 Jun 28 14:11 ..
+-rw-rw-r--  1 david david 344739840 Jun 28 14:40 mysql-server_8.0.29-1ubuntu20.04_amd64.deb-bundle.tar
+-rw-rw-r--  1 david david        33 Jun 28 14:46 mysql-server_8.0.29-1ubuntu20.04_amd64.deb-bundle.tar.md5
+-rw-rw-r--  1 david david       833 Jun 28 14:46 mysql-server_8.0.29-1ubuntu20.04_amd64.deb-bundle.tar.asc
+drwxrwxr-x  2 david david      4096 Jun 28 14:53 mysql-tmp
+drwxr-xr-x  3 david david      4096 Jun 28 14:54 .
+david@mmrxps17:~/Downloads$ 
+david@mmrxps17:~/Downloads$ cd mysql-tmp/
+david@mmrxps17:~/Downloads/mysql-tmp$ 
+david@mmrxps17:~/Downloads/mysql-tmp$ ls -latr
+total 336668
+-rw-rw-r-- 1 david david 344739840 Jun 28 14:40 mysql-server_8.0.29-1ubuntu20.04_amd64.deb-bundle.tar
+drwxrwxr-x 2 david david      4096 Jun 28 14:53 .
+drwxr-xr-x 3 david david      4096 Jun 28 14:54 ..
+david@mmrxps17:~/Downloads/mysql-tmp$ 
+david@mmrxps17:~/Downloads/mysql-tmp$ tar tvf mysql-server_8.0.29-1ubuntu20.04_amd64.deb-bundle.tar 
+-rw-r--r-- bteam/common 1370412 2022-03-23 10:51 libmysqlclient21_8.0.29-1ubuntu20.04_amd64.deb
+-rw-r--r-- bteam/common 1695692 2022-03-23 10:51 libmysqlclient-dev_8.0.29-1ubuntu20.04_amd64.deb
+-rw-r--r-- bteam/common   64968 2022-03-23 10:51 mysql-client_8.0.29-1ubuntu20.04_amd64.deb
+-rw-r--r-- bteam/common   68740 2022-03-23 10:51 mysql-common_8.0.29-1ubuntu20.04_amd64.deb
+-rw-r--r-- bteam/common 2940120 2022-03-23 10:51 mysql-community-client_8.0.29-1ubuntu20.04_amd64.deb
+-rw-r--r-- bteam/common 1773384 2022-03-23 10:51 mysql-community-client-core_8.0.29-1ubuntu20.04_amd64.deb
+-rw-r--r-- bteam/common 1227012 2022-03-23 10:51 mysql-community-client-plugins_8.0.29-1ubuntu20.04_amd64.deb
+-rw-r--r-- bteam/common   76044 2022-03-23 10:51 mysql-community-server_8.0.29-1ubuntu20.04_amd64.deb
+-rw-r--r-- bteam/common 24046720 2022-03-23 10:51 mysql-community-server-core_8.0.29-1ubuntu20.04_amd64.deb
+-rw-r--r-- bteam/common 43751824 2022-03-23 10:51 mysql-community-server-debug_8.0.29-1ubuntu20.04_amd64.deb
+-rw-r--r-- bteam/common 254468020 2022-03-23 10:51 mysql-community-test_8.0.29-1ubuntu20.04_amd64.deb
+-rw-r--r-- bteam/common  13107800 2022-03-23 10:51 mysql-community-test-debug_8.0.29-1ubuntu20.04_amd64.deb
+-rw-r--r-- bteam/common     64960 2022-03-23 10:51 mysql-server_8.0.29-1ubuntu20.04_amd64.deb
+-rw-r--r-- bteam/common     64972 2022-03-23 10:51 mysql-testsuite_8.0.29-1ubuntu20.04_amd64.deb
+david@mmrxps17:~/Downloads/mysql-tmp$ 
+david@mmrxps17:~/Downloads/mysql-tmp$ tar xvf mysql-server_8.0.29-1ubuntu20.04_amd64.deb-bundle.tar 
+libmysqlclient21_8.0.29-1ubuntu20.04_amd64.deb
+libmysqlclient-dev_8.0.29-1ubuntu20.04_amd64.deb
+mysql-client_8.0.29-1ubuntu20.04_amd64.deb
+mysql-common_8.0.29-1ubuntu20.04_amd64.deb
+mysql-community-client_8.0.29-1ubuntu20.04_amd64.deb
+mysql-community-client-core_8.0.29-1ubuntu20.04_amd64.deb
+mysql-community-client-plugins_8.0.29-1ubuntu20.04_amd64.deb
+mysql-community-server_8.0.29-1ubuntu20.04_amd64.deb
+mysql-community-server-core_8.0.29-1ubuntu20.04_amd64.deb
+mysql-community-server-debug_8.0.29-1ubuntu20.04_amd64.deb
+mysql-community-test_8.0.29-1ubuntu20.04_amd64.deb
+mysql-community-test-debug_8.0.29-1ubuntu20.04_amd64.deb
+mysql-server_8.0.29-1ubuntu20.04_amd64.deb
+mysql-testsuite_8.0.29-1ubuntu20.04_amd64.deb
+david@mmrxps17:~/Downloads/mysql-tmp$ 
+david@mmrxps17:~/Downloads/mysql-tmp$ ls -latr
+total 673324
+-rw-r--r-- 1 david david  13107800 Mar 23 10:51 mysql-community-test-debug_8.0.29-1ubuntu20.04_amd64.deb
+-rw-r--r-- 1 david david   2940120 Mar 23 10:51 mysql-community-client_8.0.29-1ubuntu20.04_amd64.deb
+-rw-r--r-- 1 david david     64972 Mar 23 10:51 mysql-testsuite_8.0.29-1ubuntu20.04_amd64.deb
+-rw-r--r-- 1 david david     64960 Mar 23 10:51 mysql-server_8.0.29-1ubuntu20.04_amd64.deb
+-rw-r--r-- 1 david david     76044 Mar 23 10:51 mysql-community-server_8.0.29-1ubuntu20.04_amd64.deb
+-rw-r--r-- 1 david david     68740 Mar 23 10:51 mysql-common_8.0.29-1ubuntu20.04_amd64.deb
+-rw-r--r-- 1 david david     64968 Mar 23 10:51 mysql-client_8.0.29-1ubuntu20.04_amd64.deb
+-rw-r--r-- 1 david david   1773384 Mar 23 10:51 mysql-community-client-core_8.0.29-1ubuntu20.04_amd64.deb
+-rw-r--r-- 1 david david   1370412 Mar 23 10:51 libmysqlclient21_8.0.29-1ubuntu20.04_amd64.deb
+-rw-r--r-- 1 david david 254468020 Mar 23 10:51 mysql-community-test_8.0.29-1ubuntu20.04_amd64.deb
+-rw-r--r-- 1 david david   1227012 Mar 23 10:51 mysql-community-client-plugins_8.0.29-1ubuntu20.04_amd64.deb
+-rw-r--r-- 1 david david  24046720 Mar 23 10:51 mysql-community-server-core_8.0.29-1ubuntu20.04_amd64.deb
+-rw-r--r-- 1 david david   1695692 Mar 23 10:51 libmysqlclient-dev_8.0.29-1ubuntu20.04_amd64.deb
+-rw-r--r-- 1 david david  43751824 Mar 23 10:51 mysql-community-server-debug_8.0.29-1ubuntu20.04_amd64.deb
+-rw-rw-r-- 1 david david 344739840 Jun 28 14:40 mysql-server_8.0.29-1ubuntu20.04_amd64.deb-bundle.tar
+drwxr-xr-x 3 david david      4096 Jun 28 14:54 ..
+drwxrwxr-x 2 david david      4096 Jun 28 14:56 .
+david@mmrxps17:~/Downloads/mysql-tmp$ 
+david@mmrxps17:~/Downloads/mysql-tmp$ 
+david@mmrxps17:~/Downloads/mysql-tmp$ ls -la | grep -v test | grep -v debug
+total 673324
+drwxrwxr-x 2 david david      4096 Jun 28 14:56 .
+drwxr-xr-x 3 david david      4096 Jun 28 14:54 ..
+-rw-r--r-- 1 david david   1370412 Mar 23 10:51 libmysqlclient21_8.0.29-1ubuntu20.04_amd64.deb
+-rw-r--r-- 1 david david   1695692 Mar 23 10:51 libmysqlclient-dev_8.0.29-1ubuntu20.04_amd64.deb
+-rw-r--r-- 1 david david     64968 Mar 23 10:51 mysql-client_8.0.29-1ubuntu20.04_amd64.deb
+-rw-r--r-- 1 david david     68740 Mar 23 10:51 mysql-common_8.0.29-1ubuntu20.04_amd64.deb
+-rw-r--r-- 1 david david   2940120 Mar 23 10:51 mysql-community-client_8.0.29-1ubuntu20.04_amd64.deb
+-rw-r--r-- 1 david david   1773384 Mar 23 10:51 mysql-community-client-core_8.0.29-1ubuntu20.04_amd64.deb
+-rw-r--r-- 1 david david   1227012 Mar 23 10:51 mysql-community-client-plugins_8.0.29-1ubuntu20.04_amd64.deb
+-rw-r--r-- 1 david david     76044 Mar 23 10:51 mysql-community-server_8.0.29-1ubuntu20.04_amd64.deb
+-rw-r--r-- 1 david david  24046720 Mar 23 10:51 mysql-community-server-core_8.0.29-1ubuntu20.04_amd64.deb
+-rw-r--r-- 1 david david     64960 Mar 23 10:51 mysql-server_8.0.29-1ubuntu20.04_amd64.deb
+-rw-rw-r-- 1 david david 344739840 Jun 28 14:40 mysql-server_8.0.29-1ubuntu20.04_amd64.deb-bundle.tar
+david@mmrxps17:~/Downloads/mysql-tmp$ 
+
+
+https://dev.mysql.com/downloads/
+https://dev.mysql.com/downloads/mysql/
+https://dev.mysql.com/downloads/connector/j/
+https://dev.mysql.com/downloads/workbench/
+
+

@@ -1,0 +1,654 @@
+Thu 30 Jun 2022 04:08:49 AM EDT
+
+david@mmrxps17:~$ date
+Thu 30 Jun 2022 04:07:38 AM EDT
+david@mmrxps17:~$ 
+david@mmrxps17:~$ date > stuff-20220630.txt
+david@mmrxps17:~$ code   stuff-20220630.txt
+david@mmrxps17:~$ 
+
+sudo apt install duff
+duff
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+https://askubuntu.com/questions/640899/how-do-i-uninstall-mysql-completely
+
+https://askubuntu.com/questions/733469/what-is-the-difference-between-systemctl-start-and-systemctl-enable
+
+sudo yum install mariadb mariadb-server 
+sudo systemctl start mariadb.service  
+sudo systemctl enable mariadb.service
+sudo systemctl stop mariadb.service  
+sudo systemctl disable mariadb.service
+
+sudo systemctl enable mariadb.service --now
+sudo systemctl disable mariadb.service --now
+
+https://www.tecmint.com/list-all-running-services-under-systemd-in-linux/
+
+# systemctl list-units --type=service
+OR
+# systemctl --type=service
+
+# systemctl list-units --type=service --state=active
+OR
+# systemctl --type=service --state=active
+
+david@mmrxps17:~$ systemctl --type=service --state=active | grep -i sql
+  mysql.service                                         loaded active running MySQL Community Server                                           
+david@mmrxps17:~$ 
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+sudo systemctl stop mysql.service
+sudo systemctl disable mysql.service
+sudo systemctl {start/stop/restart/status} mysql.service
+sudo systemctl status mysql.service
+sudo systemctl status mysql.service
+
+david@mmrxps17:~$ sudo systemctl status mysqld
+[sudo] password for david: 
+Unit mysqld.service could not be found.
+david@mmrxps17:~$ 
+david@mmrxps17:~$ sudo systemctl status mysql.service
+● mysql.service - MySQL Community Server
+     Loaded: loaded (/lib/systemd/system/mysql.service; enabled; vendor preset: enabled)
+     Active: active (running) since Wed 2022-06-29 10:11:13 EDT; 18h ago
+       Docs: man:mysqld(8)
+             http://dev.mysql.com/doc/refman/en/using-systemd.html
+    Process: 113270 ExecStartPre=/usr/share/mysql-8.0/mysql-systemd-start pre (code=exited, status=0/SUCCESS)
+   Main PID: 113309 (mysqld)
+     Status: "Server is operational"
+      Tasks: 38 (limit: 18745)
+     Memory: 357.5M
+     CGroup: /system.slice/mysql.service
+             └─113309 /usr/sbin/mysqld
+
+Jun 29 10:11:13 mmrxps17 systemd[1]: Starting MySQL Community Server...
+Jun 29 10:11:13 mmrxps17 systemd[1]: Started MySQL Community Server.
+david@mmrxps17:~$ 
+david@mmrxps17:~$ sudo systemctl stop mysql.service
+david@mmrxps17:~$ sudo systemctl disable mysql.service
+Removed /etc/systemd/system/multi-user.target.wants/mysql.service.
+david@mmrxps17:~$ 
+david@mmrxps17:~$ sudo systemctl status mysql.service
+● mysql.service - MySQL Community Server
+     Loaded: loaded (/lib/systemd/system/mysql.service; disabled; vendor preset: enabled)
+     Active: inactive (dead)
+       Docs: man:mysqld(8)
+             http://dev.mysql.com/doc/refman/en/using-systemd.html
+
+Jun 29 08:28:37 mmrxps17 systemd[1]: Starting MySQL Community Server...
+Jun 29 08:28:38 mmrxps17 systemd[1]: Started MySQL Community Server.
+Jun 29 09:41:43 mmrxps17 systemd[1]: Stopping MySQL Community Server...
+Jun 29 09:41:44 mmrxps17 systemd[1]: mysql.service: Succeeded.
+Jun 29 09:41:44 mmrxps17 systemd[1]: Stopped MySQL Community Server.
+Jun 29 10:11:13 mmrxps17 systemd[1]: Starting MySQL Community Server...
+Jun 29 10:11:13 mmrxps17 systemd[1]: Started MySQL Community Server.
+Jun 30 04:28:49 mmrxps17 systemd[1]: Stopping MySQL Community Server...
+Jun 30 04:28:50 mmrxps17 systemd[1]: mysql.service: Succeeded.
+Jun 30 04:28:50 mmrxps17 systemd[1]: Stopped MySQL Community Server.
+david@mmrxps17:~$ 
+david@mmrxps17:~$ 
+david@mmrxps17:~$ history | grep -i mysql
+   16  touch mysql-server_8.0.29-1ubuntu20.04_amd64.deb-bundle.tar.md5
+   20  tar tvf mysql-server_8.0.29-1ubuntu20.04_amd64.deb-bundle.tar
+   21  rm libmysqlclient21_8.0.29-1ubuntu20.04_amd64.deb
+   23  mkdir mysql-temp
+   24  cp -p mysql-server_8.0.29-1ubuntu20.04_amd64.deb-bundle.tar mysql-temp
+   25  cd mysql-temp/
+   27  tar tvf mysql-server_8.0.29-1ubuntu20.04_amd64.deb-bundle.tar 
+   29  mv mysql-temp/ mysql-tmp
+   30  cd mysql-tmp/
+   32  tar tvf mysql-server_8.0.29-1ubuntu20.04_amd64.deb-bundle.tar 
+   35  cd mysql-tmp/
+   36  tar xvf mysql-server_8.0.29-1ubuntu20.04_amd64.deb-bundle.tar 
+   55  sudo apt install ./mysql-apt-config_0.8.22-1_all.deb
+   59  sudo apt install mysql-server
+   60  sudo apt install mysql-client
+   61  mysql --version
+   62  sudo apt install mysql-workbench-community
+   64  mysql-workbench
+   65  mysql -u root
+   66  mysql
+   67  mysql -u root -p
+   69  sudo service mysql stop
+   70  sudo mysqld_safe –skip-grant-tables –skip-networking &
+   71  mysql -u root
+   72  mysql
+   73  touch mysql-init
+   74  code mysql-init 
+   75  mysqld --init-file=/home/me/mysql-init
+   76  mysql -u root -p
+   77  sudo service mysql stop
+   78  mysqld --init-file=~/mysql-init
+   79  mysql -u root -p
+   80  mysql
+   82  mysql -u root
+   83  sudo service mysql stop
+   84  sudo service mysql
+   85  mysqld --init-file=~/mysql-init
+   86  sudo service mysql stop
+   87  sudo service mysql start
+   88  mysql
+   89  mysql -u root
+   90  mysql -u root -p
+  108  sudo systemctl status mysqld
+  109  sudo systemctl status mysql.service
+  110  sudo systemctl stop mysql.service
+  111  sudo systemctl disable mysql.service
+  112  sudo systemctl status mysql.service
+  113  history | grep -i mysql
+david@mmrxps17:~$ 
+
+
+https://www.linuxshelltips.com/completely-uninstall-mysql-server-in-ubuntu/
+
+sudo apt purge mysql-server*
+
+david@mmrxps17:~$ sudo apt purge mysql-server*
+Reading package lists... Done
+Building dependency tree       
+Reading state information... Done
+Note, selecting 'mysql-server-5.0' for glob 'mysql-server*'
+Note, selecting 'mysql-server-5.1' for glob 'mysql-server*'
+Note, selecting 'mysql-server-5.5' for glob 'mysql-server*'
+Note, selecting 'mysql-server-5.6' for glob 'mysql-server*'
+Note, selecting 'mysql-server-5.7' for glob 'mysql-server*'
+Note, selecting 'mysql-server' for glob 'mysql-server*'
+Note, selecting 'mysql-server-8.0' for glob 'mysql-server*'
+Note, selecting 'mysql-server-core-5.0' for glob 'mysql-server*'
+Note, selecting 'mysql-server-core-5.1' for glob 'mysql-server*'
+Note, selecting 'mysql-server-core-5.5' for glob 'mysql-server*'
+Note, selecting 'mysql-server-core-5.6' for glob 'mysql-server*'
+Note, selecting 'mysql-server-core-5.7' for glob 'mysql-server*'
+Note, selecting 'mysql-server-core-8.0' for glob 'mysql-server*'
+Package 'mysql-server-5.5' is not installed, so not removed
+Package 'mysql-server-5.7' is not installed, so not removed
+Package 'mysql-server-core-5.7' is not installed, so not removed
+Package 'mysql-server-core-5.5' is not installed, so not removed
+Package 'mysql-server-core-5.6' is not installed, so not removed
+Package 'mysql-server-5.6' is not installed, so not removed
+Package 'mysql-server-5.0' is not installed, so not removed
+Package 'mysql-server-5.1' is not installed, so not removed
+Package 'mysql-server-core-5.0' is not installed, so not removed
+Package 'mysql-server-core-5.1' is not installed, so not removed
+Package 'mysql-server-8.0' is not installed, so not removed
+Package 'mysql-server-core-8.0' is not installed, so not removed
+The following packages were automatically installed and are no longer required:
+  chromium-codecs-ffmpeg-extra gstreamer1.0-vaapi libaio1 libfwupdplugin1 libgstreamer-plugins-bad1.0-0 libmecab2 libnvidia-cfg1-510 libnvidia-common-510 libnvidia-decode-510 libnvidia-encode-510
+  libnvidia-extra-510 libnvidia-fbc1-510 libnvidia-gl-510 libva-wayland2 libx11-xcb1:i386 libxnvctrl0 mecab-ipadic mecab-ipadic-utf8 mecab-utils mysql-community-server mysql-community-server-core
+  nvidia-compute-utils-510 nvidia-kernel-source-510 nvidia-settings nvidia-utils-510 screen-resolution-extra xserver-xorg-video-nvidia-510
+Use 'sudo apt autoremove' to remove them.
+The following packages will be REMOVED:
+  mysql-server*
+0 upgraded, 0 newly installed, 1 to remove and 2 not upgraded.
+After this operation, 75.8 kB disk space will be freed.
+Do you want to continue? [Y/n] y
+(Reading database ... 183224 files and directories currently installed.)
+Removing mysql-server (8.0.29-1ubuntu20.04) ...
+david@mmrxps17:~$ 
+david@mmrxps17:~$ sudo apt install mysql-server
+Reading package lists... Done
+Building dependency tree       
+Reading state information... Done
+The following packages were automatically installed and are no longer required:
+  chromium-codecs-ffmpeg-extra gstreamer1.0-vaapi libfwupdplugin1 libgstreamer-plugins-bad1.0-0 libnvidia-cfg1-510 libnvidia-common-510 libnvidia-decode-510 libnvidia-encode-510 libnvidia-extra-510
+  libnvidia-fbc1-510 libnvidia-gl-510 libva-wayland2 libx11-xcb1:i386 libxnvctrl0 nvidia-compute-utils-510 nvidia-kernel-source-510 nvidia-settings nvidia-utils-510 screen-resolution-extra
+  xserver-xorg-video-nvidia-510
+Use 'sudo apt autoremove' to remove them.
+The following NEW packages will be installed:
+  mysql-server
+0 upgraded, 1 newly installed, 0 to remove and 2 not upgraded.
+Need to get 65.0 kB of archives.
+After this operation, 75.8 kB of additional disk space will be used.
+Get:1 http://repo.mysql.com/apt/ubuntu focal/mysql-8.0 amd64 mysql-server amd64 8.0.29-1ubuntu20.04 [65.0 kB]
+Fetched 65.0 kB in 0s (340 kB/s)        
+Selecting previously unselected package mysql-server.
+(Reading database ... 183218 files and directories currently installed.)
+Preparing to unpack .../mysql-server_8.0.29-1ubuntu20.04_amd64.deb ...
+Unpacking mysql-server (8.0.29-1ubuntu20.04) ...
+Setting up mysql-server (8.0.29-1ubuntu20.04) ...
+david@mmrxps17:~$ 
+david@mmrxps17:~$ sudo systemctl enable mysql
+Created symlink /etc/systemd/system/multi-user.target.wants/mysql.service → /lib/systemd/system/mysql.service.
+david@mmrxps17:~$ 
+david@mmrxps17:~$ 
+
+
+https://www.hivelocity.net/kb/how-to-uninstall-mysql/
+
+
+sudo apt remove mysql mysql-server
+sudo mv /var/lib/mysql /var/lib/mysql_directory_backup
+sudo apt install mysql mysql-server
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+sudo systemctl enable mysql.service
+sudo systemctl start mysql.service
+
+sudo systemctl stop mysql.service
+mysqld --init-file=/home/david/mysql-init
+
+sudo systemctl stop mysql.service
+sudo systemctl disable mysql.service
+sudo apt remove mysql-server
+sudo apt purge mysql-server
+sudo apt autoremove
+sudo mv /var/lib/mysql /var/lib/mysql_directory_backup
+sudo mv /var/lib/mysql-files /var/lib/mysql-files_backup
+ls -la /var/lib | grep -i sql
+
+sudo mv /var/lib/mysql_directory_backup /var/lib/mysql
+sudo mv /var/lib/mysql-files_backup /var/lib/mysql-files
+sudo mysqld --init-file=/home/david/mysql-init
+mysqld -skip-grant-tables --init-file=/home/david/mysql-init
+mysqld_safe --skip-grant-tables --init-file=/home/david/mysql-init
+
+cd ~/Downloads
+sudo apt install ./mysql-apt-config_0.8.22-1_all.deb
+sudo apt update
+sudo apt upgrade
+sudo apt install mysql-server
+sudo apt install mysql-client
+sudo apt install mysql-workbench-community
+
+
+david@mmrxps17:~$ ls -la /var/lib | grep -i sql
+drwxr-x---  6 mysql         mysql         4096 Jun 30 04:42 mysql_directory_backup
+drwxrwx---  2 mysql         mysql         4096 Jun 29 08:28 mysql-files_backup
+drwxr-x---  2 mysql         mysql         4096 Jun 29 08:28 mysql-keyring
+david@mmrxps17:~$ 
+david@mmrxps17:~$ cd ~/Downloads
+david@mmrxps17:~/Downloads$ sudo apt install ./mysql-apt-config_0.8.22-1_all.deb
+Reading package lists... Done
+Building dependency tree       
+Reading state information... Done
+Note, selecting 'mysql-apt-config' instead of './mysql-apt-config_0.8.22-1_all.deb'
+mysql-apt-config is already the newest version (0.8.22-1).
+0 upgraded, 0 newly installed, 0 to remove and 2 not upgraded.
+david@mmrxps17:~/Downloads$ sudo apt update
+Hit:1 http://us.archive.ubuntu.com/ubuntu focal InRelease
+Hit:2 http://repo.mysql.com/apt/ubuntu focal InRelease                                                                      
+Hit:3 http://security.ubuntu.com/ubuntu focal-security InRelease                                                            
+Hit:4 http://packages.microsoft.com/repos/code stable InRelease     
+Hit:5 http://us.archive.ubuntu.com/ubuntu focal-updates InRelease
+Hit:6 http://us.archive.ubuntu.com/ubuntu focal-backports InRelease
+Reading package lists... Done
+Building dependency tree       
+Reading state information... Done
+2 packages can be upgraded. Run 'apt list --upgradable' to see them.
+david@mmrxps17:~/Downloads$ sudo apt upgrade
+Reading package lists... Done
+Building dependency tree       
+Reading state information... Done
+Calculating upgrade... Done
+The following packages have been kept back:
+  linux-modules-nvidia-510-generic-hwe-20.04 nvidia-kernel-common-510
+0 upgraded, 0 newly installed, 0 to remove and 2 not upgraded.
+david@mmrxps17:~/Downloads$ sudo apt install mysql-server
+Reading package lists... Done
+Building dependency tree       
+Reading state information... Done
+The following additional packages will be installed:
+  libaio1 libmecab2 mecab-ipadic mecab-ipadic-utf8 mecab-utils mysql-community-server mysql-community-server-core
+The following NEW packages will be installed:
+  libaio1 libmecab2 mecab-ipadic mecab-ipadic-utf8 mecab-utils mysql-community-server mysql-community-server-core mysql-server
+0 upgraded, 8 newly installed, 0 to remove and 2 not upgraded.
+Need to get 31.2 MB of archives.
+After this operation, 211 MB of additional disk space will be used.
+Do you want to continue? [Y/n] y
+Get:1 http://us.archive.ubuntu.com/ubuntu focal/main amd64 libaio1 amd64 0.3.112-5 [7,184 B]
+Get:2 http://us.archive.ubuntu.com/ubuntu focal/main amd64 libmecab2 amd64 0.996-10build1 [233 kB]
+Get:3 http://repo.mysql.com/apt/ubuntu focal/mysql-8.0 amd64 mysql-community-server-core amd64 8.0.29-1ubuntu20.04 [24.0 MB]
+Get:4 http://us.archive.ubuntu.com/ubuntu focal/main amd64 mecab-utils amd64 0.996-10build1 [4,912 B]
+Get:5 http://us.archive.ubuntu.com/ubuntu focal/main amd64 mecab-ipadic all 2.7.0-20070801+main-2.1 [6,714 kB]
+Get:6 http://us.archive.ubuntu.com/ubuntu focal/main amd64 mecab-ipadic-utf8 all 2.7.0-20070801+main-2.1 [4,380 B]
+Get:7 http://repo.mysql.com/apt/ubuntu focal/mysql-8.0 amd64 mysql-community-server amd64 8.0.29-1ubuntu20.04 [76.0 kB]
+Get:8 http://repo.mysql.com/apt/ubuntu focal/mysql-8.0 amd64 mysql-server amd64 8.0.29-1ubuntu20.04 [65.0 kB]
+Fetched 31.2 MB in 1s (24.2 MB/s)       
+Preconfiguring packages ...
+Selecting previously unselected package libaio1:amd64.
+(Reading database ... 182404 files and directories currently installed.)
+Preparing to unpack .../0-libaio1_0.3.112-5_amd64.deb ...
+Unpacking libaio1:amd64 (0.3.112-5) ...
+Selecting previously unselected package libmecab2:amd64.
+Preparing to unpack .../1-libmecab2_0.996-10build1_amd64.deb ...
+Unpacking libmecab2:amd64 (0.996-10build1) ...
+Selecting previously unselected package mysql-community-server-core.
+Preparing to unpack .../2-mysql-community-server-core_8.0.29-1ubuntu20.04_amd64.deb ...
+Unpacking mysql-community-server-core (8.0.29-1ubuntu20.04) ...
+Selecting previously unselected package mysql-community-server.
+Preparing to unpack .../3-mysql-community-server_8.0.29-1ubuntu20.04_amd64.deb ...
+Unpacking mysql-community-server (8.0.29-1ubuntu20.04) ...
+Selecting previously unselected package mecab-utils.
+Preparing to unpack .../4-mecab-utils_0.996-10build1_amd64.deb ...
+Unpacking mecab-utils (0.996-10build1) ...
+Selecting previously unselected package mecab-ipadic.
+Preparing to unpack .../5-mecab-ipadic_2.7.0-20070801+main-2.1_all.deb ...
+Unpacking mecab-ipadic (2.7.0-20070801+main-2.1) ...
+Selecting previously unselected package mecab-ipadic-utf8.
+Preparing to unpack .../6-mecab-ipadic-utf8_2.7.0-20070801+main-2.1_all.deb ...
+Unpacking mecab-ipadic-utf8 (2.7.0-20070801+main-2.1) ...
+Selecting previously unselected package mysql-server.
+Preparing to unpack .../7-mysql-server_8.0.29-1ubuntu20.04_amd64.deb ...
+Unpacking mysql-server (8.0.29-1ubuntu20.04) ...
+Setting up libmecab2:amd64 (0.996-10build1) ...
+Setting up mecab-utils (0.996-10build1) ...
+Setting up libaio1:amd64 (0.3.112-5) ...
+Setting up mecab-ipadic (2.7.0-20070801+main-2.1) ...
+Compiling IPA dictionary for Mecab.  This takes long time...
+reading /usr/share/mecab/dic/ipadic/unk.def ... 40
+emitting double-array: 100% |###########################################| 
+/usr/share/mecab/dic/ipadic/model.def is not found. skipped.
+reading /usr/share/mecab/dic/ipadic/Noun.proper.csv ... 27328
+reading /usr/share/mecab/dic/ipadic/Noun.place.csv ... 72999
+reading /usr/share/mecab/dic/ipadic/Noun.verbal.csv ... 12146
+reading /usr/share/mecab/dic/ipadic/Noun.demonst.csv ... 120
+reading /usr/share/mecab/dic/ipadic/Postp.csv ... 146
+reading /usr/share/mecab/dic/ipadic/Suffix.csv ... 1393
+reading /usr/share/mecab/dic/ipadic/Symbol.csv ... 208
+reading /usr/share/mecab/dic/ipadic/Noun.others.csv ... 151
+reading /usr/share/mecab/dic/ipadic/Filler.csv ... 19
+reading /usr/share/mecab/dic/ipadic/Adnominal.csv ... 135
+reading /usr/share/mecab/dic/ipadic/Verb.csv ... 130750
+reading /usr/share/mecab/dic/ipadic/Interjection.csv ... 252
+reading /usr/share/mecab/dic/ipadic/Noun.csv ... 60477
+reading /usr/share/mecab/dic/ipadic/Noun.adverbal.csv ... 795
+reading /usr/share/mecab/dic/ipadic/Conjunction.csv ... 171
+reading /usr/share/mecab/dic/ipadic/Auxil.csv ... 199
+reading /usr/share/mecab/dic/ipadic/Noun.number.csv ... 42
+reading /usr/share/mecab/dic/ipadic/Adj.csv ... 27210
+reading /usr/share/mecab/dic/ipadic/Others.csv ... 2
+reading /usr/share/mecab/dic/ipadic/Noun.org.csv ... 16668
+reading /usr/share/mecab/dic/ipadic/Noun.name.csv ... 34202
+reading /usr/share/mecab/dic/ipadic/Noun.adjv.csv ... 3328
+reading /usr/share/mecab/dic/ipadic/Prefix.csv ... 221
+reading /usr/share/mecab/dic/ipadic/Postp-col.csv ... 91
+reading /usr/share/mecab/dic/ipadic/Adverb.csv ... 3032
+reading /usr/share/mecab/dic/ipadic/Noun.nai.csv ... 42
+emitting double-array: 100% |###########################################| 
+reading /usr/share/mecab/dic/ipadic/matrix.def ... 1316x1316
+emitting matrix      : 100% |###########################################| 
+
+done!
+update-alternatives: using /var/lib/mecab/dic/ipadic to provide /var/lib/mecab/dic/debian (mecab-dictionary) in auto mode
+Setting up mysql-community-server-core (8.0.29-1ubuntu20.04) ...
+Setting up mysql-community-server (8.0.29-1ubuntu20.04) ...
+mysql.service is a disabled or a static unit not running, not starting it.
+mysql.service is a disabled or a static unit not running, not starting it.
+Setting up mecab-ipadic-utf8 (2.7.0-20070801+main-2.1) ...
+Compiling IPA dictionary for Mecab.  This takes long time...
+reading /usr/share/mecab/dic/ipadic/unk.def ... 40
+emitting double-array: 100% |###########################################| 
+/usr/share/mecab/dic/ipadic/model.def is not found. skipped.
+reading /usr/share/mecab/dic/ipadic/Noun.proper.csv ... 27328
+reading /usr/share/mecab/dic/ipadic/Noun.place.csv ... 72999
+reading /usr/share/mecab/dic/ipadic/Noun.verbal.csv ... 12146
+reading /usr/share/mecab/dic/ipadic/Noun.demonst.csv ... 120
+reading /usr/share/mecab/dic/ipadic/Postp.csv ... 146
+reading /usr/share/mecab/dic/ipadic/Suffix.csv ... 1393
+reading /usr/share/mecab/dic/ipadic/Symbol.csv ... 208
+reading /usr/share/mecab/dic/ipadic/Noun.others.csv ... 151
+reading /usr/share/mecab/dic/ipadic/Filler.csv ... 19
+reading /usr/share/mecab/dic/ipadic/Adnominal.csv ... 135
+reading /usr/share/mecab/dic/ipadic/Verb.csv ... 130750
+reading /usr/share/mecab/dic/ipadic/Interjection.csv ... 252
+reading /usr/share/mecab/dic/ipadic/Noun.csv ... 60477
+reading /usr/share/mecab/dic/ipadic/Noun.adverbal.csv ... 795
+reading /usr/share/mecab/dic/ipadic/Conjunction.csv ... 171
+reading /usr/share/mecab/dic/ipadic/Auxil.csv ... 199
+reading /usr/share/mecab/dic/ipadic/Noun.number.csv ... 42
+reading /usr/share/mecab/dic/ipadic/Adj.csv ... 27210
+reading /usr/share/mecab/dic/ipadic/Others.csv ... 2
+reading /usr/share/mecab/dic/ipadic/Noun.org.csv ... 16668
+reading /usr/share/mecab/dic/ipadic/Noun.name.csv ... 34202
+reading /usr/share/mecab/dic/ipadic/Noun.adjv.csv ... 3328
+reading /usr/share/mecab/dic/ipadic/Prefix.csv ... 221
+reading /usr/share/mecab/dic/ipadic/Postp-col.csv ... 91
+reading /usr/share/mecab/dic/ipadic/Adverb.csv ... 3032
+reading /usr/share/mecab/dic/ipadic/Noun.nai.csv ... 42
+emitting double-array: 100% |###########################################| 
+reading /usr/share/mecab/dic/ipadic/matrix.def ... 1316x1316
+emitting matrix      : 100% |###########################################| 
+
+done!
+update-alternatives: using /var/lib/mecab/dic/ipadic-utf8 to provide /var/lib/mecab/dic/debian (mecab-dictionary) in auto mode
+Setting up mysql-server (8.0.29-1ubuntu20.04) ...
+Processing triggers for man-db (2.9.1-1) ...
+Processing triggers for libc-bin (2.31-0ubuntu9.9) ...
+david@mmrxps17:~/Downloads$ 
+david@mmrxps17:~/Downloads$ 
+david@mmrxps17:~/Downloads$ sudo mysql
+ERROR 2002 (HY000): Can't connect to local MySQL server through socket '/var/run/mysqld/mysqld.sock' (2)
+david@mmrxps17:~/Downloads$ sudo mysql -u root
+ERROR 2002 (HY000): Can't connect to local MySQL server through socket '/var/run/mysqld/mysqld.sock' (2)
+david@mmrxps17:~/Downloads$ sudo mysql -u root -p
+Enter password: 
+ERROR 2002 (HY000): Can't connect to local MySQL server through socket '/var/run/mysqld/mysqld.sock' (2)
+david@mmrxps17:~/Downloads$ 
+david@mmrxps17:~/Downloads$ cd 
+david@mmrxps17:~$ pwd
+/home/david
+david@mmrxps17:~$ 
+david@mmrxps17:~$ 
+david@mmrxps17:~$ sudo mysqld --init-file=/home/david/mysql-init
+2022-06-30T09:30:04.030625Z 0 [System] [MY-010116] [Server] /usr/sbin/mysqld (mysqld 8.0.29) starting as process 124908
+2022-06-30T09:30:04.031464Z 0 [ERROR] [MY-010123] [Server] Fatal error: Please read "Security" section of the manual to find out how to run mysqld as root!
+2022-06-30T09:30:04.031488Z 0 [ERROR] [MY-010119] [Server] Aborting
+2022-06-30T09:30:04.031570Z 0 [System] [MY-010910] [Server] /usr/sbin/mysqld: Shutdown complete (mysqld 8.0.29)  MySQL Community Server - GPL.
+david@mmrxps17:~$ 
+
+sudo mysqld -skip-grant-tables
+mysqld -skip-grant-tables --init-file=/home/david/mysql-init
+
+
+david@mmrxps17:~$ mysql
+ERROR 2002 (HY000): Can't connect to local MySQL server through socket '/var/run/mysqld/mysqld.sock' (2)
+david@mmrxps17:~$ mysql -u root
+ERROR 2002 (HY000): Can't connect to local MySQL server through socket '/var/run/mysqld/mysqld.sock' (2)
+david@mmrxps17:~$ mysql -u root -p
+Enter password: 
+ERROR 2002 (HY000): Can't connect to local MySQL server through socket '/var/run/mysqld/mysqld.sock' (2)
+david@mmrxps17:~$ 
+
+
+
+david@mmrxps17:~$ mysql
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 7
+Server version: 8.0.29 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2022, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> ALTER USER 'root'@'localhost' IDENTIFIED BY 'bananas';
+ERROR 1290 (HY000): The MySQL server is running with the --skip-grant-tables option so it cannot execute this statement
+mysql> 
+
+
+
+
+
+david@mmrxps17:~$ mysqld_safe --skip-grant-tables --init-file=/home/david/mysql-init
+/usr/bin/mysqld_safe: 653: cannot create /var/lib/mysql/mmrxps17.err: Permission denied
+Logging to '/var/lib/mysql/mmrxps17.err'.
+2022-06-30T10:04:02.706484Z mysqld_safe Starting mysqld daemon with databases from /var/lib/mysql
+/usr/bin/mysqld_safe: 144: cannot create /var/lib/mysql/mmrxps17.err: Permission denied
+/usr/bin/mysqld_safe: 1: eval: cannot create /var/lib/mysql/mmrxps17.err: Permission denied
+/usr/bin/mysqld_safe: 916: cannot create /var/lib/mysql/mmrxps17.err: Permission denied
+rm: cannot remove '/var/lib/mysql/mmrxps17.pid.shutdown': Permission denied
+2022-06-30T10:04:02.712890Z mysqld_safe mysqld from pid file /var/lib/mysql/mmrxps17.pid ended
+/usr/bin/mysqld_safe: 144: cannot create /var/lib/mysql/mmrxps17.err: Permission denied
+david@mmrxps17:~$ sudo mysqld_safe --skip-grant-tables --init-file=/home/david/mysql-init
+[sudo] password for david: 
+2022-06-30T10:04:35.384680Z mysqld_safe Logging to '/var/lib/mysql/mmrxps17.err'.
+2022-06-30T10:04:35.406426Z mysqld_safe A mysqld process already exists
+david@mmrxps17:~$ ps -aef | grep -i sql
+root      126079    1676  0 05:58 ?        00:00:00 sudo mysqld_safe --skip-grant-tables
+root      126080  126079  0 05:58 ?        00:00:00 /bin/sh /usr/bin/mysqld_safe --skip-grant-tables
+mysql     126152  126080  0 05:58 ?        00:00:02 /usr/sbin/mysqld --basedir=/usr --datadir=/var/lib/mysql --plugin-dir=/usr/lib/mysql/plugin --user=mysql --skip-grant-tables --log-error=mmrxps17.err --pid-file=mmrxps17.pid
+david     126532  126352  0 06:04 pts/1    00:00:00 grep --color=auto -i sql
+david@mmrxps17:~$ sudo kill 126080
+david@mmrxps17:~$ 
+
+
+david@mmrxps17:~$ !222
+sudo mysqld_safe --skip-grant-tables --init-file=/home/david/mysql-init
+2022-06-30T10:08:25.281480Z mysqld_safe Logging to '/var/lib/mysql/mmrxps17.err'.
+2022-06-30T10:08:25.307871Z mysqld_safe Starting mysqld daemon with databases from /var/lib/mysql
+2022-06-30T10:08:27.449707Z mysqld_safe mysqld from pid file /var/lib/mysql/mmrxps17.pid ended
+david@mmrxps17:~$ 
+
+
+david@mmrxps17:~$ 
+david@mmrxps17:~$ 
+david@mmrxps17:~$ mysql
+ERROR 1045 (28000): Access denied for user 'david'@'localhost' (using password: NO)
+david@mmrxps17:~$ mysql -u root
+ERROR 1698 (28000): Access denied for user 'root'@'localhost'
+david@mmrxps17:~$ mysql -u root -p
+Enter password: 
+ERROR 1698 (28000): Access denied for user 'root'@'localhost'
+david@mmrxps17:~$ mysql -u root -p
+Enter password: 
+ERROR 1698 (28000): Access denied for user 'root'@'localhost'
+david@mmrxps17:~$ sudo systemclt status mysql
+[sudo] password for david: 
+sudo: systemclt: command not found
+david@mmrxps17:~$ sudo systemctl status mysql
+● mysql.service - MySQL Community Server
+     Loaded: loaded (/lib/systemd/system/mysql.service; enabled; vendor preset: enabled)
+     Active: active (running) since Thu 2022-06-30 06:10:09 EDT; 3min 5s ago
+       Docs: man:mysqld(8)
+             http://dev.mysql.com/doc/refman/en/using-systemd.html
+    Process: 920 ExecStartPre=/usr/share/mysql-8.0/mysql-systemd-start pre (code=exited, status=0/SUCCESS)
+   Main PID: 986 (mysqld)
+     Status: "Server is operational"
+      Tasks: 38 (limit: 18739)
+     Memory: 419.3M
+     CGroup: /system.slice/mysql.service
+             └─986 /usr/sbin/mysqld
+
+Jun 30 06:10:08 mmrxps17 systemd[1]: Starting MySQL Community Server...
+Jun 30 06:10:09 mmrxps17 mysqld[986]: 2022-06-30T10:10:09.141714Z 0 [System] [MY-010116] [Server] /usr/sbin/mysqld (mysqld 8.0.29) starting as process 986
+Jun 30 06:10:09 mmrxps17 mysqld[986]: 2022-06-30T10:10:09.155203Z 1 [System] [MY-013576] [InnoDB] InnoDB initialization has started.
+Jun 30 06:10:09 mmrxps17 mysqld[986]: 2022-06-30T10:10:09.271910Z 1 [System] [MY-013577] [InnoDB] InnoDB initialization has ended.
+Jun 30 06:10:09 mmrxps17 mysqld[986]: 2022-06-30T10:10:09.416063Z 0 [Warning] [MY-010068] [Server] CA certificate ca.pem is self signed.
+Jun 30 06:10:09 mmrxps17 mysqld[986]: 2022-06-30T10:10:09.416085Z 0 [System] [MY-013602] [Server] Channel mysql_main configured to support TLS. Encrypted co>
+Jun 30 06:10:09 mmrxps17 mysqld[986]: 2022-06-30T10:10:09.428354Z 0 [System] [MY-010931] [Server] /usr/sbin/mysqld: ready for connections. Version: '8.0.29'>
+Jun 30 06:10:09 mmrxps17 systemd[1]: Started MySQL Community Server.
+Jun 30 06:10:09 mmrxps17 mysqld[986]: 2022-06-30T10:10:09.428464Z 0 [System] [MY-011323] [Server] X Plugin ready for connections. Bind-address: '::' port: 3>
+lines 1-22/22 (END)...skipping...
+● mysql.service - MySQL Community Server
+     Loaded: loaded (/lib/systemd/system/mysql.service; enabled; vendor preset: enabled)
+     Active: active (running) since Thu 2022-06-30 06:10:09 EDT; 3min 5s ago
+       Docs: man:mysqld(8)
+             http://dev.mysql.com/doc/refman/en/using-systemd.html
+    Process: 920 ExecStartPre=/usr/share/mysql-8.0/mysql-systemd-start pre (code=exited, status=0/SUCCESS)
+   Main PID: 986 (mysqld)
+     Status: "Server is operational"
+      Tasks: 38 (limit: 18739)
+     Memory: 419.3M
+     CGroup: /system.slice/mysql.service
+             └─986 /usr/sbin/mysqld
+
+Jun 30 06:10:08 mmrxps17 systemd[1]: Starting MySQL Community Server...
+Jun 30 06:10:09 mmrxps17 mysqld[986]: 2022-06-30T10:10:09.141714Z 0 [System] [MY-010116] [Server] /usr/sbin/mysqld (mysqld 8.0.29) starting as process 986
+Jun 30 06:10:09 mmrxps17 mysqld[986]: 2022-06-30T10:10:09.155203Z 1 [System] [MY-013576] [InnoDB] InnoDB initialization has started.
+Jun 30 06:10:09 mmrxps17 mysqld[986]: 2022-06-30T10:10:09.271910Z 1 [System] [MY-013577] [InnoDB] InnoDB initialization has ended.
+Jun 30 06:10:09 mmrxps17 mysqld[986]: 2022-06-30T10:10:09.416063Z 0 [Warning] [MY-010068] [Server] CA certificate ca.pem is self signed.
+Jun 30 06:10:09 mmrxps17 mysqld[986]: 2022-06-30T10:10:09.416085Z 0 [System] [MY-013602] [Server] Channel mysql_main configured to support TLS. Encrypted connections are now supported for this channel.
+Jun 30 06:10:09 mmrxps17 mysqld[986]: 2022-06-30T10:10:09.428354Z 0 [System] [MY-010931] [Server] /usr/sbin/mysqld: ready for connections. Version: '8.0.29'  socket: '/var/run/mysqld/mysqld.sock'  port: 3306 >
+Jun 30 06:10:09 mmrxps17 systemd[1]: Started MySQL Community Server.
+Jun 30 06:10:09 mmrxps17 mysqld[986]: 2022-06-30T10:10:09.428464Z 0 [System] [MY-011323] [Server] X Plugin ready for connections. Bind-address: '::' port: 33060, socket: /var/run/mysqld/mysqlx.sock
+~
+
+
+● mysql.service - MySQL Community Server
+     Loaded: loaded (/lib/systemd/system/mysql.service; enabled; vendor preset: enabled)
+     Active: active (running) since Thu 2022-06-30 06:10:09 EDT; 3min 5s ago
+       Docs: man:mysqld(8)
+             http://dev.mysql.com/doc/refman/en/using-systemd.html
+    Process: 920 ExecStartPre=/usr/share/mysql-8.0/mysql-systemd-start pre (code=exited, status=0/SUCCESS)
+   Main PID: 986 (mysqld)
+     Status: "Server is operational"
+      Tasks: 38 (limit: 18739)
+     Memory: 419.3M
+     CGroup: /system.slice/mysql.service
+             └─986 /usr/sbin/mysqld
+
+Jun 30 06:10:08 mmrxps17 systemd[1]: Starting MySQL Community Server...
+Jun 30 06:10:09 mmrxps17 mysqld[986]: 2022-06-30T10:10:09.141714Z 0 [System] [MY-010116] [Server] /usr/sbin/mysqld (mysqld 8.0.29) starting as process 986
+Jun 30 06:10:09 mmrxps17 mysqld[986]: 2022-06-30T10:10:09.155203Z 1 [System] [MY-013576] [InnoDB] InnoDB initialization has started.
+Jun 30 06:10:09 mmrxps17 mysqld[986]: 2022-06-30T10:10:09.271910Z 1 [System] [MY-013577] [InnoDB] InnoDB initialization has ended.
+Jun 30 06:10:09 mmrxps17 mysqld[986]: 2022-06-30T10:10:09.416063Z 0 [Warning] [MY-010068] [Server] CA certificate ca.pem is self signed.
+Jun 30 06:10:09 mmrxps17 mysqld[986]: 2022-06-30T10:10:09.416085Z 0 [System] [MY-013602] [Server] Channel mysql_main configured to support TLS. Encrypted connections are now supported for this channel.
+Jun 30 06:10:09 mmrxps17 mysqld[986]: 2022-06-30T10:10:09.428354Z 0 [System] [MY-010931] [Server] /usr/sbin/mysqld: ready for connections. Version: '8.0.29'  socket: '/var/run/mysqld/mysqld.sock'  port:>
+Jun 30 06:10:09 mmrxps17 systemd[1]: Started MySQL Community Server.
+Jun 30 06:10:09 mmrxps17 mysqld[986]: 2022-06-30T10:10:09.428464Z 0 [System] [MY-011323] [Server] X Plugin ready for connections. Bind-address: '::' port: 33060, socket: /var/run/mysqld/mysqlx.sock
+~
+~
+~
+~
+~
+
+= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
+
+
+david@mmrxps17:~$ 
+david@mmrxps17:~$ git --version
+
+Command 'git' not found, but can be installed with:
+
+sudo apt install git
+
+david@mmrxps17:~$ 
+
+
+create new github fallstechdave account
+in that account, create new repository miscdphxps17w11
+in that account, create new repository miscdphxps17u20
+
+ssh-keygen -t ed25519 -C "david.holberton@fallstechnology.com"
+ssh-keygen -t rsa -b 4096 -C "david.holberton@fallstechnology.com"
+
+git config --global user.name  fallstechdave
+git config --global user.email david.holberton@fallstechnology.com
+
+david@mmrxps17:~$ git config --global user.name  fallstechdave
+david@mmrxps17:~$ git config --global user.email david.holberton@fallstechnology.com
+david@mmrxps17:~$ git config --list
+user.name=fallstechdave
+user.email=david.holberton@fallstechnology.com
+david@mmrxps17:~$ 
+
+david@mmrxps17:~/.ssh$ 
+david@mmrxps17:~/.ssh$ history | tail
+  256  ssh-keygen -t rsa -b 4096 -C "david.holberton@fallstechnology.com"
+  257  ls -latr
+  258  rm *
+  259  ls
+  260  ssh-keygen -t ed25519 -C "david.holberton@fallstechnology.com"
+  261  ls
+  262  ssh-keygen -t rsa -b 4096 -C "david.holberton@fallstechnology.com"
+  263  ls
+  264  ls -latr
+  265  history | tail
+david@mmrxps17:~/.ssh$ ls -latr
+total 24
+drwxr-xr-x 19 david david 4096 Jun 30 06:34 ..
+-rw-r--r--  1 david david  117 Jun 30 06:35 id_ed25519.pub
+-rw-------  1 david david  432 Jun 30 06:35 id_ed25519
+-rw-r--r--  1 david david  761 Jun 30 06:35 id_rsa.pub
+-rw-------  1 david david 3414 Jun 30 06:35 id_rsa
+drwxrwxr-x  2 david david 4096 Jun 30 06:35 .
+david@mmrxps17:~/.ssh$ 
+david@mmrxps17:~/.ssh$ 
