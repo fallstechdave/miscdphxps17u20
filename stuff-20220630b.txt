@@ -1,0 +1,264 @@
+Thu 30 Jun 2022 08:40:14 AM EDT
+
+https://lifehacker.com/how-to-do-your-own-basic-bike-maintenance-1849097471
+
+http://releases.ubuntu.com/20.04/
+
+https://code.visualstudio.com/docs/?dv=linux64_deb
+https://code.visualstudio.com/docs/?dv=linux64_rpm
+https://code.visualstudio.com/docs/?dv=linux64
+
+https://code.visualstudio.com/docs/setup/linux
+
+sudo apt install ./<file>.deb
+
+fallstechdave@mmrxps17:~$ cd Downloads/
+fallstechdave@mmrxps17:~/Downloads$ ls -latr
+total 310860
+drwxr-xr-x 17 fallstechdave fallstechdave      4096 Jun 30 08:40 ..
+-rw-rw-r--  1 fallstechdave fallstechdave  83667280 Jun 30 08:41 code_1.68.1-1655263094_amd64.deb
+-rw-rw-r--  1 fallstechdave fallstechdave 117711933 Jun 30 08:42 code-1.68.1-1655263151.el7.x86_64.rpm
+-rw-rw-r--  1 fallstechdave fallstechdave 116922965 Jun 30 08:42 code-stable-x64-1655263335.tar.gz
+drwxr-xr-x  2 fallstechdave fallstechdave      4096 Jun 30 08:45 .
+fallstechdave@mmrxps17:~/Downloads$ 
+fallstechdave@mmrxps17:~/Downloads$ sudo apt install ./code_1.68.1-1655263094_amd64.deb 
+[sudo] password for fallstechdave: 
+Sorry, try again.
+[sudo] password for fallstechdave: 
+Reading package lists... Done
+Building dependency tree       
+Reading state information... Done
+Note, selecting 'code' instead of './code_1.68.1-1655263094_amd64.deb'
+code is already the newest version (1.68.1-1655263094).
+The following packages were automatically installed and are no longer required:
+  chromium-codecs-ffmpeg-extra gstreamer1.0-vaapi libgstreamer-plugins-bad1.0-0 libnvidia-cfg1-510 libnvidia-common-510 libnvidia-decode-510 libnvidia-encode-510 libnvidia-extra-510 libnvidia-fbc1-510
+  libnvidia-gl-510 libva-wayland2 libx11-xcb1:i386 libxnvctrl0 nvidia-compute-utils-510 nvidia-kernel-source-510 nvidia-settings nvidia-utils-510 screen-resolution-extra xserver-xorg-video-nvidia-510
+Use 'sudo apt autoremove' to remove them.
+0 upgraded, 0 newly installed, 0 to remove and 68 not upgraded.
+fallstechdave@mmrxps17:~/Downloads$ 
+fallstechdave@mmrxps17:~/Downloads$ 
+
+fallstechdave@mmrxps17:~/repositories$ 
+fallstechdave@mmrxps17:~/repositories$ history | tail -20
+   23  cd /media/fallstechdave/98CE-9117/
+   24  ls
+   25  cd mmrxps17/
+   26  ls
+   27  ls -latr
+   28  cd .ssh
+   29  ls
+   30  pwd -P
+   31  ls -latr
+   32  cp -p * ~/.ssh
+   33  ls -latr ~/.ssh
+   34  cd
+   35  cd rep
+   36  mkdir repositories
+   37  cd repositories/
+   38  git clone git@github.com:fallstechdave/miscdphxps17u20.git
+   39  sudo apt install git
+   40  git clone git@github.com:fallstechdave/miscdphxps17u20.git
+   41  history | tail
+   42  history | tail -20
+fallstechdave@mmrxps17:~/repositories$ 
+
+git config --global user.name  fallstechdave
+git config --global user.email david.holberton@fallstechnology.com
+git config --list
+
+ssh-keygen -t ed25519 -C "david.holberton@fallstechnology.com"
+ssh-keygen -t rsa -b 4096 -C "david.holberton@fallstechnology.com"
+ssh -T git@github.com
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+cd Downloads/
+sudo apt install ./mysql-apt-config_0.8.22-1_all.deb 
+sudo apt update
+sudo apt upgrade
+sudo apt install mysql-server
+sudo apt install mysql-client
+mysql --version
+sudo apt install mysql-workbench-community
+
+fallstechdave@mmrxps17:~$ 
+fallstechdave@mmrxps17:~$ cd Downloads/
+fallstechdave@mmrxps17:~/Downloads$ ls -latr
+total 310880
+-rw-rw-r--  1 fallstechdave fallstechdave  83667280 Jun 30 08:41 code_1.68.1-1655263094_amd64.deb
+-rw-rw-r--  1 fallstechdave fallstechdave 117711933 Jun 30 08:42 code-1.68.1-1655263151.el7.x86_64.rpm
+-rw-rw-r--  1 fallstechdave fallstechdave 116922965 Jun 30 08:42 code-stable-x64-1655263335.tar.gz
+drwxr-xr-x 19 fallstechdave fallstechdave      4096 Jun 30 09:17 ..
+-rw-rw-r--  1 fallstechdave fallstechdave     18012 Jun 30 09:24 mysql-apt-config_0.8.22-1_all.deb
+drwxr-xr-x  2 fallstechdave fallstechdave      4096 Jun 30 09:24 .
+fallstechdave@mmrxps17:~/Downloads$ 
+fallstechdave@mmrxps17:~/Downloads$ sudo apt install ./mysql-apt-config_0.8.22-1_all.deb 
+Reading package lists... Done
+Building dependency tree       
+Reading state information... Done
+Note, selecting 'mysql-apt-config' instead of './mysql-apt-config_0.8.22-1_all.deb'
+The following packages were automatically installed and are no longer required:
+  chromium-codecs-ffmpeg-extra gstreamer1.0-vaapi libgstreamer-plugins-bad1.0-0 libnvidia-cfg1-510 libnvidia-common-510 libnvidia-decode-510 libnvidia-encode-510 libnvidia-extra-510 libnvidia-fbc1-510
+  libnvidia-gl-510 libva-wayland2 libx11-xcb1:i386 libxnvctrl0 nvidia-compute-utils-510 nvidia-kernel-source-510 nvidia-settings nvidia-utils-510 screen-resolution-extra xserver-xorg-video-nvidia-510
+Use 'sudo apt autoremove' to remove them.
+The following NEW packages will be installed:
+  mysql-apt-config
+0 upgraded, 1 newly installed, 0 to remove and 68 not upgraded.
+Need to get 0 B/18.0 kB of archives.
+After this operation, 35.8 kB of additional disk space will be used.
+Get:1 /home/fallstechdave/Downloads/mysql-apt-config_0.8.22-1_all.deb mysql-apt-config all 0.8.22-1 [18.0 kB]
+Preconfiguring packages ...
+Selecting previously unselected package mysql-apt-config.
+(Reading database ... 182170 files and directories currently installed.)
+Preparing to unpack .../mysql-apt-config_0.8.22-1_all.deb ...
+Unpacking mysql-apt-config (0.8.22-1) ...
+Setting up mysql-apt-config (0.8.22-1) ...
+Warning: apt-key should not be used in scripts (called from postinst maintainerscript of the package mysql-apt-config)
+OK
+fallstechdave@mmrxps17:~/Downloads$ 
+fallstechdave@mmrxps17:~/Downloads$ mysql --version
+mysql  Ver 8.0.29 for Linux on x86_64 (MySQL Community Server - GPL)
+fallstechdave@mmrxps17:~/Downloads$ 
+fallstechdave@mmrxps17:~/Downloads$ history | tail -20
+  128  ls -latrR
+  129  ls -latr
+  130  ls -latr miscdphxps17u20/
+  131  cp -p *.txt ~/Documents/
+  132  cd miscdphxps17u20/
+  133  cp -p *.txt ~/Documents/
+  134  code /home/fallstechdave/Documents/
+  135  cd
+  136  cd Downloads/
+  137  ls -latr
+  138  sudo apt instal ./mysql-apt-config_0.8.22-1_all.deb
+  139  sudo apt install ./mysql-apt-config_0.8.22-1_all.deb 
+  140  sudo apt update
+  141  sudo apt upgrade
+  142  sudo apt install mysql-server
+  143  mysql -u root -p
+  144  sudo apt install mysql-client
+  145  mysql --version
+  146  sudo apt install mysql-workbench-community
+  147  history | tail -20
+fallstechdave@mmrxps17:~/Downloads$ 
+fallstechdave@mmrxps17:~/Downloads$ 
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+https://gorails.com/setup/ubuntu/20.04
+
+sudo apt install curl
+curl -sL https://deb.nodesource.com/setup_lts.x | sudo -E bash -
+
+curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
+
+echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+
+sudo apt-get update
+
+sudo apt-get install git-core zlib1g-dev build-essential libssl-dev libreadline-dev libyaml-dev libsqlite3-dev sqlite3 libxml2-dev libxslt1-dev libcurl4-openssl-dev software-properties-common libffi-dev nodejs yarn
+
+Next we're going to be installing Ruby using a version manager called Rbenv.
+
+Installing with rbenv is a simple two step process. First you install rbenv, and then ruby-build:
+
+cd
+git clone https://github.com/rbenv/rbenv.git ~/.rbenv
+echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bashrc
+echo 'eval "$(rbenv init -)"' >> ~/.bashrc
+exec $SHELL
+
+git clone https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build
+echo 'export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"' >> ~/.bashrc
+exec $SHELL
+
+To install Ruby and set the default version, we'll run the following commands:
+
+rbenv install 3.1.2
+rbenv global 3.1.2
+
+Confirm the default Ruby version matches the version you just installed.
+
+ruby -v
+
+The last step is to install Bundler
+
+gem install bundler
+
+rbenv users need to run rbenv rehash after installing bundler.
+
+gem install rails -v 7.0.2.4
+rbenv rehash
+
+sudo apt-get install mysql-server mysql-client libmysqlclient-dev
+
+sqlite3 (and mysql2 gem) and yarn
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+https://www.digitalocean.com/community/tutorials/how-to-install-ruby-on-rails-with-rbenv-on-ubuntu-20-04
+
+sudo apt update
+
+sudo apt install git curl libssl-dev libreadline-dev zlib1g-dev autoconf bison build-essential libyaml-dev libreadline-dev libncurses5-dev libffi-dev libgdbm-dev
+
+curl -fsSL https://github.com/rbenv/rbenv-installer/raw/HEAD/bin/rbenv-installer | bash
+
+echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bashrc
+
+echo 'eval "$(rbenv init -)"' >> ~/.bashrc
+
+source ~/.bashrc
+
+type rbenv
+
+    Output
+    rbenv is a function
+    rbenv ()
+    {
+        local command;
+        command="${1:-}";
+        if [ "$#" -gt 0 ]; then
+            shift;
+        fi;
+        case "$command" in
+            rehash | shell)
+                eval "$(rbenv "sh-$command" "$@")"
+            ;;
+            *)
+                command rbenv "$command" "$@"
+            ;;
+        esac
+    }
+
+git clone https://github.com/rbenv/ruby-build.git
+
+cat ruby-build/install.sh
+
+    Output
+    #!/bin/sh
+    # Usage: PREFIX=/usr/local ./install.sh
+    #
+    # Installs ruby-build under $PREFIX.
+
+    set -e
+
+    cd "$(dirname "$0")"
+
+    if [ -z "${PREFIX}" ]; then
+      PREFIX="/usr/local"
+    fi
+
+    BIN_PATH="${PREFIX}/bin"
+    SHARE_PATH="${PREFIX}/share/ruby-build"
+
+    mkdir -p "$BIN_PATH" "$SHARE_PATH"
+
+    install -p bin/* "$BIN_PATH"
+    install -p -m 0644 share/ruby-build/* "$SHARE_PATH"
+
+PREFIX=/usr/local sudo ./ruby-build/install.sh
+
+rbenv install -l
+
+

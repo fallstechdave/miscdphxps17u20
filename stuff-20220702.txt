@@ -1,0 +1,245 @@
+Sat 02 Jul 2022 10:27:03 AM EDT
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+
+fallstechdave@mmrxps17:~$ whoami                    fallstechdave
+fallstechdave@mmrxps17:~$ hostname                  mmrxps17
+fallstechdave@mmrxps17:~$ hostname -I               192.168.86.247 
+fallstechdave@mmrxps17:~$ nvm --version             0.39.1
+fallstechdave@mmrxps17:~$ node --version            v16.15.1
+fallstechdave@mmrxps17:~$ npm --version             8.11.0
+fallstechdave@mmrxps17:~$ yarn --version            1.22.19
+fallstechdave@mmrxps17:~$ rbenv --version           rbenv 1.2.0-14-gc6cc0a1
+fallstechdave@mmrxps17:~$ ruby --version            ruby 3.1.2p20 (2022-04-12 revision 4491bb740a) [x86_64-linux]
+fallstechdave@mmrxps17:~$ rails --version           Rails 7.0.3
+fallstechdave@mmrxps17:~$ git --version             git version 2.25.1
+fallstechdave@mmrxps17:~$ 
+
+
+
+
+
+fallstechdave@mmrxps17:~$ 
+fallstechdave@mmrxps17:~$ mysql --version
+mysql  Ver 8.0.29 for Linux on x86_64 (MySQL Community Server - GPL)
+fallstechdave@mmrxps17:~$ 
+fallstechdave@mmrxps17:~$ sqlite3 --version
+3.31.1 2020-01-27 19:55:54 3bfa9cc97da10598521b342961df8f5f68c7388fa117345eeb516eaa837balt1
+fallstechdave@mmrxps17:~$ 
+fallstechdave@mmrxps17:~$ uname -a
+Linux mmrxps17 5.13.0-52-generic #59~20.04.1-Ubuntu SMP Thu Jun 16 21:21:28 UTC 2022 x86_64 x86_64 x86_64 GNU/Linux
+fallstechdave@mmrxps17:~$ 
+fallstechdave@mmrxps17:~$ cd /etc
+fallstechdave@mmrxps17:/etc$ 
+fallstechdave@mmrxps17:/etc$ cat debian_version 
+bullseye/sid
+fallstechdave@mmrxps17:/etc$ 
+
+fallstechdave@mmrxps17:/etc$ cat lsb-release 
+DISTRIB_ID=Ubuntu
+DISTRIB_RELEASE=20.04
+DISTRIB_CODENAME=focal
+DISTRIB_DESCRIPTION="Ubuntu 20.04.4 LTS"
+fallstechdave@mmrxps17:/etc$ 
+
+fallstechdave@mmrxps17:/etc$ cat os-release 
+NAME="Ubuntu"
+VERSION="20.04.4 LTS (Focal Fossa)"
+ID=ubuntu
+ID_LIKE=debian
+PRETTY_NAME="Ubuntu 20.04.4 LTS"
+VERSION_ID="20.04"
+HOME_URL="https://www.ubuntu.com/"
+SUPPORT_URL="https://help.ubuntu.com/"
+BUG_REPORT_URL="https://bugs.launchpad.net/ubuntu/"
+PRIVACY_POLICY_URL="https://www.ubuntu.com/legal/terms-and-policies/privacy-policy"
+VERSION_CODENAME=focal
+UBUNTU_CODENAME=focal
+fallstechdave@mmrxps17:/etc$ 
+
+fallstechdave@mmrxps17:~$ curl --version
+curl 7.68.0 (x86_64-pc-linux-gnu) libcurl/7.68.0 OpenSSL/1.1.1f zlib/1.2.11 brotli/1.0.7 libidn2/2.2.0 libpsl/0.21.0 (+libidn2/2.2.0) libssh/0.9.3/openssl/zlib nghttp2/1.40.0 librtmp/2.3
+Release-Date: 2020-01-08
+Protocols: dict file ftp ftps gopher http https imap imaps ldap ldaps pop3 pop3s rtmp rtsp scp sftp smb smbs smtp smtps telnet tftp 
+Features: AsynchDNS brotli GSS-API HTTP2 HTTPS-proxy IDN IPv6 Kerberos Largefile libz NTLM NTLM_WB PSL SPNEGO SSL TLS-SRP UnixSockets
+fallstechdave@mmrxps17:~$ 
+
+fallstechdave@mmrxps17:~$ gpg --version
+gpg (GnuPG) 2.2.19
+libgcrypt 1.8.5
+Copyright (C) 2019 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <https://gnu.org/licenses/gpl.html>
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+
+Home: /home/fallstechdave/.gnupg
+Supported algorithms:
+Pubkey: RSA, ELG, DSA, ECDH, ECDSA, EDDSA
+Cipher: IDEA, 3DES, CAST5, BLOWFISH, AES, AES192, AES256, TWOFISH,
+        CAMELLIA128, CAMELLIA192, CAMELLIA256
+Hash: SHA1, RIPEMD160, SHA256, SHA384, SHA512, SHA224
+Compression: Uncompressed, ZIP, ZLIB, BZIP2
+fallstechdave@mmrxps17:~$ 
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+https://docs.github.com/en/repositories/creating-and-managing-repositories/renaming-a-repository
+
+However, to reduce confusion, we strongly recommend updating any existing local clones to point to the new repository URL. You can do this by using git remote on the command line:
+
+$ git remote set-url origin new_url
+
+fallstechdave@mmrxps17:~/repositories/miscdphxps17u20$ git remote -v
+origin	git@github.com:fallstechdave/miscdphxps17u20.git (fetch)
+origin	git@github.com:fallstechdave/miscdphxps17u20.git (push)
+fallstechdave@mmrxps17:~/repositories/miscdphxps17u20$ 
+fallstechdave@mmrxps17:~/repositories/miscdphxps17u20$ git remote set-url origin git@github.com:fallstechdave/miscmmrxps17u20.git
+fallstechdave@mmrxps17:~/repositories/miscdphxps17u20$ 
+fallstechdave@mmrxps17:~/repositories/miscdphxps17u20$ git remote -v
+origin	git@github.com:fallstechdave/miscmmrxps17u20.git (fetch)
+origin	git@github.com:fallstechdave/miscmmrxps17u20.git (push)
+fallstechdave@mmrxps17:~/repositories/miscdphxps17u20$ 
+fallstechdave@mmrxps17:~/repositories/miscdphxps17u20$ cd ..
+fallstechdave@mmrxps17:~/repositories$ mv miscdphxps17u20/ miscmmrxps17u20/
+fallstechdave@mmrxps17:~/repositories$ ls -latr
+total 12
+drwxrwxr-x  3 fallstechdave fallstechdave 4096 Jun 30 09:21 miscmmrxps17u20
+drwxr-xr-x 28 fallstechdave fallstechdave 4096 Jul  2 10:48 ..
+drwxrwxr-x  3 fallstechdave fallstechdave 4096 Jul  2 11:18 .
+fallstechdave@mmrxps17:~/repositories$ 
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+https://www.digitalocean.com/community/tutorials/how-to-install-node-js-on-ubuntu-20-04
+https://www.vultr.com/docs/install-nvm-and-node-js-on-ubuntu-20-04/
+
+https://linuxize.com/post/how-to-install-yarn-on-ubuntu-20-04/
+https://linuxhint.com/install_yarn_ubuntu/
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+https://www.phusionpassenger.com/
+https://www.phusionpassenger.com/install
+https://www.phusionpassenger.com/features
+https://www.phusionpassenger.com/pricing
+
+https://www.phusionpassenger.com/docs/tutorials/what_is_passenger/
+
+https://www.phusionpassenger.com/docs/references/config_reference/standalone/
+https://www.phusionpassenger.com/docs/references/config_reference/apache/
+https://www.phusionpassenger.com/docs/references/config_reference/nginx/
+
+https://www.phusionpassenger.com/library/
+https://www.phusionpassenger.com/library/#walkthroughs
+https://www.phusionpassenger.com/library/walkthroughs/start/
+https://www.phusionpassenger.com/library/walkthroughs/start/ruby.html
+
+git clone https://github.com/phusion/passenger-ruby-rails-demo.git
+cd passenger-ruby-rails-demo
+
+git clone https://github.com/phusion/passenger-ruby-sinatra-demo.git
+cd passenger-ruby-sinatra-demo
+
+Open your app's Gemfile and add "passenger":
+gem "passenger", ">= 5.0.25", require: "phusion_passenger/rack_handler"
+
+Now open a terminal, go to your application's directory and run bundle install to install your gem bundle:
+cd /path-to-your-app
+bundle install
+
+You are now ready to run the Passenger server. Run:
+bundle exec passenger start
+You can also use "bundle exec rails server"
+
+bundle exec passenger start --port 4000 --log-file awesome.log
+bundle exec passenger start --help
+
+cd /path-to-your-app
+bundle exec passenger stop
+
+https://www.phusionpassenger.com/library/walkthroughs/basics/ruby/
+https://www.phusionpassenger.com/library/walkthroughs/basics/ruby/fundamental_concepts.html
+https://www.phusionpassenger.com/library/walkthroughs/basics/ruby/installation.html
+https://www.phusionpassenger.com/library/walkthroughs/basics/ruby/passenger_command.html
+https://www.phusionpassenger.com/library/walkthroughs/basics/ruby/process_management.html
+https://www.phusionpassenger.com/library/walkthroughs/basics/ruby/reloading_code.html
+https://www.phusionpassenger.com/library/walkthroughs/basics/ruby/help.html
+https://www.phusionpassenger.com/library/walkthroughs/basics/ruby/conclusion.html
+
+https://www.phusionpassenger.com/docs/tutorials/what_is_passenger/
+https://www.phusionpassenger.com/docs/tutorials/fundamental_concepts/ruby/S
+https://www.phusionpassenger.com/docs/tutorials/quickstart/ruby/
+https://www.phusionpassenger.com/docs/tutorials/installation/ruby/
+https://www.phusionpassenger.com/docs/tutorials/the_passenger_command/ruby/
+https://www.phusionpassenger.com/docs/tutorials/process_management/ruby/
+https://www.phusionpassenger.com/docs/tutorials/the_help_option/ruby/
+https://www.phusionpassenger.com/docs/tutorials/deploy_to_production/
+https://www.phusionpassenger.com/docs/tutorials/deploy_to_production/launch_server/oss/aws/
+https://www.phusionpassenger.com/docs/tutorials/deploy_to_production/deploying_your_app/oss/aws/ruby/standalone/
+https://www.phusionpassenger.com/docs/tutorials/deploy_to_production/deploy_updates/
+
+
+https://rubygems.org/gems/passenger/versions/6.0.14
+
+
+https://www.phusionpassenger.com/docs/advanced_guides/install_and_upgrade/standalone/
+https://www.phusionpassenger.com/docs/advanced_guides/install_and_upgrade/apache/
+https://www.phusionpassenger.com/docs/advanced_guides/install_and_upgrade/nginx/
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+
+fallstechdave@mmrxps17:/var/log/apache2$ 
+fallstechdave@mmrxps17:/var/log/apache2$ pwd -P
+/var/log/apache2
+fallstechdave@mmrxps17:/var/log/apache2$ ls -latr
+total 100
+drwxr-x---  2 root adm     4096 Jul  1 07:10 .
+-rw-r-----  1 root adm     1226 Jul  1 08:41 access.log
+-rw-r-----  1 root adm    80901 Jul  1 10:46 error.log
+-rw-r-----  1 root adm     2395 Jul  1 10:46 other_vhosts_access.log
+drwxrwxr-x 15 root syslog  4096 Jul  2 00:00 ..
+fallstechdave@mmrxps17:/var/log/apache2$ 
+
+fallstechdave@mmrxps17:~$ 
+fallstechdave@mmrxps17:~$ whereis apache2
+apache2: /usr/sbin/apache2 /usr/lib/apache2 /etc/apache2 /usr/share/apache2 /usr/share/man/man8/apache2.8.gz
+fallstechdave@mmrxps17:~$ 
+fallstechdave@mmrxps17:~$ whereis passenger
+passenger: /usr/bin/passenger /usr/lib/passenger /usr/share/passenger
+fallstechdave@mmrxps17:~$ 
+fallstechdave@mmrxps17:~$ apache2 --version
+[Sat Jul 02 10:39:23.092547 2022] [core:warn] [pid 150990] AH00111: Config variable ${APACHE_RUN_DIR} is not defined
+apache2: Syntax error on line 80 of /etc/apache2/apache2.conf: DefaultRuntimeDir must be a valid directory, absolute or relative to ServerRoot
+fallstechdave@mmrxps17:~$ 
+fallstechdave@mmrxps17:~$ passenger --version
+Phusion Passenger(R) 6.0.14
+fallstechdave@mmrxps17:~$ 
+fallstechdave@mmrxps17:~$ nginx -version
+
+Command 'nginx' not found, but can be installed with:
+
+sudo apt install nginx-core    # version 1.18.0-0ubuntu1.3, or
+sudo apt install nginx-extras  # version 1.18.0-0ubuntu1.3
+sudo apt install nginx-full    # version 1.18.0-0ubuntu1.3
+sudo apt install nginx-light   # version 1.18.0-0ubuntu1.3
+
+fallstechdave@mmrxps17:~$ passenger
+Phusion Passenger(R) Standalone, the easiest way to run web apps.
+
+Available commands:
+
+  passenger start      Start Phusion Passenger(R) Standalone.
+  passenger stop       Stop a Phusion Passenger(R) instance.
+  passenger status     Show the status of a running Phusion Passenger(R) instance.
+
+Run 'passenger <COMMAND> --help' for more information about each command.
+fallstechdave@mmrxps17:~$ 
+fallstechdave@mmrxps17:~$ passenger status
+Phusion Passenger(R) Standalone is not running, according to PID file /home/fallstechdave/passenger.3000.pid
+fallstechdave@mmrxps17:~$ 
+fallstechdave@mmrxps17:~$ passenger --version
+Phusion Passenger(R) 6.0.14
+fallstechdave@mmrxps17:~$ 
+
