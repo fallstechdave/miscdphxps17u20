@@ -2,24 +2,54 @@ Sat 02 Jul 2022 10:27:03 AM EDT
 
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 
-
-fallstechdave@mmrxps17:~$ whoami                    fallstechdave
-fallstechdave@mmrxps17:~$ hostname                  mmrxps17
-fallstechdave@mmrxps17:~$ hostname -I               192.168.86.247 
-fallstechdave@mmrxps17:~$ nvm --version             0.39.1
-fallstechdave@mmrxps17:~$ node --version            v16.15.1
-fallstechdave@mmrxps17:~$ npm --version             8.11.0
-fallstechdave@mmrxps17:~$ yarn --version            1.22.19
-fallstechdave@mmrxps17:~$ rbenv --version           rbenv 1.2.0-14-gc6cc0a1
-fallstechdave@mmrxps17:~$ ruby --version            ruby 3.1.2p20 (2022-04-12 revision 4491bb740a) [x86_64-linux]
-fallstechdave@mmrxps17:~$ rails --version           Rails 7.0.3
-fallstechdave@mmrxps17:~$ git --version             git version 2.25.1
+fallstechdave@mmrxps17:~$ whoami                fallstechdave
+fallstechdave@mmrxps17:~$ hostname              mmrxps17
+fallstechdave@mmrxps17:~$ hostname -I           192.168.86.247 
+fallstechdave@mmrxps17:~$ nvm --version         0.39.1
+fallstechdave@mmrxps17:~$ node --version        v16.15.1
+fallstechdave@mmrxps17:~$ npm --version         8.11.0
+fallstechdave@mmrxps17:~$ yarn --version        1.22.19
+fallstechdave@mmrxps17:~$ rbenv --version       rbenv 1.2.0-14-gc6cc0a1
+fallstechdave@mmrxps17:~$ ruby --version        ruby 3.1.2p20 (2022-04-12 revision 4491bb740a) [x86_64-linux]
+fallstechdave@mmrxps17:~$ rails --version       Rails 7.0.3
+fallstechdave@mmrxps17:~$ git --version         git version 2.25.1
+fallstechdave@mmrxps17:~$ passenger --version   Phusion Passenger(R) 6.0.14
+fallstechdave@mmrxps17:~$ apache2 -v            Server version: Apache/2.4.41 (Ubuntu)   Server built:   2022-06-14T13:30:55
+fallstechdave@mmrxps17:~$ nginx -v              nginx version: nginx/1.18.0 (Ubuntu)
 fallstechdave@mmrxps17:~$ 
 
 
+whoami                fallstechdave
+hostname              mmrxps17
+hostname -I           192.168.86.247 
+nvm --version         0.39.1
+node --version        v16.15.1
+npm --version         8.11.0
+yarn --version        1.22.19
+rbenv --version       rbenv 1.2.0-14-gc6cc0a1
+@uby --version        ruby 3.1.2p20 (2022-04-12 revision 4491bb740a) [x86_64-linux]
+rails --version       Rails 7.0.3
+git --version         git version 2.25.1
+passenger --version   Phusion Passenger(R) 6.0.14
+apache2 -v            Server version: Apache/2.4.41 (Ubuntu)   Server built:   2022-06-14T13:30:55
+nginx -v              nginx version: nginx/1.18.0 (Ubuntu)
 
+fallstechdave@mmrxps17:~$ mysqladmin -p -u root version
+Enter password: 
+mysqladmin  Ver 8.0.29 for Linux on x86_64 (MySQL Community Server - GPL)
+Copyright (c) 2000, 2022, Oracle and/or its affiliates.
 
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
 
+Server version		8.0.29
+Protocol version	10
+Connection		Localhost via UNIX socket
+UNIX socket		/var/run/mysqld/mysqld.sock
+Uptime:			2 days 2 hours 47 min 26 sec
+
+Threads: 2  Questions: 184  Slow queries: 0  Opens: 317  Flush tables: 3  Open tables: 236  Queries per second avg: 0.001
 fallstechdave@mmrxps17:~$ 
 fallstechdave@mmrxps17:~$ mysql --version
 mysql  Ver 8.0.29 for Linux on x86_64 (MySQL Community Server - GPL)
@@ -117,6 +147,16 @@ https://www.vultr.com/docs/install-nvm-and-node-js-on-ubuntu-20-04/
 https://linuxize.com/post/how-to-install-yarn-on-ubuntu-20-04/
 https://linuxhint.com/install_yarn_ubuntu/
 
+https://www.digitalocean.com/community/tutorials/how-to-install-the-apache-web-server-on-ubuntu-20-04
+https://www.digitalocean.com/community/tutorials/how-to-install-nginx-on-ubuntu-20-04
+
+
+
+
+
+
+
+
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 
 https://www.phusionpassenger.com/
@@ -189,7 +229,6 @@ https://www.phusionpassenger.com/docs/advanced_guides/install_and_upgrade/nginx/
 
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 
-
 fallstechdave@mmrxps17:/var/log/apache2$ 
 fallstechdave@mmrxps17:/var/log/apache2$ pwd -P
 /var/log/apache2
@@ -243,3 +282,225 @@ fallstechdave@mmrxps17:~$ passenger --version
 Phusion Passenger(R) 6.0.14
 fallstechdave@mmrxps17:~$ 
 
+fallstechdave@mmrxps17:/etc/apache2$ sudo systemctl status apache2
+● apache2.service - The Apache HTTP Server
+     Loaded: loaded (/lib/systemd/system/apache2.service; enabled; vendor preset: enabled)
+     Active: active (running) since Fri 2022-07-01 10:45:59 EDT; 1 day 1h ago
+       Docs: https://httpd.apache.org/docs/2.4/
+    Process: 107537 ExecStart=/usr/sbin/apachectl start (code=exited, status=0/SUCCESS)
+      Tasks: 113 (limit: 18744)
+     Memory: 109.1M
+     CGroup: /system.slice/apache2.service
+             ├─107601 /usr/sbin/apache2 -k start
+             ├─107603 Passenger watchdog
+             ├─107606 Passenger core
+             ├─107624 /usr/sbin/apache2 -k start
+             ├─107627 /usr/sbin/apache2 -k start
+             └─107789 Passenger RubyApp: /home/fallstechdave/railsprojects/wire5 (production)
+
+Jul 01 10:45:59 mmrxps17 systemd[1]: Starting The Apache HTTP Server...
+Jul 01 10:45:59 mmrxps17 apachectl[107540]: WARNING: PassengerDisableAnonymousTelemetry cannot occur within <VirtualHost> section
+Jul 01 10:45:59 mmrxps17 apachectl[107540]: AH00558: apache2: Could not reliably determine the server's fully qualified domain name, using 127.0.1.1. Set the 'ServerName' directive globally to suppress >
+Jul 01 10:45:59 mmrxps17 systemd[1]: Started The Apache HTTP Server.
+fallstechdave@mmrxps17:/etc/apache2$ 
+
+fallstechdave@mmrxps17:/etc/apache2$ sudo systemctl status mysql
+● mysql.service - MySQL Community Server
+     Loaded: loaded (/lib/systemd/system/mysql.service; enabled; vendor preset: enabled)
+     Active: active (running) since Thu 2022-06-30 09:34:11 EDT; 2 days ago
+       Docs: man:mysqld(8)
+             http://dev.mysql.com/doc/refman/en/using-systemd.html
+   Main PID: 30447 (mysqld)
+     Status: "Server is operational"
+      Tasks: 39 (limit: 18744)
+     Memory: 378.0M
+     CGroup: /system.slice/mysql.service
+             └─30447 /usr/sbin/mysqld
+
+Jun 30 09:34:10 mmrxps17 systemd[1]: Starting MySQL Community Server...
+Jun 30 09:34:11 mmrxps17 systemd[1]: Started MySQL Community Server.
+fallstechdave@mmrxps17:/etc/apache2$ 
+
+fallstechdave@mmrxps17:~$ 
+fallstechdave@mmrxps17:~$ sudo apt install nginx
+Reading package lists... Done
+Building dependency tree       
+Reading state information... Done
+The following packages were automatically installed and are no longer required:
+  chromium-codecs-ffmpeg-extra gstreamer1.0-vaapi libfwupdplugin1 libgstreamer-plugins-bad1.0-0 libnvidia-cfg1-510 libnvidia-common-510 libnvidia-decode-510 libnvidia-encode-510 libnvidia-extra-510
+  libnvidia-fbc1-510 libnvidia-gl-510 libva-wayland2 libx11-xcb1:i386 libxnvctrl0 nvidia-compute-utils-510 nvidia-kernel-source-510 nvidia-settings nvidia-utils-510 screen-resolution-extra
+  xserver-xorg-video-nvidia-510
+Use 'sudo apt autoremove' to remove them.
+The following additional packages will be installed:
+  libnginx-mod-http-image-filter libnginx-mod-http-xslt-filter libnginx-mod-mail libnginx-mod-stream nginx-common nginx-core
+Suggested packages:
+  fcgiwrap nginx-doc
+The following NEW packages will be installed:
+  libnginx-mod-http-image-filter libnginx-mod-http-xslt-filter libnginx-mod-mail libnginx-mod-stream nginx nginx-common nginx-core
+0 upgraded, 7 newly installed, 0 to remove and 2 not upgraded.
+Need to get 605 kB of archives.
+After this operation, 2,134 kB of additional disk space will be used.
+Do you want to continue? [Y/n] y
+Get:1 http://us.archive.ubuntu.com/ubuntu focal-updates/main amd64 nginx-common all 1.18.0-0ubuntu1.3 [37.7 kB]
+Get:2 http://us.archive.ubuntu.com/ubuntu focal-updates/main amd64 libnginx-mod-http-image-filter amd64 1.18.0-0ubuntu1.3 [14.8 kB]
+Get:3 http://us.archive.ubuntu.com/ubuntu focal-updates/main amd64 libnginx-mod-http-xslt-filter amd64 1.18.0-0ubuntu1.3 [13.0 kB]
+Get:4 http://us.archive.ubuntu.com/ubuntu focal-updates/main amd64 libnginx-mod-mail amd64 1.18.0-0ubuntu1.3 [42.8 kB]
+Get:5 http://us.archive.ubuntu.com/ubuntu focal-updates/main amd64 libnginx-mod-stream amd64 1.18.0-0ubuntu1.3 [67.3 kB]
+Get:6 http://us.archive.ubuntu.com/ubuntu focal-updates/main amd64 nginx-core amd64 1.18.0-0ubuntu1.3 [425 kB]
+Get:7 http://us.archive.ubuntu.com/ubuntu focal-updates/main amd64 nginx all 1.18.0-0ubuntu1.3 [3,620 B]
+Fetched 605 kB in 0s (1,699 kB/s)
+Preconfiguring packages ...
+Selecting previously unselected package nginx-common.
+(Reading database ... 193145 files and directories currently installed.)
+Preparing to unpack .../0-nginx-common_1.18.0-0ubuntu1.3_all.deb ...
+Unpacking nginx-common (1.18.0-0ubuntu1.3) ...
+Selecting previously unselected package libnginx-mod-http-image-filter.
+Preparing to unpack .../1-libnginx-mod-http-image-filter_1.18.0-0ubuntu1.3_amd64.deb ...
+Unpacking libnginx-mod-http-image-filter (1.18.0-0ubuntu1.3) ...
+Selecting previously unselected package libnginx-mod-http-xslt-filter.
+Preparing to unpack .../2-libnginx-mod-http-xslt-filter_1.18.0-0ubuntu1.3_amd64.deb ...
+Unpacking libnginx-mod-http-xslt-filter (1.18.0-0ubuntu1.3) ...
+Selecting previously unselected package libnginx-mod-mail.
+Preparing to unpack .../3-libnginx-mod-mail_1.18.0-0ubuntu1.3_amd64.deb ...
+Unpacking libnginx-mod-mail (1.18.0-0ubuntu1.3) ...
+Selecting previously unselected package libnginx-mod-stream.
+Preparing to unpack .../4-libnginx-mod-stream_1.18.0-0ubuntu1.3_amd64.deb ...
+Unpacking libnginx-mod-stream (1.18.0-0ubuntu1.3) ...
+Selecting previously unselected package nginx-core.
+Preparing to unpack .../5-nginx-core_1.18.0-0ubuntu1.3_amd64.deb ...
+Unpacking nginx-core (1.18.0-0ubuntu1.3) ...
+Selecting previously unselected package nginx.
+Preparing to unpack .../6-nginx_1.18.0-0ubuntu1.3_all.deb ...
+Unpacking nginx (1.18.0-0ubuntu1.3) ...
+Setting up nginx-common (1.18.0-0ubuntu1.3) ...
+Created symlink /etc/systemd/system/multi-user.target.wants/nginx.service → /lib/systemd/system/nginx.service.
+Setting up libnginx-mod-http-xslt-filter (1.18.0-0ubuntu1.3) ...
+Setting up libnginx-mod-mail (1.18.0-0ubuntu1.3) ...
+Setting up libnginx-mod-http-image-filter (1.18.0-0ubuntu1.3) ...
+Setting up libnginx-mod-stream (1.18.0-0ubuntu1.3) ...
+Setting up nginx-core (1.18.0-0ubuntu1.3) ...
+Not attempting to start NGINX, port 80 is already in use.
+Setting up nginx (1.18.0-0ubuntu1.3) ...
+Processing triggers for systemd (245.4-4ubuntu3.17) ...
+Processing triggers for man-db (2.9.1-1) ...
+Processing triggers for ufw (0.36-6ubuntu1) ...
+Rules updated for profile 'Apache'
+
+fallstechdave@mmrxps17:~$ 
+fallstechdave@mmrxps17:~$ 
+
+= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
+
+CREATE USER 'railsuser'@'localhost' IDENTIFIED BY 'railsuserpw';
+
+DROP DATABASE IF EXISTS wire5_development;
+DROP DATABASE IF EXISTS wire5_test;
+DROP DATABASE IF EXISTS wire5_production;
+CREATE DATABASE wire5_development;
+CREATE DATABASE wire5_test;
+CREATE DATABASE wire5_production;
+GRANT ALL PRIVILEGES ON wire5_development.* TO 'railsuser'@'localhost' WITH GRANT OPTION;
+GRANT ALL PRIVILEGES ON wire5_test.* TO 'railsuser'@'localhost' WITH GRANT OPTION;
+GRANT ALL PRIVILEGES ON wire5_production.* TO 'railsuser'@'localhost' WITH GRANT OPTION;
+
+DROP DATABASE IF EXISTS app_development;
+DROP DATABASE IF EXISTS app_test;
+DROP DATABASE IF EXISTS app_production;
+CREATE DATABASE app_development;
+CREATE DATABASE app_test;
+CREATE DATABASE app_production;
+GRANT ALL PRIVILEGES ON app_development.* TO 'railsuser'@'localhost' WITH GRANT OPTION;
+GRANT ALL PRIVILEGES ON app_test.* TO 'railsuser'@'localhost' WITH GRANT OPTION;
+GRANT ALL PRIVILEGES ON app_production.* TO 'railsuser'@'localhost' WITH GRANT OPTION;
+
+= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| app_development    |
+| app_production     |
+| app_test           |
+| information_schema |
+| mysql              |
+| performance_schema |
+| sys                |
+| wire5_development  |
+| wire5_production   |
+| wire5_test         |
++--------------------+
+10 rows in set (0.00 sec)
+
+mysql> 
+
+= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
+
+cd ~/railsprojects
+rm -rf wire5
+rails new wire5 --css tailwind -d mysql
+cd wire5
+vi ./config/database.yml
+rails db:create db:migrate
+rails s
+use browser to view http://127.0.0.1:3000/
+
+rails new wire5 --css tailwind -d mysql
+cd wire5
+vi ./config/database.yml
+
+bin/rails generate scaffold Article \
+title:string{4000} summary:string{4000} doc_num:string{100} \
+image_caption:string{1000} has_attachments:boolean \
+worldwide:boolean date_published:date producing_office:string \
+country:string topic:string non_state_actor:string body:text
+
+bin/rails db:create
+bin/rails db:migrate
+bin/rails db:migrate:status
+bin/rails server
+use browser to view http://127.0.0.1:3000/
+use browser to view http://127.0.0.1:3000/articles
+
+= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
+
+mysql> 
+mysql> use wire5_development;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql> show tables;
++-----------------------------+
+| Tables_in_wire5_development |
++-----------------------------+
+| ar_internal_metadata        |
+| articles                    |
+| schema_migrations           |
++-----------------------------+
+3 rows in set (0.01 sec)
+
+mysql> desc articles;
++------------------+---------------+------+-----+---------+----------------+
+| Field            | Type          | Null | Key | Default | Extra          |
++------------------+---------------+------+-----+---------+----------------+
+| id               | bigint        | NO   | PRI | NULL    | auto_increment |
+| title            | varchar(4000) | YES  |     | NULL    |                |
+| summary          | varchar(4000) | YES  |     | NULL    |                |
+| doc_num          | varchar(100)  | YES  |     | NULL    |                |
+| image_caption    | varchar(1000) | YES  |     | NULL    |                |
+| has_attachments  | tinyint(1)    | YES  |     | NULL    |                |
+| worldwide        | tinyint(1)    | YES  |     | NULL    |                |
+| date_published   | date          | YES  |     | NULL    |                |
+| producing_office | varchar(255)  | YES  |     | NULL    |                |
+| country          | varchar(255)  | YES  |     | NULL    |                |
+| topic            | varchar(255)  | YES  |     | NULL    |                |
+| non_state_actor  | varchar(255)  | YES  |     | NULL    |                |
+| body             | text          | YES  |     | NULL    |                |
+| created_at       | datetime(6)   | NO   |     | NULL    |                |
+| updated_at       | datetime(6)   | NO   |     | NULL    |                |
++------------------+---------------+------+-----+---------+----------------+
+15 rows in set (0.01 sec)
+
+mysql> 
+mysql> 
