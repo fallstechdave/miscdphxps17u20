@@ -1,0 +1,993 @@
+Wed 06 Jul 2022 06:07:33 AM EDT
+
+Command 'rbenv' not found, but can be installed with:
+
+sudo apt install rbenv
+
+Command 'rbenv' not found, but can be installed with:
+
+sudo apt install rbenv
+
+fallstechdave@mmrxps17:~$ date
+Wed 06 Jul 2022 06:07:02 AM EDT
+fallstechdave@mmrxps17:~$ 
+fallstechdave@mmrxps17:~$ date > stuff-20220706.txt
+fallstechdave@mmrxps17:~$ code   stuff-20220706.txt
+fallstechdave@mmrxps17:~$ 
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+https://www.digitalocean.com/community/tutorials/how-to-install-nginx-on-ubuntu-20-04
+
+https://www.phusionpassenger.com/docs/advanced_guides/install_and_upgrade/standalone/install/
+
+https://www.digitalocean.com/community/tutorials/how-to-install-the-apache-web-server-on-ubuntu-20-04
+
+https://www.phusionpassenger.com/library/deploy/apache/deploy/ruby/
+
+https://www.phusionpassenger.com/library/install/apache/working_with_the_apache_config_file.html
+
+The location of the Apache configuration file
+
+On most systems if you installed Apache with a package manager, or it came preinstalled, the Apache configuration file is located in one of these locations:
+
+    /etc/apache2/httpd.conf
+    /etc/apache2/apache2.conf
+    /etc/httpd/httpd.conf
+    /etc/httpd/conf/httpd.conf
+
+fallstechdave@mmrxps17:/etc/apache2$ ls -latr
+total 96
+-rw-r--r--   1 root root   320 Feb 23  2021 ports.conf
+-rw-r--r--   1 root root 31063 Feb 23  2021 magic
+-rw-r--r--   1 root root  1782 Feb 23  2021 envvars
+-rw-r--r--   1 root root  7224 Jun 14 09:30 apache2.conf
+drwxr-xr-x   8 root root  4096 Jul  1 07:10 .
+drwxr-xr-x   2 root root  4096 Jul  1 07:52 conf-available
+drwxr-xr-x   2 root root  4096 Jul  1 07:52 conf-enabled
+drwxr-xr-x   2 root root 12288 Jul  1 07:52 mods-available
+drwxr-xr-x   2 root root  4096 Jul  1 07:52 mods-enabled
+drwxr-xr-x   2 root root  4096 Jul  1 08:52 sites-enabled
+drwxr-xr-x   2 root root  4096 Jul  1 08:54 sites-available
+drwxr-xr-x 134 root root 12288 Jul  2 12:40 ..
+fallstechdave@mmrxps17:/etc/apache2$ 
+fallstechdave@mmrxps17:/etc/apache2$ pwd -P
+/etc/apache2
+fallstechdave@mmrxps17:/etc/apache2$ du .
+4	./conf-enabled
+588	./mods-available
+4	./sites-enabled
+28	./conf-available
+4	./mods-enabled
+24	./sites-available
+704	.
+fallstechdave@mmrxps17:/etc/apache2$ fallstechdave@mmrxps17:/etc/apache2$ 
+fallstechdave@mmrxps17:/etc/apache2$ du
+4	./conf-enabled
+588	./mods-available
+4	./sites-enabled
+28	./conf-available
+4	./mods-enabled
+24	./sites-available
+704	.
+fallstechdave@mmrxps17:/etc/apache2$ ls -latrR
+.:
+total 96
+-rw-r--r--   1 root root   320 Feb 23  2021 ports.conf
+-rw-r--r--   1 root root 31063 Feb 23  2021 magic
+-rw-r--r--   1 root root  1782 Feb 23  2021 envvars
+-rw-r--r--   1 root root  7224 Jun 14 09:30 apache2.conf
+drwxr-xr-x   8 root root  4096 Jul  1 07:10 .
+drwxr-xr-x   2 root root  4096 Jul  1 07:52 conf-available
+drwxr-xr-x   2 root root  4096 Jul  1 07:52 conf-enabled
+drwxr-xr-x   2 root root 12288 Jul  1 07:52 mods-available
+drwxr-xr-x   2 root root  4096 Jul  1 07:52 mods-enabled
+drwxr-xr-x   2 root root  4096 Jul  1 08:52 sites-enabled
+drwxr-xr-x   2 root root  4096 Jul  1 08:54 sites-available
+drwxr-xr-x 134 root root 12288 Jul  2 12:40 ..
+
+./conf-available:
+total 32
+-rw-r--r-- 1 root root  127 Aug 11  2013 javascript-common.conf
+-rw-r--r-- 1 root root  455 Feb 23  2021 serve-cgi-bin.conf
+-rw-r--r-- 1 root root 2174 Feb 23  2021 security.conf
+-rw-r--r-- 1 root root  189 Feb 23  2021 other-vhosts-access-log.conf
+-rw-r--r-- 1 root root 3224 Feb 23  2021 localized-error-pages.conf
+-rw-r--r-- 1 root root  315 Feb 23  2021 charset.conf
+drwxr-xr-x 8 root root 4096 Jul  1 07:10 ..
+drwxr-xr-x 2 root root 4096 Jul  1 07:52 .
+
+./conf-enabled:
+total 8
+drwxr-xr-x 8 root root 4096 Jul  1 07:10 ..
+lrwxrwxrwx 1 root root   30 Jul  1 07:10 charset.conf -> ../conf-available/charset.conf
+lrwxrwxrwx 1 root root   44 Jul  1 07:10 localized-error-pages.conf -> ../conf-available/localized-error-pages.conf
+lrwxrwxrwx 1 root root   46 Jul  1 07:10 other-vhosts-access-log.conf -> ../conf-available/other-vhosts-access-log.conf
+lrwxrwxrwx 1 root root   31 Jul  1 07:10 security.conf -> ../conf-available/security.conf
+lrwxrwxrwx 1 root root   36 Jul  1 07:10 serve-cgi-bin.conf -> ../conf-available/serve-cgi-bin.conf
+lrwxrwxrwx 1 root root   40 Jul  1 07:52 javascript-common.conf -> ../conf-available/javascript-common.conf
+drwxr-xr-x 2 root root 4096 Jul  1 07:52 .
+
+./mods-available:
+total 592
+-rw-r--r-- 1 root root    66 Feb 23  2021 xml2enc.load
+-rw-r--r-- 1 root root    74 Feb 23  2021 vhost_alias.load
+-rw-r--r-- 1 root root    70 Feb 23  2021 usertrack.load
+-rw-r--r-- 1 root root    66 Feb 23  2021 userdir.load
+-rw-r--r-- 1 root root   324 Feb 23  2021 userdir.conf
+-rw-r--r-- 1 root root    70 Feb 23  2021 unique_id.load
+-rw-r--r-- 1 root root    64 Feb 23  2021 suexec.load
+-rw-r--r-- 1 root root    72 Feb 23  2021 substitute.load
+-rw-r--r-- 1 root root    64 Feb 23  2021 status.load
+-rw-r--r-- 1 root root   749 Feb 23  2021 status.conf
+-rw-r--r-- 1 root root    97 Feb 23  2021 ssl.load
+-rw-r--r-- 1 root root  3110 Feb 23  2021 ssl.conf
+-rw-r--r-- 1 root root    66 Feb 23  2021 speling.load
+-rw-r--r-- 1 root root    78 Feb 23  2021 socache_shmcb.load
+-rw-r--r-- 1 root root    84 Feb 23  2021 socache_memcache.load
+-rw-r--r-- 1 root root    74 Feb 23  2021 socache_dbm.load
+-rw-r--r-- 1 root root    74 Feb 23  2021 slotmem_shm.load
+-rw-r--r-- 1 root root    78 Feb 23  2021 slotmem_plain.load
+-rw-r--r-- 1 root root    68 Feb 23  2021 setenvif.load
+-rw-r--r-- 1 root root  1280 Feb 23  2021 setenvif.conf
+-rw-r--r-- 1 root root    66 Feb 23  2021 session.load
+-rw-r--r-- 1 root root    93 Feb 23  2021 session_dbd.load
+-rw-r--r-- 1 root root    99 Feb 23  2021 session_crypto.load
+-rw-r--r-- 1 root root    99 Feb 23  2021 session_cookie.load
+-rw-r--r-- 1 root root    58 Feb 23  2021 sed.load
+-rw-r--r-- 1 root root    66 Feb 23  2021 rewrite.load
+-rw-r--r-- 1 root root    66 Feb 23  2021 request.load
+-rw-r--r-- 1 root root    72 Feb 23  2021 reqtimeout.load
+-rw-r--r-- 1 root root  1190 Feb 23  2021 reqtimeout.conf
+-rw-r--r-- 1 root root    68 Feb 23  2021 remoteip.load
+-rw-r--r-- 1 root root    70 Feb 23  2021 reflector.load
+-rw-r--r-- 1 root root    85 Feb 23  2021 ratelimit.load
+-rw-r--r-- 1 root root    97 Feb 23  2021 proxy_wstunnel.load
+-rw-r--r-- 1 root root    89 Feb 23  2021 proxy_scgi.load
+-rw-r--r-- 1 root root    62 Feb 23  2021 proxy.load
+-rw-r--r-- 1 root root    89 Feb 23  2021 proxy_http.load
+-rw-r--r-- 1 root root    97 Feb 23  2021 proxy_http2.load
+-rw-r--r-- 1 root root    97 Feb 23  2021 proxy_html.load
+-rw-r--r-- 1 root root  2511 Feb 23  2021 proxy_html.conf
+-rw-r--r-- 1 root root    93 Feb 23  2021 proxy_hcheck.load
+-rw-r--r-- 1 root root    87 Feb 23  2021 proxy_ftp.load
+-rw-r--r-- 1 root root   189 Feb 23  2021 proxy_ftp.conf
+-rw-r--r-- 1 root root    93 Feb 23  2021 proxy_fdpass.load
+-rw-r--r-- 1 root root    89 Feb 23  2021 proxy_fcgi.load
+-rw-r--r-- 1 root root    95 Feb 23  2021 proxy_express.load
+-rw-r--r-- 1 root root    95 Feb 23  2021 proxy_connect.load
+-rw-r--r-- 1 root root   822 Feb 23  2021 proxy.conf
+-rw-r--r-- 1 root root   115 Feb 23  2021 proxy_balancer.load
+-rw-r--r-- 1 root root   347 Feb 23  2021 proxy_balancer.conf
+-rw-r--r-- 1 root root    87 Feb 23  2021 proxy_ajp.load
+-rw-r--r-- 1 root root    74 Feb 23  2021 negotiation.load
+-rw-r--r-- 1 root root   724 Feb 23  2021 negotiation.conf
+-rw-r--r-- 1 root root   107 Feb 23  2021 mpm_worker.load
+-rw-r--r-- 1 root root   836 Feb 23  2021 mpm_worker.conf
+-rw-r--r-- 1 root root   108 Feb 23  2021 mpm_prefork.load
+-rw-r--r-- 1 root root   571 Feb 23  2021 mpm_prefork.conf
+-rw-r--r-- 1 root root   106 Feb 23  2021 mpm_event.load
+-rw-r--r-- 1 root root   668 Feb 23  2021 mpm_event.conf
+-rw-r--r-- 1 root root    72 Feb 23  2021 mime_magic.load
+-rw-r--r-- 1 root root   120 Feb 23  2021 mime_magic.conf
+-rw-r--r-- 1 root root    60 Feb 23  2021 mime.load
+-rw-r--r-- 1 root root    62 Feb 23  2021 macro.load
+-rw-r--r-- 1 root root    58 Feb 23  2021 lua.load
+-rw-r--r-- 1 root root    76 Feb 23  2021 log_forensic.load
+-rw-r--r-- 1 root root    70 Feb 23  2021 log_debug.load
+-rw-r--r-- 1 root root    60 Feb 23  2021 ldap.load
+-rw-r--r-- 1 root root   121 Feb 23  2021 ldap.conf
+-rw-r--r-- 1 root root   114 Feb 23  2021 lbmethod_heartbeat.load
+-rw-r--r-- 1 root root   114 Feb 23  2021 lbmethod_bytraffic.load
+-rw-r--r-- 1 root root   116 Feb 23  2021 lbmethod_byrequests.load
+-rw-r--r-- 1 root root   116 Feb 23  2021 lbmethod_bybusyness.load
+-rw-r--r-- 1 root root    60 Feb 23  2021 info.load
+-rw-r--r-- 1 root root   402 Feb 23  2021 info.conf
+-rw-r--r-- 1 root root    82 Feb 23  2021 include.load
+-rw-r--r-- 1 root root    68 Feb 23  2021 imagemap.load
+-rw-r--r-- 1 root root    62 Feb 23  2021 ident.load
+-rw-r--r-- 1 root root    62 Feb 23  2021 http2.load
+-rw-r--r-- 1 root root   182 Feb 23  2021 heartmonitor.load
+-rw-r--r-- 1 root root   176 Feb 23  2021 heartbeat.load
+-rw-r--r-- 1 root root    66 Feb 23  2021 headers.load
+-rw-r--r-- 1 root root    64 Feb 23  2021 filter.load
+-rw-r--r-- 1 root root    89 Feb 23  2021 file_cache.load
+-rw-r--r-- 1 root root    72 Feb 23  2021 ext_filter.load
+-rw-r--r-- 1 root root    66 Feb 23  2021 expires.load
+-rw-r--r-- 1 root root    58 Feb 23  2021 env.load
+-rw-r--r-- 1 root root    60 Feb 23  2021 echo.load
+-rw-r--r-- 1 root root    64 Feb 23  2021 dump_io.load
+-rw-r--r-- 1 root root    58 Feb 23  2021 dir.load
+-rw-r--r-- 1 root root   157 Feb 23  2021 dir.conf
+-rw-r--r-- 1 root root    64 Feb 23  2021 dialup.load
+-rw-r--r-- 1 root root    84 Feb 23  2021 deflate.load
+-rw-r--r-- 1 root root    58 Feb 23  2021 dbd.load
+-rw-r--r-- 1 root root    68 Feb 23  2021 dav_lock.load
+-rw-r--r-- 1 root root    79 Feb 23  2021 dav_fs.load
+-rw-r--r-- 1 root root    83 Feb 23  2021 dav_fs.conf
+-rw-r--r-- 1 root root    60 Feb 23  2021 data.load
+-rw-r--r-- 1 root root    76 Feb 23  2021 charset_lite.load
+-rw-r--r-- 1 root root    58 Feb 23  2021 cgi.load
+-rw-r--r-- 1 root root    60 Feb 23  2021 cgid.load
+-rw-r--r-- 1 root root   115 Feb 23  2021 cgid.conf
+-rw-r--r-- 1 root root    70 Feb 23  2021 cern_meta.load
+-rw-r--r-- 1 root root    95 Feb 23  2021 cache_socache.load
+-rw-r--r-- 1 root root    62 Feb 23  2021 cache.load
+-rw-r--r-- 1 root root    89 Feb 23  2021 cache_disk.load
+-rw-r--r-- 1 root root   889 Feb 23  2021 cache_disk.conf
+-rw-r--r-- 1 root root    64 Feb 23  2021 buffer.load
+-rw-r--r-- 1 root root    70 Feb 23  2021 autoindex.load
+-rw-r--r-- 1 root root  3374 Feb 23  2021 autoindex.conf
+-rw-r--r-- 1 root root    94 Feb 23  2021 authz_user.load
+-rw-r--r-- 1 root root    74 Feb 23  2021 authz_owner.load
+-rw-r--r-- 1 root root    94 Feb 23  2021 authz_host.load
+-rw-r--r-- 1 root root   104 Feb 23  2021 authz_groupfile.load
+-rw-r--r-- 1 root root    92 Feb 23  2021 authz_dbm.load
+-rw-r--r-- 1 root root    96 Feb 23  2021 authz_dbd.load
+-rw-r--r-- 1 root root    72 Feb 23  2021 authz_core.load
+-rw-r--r-- 1 root root    90 Feb 23  2021 authnz_ldap.load
+-rw-r--r-- 1 root root    74 Feb 23  2021 authnz_fcgi.load
+-rw-r--r-- 1 root root    78 Feb 23  2021 authn_socache.load
+-rw-r--r-- 1 root root    72 Feb 23  2021 authn_file.load
+-rw-r--r-- 1 root root    70 Feb 23  2021 authn_dbm.load
+-rw-r--r-- 1 root root    85 Feb 23  2021 authn_dbd.load
+-rw-r--r-- 1 root root    72 Feb 23  2021 authn_core.load
+-rw-r--r-- 1 root root    72 Feb 23  2021 authn_anon.load
+-rw-r--r-- 1 root root   100 Feb 23  2021 auth_form.load
+-rw-r--r-- 1 root root    96 Feb 23  2021 auth_digest.load
+-rw-r--r-- 1 root root    94 Feb 23  2021 auth_basic.load
+-rw-r--r-- 1 root root    76 Feb 23  2021 asis.load
+-rw-r--r-- 1 root root    76 Feb 23  2021 allowmethods.load
+-rw-r--r-- 1 root root    62 Feb 23  2021 alias.load
+-rw-r--r-- 1 root root   843 Feb 23  2021 alias.conf
+-rw-r--r-- 1 root root    66 Feb 23  2021 actions.load
+-rw-r--r-- 1 root root   377 Feb 23  2021 actions.conf
+-rw-r--r-- 1 root root   100 Feb 23  2021 access_compat.load
+-rw-r--r-- 1 root root    78 Apr 26 14:02 socache_redis.load
+-rw-r--r-- 1 root root    91 Apr 26 14:02 proxy_uwsgi.load
+-rw-r--r-- 1 root root  7676 Apr 26 14:02 mime.conf
+-rw-r--r-- 1 root root    56 Apr 26 14:02 md.load
+-rw-r--r-- 1 root root  1240 Apr 26 14:02 http2.conf
+-rw-r--r-- 1 root root   395 Apr 26 14:02 deflate.conf
+-rw-r--r-- 1 root root    58 Apr 26 14:02 dav.load
+-rw-r--r-- 1 root root    64 Apr 26 14:02 brotli.load
+-rw-r--r-- 1 root root   206 May  8 14:50 passenger.load
+-rw-r--r-- 1 root root   305 May  8 15:01 passenger.conf
+drwxr-xr-x 8 root root  4096 Jul  1 07:10 ..
+drwxr-xr-x 2 root root 12288 Jul  1 07:52 .
+
+./mods-enabled:
+total 8
+drwxr-xr-x 8 root root 4096 Jul  1 07:10 ..
+lrwxrwxrwx 1 root root   32 Jul  1 07:10 mpm_event.load -> ../mods-available/mpm_event.load
+lrwxrwxrwx 1 root root   32 Jul  1 07:10 mpm_event.conf -> ../mods-available/mpm_event.conf
+lrwxrwxrwx 1 root root   33 Jul  1 07:10 authz_core.load -> ../mods-available/authz_core.load
+lrwxrwxrwx 1 root root   33 Jul  1 07:10 authz_host.load -> ../mods-available/authz_host.load
+lrwxrwxrwx 1 root root   33 Jul  1 07:10 authn_core.load -> ../mods-available/authn_core.load
+lrwxrwxrwx 1 root root   33 Jul  1 07:10 auth_basic.load -> ../mods-available/auth_basic.load
+lrwxrwxrwx 1 root root   36 Jul  1 07:10 access_compat.load -> ../mods-available/access_compat.load
+lrwxrwxrwx 1 root root   33 Jul  1 07:10 authn_file.load -> ../mods-available/authn_file.load
+lrwxrwxrwx 1 root root   33 Jul  1 07:10 authz_user.load -> ../mods-available/authz_user.load
+lrwxrwxrwx 1 root root   28 Jul  1 07:10 alias.load -> ../mods-available/alias.load
+lrwxrwxrwx 1 root root   28 Jul  1 07:10 alias.conf -> ../mods-available/alias.conf
+lrwxrwxrwx 1 root root   26 Jul  1 07:10 dir.load -> ../mods-available/dir.load
+lrwxrwxrwx 1 root root   26 Jul  1 07:10 dir.conf -> ../mods-available/dir.conf
+lrwxrwxrwx 1 root root   32 Jul  1 07:10 autoindex.conf -> ../mods-available/autoindex.conf
+lrwxrwxrwx 1 root root   32 Jul  1 07:10 autoindex.load -> ../mods-available/autoindex.load
+lrwxrwxrwx 1 root root   26 Jul  1 07:10 env.load -> ../mods-available/env.load
+lrwxrwxrwx 1 root root   27 Jul  1 07:10 mime.load -> ../mods-available/mime.load
+lrwxrwxrwx 1 root root   27 Jul  1 07:10 mime.conf -> ../mods-available/mime.conf
+lrwxrwxrwx 1 root root   34 Jul  1 07:10 negotiation.load -> ../mods-available/negotiation.load
+lrwxrwxrwx 1 root root   34 Jul  1 07:10 negotiation.conf -> ../mods-available/negotiation.conf
+lrwxrwxrwx 1 root root   31 Jul  1 07:10 setenvif.load -> ../mods-available/setenvif.load
+lrwxrwxrwx 1 root root   31 Jul  1 07:10 setenvif.conf -> ../mods-available/setenvif.conf
+lrwxrwxrwx 1 root root   29 Jul  1 07:10 filter.load -> ../mods-available/filter.load
+lrwxrwxrwx 1 root root   30 Jul  1 07:10 deflate.load -> ../mods-available/deflate.load
+lrwxrwxrwx 1 root root   30 Jul  1 07:10 deflate.conf -> ../mods-available/deflate.conf
+lrwxrwxrwx 1 root root   29 Jul  1 07:10 status.load -> ../mods-available/status.load
+lrwxrwxrwx 1 root root   29 Jul  1 07:10 status.conf -> ../mods-available/status.conf
+lrwxrwxrwx 1 root root   33 Jul  1 07:10 reqtimeout.load -> ../mods-available/reqtimeout.load
+lrwxrwxrwx 1 root root   33 Jul  1 07:10 reqtimeout.conf -> ../mods-available/reqtimeout.conf
+lrwxrwxrwx 1 root root   32 Jul  1 07:52 passenger.load -> ../mods-available/passenger.load
+lrwxrwxrwx 1 root root   32 Jul  1 07:52 passenger.conf -> ../mods-available/passenger.conf
+drwxr-xr-x 2 root root 4096 Jul  1 07:52 .
+
+./sites-enabled:
+total 8
+drwxr-xr-x 8 root root 4096 Jul  1 07:10 ..
+lrwxrwxrwx 1 root root   29 Jul  1 08:45 wire5.conf -> ../sites-available/wire5.conf
+drwxr-xr-x 2 root root 4096 Jul  1 08:52 .
+
+./sites-available:
+total 28
+-rw-r--r-- 1 root          root          6338 Feb 23  2021 default-ssl.conf
+-rw-r--r-- 1 root          root          1332 Feb 23  2021 000-default.conf
+drwxr-xr-x 8 root          root          4096 Jul  1 07:10 ..
+-rw-r--r-- 1 root          root           239 Jul  1 07:37 wire.conf
+drwxr-xr-x 2 root          root          4096 Jul  1 08:54 .
+-rw-r--r-- 1 fallstechdave fallstechdave  545 Jul  1 10:45 wire5.conf
+fallstechdave@mmrxps17:/etc/apache2$ 
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+fallstechdave@mmrxps17:/etc/apache2$ cat apache2.conf 
+# This is the main Apache server configuration file.  It contains the
+# configuration directives that give the server its instructions.
+# See http://httpd.apache.org/docs/2.4/ for detailed information about
+# the directives and /usr/share/doc/apache2/README.Debian about Debian specific
+# hints.
+#
+#
+# Summary of how the Apache 2 configuration works in Debian:
+# The Apache 2 web server configuration in Debian is quite different to
+# upstream's suggested way to configure the web server. This is because Debian's
+# default Apache2 installation attempts to make adding and removing modules,
+# virtual hosts, and extra configuration directives as flexible as possible, in
+# order to make automating the changes and administering the server as easy as
+# possible.
+
+# It is split into several files forming the configuration hierarchy outlined
+# below, all located in the /etc/apache2/ directory:
+#
+#	/etc/apache2/
+#	|-- apache2.conf
+#	|	`--  ports.conf
+#	|-- mods-enabled
+#	|	|-- *.load
+#	|	`-- *.conf
+#	|-- conf-enabled
+#	|	`-- *.conf
+# 	`-- sites-enabled
+#	 	`-- *.conf
+#
+#
+# * apache2.conf is the main configuration file (this file). It puts the pieces
+#   together by including all remaining configuration files when starting up the
+#   web server.
+#
+# * ports.conf is always included from the main configuration file. It is
+#   supposed to determine listening ports for incoming connections which can be
+#   customized anytime.
+#
+# * Configuration files in the mods-enabled/, conf-enabled/ and sites-enabled/
+#   directories contain particular configuration snippets which manage modules,
+#   global configuration fragments, or virtual host configurations,
+#   respectively.
+#
+#   They are activated by symlinking available configuration files from their
+#   respective *-available/ counterparts. These should be managed by using our
+#   helpers a2enmod/a2dismod, a2ensite/a2dissite and a2enconf/a2disconf. See
+#   their respective man pages for detailed information.
+#
+# * The binary is called apache2. Due to the use of environment variables, in
+#   the default configuration, apache2 needs to be started/stopped with
+#   /etc/init.d/apache2 or apache2ctl. Calling /usr/bin/apache2 directly will not
+#   work with the default configuration.
+
+
+# Global configuration
+#
+
+#
+# ServerRoot: The top of the directory tree under which the server's
+# configuration, error, and log files are kept.
+#
+# NOTE!  If you intend to place this on an NFS (or otherwise network)
+# mounted filesystem then please read the Mutex documentation (available
+# at <URL:http://httpd.apache.org/docs/2.4/mod/core.html#mutex>);
+# you will save yourself a lot of trouble.
+#
+# Do NOT add a slash at the end of the directory path.
+#
+#ServerRoot "/etc/apache2"
+
+#
+# The accept serialization lock file MUST BE STORED ON A LOCAL DISK.
+#
+#Mutex file:${APACHE_LOCK_DIR} default
+
+#
+# The directory where shm and other runtime files will be stored.
+#
+
+DefaultRuntimeDir ${APACHE_RUN_DIR}
+
+#
+# PidFile: The file in which the server should record its process
+# identification number when it starts.
+# This needs to be set in /etc/apache2/envvars
+#
+PidFile ${APACHE_PID_FILE}
+
+#
+# Timeout: The number of seconds before receives and sends time out.
+#
+Timeout 300
+
+#
+# KeepAlive: Whether or not to allow persistent connections (more than
+# one request per connection). Set to "Off" to deactivate.
+#
+KeepAlive On
+
+#
+# MaxKeepAliveRequests: The maximum number of requests to allow
+# during a persistent connection. Set to 0 to allow an unlimited amount.
+# We recommend you leave this number high, for maximum performance.
+#
+MaxKeepAliveRequests 100
+
+#
+# KeepAliveTimeout: Number of seconds to wait for the next request from the
+# same client on the same connection.
+#
+KeepAliveTimeout 5
+
+
+# These need to be set in /etc/apache2/envvars
+User ${APACHE_RUN_USER}
+Group ${APACHE_RUN_GROUP}
+
+#
+# HostnameLookups: Log the names of clients or just their IP addresses
+# e.g., www.apache.org (on) or 204.62.129.132 (off).
+# The default is off because it'd be overall better for the net if people
+# had to knowingly turn this feature on, since enabling it means that
+# each client request will result in AT LEAST one lookup request to the
+# nameserver.
+#
+HostnameLookups Off
+
+# ErrorLog: The location of the error log file.
+# If you do not specify an ErrorLog directive within a <VirtualHost>
+# container, error messages relating to that virtual host will be
+# logged here.  If you *do* define an error logfile for a <VirtualHost>
+# container, that host's errors will be logged there and not here.
+#
+ErrorLog ${APACHE_LOG_DIR}/error.log
+
+#
+# LogLevel: Control the severity of messages logged to the error_log.
+# Available values: trace8, ..., trace1, debug, info, notice, warn,
+# error, crit, alert, emerg.
+# It is also possible to configure the log level for particular modules, e.g.
+# "LogLevel info ssl:warn"
+#
+LogLevel warn
+
+# Include module configuration:
+IncludeOptional mods-enabled/*.load
+IncludeOptional mods-enabled/*.conf
+
+# Include list of ports to listen on
+Include ports.conf
+
+
+# Sets the default security model of the Apache2 HTTPD server. It does
+# not allow access to the root filesystem outside of /usr/share and /var/www.
+# The former is used by web applications packaged in Debian,
+# the latter may be used for local directories served by the web server. If
+# your system is serving content from a sub-directory in /srv you must allow
+# access here, or in any related virtual host.
+<Directory />
+	Options FollowSymLinks
+	AllowOverride None
+	Require all denied
+</Directory>
+
+<Directory /usr/share>
+	AllowOverride None
+	Require all granted
+</Directory>
+
+<Directory /var/www/>
+	Options Indexes FollowSymLinks
+	AllowOverride None
+	Require all granted
+</Directory>
+
+#<Directory /srv/>
+#	Options Indexes FollowSymLinks
+#	AllowOverride None
+#	Require all granted
+#</Directory>
+
+
+
+
+# AccessFileName: The name of the file to look for in each directory
+# for additional configuration directives.  See also the AllowOverride
+# directive.
+#
+AccessFileName .htaccess
+
+#
+# The following lines prevent .htaccess and .htpasswd files from being
+# viewed by Web clients.
+#
+<FilesMatch "^\.ht">
+	Require all denied
+</FilesMatch>
+
+
+#
+# The following directives define some format nicknames for use with
+# a CustomLog directive.
+#
+# These deviate from the Common Log Format definitions in that they use %O
+# (the actual bytes sent including headers) instead of %b (the size of the
+# requested file), because the latter makes it impossible to detect partial
+# requests.
+#
+# Note that the use of %{X-Forwarded-For}i instead of %h is not recommended.
+# Use mod_remoteip instead.
+#
+LogFormat "%v:%p %h %l %u %t \"%r\" %>s %O \"%{Referer}i\" \"%{User-Agent}i\"" vhost_combined
+LogFormat "%h %l %u %t \"%r\" %>s %O \"%{Referer}i\" \"%{User-Agent}i\"" combined
+LogFormat "%h %l %u %t \"%r\" %>s %O" common
+LogFormat "%{Referer}i -> %U" referer
+LogFormat "%{User-agent}i" agent
+
+# Include of directories ignores editors' and dpkg's backup files,
+# see README.Debian for details.
+
+# Include generic snippets of statements
+IncludeOptional conf-enabled/*.conf
+
+# Include the virtual host configurations:
+IncludeOptional sites-enabled/*.conf
+
+# vim: syntax=apache ts=4 sw=4 sts=4 sr noet
+fallstechdave@mmrxps17:/etc/apache2$ 
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+apache2.service 
+nginx.service 
+mysql.service 
+
+http://localhost/   responds and is displaying the "Apache2 Ubuntu Default Page" (/var/www/html/index.html)
+
+sudo systemctl status  apache2.service 
+sudo systemctl status  nginx.service 
+sudo systemctl status  mysql.service 
+
+sudo systemctl stop    nginx.service
+sudo systemctl disable nginx.service
+
+sudo systemctl enable  apache2.service 
+sudo systemctl start   apache2.service 
+
+sudo systemctl restart apache2.service 
+
+http://localhost                   The page you were looking for doesn't exist.
+https://localhost                  Unable to connect - An error occurred during a connection to localhost. 
+http://localhost:3000/             Unable to connect - An error occurred during a connection to localhost. 
+http://localhost:3000/wire5        Unable to connect - An error occurred during a connection to localhost. 
+http://localhost:3000/article      Unable to connect - An error occurred during a connection to localhost. 
+http://localhost:3000/articles     Unable to connect - An error occurred during a connection to localhost. 
+http://localhost/articles          We're sorry, but something went wrong.
+http://localhost/article           The page you were looking for doesn't exist.
+http://localhost/wire5             The page you were looking for doesn't exist.
+
+
+/home/fallstechdave/railsprojects/wire5/log/production.log
+    [3f1485ae-7397-4878-b75f-3fa2326d5aec] app/views/articles/index.html.erb:12
+    I, [2022-07-06T06:43:39.173874 #8818]  INFO -- : [aecee3b8-b026-4714-878a-fff1a2c24b7b] Started GET "/" for 127.0.0.1 at 2022-07-06 06:43:39 -0400
+    F, [2022-07-06T06:43:39.175183 #8818] FATAL -- : [aecee3b8-b026-4714-878a-fff1a2c24b7b]   
+    [aecee3b8-b026-4714-878a-fff1a2c24b7b] ActionController::RoutingError (No route matches [GET] "/"):
+    [aecee3b8-b026-4714-878a-fff1a2c24b7b]   
+    I, [2022-07-06T06:44:06.858412 #8818]  INFO -- : [95e81af2-8d9d-41a3-bc19-9b33f7c99b68] Started GET "/" for 127.0.0.1 at 2022-07-06 06:44:06 -0400
+    F, [2022-07-06T06:44:06.858704 #8818] FATAL -- : [95e81af2-8d9d-41a3-bc19-9b33f7c99b68]   
+    [95e81af2-8d9d-41a3-bc19-9b33f7c99b68] ActionController::RoutingError (No route matches [GET] "/"):
+    [95e81af2-8d9d-41a3-bc19-9b33f7c99b68]   
+
+http://localhost/articles
+
+[c30fad69-a6e2-428a-8ae3-ed1e5e3bcbad] ActionController::RoutingError (No route matches [GET] "/wire5"):
+[c30fad69-a6e2-428a-8ae3-ed1e5e3bcbad]   
+I, [2022-07-06T06:59:00.973822 #8818]  INFO -- : [87e3be9f-7ee7-4157-8772-3f41e2c57714] Started GET "/articles" for 127.0.0.1 at 2022-07-06 06:59:00 -0400
+I, [2022-07-06T06:59:00.974372 #8818]  INFO -- : [87e3be9f-7ee7-4157-8772-3f41e2c57714] Processing by ArticlesController#index as HTML
+I, [2022-07-06T06:59:00.978999 #8818]  INFO -- : [87e3be9f-7ee7-4157-8772-3f41e2c57714]   Rendered articles/index.html.erb within layouts/application (Duration: 4.2ms | Allocations: 571)
+I, [2022-07-06T06:59:00.979122 #8818]  INFO -- : [87e3be9f-7ee7-4157-8772-3f41e2c57714]   Rendered layout layouts/application.html.erb (Duration: 4.3ms | Allocations: 602)
+I, [2022-07-06T06:59:00.979312 #8818]  INFO -- : [87e3be9f-7ee7-4157-8772-3f41e2c57714] Completed 500 Internal Server Error in 5ms (ActiveRecord: 2.4ms | Allocations: 830)
+F, [2022-07-06T06:59:00.980566 #8818] FATAL -- : [87e3be9f-7ee7-4157-8772-3f41e2c57714]   
+[87e3be9f-7ee7-4157-8772-3f41e2c57714] ActionView::Template::Error (Mysql2::Error: Table 'wire5_production.articles' doesn't exist):
+[87e3be9f-7ee7-4157-8772-3f41e2c57714]      9:   </div>
+[87e3be9f-7ee7-4157-8772-3f41e2c57714]     10: 
+[87e3be9f-7ee7-4157-8772-3f41e2c57714]     11:   <div id="articles" class="min-w-full">
+[87e3be9f-7ee7-4157-8772-3f41e2c57714]     12:     <%= render @articles %>
+[87e3be9f-7ee7-4157-8772-3f41e2c57714]     13:   </div>
+[87e3be9f-7ee7-4157-8772-3f41e2c57714]     14: </div>
+[87e3be9f-7ee7-4157-8772-3f41e2c57714]   
+[87e3be9f-7ee7-4157-8772-3f41e2c57714] app/views/articles/index.html.erb:12
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+fallstechdave@mmrxps17:~/railsprojects/wire5/log$ mysql -u root -p
+Enter password: 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 11
+Server version: 8.0.29 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2022, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| app_development    |
+| app_production     |
+| app_test           |
+| information_schema |
+| mysql              |
+| performance_schema |
+| sys                |
+| wire5_development  |
+| wire5_production   |
+| wire5_test         |
++--------------------+
+10 rows in set (0.00 sec)
+
+mysql> 
+mysql> use wire5_production;
+Database changed
+mysql> show tables;
+Empty set (0.00 sec)
+
+mysql> 
+mysql> use wire5_test;
+Database changed
+mysql> show tables;
+Empty set (0.00 sec)
+
+mysql> use wire5_development;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql> show tables;
++-----------------------------+
+| Tables_in_wire5_development |
++-----------------------------+
+| ar_internal_metadata        |
+| articles                    |
+| schema_migrations           |
++-----------------------------+
+3 rows in set (0.00 sec)
+
+mysql> 
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+RAILS_ENV=test       bundle exec rake db:create db:schema:load
+RAILS_ENV=production bundle exec rake db:create db:schema:load
+
+... the two commands did create the "articles" table in the test and production databases ...
+
+fallstechdave@mmrxps17:~/railsprojects/wire5$ 
+fallstechdave@mmrxps17:~/railsprojects/wire5$ RAILS_ENV=production bundle exec rake db:create db:schema:load
+Database 'wire5_production' already exists
+fallstechdave@mmrxps17:~/railsprojects/wire5$ RAILS_ENV=test       bundle exec rake db:create db:schema:load
+Database 'wire5_test' already exists
+fallstechdave@mmrxps17:~/railsprojects/wire5$ 
+
+mysql> 
+mysql> use wire5_production;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql> show tables;
++----------------------------+
+| Tables_in_wire5_production |
++----------------------------+
+| ar_internal_metadata       |
+| articles                   |
+| schema_migrations          |
++----------------------------+
+3 rows in set (0.00 sec)
+
+mysql> use wire5_test;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql> show tables;
++----------------------+
+| Tables_in_wire5_test |
++----------------------+
+| ar_internal_metadata |
+| articles             |
+| schema_migrations    |
++----------------------+
+3 rows in set (0.00 sec)
+
+mysql> 
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+[91621815-acbe-4a4e-b1f8-9de8687780f6] app/views/layouts/application.html.erb:8
+I, [2022-07-06T07:27:14.612666 #8818]  INFO -- : [290bcdd6-a425-459c-a3d0-025013e224fa] Started GET "/articles" for 127.0.0.1 at 2022-07-06 07:27:14 -0400
+I, [2022-07-06T07:27:14.613276 #8818]  INFO -- : [290bcdd6-a425-459c-a3d0-025013e224fa] Processing by ArticlesController#index as HTML
+I, [2022-07-06T07:27:14.614801 #8818]  INFO -- : [290bcdd6-a425-459c-a3d0-025013e224fa]   Rendered articles/index.html.erb within layouts/application (Duration: 1.0ms | Allocations: 226)
+I, [2022-07-06T07:27:14.615390 #8818]  INFO -- : [290bcdd6-a425-459c-a3d0-025013e224fa]   Rendered layout layouts/application.html.erb (Duration: 1.7ms | Allocations: 515)
+I, [2022-07-06T07:27:14.615552 #8818]  INFO -- : [290bcdd6-a425-459c-a3d0-025013e224fa] Completed 500 Internal Server Error in 2ms (ActiveRecord: 0.4ms | Allocations: 698)
+F, [2022-07-06T07:27:14.616312 #8818] FATAL -- : [290bcdd6-a425-459c-a3d0-025013e224fa]   
+[290bcdd6-a425-459c-a3d0-025013e224fa] ActionView::Template::Error (The asset "tailwind.css" is not present in the asset pipeline.
+):
+[290bcdd6-a425-459c-a3d0-025013e224fa]      5:     <meta name="viewport" content="width=device-width,initial-scale=1">
+[290bcdd6-a425-459c-a3d0-025013e224fa]      6:     <%= csrf_meta_tags %>
+[290bcdd6-a425-459c-a3d0-025013e224fa]      7:     <%= csp_meta_tag %>
+[290bcdd6-a425-459c-a3d0-025013e224fa]      8:     <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
+[290bcdd6-a425-459c-a3d0-025013e224fa]      9: 
+[290bcdd6-a425-459c-a3d0-025013e224fa]     10:     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+[290bcdd6-a425-459c-a3d0-025013e224fa]     11:     <%= javascript_importmap_tags %>
+[290bcdd6-a425-459c-a3d0-025013e224fa]   
+[290bcdd6-a425-459c-a3d0-025013e224fa] app/views/layouts/application.html.erb:8
+
+bundle exec rake assets:precompile
+bundle exec rake assets:precompile
+
+RAILS_ENV=test       bundle exec rake assets:precompile
+RAILS_ENV=production bundle exec rake assets:precompile
+
+/home/fallstechdave/railsprojects/wire5/log/production.log
+
+[919c4023-dea2-4ebb-b62a-9d03fafd3f26] app/views/layouts/application.html.erb:8
+I, [2022-07-06T07:35:17.016994 #13274]  INFO -- : [5bd4147f-96b7-4b48-a4e5-c4fb5852641c] Started GET "/articles" for 127.0.0.1 at 2022-07-06 07:35:17 -0400
+I, [2022-07-06T07:35:17.020222 #13274]  INFO -- : [5bd4147f-96b7-4b48-a4e5-c4fb5852641c] Processing by ArticlesController#index as HTML
+I, [2022-07-06T07:35:17.029711 #13274]  INFO -- : [5bd4147f-96b7-4b48-a4e5-c4fb5852641c]   Rendered articles/index.html.erb within layouts/application (Duration: 6.4ms | Allocations: 1904)
+I, [2022-07-06T07:35:17.031308 #13274]  INFO -- : [5bd4147f-96b7-4b48-a4e5-c4fb5852641c]   Rendered layout layouts/application.html.erb (Duration: 8.0ms | Allocations: 4697)
+I, [2022-07-06T07:35:17.031485 #13274]  INFO -- : [5bd4147f-96b7-4b48-a4e5-c4fb5852641c] Completed 200 OK in 11ms (Views: 9.2ms | ActiveRecord: 1.1ms | Allocations: 6274)
+I, [2022-07-06T07:35:20.282033 #13274]  INFO -- : [4d7d5a62-92a5-43e3-8deb-54c80d496a7e] Started GET "/articles/new" for 127.0.0.1 at 2022-07-06 07:35:20 -0400
+I, [2022-07-06T07:35:20.282728 #13274]  INFO -- : [4d7d5a62-92a5-43e3-8deb-54c80d496a7e] Processing by ArticlesController#new as HTML
+I, [2022-07-06T07:35:20.309220 #13274]  INFO -- : [4d7d5a62-92a5-43e3-8deb-54c80d496a7e]   Rendered articles/new.html.erb within layouts/application (Duration: 7.3ms | Allocations: 5879)
+I, [2022-07-06T07:35:20.310003 #13274]  INFO -- : [4d7d5a62-92a5-43e3-8deb-54c80d496a7e]   Rendered layout layouts/application.html.erb (Duration: 8.2ms | Allocations: 6613)
+I, [2022-07-06T07:35:20.310185 #13274]  INFO -- : [4d7d5a62-92a5-43e3-8deb-54c80d496a7e] Completed 200 OK in 27ms (Views: 8.5ms | ActiveRecord: 6.0ms | Allocations: 15614)
+I, [2022-07-06T07:36:01.944341 #13274]  INFO -- : [cb81b4ef-04fb-4869-ab90-9afc54a8e72f] Started POST "/articles" for 127.0.0.1 at 2022-07-06 07:36:01 -0400
+I, [2022-07-06T07:36:01.945940 #13274]  INFO -- : [cb81b4ef-04fb-4869-ab90-9afc54a8e72f] Processing by ArticlesController#create as TURBO_STREAM
+I, [2022-07-06T07:36:01.946104 #13274]  INFO -- : [cb81b4ef-04fb-4869-ab90-9afc54a8e72f]   Parameters: {"authenticity_token"=>"[FILTERED]", "article"=>{"title"=>"aaa", "summary"=>"bbb", "doc_num"=>"ccc", "image_caption"=>"ddd", "has_attachments"=>"1", "worldwide"=>"1", "date_published"=>"2022-07-06", "producing_office"=>"eee", "country"=>"fff", "topic"=>"ggg", "non_state_actor"=>"hhh", "body"=>"iii"}, "commit"=>"Create Article"}
+I, [2022-07-06T07:36:01.959417 #13274]  INFO -- : [cb81b4ef-04fb-4869-ab90-9afc54a8e72f] Redirected to http://localhost/articles/1
+I, [2022-07-06T07:36:01.959698 #13274]  INFO -- : [cb81b4ef-04fb-4869-ab90-9afc54a8e72f] Completed 302 Found in 13ms (ActiveRecord: 5.3ms | Allocations: 1968)
+I, [2022-07-06T07:36:01.969468 #13274]  INFO -- : [f5e78449-b5a0-4c96-bdd4-dfdb415e3244] Started GET "/articles/1" for 127.0.0.1 at 2022-07-06 07:36:01 -0400
+I, [2022-07-06T07:36:01.970735 #13274]  INFO -- : [f5e78449-b5a0-4c96-bdd4-dfdb415e3244] Processing by ArticlesController#show as TURBO_STREAM
+I, [2022-07-06T07:36:01.970841 #13274]  INFO -- : [f5e78449-b5a0-4c96-bdd4-dfdb415e3244]   Parameters: {"id"=>"1"}
+I, [2022-07-06T07:36:01.978009 #13274]  INFO -- : [f5e78449-b5a0-4c96-bdd4-dfdb415e3244]   Rendered articles/show.html.erb within layouts/application (Duration: 3.2ms | Allocations: 1556)
+I, [2022-07-06T07:36:01.978990 #13274]  INFO -- : [f5e78449-b5a0-4c96-bdd4-dfdb415e3244]   Rendered layout layouts/application.html.erb (Duration: 4.3ms | Allocations: 2305)
+I, [2022-07-06T07:36:01.979266 #13274]  INFO -- : [f5e78449-b5a0-4c96-bdd4-dfdb415e3244] Completed 200 OK in 8ms (Views: 4.8ms | ActiveRecord: 0.7ms | Allocations: 3262)
+I, [2022-07-06T07:36:06.019009 #13274]  INFO -- : [d3665b6c-bd82-49b4-af87-f03e73e5573b] Started GET "/articles" for 127.0.0.1 at 2022-07-06 07:36:06 -0400
+I, [2022-07-06T07:36:06.019893 #13274]  INFO -- : [d3665b6c-bd82-49b4-af87-f03e73e5573b] Processing by ArticlesController#index as HTML
+I, [2022-07-06T07:36:06.023158 #13274]  INFO -- : [d3665b6c-bd82-49b4-af87-f03e73e5573b]   Rendered articles/index.html.erb within layouts/application (Duration: 2.7ms | Allocations: 980)
+I, [2022-07-06T07:36:06.024562 #13274]  INFO -- : [d3665b6c-bd82-49b4-af87-f03e73e5573b]   Rendered layout layouts/application.html.erb (Duration: 4.1ms | Allocations: 1713)
+I, [2022-07-06T07:36:06.024908 #13274]  INFO -- : [d3665b6c-bd82-49b4-af87-f03e73e5573b] Completed 200 OK in 5ms (Views: 4.2ms | ActiveRecord: 0.3ms | Allocations: 1926)
+I, [2022-07-06T07:36:11.974792 #13274]  INFO -- : [ac5e1d4c-1be5-4193-93ac-685ba017d6a2] Started GET "/articles/new" for 127.0.0.1 at 2022-07-06 07:36:11 -0400
+I, [2022-07-06T07:36:11.975511 #13274]  INFO -- : [ac5e1d4c-1be5-4193-93ac-685ba017d6a2] Processing by ArticlesController#new as HTML
+I, [2022-07-06T07:36:11.982662 #13274]  INFO -- : [ac5e1d4c-1be5-4193-93ac-685ba017d6a2]   Rendered articles/new.html.erb within layouts/application (Duration: 6.6ms | Allocations: 3915)
+I, [2022-07-06T07:36:11.983463 #13274]  INFO -- : [ac5e1d4c-1be5-4193-93ac-685ba017d6a2]   Rendered layout layouts/application.html.erb (Duration: 7.4ms | Allocations: 4648)
+I, [2022-07-06T07:36:11.983669 #13274]  INFO -- : [ac5e1d4c-1be5-4193-93ac-685ba017d6a2] Completed 200 OK in 8ms (Views: 7.7ms | ActiveRecord: 0.0ms | Allocations: 4873)
+I, [2022-07-06T07:36:37.314956 #13274]  INFO -- : [dcc7c03d-d1a7-47d9-b463-eb5c1a57aacc] Started POST "/articles" for 127.0.0.1 at 2022-07-06 07:36:37 -0400
+I, [2022-07-06T07:36:37.316146 #13274]  INFO -- : [dcc7c03d-d1a7-47d9-b463-eb5c1a57aacc] Processing by ArticlesController#create as TURBO_STREAM
+I, [2022-07-06T07:36:37.316283 #13274]  INFO -- : [dcc7c03d-d1a7-47d9-b463-eb5c1a57aacc]   Parameters: {"authenticity_token"=>"[FILTERED]", "article"=>{"title"=>"222", "summary"=>"222", "doc_num"=>"222", "image_caption"=>"222", "has_attachments"=>"1", "worldwide"=>"0", "date_published"=>"2022-07-07", "producing_office"=>"222", "country"=>"222", "topic"=>"222", "non_state_actor"=>"222", "body"=>"222"}, "commit"=>"Create Article"}
+I, [2022-07-06T07:36:37.348574 #13274]  INFO -- : [dcc7c03d-d1a7-47d9-b463-eb5c1a57aacc] Redirected to http://localhost/articles/2
+I, [2022-07-06T07:36:37.348946 #13274]  INFO -- : [dcc7c03d-d1a7-47d9-b463-eb5c1a57aacc] Completed 302 Found in 32ms (ActiveRecord: 28.0ms | Allocations: 911)
+I, [2022-07-06T07:36:37.357414 #13274]  INFO -- : [83eb79c8-54d1-4251-a815-c1491ef10abc] Started GET "/articles/2" for 127.0.0.1 at 2022-07-06 07:36:37 -0400
+I, [2022-07-06T07:36:37.358340 #13274]  INFO -- : [83eb79c8-54d1-4251-a815-c1491ef10abc] Processing by ArticlesController#show as TURBO_STREAM
+I, [2022-07-06T07:36:37.358446 #13274]  INFO -- : [83eb79c8-54d1-4251-a815-c1491ef10abc]   Parameters: {"id"=>"2"}
+I, [2022-07-06T07:36:37.362028 #13274]  INFO -- : [83eb79c8-54d1-4251-a815-c1491ef10abc]   Rendered articles/show.html.erb within layouts/application (Duration: 1.6ms | Allocations: 576)
+I, [2022-07-06T07:36:37.363489 #13274]  INFO -- : [83eb79c8-54d1-4251-a815-c1491ef10abc]   Rendered layout layouts/application.html.erb (Duration: 3.1ms | Allocations: 1301)
+I, [2022-07-06T07:36:37.363785 #13274]  INFO -- : [83eb79c8-54d1-4251-a815-c1491ef10abc] Completed 200 OK in 5ms (Views: 3.6ms | ActiveRecord: 0.6ms | Allocations: 1602)
+I, [2022-07-06T07:36:40.510290 #13274]  INFO -- : [234c951b-833e-4d69-adf4-c542ab217dbb] Started GET "/articles" for 127.0.0.1 at 2022-07-06 07:36:40 -0400
+I, [2022-07-06T07:36:40.510790 #13274]  INFO -- : [234c951b-833e-4d69-adf4-c542ab217dbb] Processing by ArticlesController#index as HTML
+I, [2022-07-06T07:36:40.512635 #13274]  INFO -- : [234c951b-833e-4d69-adf4-c542ab217dbb]   Rendered articles/index.html.erb within layouts/application (Duration: 1.5ms | Allocations: 646)
+I, [2022-07-06T07:36:40.513261 #13274]  INFO -- : [234c951b-833e-4d69-adf4-c542ab217dbb]   Rendered layout layouts/application.html.erb (Duration: 2.1ms | Allocations: 1379)
+I, [2022-07-06T07:36:40.513407 #13274]  INFO -- : [234c951b-833e-4d69-adf4-c542ab217dbb] Completed 200 OK in 3ms (Views: 2.0ms | ActiveRecord: 0.4ms | Allocations: 1591)
+I, [2022-07-06T07:36:52.648020 #13274]  INFO -- : [6cf98d6b-2313-4c4c-b90f-8bd284bd8de0] Started GET "/articles/2" for 127.0.0.1 at 2022-07-06 07:36:52 -0400
+I, [2022-07-06T07:36:52.648765 #13274]  INFO -- : [6cf98d6b-2313-4c4c-b90f-8bd284bd8de0] Processing by ArticlesController#show as HTML
+I, [2022-07-06T07:36:52.648816 #13274]  INFO -- : [6cf98d6b-2313-4c4c-b90f-8bd284bd8de0]   Parameters: {"id"=>"2"}
+I, [2022-07-06T07:36:52.651252 #13274]  INFO -- : [6cf98d6b-2313-4c4c-b90f-8bd284bd8de0]   Rendered articles/show.html.erb within layouts/application (Duration: 0.9ms | Allocations: 551)
+I, [2022-07-06T07:36:52.651860 #13274]  INFO -- : [6cf98d6b-2313-4c4c-b90f-8bd284bd8de0]   Rendered layout layouts/application.html.erb (Duration: 1.5ms | Allocations: 1276)
+I, [2022-07-06T07:36:52.652018 #13274]  INFO -- : [6cf98d6b-2313-4c4c-b90f-8bd284bd8de0] Completed 200 OK in 3ms (Views: 1.8ms | ActiveRecord: 0.5ms | Allocations: 1574)
+I, [2022-07-06T07:36:55.687329 #13274]  INFO -- : [7b100475-d009-47d0-934b-c3ece86a4838] Started GET "/articles" for 127.0.0.1 at 2022-07-06 07:36:55 -0400
+I, [2022-07-06T07:36:55.688588 #13274]  INFO -- : [7b100475-d009-47d0-934b-c3ece86a4838] Processing by ArticlesController#index as HTML
+I, [2022-07-06T07:36:55.693511 #13274]  INFO -- : [7b100475-d009-47d0-934b-c3ece86a4838]   Rendered articles/index.html.erb within layouts/application (Duration: 4.1ms | Allocations: 646)
+I, [2022-07-06T07:36:55.695393 #13274]  INFO -- : [7b100475-d009-47d0-934b-c3ece86a4838]   Rendered layout layouts/application.html.erb (Duration: 6.0ms | Allocations: 1379)
+I, [2022-07-06T07:36:55.695991 #13274]  INFO -- : [7b100475-d009-47d0-934b-c3ece86a4838] Completed 200 OK in 7ms (Views: 6.0ms | ActiveRecord: 0.7ms | Allocations: 1591)
+
+mysql> use wire5_production;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql> show tables;
++----------------------------+
+| Tables_in_wire5_production |
++----------------------------+
+| ar_internal_metadata       |
+| articles                   |
+| schema_migrations          |
++----------------------------+
+3 rows in set (0.00 sec)
+
+mysql> select * from articles;
++----+-------+---------+---------+---------------+-----------------+-----------+----------------+------------------+---------+-------+-----------------+------+----------------------------+----------------------------+
+| id | title | summary | doc_num | image_caption | has_attachments | worldwide | date_published | producing_office | country | topic | non_state_actor | body | created_at                 | updated_at                 |
++----+-------+---------+---------+---------------+-----------------+-----------+----------------+------------------+---------+-------+-----------------+------+----------------------------+----------------------------+
+|  1 | aaa   | bbb     | ccc     | ddd           |               1 |         1 | 2022-07-06     | eee              | fff     | ggg   | hhh             | iii  | 2022-07-06 11:36:01.949248 | 2022-07-06 11:36:01.949248 |
+|  2 | 222   | 222     | 222     | 222           |               1 |         0 | 2022-07-07     | 222              | 222     | 222   | 222             | 222  | 2022-07-06 11:36:37.318115 | 2022-07-06 11:36:37.318115 |
++----+-------+---------+---------+---------------+-----------------+-----------+----------------+------------------+---------+-------+-----------------+------+----------------------------+----------------------------+
+2 rows in set (0.00 sec)
+
+mysql> 
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+... after stopping and disabling nginx.service ...
+... after enabling and starting  apache2.service 
+
+fallstechdave@mmrxps17:~$ 
+fallstechdave@mmrxps17:~$ sudo systemctl status  apache2.service 
+[sudo] password for fallstechdave: 
+● apache2.service - The Apache HTTP Server
+     Loaded: loaded (/lib/systemd/system/apache2.service; enabled; vendor preset: enabled)
+     Active: active (running) since Wed 2022-07-06 06:43:30 EDT; 26min ago
+       Docs: https://httpd.apache.org/docs/2.4/
+    Process: 8592 ExecStart=/usr/sbin/apachectl start (code=exited, status=0/SUCCESS)
+      Tasks: 113 (limit: 18739)
+     Memory: 162.5M
+     CGroup: /system.slice/apache2.service
+             ├─8655 /usr/sbin/apache2 -k start
+             ├─8657 Passenger watchdog
+             ├─8660 Passenger core
+             ├─8678 /usr/sbin/apache2 -k start
+             ├─8681 /usr/sbin/apache2 -k start
+             └─8818 Passenger RubyApp: /home/fallstechdave/railsprojects/wire5 (production)
+
+Jul 06 06:43:30 mmrxps17 systemd[1]: Starting The Apache HTTP Server...
+Jul 06 06:43:30 mmrxps17 apachectl[8595]: WARNING: PassengerDisableAnonymousTelemetry cannot occur within <VirtualHost> section
+Jul 06 06:43:30 mmrxps17 apachectl[8595]: AH00558: apache2: Could not reliably determine the server's fully qualified domain name, using 127.0.1.1. Set the 'ServerName' directive globally to suppress th>
+Jul 06 06:43:30 mmrxps17 systemd[1]: Started The Apache HTTP Server.
+fallstechdave@mmrxps17:~$ 
+fallstechdave@mmrxps17:~$ 
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+... before stopping and disabling nginx.service ...
+
+fallstechdave@mmrxps17:/etc/apache2$ sudo systemctl status  nginx.service 
+● nginx.service - A high performance web server and a reverse proxy server
+     Loaded: loaded (/lib/systemd/system/nginx.service; enabled; vendor preset: enabled)
+     Active: active (running) since Wed 2022-07-06 06:05:46 EDT; 30min ago
+       Docs: man:nginx(8)
+    Process: 868 ExecStartPre=/usr/sbin/nginx -t -q -g daemon on; master_process on; (code=exited, status=0/SUCCESS)
+    Process: 951 ExecStart=/usr/sbin/nginx -g daemon on; master_process on; (code=exited, status=0/SUCCESS)
+   Main PID: 968 (nginx)
+      Tasks: 21 (limit: 18739)
+     Memory: 21.8M
+     CGroup: /system.slice/nginx.service
+             ├─968 nginx: master process /usr/sbin/nginx -g daemon on; master_process on;
+             ├─969 nginx: worker process
+             ├─970 nginx: worker process
+             ├─972 nginx: worker process
+             ├─973 nginx: worker process
+             ├─974 nginx: worker process
+             ├─975 nginx: worker process
+             ├─976 nginx: worker process
+             ├─977 nginx: worker process
+             ├─978 nginx: worker process
+             ├─979 nginx: worker process
+             ├─981 nginx: worker process
+             ├─982 nginx: worker process
+             ├─983 nginx: worker process
+             ├─985 nginx: worker process
+             ├─986 nginx: worker process
+             ├─987 nginx: worker process
+             ├─988 nginx: worker process
+             ├─992 nginx: worker process
+             ├─996 nginx: worker process
+             └─997 nginx: worker process
+
+Jul 06 06:05:46 mmrxps17 systemd[1]: Starting A high performance web server and a reverse proxy server...
+Jul 06 06:05:46 mmrxps17 systemd[1]: Started A high performance web server and a reverse proxy server.
+fallstechdave@mmrxps17:/etc/apache2$ 
+fallstechdave@mmrxps17:/etc/apache2$ 
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+fallstechdave@mmrxps17:~$ 
+fallstechdave@mmrxps17:~$ cat /etc/apache2/sites-available/wire.conf 
+<VirtualHost *:80>
+    ServerAdmin webmaster@localhost
+    ServerName wire
+    ServerAlias www.wire
+    DocumentRoot /var/www/wire
+    ErrorLog ${APACHE_LOG_DIR}/error.log
+    CustomLog ${APACHE_LOG_DIR}/access.log combined
+</VirtualHost>
+fallstechdave@mmrxps17:~$ 
+fallstechdave@mmrxps17:~$ cat /etc/apache2/sites-available/wire5.conf
+<VirtualHost *:80>
+    ServerName localhost
+    PassengerDisableAnonymousTelemetry on
+    # Tell Apache and Passenger where your app's 'public' directory is
+    DocumentRoot /home/fallstechdave/railsprojects/wire5/public
+    PassengerRuby /home/fallstechdave/.rbenv/versions/3.1.2/bin/ruby
+    # Relax Apache security settings
+    <Directory /home/fallstechdave/railsprojects/wire5/public>
+      Allow from all
+      Options -MultiViews
+      # Uncomment this if you're on Apache > 2.4:
+      Require all granted
+    </Directory>
+</VirtualHost>
+fallstechdave@mmrxps17:~$ 
+fallstechdave@mmrxps17:~$ ls -latr /etc/apache2/sites-enabled/
+total 8
+drwxr-xr-x 8 root root 4096 Jul  1 07:10 ..
+lrwxrwxrwx 1 root root   29 Jul  1 08:45 wire5.conf -> ../sites-available/wire5.conf
+drwxr-xr-x 2 root root 4096 Jul  1 08:52 .
+fallstechdave@mmrxps17:~$ 
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+https://auth0.com/resources/ebooks/the-openid-connect-handbook?utm_content=oidc-handbook-1utm_source=google&utm_medium=cpc&utm_term=oidc&utm_campaign=amer-usa-search-oidc?utm_id=go_cmp-12865209981_adg-123980878240_ad-517398498405_kwd-349435715211_dev-c_ext-_prd-_mca-_sig-EAIaIQobChMI3-KqkaTk-AIV9v_jBx2h_A6dEAAYASAAEgK_hvD_BwE&utm_source=google&gclid=EAIaIQobChMI3-KqkaTk-AIV9v_jBx2h_A6dEAAYASAAEgK_hvD_BwE
+
+https://auth0.com/resources/ebooks/jwt-handbook?utm_content=jwt-handbook&utm_source=google&utm_medium=cpc&utm_term=-g-oidc&pm=true&utm_campaign=amer-sitelink&gclid=EAIaIQobChMI3-KqkaTk-AIV9v_jBx2h_A6dEAAYASABEgJeDfD_BwE
+
+https://auth0.com/signup?utm_source=google&utm_medium=cpc&utm_campaign=amer-sitelink&utm_content=signup&utm_content=signup&promo=sup&place=google-search-ad&type=sitelink-extension&text=try-auth0-for-freeutm_source=google&utm_medium=cpc&utm_term=oidc&utm_campaign=amer-usa-search-oidc?utm_id=go_cmp-12865209981_adg-123980878240_ad-517398498405_kwd-349435715211_dev-c_ext-22096040092_prd-_mca-_sig-EAIaIQobChMI3-KqkaTk-AIV9v_jBx2h_A6dEAAYASACEgJKXPD_BwE&utm_source=google&gclid=EAIaIQobChMI3-KqkaTk-AIV9v_jBx2h_A6dEAAYASACEgJKXPD_BwE
+
+https://github.com/zmartzone/mod_auth_openidc
+
+https://github.com/zmartzone/mod_auth_openidc/wiki/Gluu-Server
+
+Install mod_auth_openidc
+
+mod_auth_openidc requires the Ubuntu package libjansson4. Install it using the following command:
+
+apt-get install libjansson4
+
+Download and install the mod_auth_openidc and libjose packages from the Release Page and then run the following commands:
+
+    a2enmod auth_openidc
+    service apache2 restart
+
+https://www.mod-auth-openidc.org/
+
+https://github.com/zmartzone/mod_auth_openidc/releases
+
+libapache2-mod-auth-openidc_2.4.11.2-1.bionic+1_amd64.deb   175 KB May 05, 2022
+libapache2-mod-auth-openidc_2.4.11.2-1.bullseye+1_amd64.deb 178 KB May 05, 2022
+libapache2-mod-auth-openidc_2.4.11.2-1.buster+1_amd64.deb   177 KB May 05, 2022
+libapache2-mod-auth-openidc_2.4.11.2-1.focal+1_amd64.deb    176 KB May 05, 2022
+mod_auth_openidc-2.4.11.2-1.el7.x86_64.rpm                  433 KB May 05, 2022
+mod_auth_openidc-2.4.11.2-1.el8.x86_64.rpm                  197 KB May 05, 2022
+mod_auth_openidc-2.4.11.2.tar.gz                            585 KB May 05, 2022
+Source code (zip)                                                  May 05, 2022
+Source code (tar.gz)                                               May 05, 2022
+
+fallstechdave@mmrxps17:~/Downloads$ pwd -P
+/home/fallstechdave/Downloads
+fallstechdave@mmrxps17:~/Downloads$ ls -latr
+total 313128
+-rw-rw-r--  1 fallstechdave fallstechdave  83667280 Jun 30 08:41 code_1.68.1-1655263094_amd64.deb
+-rw-rw-r--  1 fallstechdave fallstechdave 117711933 Jun 30 08:42 code-1.68.1-1655263151.el7.x86_64.rpm
+-rw-rw-r--  1 fallstechdave fallstechdave 116922965 Jun 30 08:42 code-stable-x64-1655263335.tar.gz
+-rw-rw-r--  1 fallstechdave fallstechdave     18012 Jun 30 09:24 mysql-apt-config_0.8.22-1_all.deb
+drwxr-xr-x 28 fallstechdave fallstechdave      4096 Jul  6 08:38 ..
+-rw-rw-r--  1 fallstechdave fallstechdave    178948 Jul  6 08:47 libapache2-mod-auth-openidc_2.4.11.2-1.bionic+1_amd64.deb
+-rw-rw-r--  1 fallstechdave fallstechdave    182556 Jul  6 08:48 libapache2-mod-auth-openidc_2.4.11.2-1.bullseye+1_amd64.deb
+-rw-rw-r--  1 fallstechdave fallstechdave    181724 Jul  6 08:48 libapache2-mod-auth-openidc_2.4.11.2-1.buster+1_amd64.deb
+-rw-rw-r--  1 fallstechdave fallstechdave    180340 Jul  6 08:48 libapache2-mod-auth-openidc_2.4.11.2-1.focal+1_amd64.deb
+-rw-rw-r--  1 fallstechdave fallstechdave    442992 Jul  6 08:48 mod_auth_openidc-2.4.11.2-1.el7.x86_64.rpm
+-rw-rw-r--  1 fallstechdave fallstechdave    201832 Jul  6 08:48 mod_auth_openidc-2.4.11.2-1.el8.x86_64.rpm
+-rw-rw-r--  1 fallstechdave fallstechdave    599513 Jul  6 08:48 mod_auth_openidc-2.4.11.2.tar.gz
+-rw-rw-r--  1 fallstechdave fallstechdave    311947 Jul  6 08:48 mod_auth_openidc-2.4.11.2.zip
+drwxr-xr-x  2 fallstechdave fallstechdave      4096 Jul  6 08:50 .
+fallstechdave@mmrxps17:~/Downloads$ 
+
