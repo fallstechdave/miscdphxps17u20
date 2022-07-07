@@ -1,0 +1,102 @@
+Thu 07 Jul 2022 06:19:47 AM EDT
+
+fallstechdave@mmrxps17:~$ date
+Thu 07 Jul 2022 06:19:17 AM EDT
+fallstechdave@mmrxps17:~$ date > stuff-20220707.txt
+fallstechdave@mmrxps17:~$ code   stuff-20220707.txt
+fallstechdave@mmrxps17:~$ 
+fallstechdave@mmrxps17:~$ neofetch
+
+Command 'neofetch' not found, but can be installed with:
+
+sudo apt install neofetch
+
+fallstechdave@mmrxps17:~$ sudo apt install neofetch
+[sudo] password for fallstechdave: 
+Reading package lists... Done
+Building dependency tree       
+Reading state information... Done
+The following packages were automatically installed and are no longer required:
+  chromium-codecs-ffmpeg-extra gstreamer1.0-vaapi libfwupdplugin1 libgstreamer-plugins-bad1.0-0 libnvidia-cfg1-510 libnvidia-common-510 libnvidia-decode-510 libnvidia-encode-510 libnvidia-extra-510
+  libnvidia-fbc1-510 libnvidia-gl-510 libva-wayland2 libx11-xcb1:i386 libxnvctrl0 nvidia-compute-utils-510 nvidia-kernel-source-510 nvidia-settings nvidia-utils-510 screen-resolution-extra
+  xserver-xorg-video-nvidia-510
+Use 'sudo apt autoremove' to remove them.
+The following additional packages will be installed:
+  chafa gsfonts imagemagick-6-common libchafa0 liblqr-1-0 libmagickcore-6.q16-6 libmagickwand-6.q16-6
+Suggested packages:
+  libmagickcore-6.q16-6-extra
+The following NEW packages will be installed:
+  chafa gsfonts imagemagick-6-common libchafa0 liblqr-1-0 libmagickcore-6.q16-6 libmagickwand-6.q16-6 neofetch
+0 upgraded, 8 newly installed, 0 to remove and 2 not upgraded.
+Need to get 5,308 kB of archives.
+After this operation, 14.3 MB of additional disk space will be used.
+Do you want to continue? [Y/n] y
+Get:1 http://us.archive.ubuntu.com/ubuntu focal/universe amd64 liblqr-1-0 amd64 0.4.2-2.1 [27.7 kB]
+Get:2 http://us.archive.ubuntu.com/ubuntu focal-updates/universe amd64 imagemagick-6-common all 8:6.9.10.23+dfsg-2.1ubuntu11.4 [60.9 kB]
+Get:3 http://us.archive.ubuntu.com/ubuntu focal-updates/universe amd64 libmagickcore-6.q16-6 amd64 8:6.9.10.23+dfsg-2.1ubuntu11.4 [1,647 kB]
+Get:4 http://us.archive.ubuntu.com/ubuntu focal-updates/universe amd64 libmagickwand-6.q16-6 amd64 8:6.9.10.23+dfsg-2.1ubuntu11.4 [303 kB]
+Get:5 http://us.archive.ubuntu.com/ubuntu focal/universe amd64 libchafa0 amd64 1.2.1-1 [42.1 kB]
+Get:6 http://us.archive.ubuntu.com/ubuntu focal/universe amd64 chafa amd64 1.2.1-1 [29.7 kB]
+Get:7 http://us.archive.ubuntu.com/ubuntu focal/universe amd64 gsfonts all 1:8.11+urwcyr1.0.7~pre44-4.4 [3,120 kB]
+Get:8 http://us.archive.ubuntu.com/ubuntu focal/universe amd64 neofetch all 7.0.0-1 [77.5 kB]
+Fetched 5,308 kB in 0s (22.6 MB/s)  
+Selecting previously unselected package liblqr-1-0:amd64.
+(Reading database ... 193240 files and directories currently installed.)
+Preparing to unpack .../0-liblqr-1-0_0.4.2-2.1_amd64.deb ...
+Unpacking liblqr-1-0:amd64 (0.4.2-2.1) ...
+Selecting previously unselected package imagemagick-6-common.
+Preparing to unpack .../1-imagemagick-6-common_8%3a6.9.10.23+dfsg-2.1ubuntu11.4_all.deb ...
+Unpacking imagemagick-6-common (8:6.9.10.23+dfsg-2.1ubuntu11.4) ...
+Selecting previously unselected package libmagickcore-6.q16-6:amd64.
+Preparing to unpack .../2-libmagickcore-6.q16-6_8%3a6.9.10.23+dfsg-2.1ubuntu11.4_amd64.deb ...
+Unpacking libmagickcore-6.q16-6:amd64 (8:6.9.10.23+dfsg-2.1ubuntu11.4) ...
+Selecting previously unselected package libmagickwand-6.q16-6:amd64.
+Preparing to unpack .../3-libmagickwand-6.q16-6_8%3a6.9.10.23+dfsg-2.1ubuntu11.4_amd64.deb ...
+Unpacking libmagickwand-6.q16-6:amd64 (8:6.9.10.23+dfsg-2.1ubuntu11.4) ...
+Selecting previously unselected package libchafa0:amd64.
+Preparing to unpack .../4-libchafa0_1.2.1-1_amd64.deb ...
+Unpacking libchafa0:amd64 (1.2.1-1) ...
+Selecting previously unselected package chafa.
+Preparing to unpack .../5-chafa_1.2.1-1_amd64.deb ...
+Unpacking chafa (1.2.1-1) ...
+Selecting previously unselected package gsfonts.
+Preparing to unpack .../6-gsfonts_1%3a8.11+urwcyr1.0.7~pre44-4.4_all.deb ...
+Unpacking gsfonts (1:8.11+urwcyr1.0.7~pre44-4.4) ...
+Selecting previously unselected package neofetch.
+Preparing to unpack .../7-neofetch_7.0.0-1_all.deb ...
+Unpacking neofetch (7.0.0-1) ...
+Setting up imagemagick-6-common (8:6.9.10.23+dfsg-2.1ubuntu11.4) ...
+Setting up neofetch (7.0.0-1) ...
+Setting up libchafa0:amd64 (1.2.1-1) ...
+Setting up gsfonts (1:8.11+urwcyr1.0.7~pre44-4.4) ...
+Setting up liblqr-1-0:amd64 (0.4.2-2.1) ...
+Setting up libmagickcore-6.q16-6:amd64 (8:6.9.10.23+dfsg-2.1ubuntu11.4) ...
+Setting up libmagickwand-6.q16-6:amd64 (8:6.9.10.23+dfsg-2.1ubuntu11.4) ...
+Setting up chafa (1.2.1-1) ...
+Processing triggers for man-db (2.9.1-1) ...
+Processing triggers for fontconfig (2.13.1-2ubuntu3) ...
+Processing triggers for libc-bin (2.31-0ubuntu9.9) ...
+fallstechdave@mmrxps17:~$ 
+fallstechdave@mmrxps17:~$ neofetch --off
+fallstechdave@mmrxps17 
+---------------------- 
+OS: Ubuntu 20.04.4 LTS x86_64 
+Host: XPS 17 9720 
+Kernel: 5.13.0-52-generic 
+Uptime: 5 mins 
+Packages: 1808 (dpkg), 7 (snap) 
+Shell: bash 5.0.17 
+Resolution: 1920x1200 
+DE: GNOME 
+WM: Mutter 
+WM Theme: Adwaita 
+Theme: Yaru [GTK2/3] 
+Icons: Yaru [GTK2/3] 
+Terminal: gnome-terminal 
+CPU: 12th Gen Intel i7-12700H (20) @ 5.900GHz 
+GPU: Intel Device 46a6 
+GPU: NVIDIA 01:00.0 NVIDIA Corporation Device 25a2 
+Memory: 2068MiB / 15686MiB 
+
+fallstechdave@mmrxps17:~$ 
+fallstechdave@mmrxps17:~$ 

@@ -1,0 +1,505 @@
+Wed 06 Jul 2022 03:52:35 PM EDT
+
+https://www.xyzpub.com/en/ruby-on-rails/3.2/scaffold_anlegen.html
+https://github.com/zmartzone/mod_auth_openidc
+https://www.phusionpassenger.com/docs/advanced_guides/install_and_upgrade/apache/install/oss/focal.html
+
+= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
+
+fallstechdave@mmrxps17:~$ cd Documents/
+fallstechdave@mmrxps17:~/Documents$ date
+Wed 06 Jul 2022 03:52:22 PM EDT
+fallstechdave@mmrxps17:~/Documents$ date > stuff-20220706b.txt
+fallstechdave@mmrxps17:~/Documents$ code   stuff-20220706b.txt
+fallstechdave@mmrxps17:~/Documents$ 
+
+fallstechdave@mmrxps17:~/Documents$ cd ~/Downloads/
+fallstechdave@mmrxps17:~/Downloads$ ls -latr
+total 313128
+-rw-rw-r--  1 fallstechdave fallstechdave  83667280 Jun 30 08:41 code_1.68.1-1655263094_amd64.deb
+-rw-rw-r--  1 fallstechdave fallstechdave 117711933 Jun 30 08:42 code-1.68.1-1655263151.el7.x86_64.rpm
+-rw-rw-r--  1 fallstechdave fallstechdave 116922965 Jun 30 08:42 code-stable-x64-1655263335.tar.gz
+-rw-rw-r--  1 fallstechdave fallstechdave     18012 Jun 30 09:24 mysql-apt-config_0.8.22-1_all.deb
+-rw-rw-r--  1 fallstechdave fallstechdave    178948 Jul  6 08:47 libapache2-mod-auth-openidc_2.4.11.2-1.bionic+1_amd64.deb
+-rw-rw-r--  1 fallstechdave fallstechdave    182556 Jul  6 08:48 libapache2-mod-auth-openidc_2.4.11.2-1.bullseye+1_amd64.deb
+-rw-rw-r--  1 fallstechdave fallstechdave    181724 Jul  6 08:48 libapache2-mod-auth-openidc_2.4.11.2-1.buster+1_amd64.deb
+-rw-rw-r--  1 fallstechdave fallstechdave    180340 Jul  6 08:48 libapache2-mod-auth-openidc_2.4.11.2-1.focal+1_amd64.deb
+-rw-rw-r--  1 fallstechdave fallstechdave    442992 Jul  6 08:48 mod_auth_openidc-2.4.11.2-1.el7.x86_64.rpm
+-rw-rw-r--  1 fallstechdave fallstechdave    201832 Jul  6 08:48 mod_auth_openidc-2.4.11.2-1.el8.x86_64.rpm
+-rw-rw-r--  1 fallstechdave fallstechdave    599513 Jul  6 08:48 mod_auth_openidc-2.4.11.2.tar.gz
+-rw-rw-r--  1 fallstechdave fallstechdave    311947 Jul  6 08:48 mod_auth_openidc-2.4.11.2.zip
+drwxr-xr-x  2 fallstechdave fallstechdave      4096 Jul  6 08:50 .
+drwxr-xr-x 28 fallstechdave fallstechdave      4096 Jul  6 08:53 ..
+fallstechdave@mmrxps17:~/Downloads$ 
+fallstechdave@mmrxps17:~/Downloads$ sudo apt install libapache2-mod-auth-openidc_2.4.11.2-1.focal+1_amd64.deb
+Reading package lists... Done
+Building dependency tree       
+Reading state information... Done
+E: Unable to locate package libapache2-mod-auth-openidc_2.4.11.2-1.focal+1_amd64.deb
+fallstechdave@mmrxps17:~/Downloads$ 
+fallstechdave@mmrxps17:~/Downloads$ sudo apt install ./libapache2-mod-auth-openidc_2.4.11.2-1.focal+1_amd64.deb
+Reading package lists... Done
+Building dependency tree       
+Reading state information... Done
+Note, selecting 'libapache2-mod-auth-openidc' instead of './libapache2-mod-auth-openidc_2.4.11.2-1.focal+1_amd64.deb'
+The following packages were automatically installed and are no longer required:
+  chromium-codecs-ffmpeg-extra gstreamer1.0-vaapi libfwupdplugin1 libgstreamer-plugins-bad1.0-0 libnvidia-cfg1-510 libnvidia-common-510 libnvidia-decode-510 libnvidia-encode-510 libnvidia-extra-510
+  libnvidia-fbc1-510 libnvidia-gl-510 libva-wayland2 libx11-xcb1:i386 libxnvctrl0 nvidia-compute-utils-510 nvidia-kernel-source-510 nvidia-settings nvidia-utils-510 screen-resolution-extra
+  xserver-xorg-video-nvidia-510
+Use 'sudo apt autoremove' to remove them.
+The following additional packages will be installed:
+  libcjose0 libhiredis0.14
+The following NEW packages will be installed:
+  libapache2-mod-auth-openidc libcjose0 libhiredis0.14
+0 upgraded, 3 newly installed, 0 to remove and 23 not upgraded.
+Need to get 64.1 kB/244 kB of archives.
+After this operation, 767 kB of additional disk space will be used.
+Do you want to continue? [Y/n] y
+Get:1 /home/fallstechdave/Downloads/libapache2-mod-auth-openidc_2.4.11.2-1.focal+1_amd64.deb libapache2-mod-auth-openidc amd64 2.4.11.2-1~focal+1 [180 kB]
+Get:2 http://us.archive.ubuntu.com/ubuntu focal/universe amd64 libhiredis0.14 amd64 0.14.0-6 [30.2 kB]
+Get:3 http://us.archive.ubuntu.com/ubuntu focal/universe amd64 libcjose0 amd64 0.6.1+dfsg1-1 [33.9 kB]
+Fetched 64.1 kB in 0s (480 kB/s)     
+Selecting previously unselected package libhiredis0.14:amd64.
+(Reading database ... 193221 files and directories currently installed.)
+Preparing to unpack .../libhiredis0.14_0.14.0-6_amd64.deb ...
+Unpacking libhiredis0.14:amd64 (0.14.0-6) ...
+Selecting previously unselected package libcjose0.
+Preparing to unpack .../libcjose0_0.6.1+dfsg1-1_amd64.deb ...
+Unpacking libcjose0 (0.6.1+dfsg1-1) ...
+Selecting previously unselected package libapache2-mod-auth-openidc.
+Preparing to unpack .../libapache2-mod-auth-openidc_2.4.11.2-1.focal+1_amd64.deb ...
+Unpacking libapache2-mod-auth-openidc (2.4.11.2-1~focal+1) ...
+Setting up libcjose0 (0.6.1+dfsg1-1) ...
+Setting up libhiredis0.14:amd64 (0.14.0-6) ...
+Setting up libapache2-mod-auth-openidc (2.4.11.2-1~focal+1) ...
+Processing triggers for libc-bin (2.31-0ubuntu9.9) ...
+fallstechdave@mmrxps17:~/Downloads$ 
+fallstechdave@mmrxps17:~/Downloads$ 
+
+fallstechdave@mmrxps17:~/Downloads$ 
+fallstechdave@mmrxps17:~/Downloads$ sudo apt install -f
+Reading package lists... Done
+Building dependency tree       
+Reading state information... Done
+The following packages were automatically installed and are no longer required:
+  chromium-codecs-ffmpeg-extra gstreamer1.0-vaapi libfwupdplugin1 libgstreamer-plugins-bad1.0-0 libnvidia-cfg1-510 libnvidia-common-510 libnvidia-decode-510 libnvidia-encode-510 libnvidia-extra-510
+  libnvidia-fbc1-510 libnvidia-gl-510 libva-wayland2 libx11-xcb1:i386 libxnvctrl0 nvidia-compute-utils-510 nvidia-kernel-source-510 nvidia-settings nvidia-utils-510 screen-resolution-extra
+  xserver-xorg-video-nvidia-510
+Use 'sudo apt autoremove' to remove them.
+0 upgraded, 0 newly installed, 0 to remove and 23 not upgraded.
+fallstechdave@mmrxps17:~/Downloads$ 
+fallstechdave@mmrxps17:~/Downloads$ sudo apt-get update
+Hit:1 http://us.archive.ubuntu.com/ubuntu focal InRelease
+Hit:2 http://repo.mysql.com/apt/ubuntu focal InRelease                                                                                                                                                    
+Get:3 http://us.archive.ubuntu.com/ubuntu focal-updates InRelease [114 kB]                                                                                                                                
+Hit:4 http://packages.microsoft.com/repos/code stable InRelease                                                                                                                                           
+Hit:5 https://dl.yarnpkg.com/debian stable InRelease                                                                                                                                                      
+Get:6 http://us.archive.ubuntu.com/ubuntu focal-backports InRelease [108 kB]                                                                                                                             
+Get:7 http://security.ubuntu.com/ubuntu focal-security InRelease [114 kB]                                                 
+Ign:8 https://oss-binaries.phusionpassenger.com/apt/passenger focal InRelease                       
+Hit:9 https://oss-binaries.phusionpassenger.com/apt/passenger focal Release
+Get:10 http://us.archive.ubuntu.com/ubuntu focal-updates/main i386 Packages [688 kB]
+Get:11 http://us.archive.ubuntu.com/ubuntu focal-updates/main amd64 Packages [1,947 kB]
+Get:12 http://us.archive.ubuntu.com/ubuntu focal-updates/main amd64 DEP-11 Metadata [278 kB]
+Get:13 http://us.archive.ubuntu.com/ubuntu focal-updates/universe amd64 Packages [923 kB]
+Get:15 http://us.archive.ubuntu.com/ubuntu focal-updates/universe amd64 DEP-11 Metadata [390 kB]
+Get:16 http://security.ubuntu.com/ubuntu focal-security/main amd64 DEP-11 Metadata [40.7 kB]
+Get:17 http://us.archive.ubuntu.com/ubuntu focal-updates/multiverse amd64 Packages [24.5 kB]                
+Get:18 http://us.archive.ubuntu.com/ubuntu focal-updates/multiverse i386 Packages [8,468 B]                 
+Get:19 http://us.archive.ubuntu.com/ubuntu focal-updates/multiverse amd64 DEP-11 Metadata [944 B]       
+Get:20 http://us.archive.ubuntu.com/ubuntu focal-backports/main amd64 DEP-11 Metadata [8,016 B]         
+Get:21 http://us.archive.ubuntu.com/ubuntu focal-backports/universe amd64 DEP-11 Metadata [30.5 kB]             
+Get:22 http://security.ubuntu.com/ubuntu focal-security/universe amd64 DEP-11 Metadata [66.7 kB]                
+Get:23 http://security.ubuntu.com/ubuntu focal-security/multiverse amd64 DEP-11 Metadata [2,464 B]
+Fetched 4,745 kB in 1s (4,061 kB/s)                                          
+Reading package lists... Done
+N: Skipping acquire of configured file 'main/binary-i386/Packages' as repository 'https://oss-binaries.phusionpassenger.com/apt/passenger focal InRelease' doesn't support architecture 'i386'
+fallstechdave@mmrxps17:~/Downloads$ 
+fallstechdave@mmrxps17:~/Downloads$ sudo apt-get upgrade
+Reading package lists... Done
+Building dependency tree       
+Reading state information... Done
+Calculating upgrade... Done
+The following packages were automatically installed and are no longer required:
+  chromium-codecs-ffmpeg-extra gstreamer1.0-vaapi libfwupdplugin1 libgstreamer-plugins-bad1.0-0 libnvidia-cfg1-510 libnvidia-common-510 libnvidia-decode-510 libnvidia-encode-510 libnvidia-extra-510
+  libnvidia-fbc1-510 libnvidia-gl-510 libva-wayland2 libx11-xcb1:i386 libxnvctrl0 nvidia-compute-utils-510 nvidia-kernel-source-510 nvidia-settings nvidia-utils-510 screen-resolution-extra
+  xserver-xorg-video-nvidia-510
+Use 'sudo apt autoremove' to remove them.
+The following packages have been kept back:
+  linux-modules-nvidia-510-generic-hwe-20.04 nvidia-kernel-common-510
+The following packages will be upgraded:
+  dirmngr firefox firefox-locale-en gnupg gnupg-l10n gnupg-utils gpg gpg-agent gpg-wks-client gpg-wks-server gpgconf gpgsm gpgv isc-dhcp-client isc-dhcp-common libssl-dev libssl1.1 openssl
+  unattended-upgrades update-notifier update-notifier-common
+21 upgraded, 0 newly installed, 0 to remove and 2 not upgraded.
+16 standard security updates
+Need to get 65.7 MB of archives.
+After this operation, 328 kB disk space will be freed.
+Do you want to continue? [Y/n] y
+Get:1 http://us.archive.ubuntu.com/ubuntu focal-updates/main amd64 update-notifier amd64 3.192.30.11 [56.6 kB]
+Get:2 http://us.archive.ubuntu.com/ubuntu focal-updates/main amd64 update-notifier-common all 3.192.30.11 [133 kB]
+Get:3 http://us.archive.ubuntu.com/ubuntu focal-updates/main amd64 gpg-wks-client amd64 2.2.19-3ubuntu2.2 [97.4 kB]
+Get:4 http://us.archive.ubuntu.com/ubuntu focal-updates/main amd64 dirmngr amd64 2.2.19-3ubuntu2.2 [330 kB]
+Get:5 http://us.archive.ubuntu.com/ubuntu focal-updates/main amd64 gpg-wks-server amd64 2.2.19-3ubuntu2.2 [90.2 kB]
+Get:6 http://us.archive.ubuntu.com/ubuntu focal-updates/main amd64 gnupg-utils amd64 2.2.19-3ubuntu2.2 [481 kB]
+Get:7 http://us.archive.ubuntu.com/ubuntu focal-updates/main amd64 gpg-agent amd64 2.2.19-3ubuntu2.2 [232 kB]
+Get:8 http://us.archive.ubuntu.com/ubuntu focal-updates/main amd64 gpg amd64 2.2.19-3ubuntu2.2 [482 kB]
+Get:9 http://us.archive.ubuntu.com/ubuntu focal-updates/main amd64 gpgconf amd64 2.2.19-3ubuntu2.2 [124 kB]
+Get:10 http://us.archive.ubuntu.com/ubuntu focal-updates/main amd64 gnupg-l10n all 2.2.19-3ubuntu2.2 [51.7 kB]
+Get:11 http://us.archive.ubuntu.com/ubuntu focal-updates/main amd64 gnupg all 2.2.19-3ubuntu2.2 [259 kB]
+Get:12 http://us.archive.ubuntu.com/ubuntu focal-updates/main amd64 gpgsm amd64 2.2.19-3ubuntu2.2 [217 kB]
+Get:13 http://us.archive.ubuntu.com/ubuntu focal-updates/main amd64 gpgv amd64 2.2.19-3ubuntu2.2 [200 kB]
+Get:14 http://us.archive.ubuntu.com/ubuntu focal-updates/main amd64 isc-dhcp-client amd64 4.4.1-2.1ubuntu5.20.04.3 [246 kB]
+Get:15 http://us.archive.ubuntu.com/ubuntu focal-updates/main amd64 isc-dhcp-common amd64 4.4.1-2.1ubuntu5.20.04.3 [44.9 kB]
+Get:16 http://us.archive.ubuntu.com/ubuntu focal-updates/main amd64 libssl-dev amd64 1.1.1f-1ubuntu2.16 [1,584 kB]
+Get:17 http://us.archive.ubuntu.com/ubuntu focal-updates/main amd64 libssl1.1 amd64 1.1.1f-1ubuntu2.16 [1,321 kB]
+Get:18 http://us.archive.ubuntu.com/ubuntu focal-updates/main amd64 openssl amd64 1.1.1f-1ubuntu2.16 [621 kB]
+Get:19 http://us.archive.ubuntu.com/ubuntu focal-updates/main amd64 firefox amd64 102.0+build2-0ubuntu0.20.04.1 [58.4 MB]
+Get:20 http://us.archive.ubuntu.com/ubuntu focal-updates/main amd64 firefox-locale-en amd64 102.0+build2-0ubuntu0.20.04.1 [662 kB]
+Get:21 http://us.archive.ubuntu.com/ubuntu focal-updates/main amd64 unattended-upgrades all 2.3ubuntu0.3 [48.5 kB]
+Fetched 65.7 MB in 3s (22.9 MB/s)                
+Preconfiguring packages ...
+(Reading database ... 193240 files and directories currently installed.)
+Preparing to unpack .../00-update-notifier_3.192.30.11_amd64.deb ...
+Unpacking update-notifier (3.192.30.11) over (3.192.30.10) ...
+Preparing to unpack .../01-update-notifier-common_3.192.30.11_all.deb ...
+Unpacking update-notifier-common (3.192.30.11) over (3.192.30.10) ...
+Preparing to unpack .../02-gpg-wks-client_2.2.19-3ubuntu2.2_amd64.deb ...
+Unpacking gpg-wks-client (2.2.19-3ubuntu2.2) over (2.2.19-3ubuntu2.1) ...
+Preparing to unpack .../03-dirmngr_2.2.19-3ubuntu2.2_amd64.deb ...
+Unpacking dirmngr (2.2.19-3ubuntu2.2) over (2.2.19-3ubuntu2.1) ...
+Preparing to unpack .../04-gpg-wks-server_2.2.19-3ubuntu2.2_amd64.deb ...
+Unpacking gpg-wks-server (2.2.19-3ubuntu2.2) over (2.2.19-3ubuntu2.1) ...
+Preparing to unpack .../05-gnupg-utils_2.2.19-3ubuntu2.2_amd64.deb ...
+Unpacking gnupg-utils (2.2.19-3ubuntu2.2) over (2.2.19-3ubuntu2.1) ...
+Preparing to unpack .../06-gpg-agent_2.2.19-3ubuntu2.2_amd64.deb ...
+Unpacking gpg-agent (2.2.19-3ubuntu2.2) over (2.2.19-3ubuntu2.1) ...
+Preparing to unpack .../07-gpg_2.2.19-3ubuntu2.2_amd64.deb ...
+Unpacking gpg (2.2.19-3ubuntu2.2) over (2.2.19-3ubuntu2.1) ...
+Preparing to unpack .../08-gpgconf_2.2.19-3ubuntu2.2_amd64.deb ...
+Unpacking gpgconf (2.2.19-3ubuntu2.2) over (2.2.19-3ubuntu2.1) ...
+Preparing to unpack .../09-gnupg-l10n_2.2.19-3ubuntu2.2_all.deb ...
+Unpacking gnupg-l10n (2.2.19-3ubuntu2.2) over (2.2.19-3ubuntu2.1) ...
+Preparing to unpack .../10-gnupg_2.2.19-3ubuntu2.2_all.deb ...
+Unpacking gnupg (2.2.19-3ubuntu2.2) over (2.2.19-3ubuntu2.1) ...
+Preparing to unpack .../11-gpgsm_2.2.19-3ubuntu2.2_amd64.deb ...
+Unpacking gpgsm (2.2.19-3ubuntu2.2) over (2.2.19-3ubuntu2.1) ...
+Preparing to unpack .../12-gpgv_2.2.19-3ubuntu2.2_amd64.deb ...
+Unpacking gpgv (2.2.19-3ubuntu2.2) over (2.2.19-3ubuntu2.1) ...
+Setting up gpgv (2.2.19-3ubuntu2.2) ...
+(Reading database ... 193240 files and directories currently installed.)
+Preparing to unpack .../0-isc-dhcp-client_4.4.1-2.1ubuntu5.20.04.3_amd64.deb ...
+Unpacking isc-dhcp-client (4.4.1-2.1ubuntu5.20.04.3) over (4.4.1-2.1ubuntu5.20.04.2) ...
+Preparing to unpack .../1-isc-dhcp-common_4.4.1-2.1ubuntu5.20.04.3_amd64.deb ...
+Unpacking isc-dhcp-common (4.4.1-2.1ubuntu5.20.04.3) over (4.4.1-2.1ubuntu5.20.04.2) ...
+Preparing to unpack .../2-libssl-dev_1.1.1f-1ubuntu2.16_amd64.deb ...
+Unpacking libssl-dev:amd64 (1.1.1f-1ubuntu2.16) over (1.1.1f-1ubuntu2.15) ...
+Preparing to unpack .../3-libssl1.1_1.1.1f-1ubuntu2.16_amd64.deb ...
+Unpacking libssl1.1:amd64 (1.1.1f-1ubuntu2.16) over (1.1.1f-1ubuntu2.15) ...
+Preparing to unpack .../4-openssl_1.1.1f-1ubuntu2.16_amd64.deb ...
+Unpacking openssl (1.1.1f-1ubuntu2.16) over (1.1.1f-1ubuntu2.15) ...
+Preparing to unpack .../5-firefox_102.0+build2-0ubuntu0.20.04.1_amd64.deb ...
+Unpacking firefox (102.0+build2-0ubuntu0.20.04.1) over (101.0.1+build1-0ubuntu0.20.04.1) ...
+Preparing to unpack .../6-firefox-locale-en_102.0+build2-0ubuntu0.20.04.1_amd64.deb ...
+Unpacking firefox-locale-en (102.0+build2-0ubuntu0.20.04.1) over (101.0.1+build1-0ubuntu0.20.04.1) ...
+Preparing to unpack .../7-unattended-upgrades_2.3ubuntu0.3_all.deb ...
+Unpacking unattended-upgrades (2.3ubuntu0.3) over (2.3ubuntu0.1) ...
+Setting up firefox (102.0+build2-0ubuntu0.20.04.1) ...
+Please restart all running instances of firefox, or you will experience problems.
+Setting up update-notifier-common (3.192.30.11) ...
+Setting up libssl1.1:amd64 (1.1.1f-1ubuntu2.16) ...
+Setting up isc-dhcp-client (4.4.1-2.1ubuntu5.20.04.3) ...
+Installing new version of config file /etc/apparmor.d/sbin.dhclient ...
+Setting up unattended-upgrades (2.3ubuntu0.3) ...
+Installing new version of config file /etc/kernel/postinst.d/unattended-upgrades ...
+Setting up gnupg-l10n (2.2.19-3ubuntu2.2) ...
+Setting up firefox-locale-en (102.0+build2-0ubuntu0.20.04.1) ...
+Setting up libssl-dev:amd64 (1.1.1f-1ubuntu2.16) ...
+Setting up gpgconf (2.2.19-3ubuntu2.2) ...
+Setting up isc-dhcp-common (4.4.1-2.1ubuntu5.20.04.3) ...
+Setting up update-notifier (3.192.30.11) ...
+Setting up openssl (1.1.1f-1ubuntu2.16) ...
+Setting up gpg (2.2.19-3ubuntu2.2) ...
+Setting up gnupg-utils (2.2.19-3ubuntu2.2) ...
+Setting up gpg-agent (2.2.19-3ubuntu2.2) ...
+Setting up gpgsm (2.2.19-3ubuntu2.2) ...
+Setting up dirmngr (2.2.19-3ubuntu2.2) ...
+Setting up gpg-wks-server (2.2.19-3ubuntu2.2) ...
+Setting up gpg-wks-client (2.2.19-3ubuntu2.2) ...
+Setting up gnupg (2.2.19-3ubuntu2.2) ...
+Processing triggers for desktop-file-utils (0.24-1ubuntu3) ...
+Processing triggers for mime-support (3.64ubuntu1) ...
+Processing triggers for hicolor-icon-theme (0.17-2) ...
+Processing triggers for gnome-menus (3.36.0-1ubuntu1) ...
+Processing triggers for libglib2.0-0:amd64 (2.64.6-1~ubuntu20.04.4) ...
+Processing triggers for libc-bin (2.31-0ubuntu9.9) ...
+Processing triggers for systemd (245.4-4ubuntu3.17) ...
+Processing triggers for man-db (2.9.1-1) ...
+Processing triggers for install-info (6.7.0.dfsg.2-5) ...
+fallstechdave@mmrxps17:~/Downloads$ 
+
+sudo systemctl restart apache2.service 
+
+fallstechdave@mmrxps17:/etc/apache2$ passenger status
+Phusion Passenger(R) Standalone is not running, according to PID file /etc/apache2/passenger.3000.pid
+fallstechdave@mmrxps17:/etc/apache2$ 
+fallstechdave@mmrxps17:/etc/apache2$ sudo /usr/sbin/passenger-memory-stats
+Version: 6.0.14
+Date   : 2022-07-06 20:11:32 -0400
+
+---------- Apache processes -----------
+PID    PPID   VMSize     Private  Name
+---------------------------------------
+18587  1      75.9 MB    0.6 MB   /usr/sbin/apache2 -k start
+18612  18587  1956.6 MB  0.7 MB   /usr/sbin/apache2 -k start
+18617  18587  1956.6 MB  0.7 MB   /usr/sbin/apache2 -k start
+### Processes: 3
+### Total private dirty RSS: 2.05 MB
+
+-------- Nginx processes --------
+
+### Processes: 0
+### Total private dirty RSS: 0.00 MB
+
+----- Passenger processes ------
+PID    VMSize     Private  Name
+--------------------------------
+18589  296.1 MB   2.6 MB   Passenger watchdog
+18592  3377.2 MB  6.0 MB   Passenger core
+### Processes: 2
+### Total private dirty RSS: 8.57 MB
+fallstechdave@mmrxps17:/etc/apache2$ 
+fallstechdave@mmrxps17:/etc/apache2$ sudo systemctl status apache2.service 
+● apache2.service - The Apache HTTP Server
+     Loaded: loaded (/lib/systemd/system/apache2.service; enabled; vendor preset: enabled)
+     Active: active (running) since Wed 2022-07-06 20:07:59 EDT; 4min 38s ago
+       Docs: https://httpd.apache.org/docs/2.4/
+    Process: 18523 ExecStart=/usr/sbin/apachectl start (code=exited, status=0/SUCCESS)
+      Tasks: 109 (limit: 18739)
+     Memory: 16.5M
+     CGroup: /system.slice/apache2.service
+             ├─18587 /usr/sbin/apache2 -k start
+             ├─18589 Passenger watchdog
+             ├─18592 Passenger core
+             ├─18612 /usr/sbin/apache2 -k start
+             └─18617 /usr/sbin/apache2 -k start
+
+Jul 06 20:07:59 mmrxps17 systemd[1]: Starting The Apache HTTP Server...
+Jul 06 20:07:59 mmrxps17 apachectl[18526]: WARNING: PassengerDisableAnonymousTelemetry cannot occur within <VirtualHost> section
+Jul 06 20:07:59 mmrxps17 apachectl[18526]: AH00558: apache2: Could not reliably determine the server's fully qualified domain name, using 127.0.1.1. Set the 'ServerName' directive globally to suppress t>
+Jul 06 20:07:59 mmrxps17 systemd[1]: Started The Apache HTTP Server.
+fallstechdave@mmrxps17:/etc/apache2$ 
+
+= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
+
+sudo a2enmod auth_openidc
+
+https://github.com/zmartzone/mod_auth_openidc#openid-connect-sso-with-google-sign-in
+
+https://github.com/zmartzone/mod_auth_openidc/wiki/Gluu-Server
+
+Install mod_auth_openidc
+
+mod_auth_openidc requires the Ubuntu package libjansson4. Install it using the following command:
+
+apt-get install libjansson4
+
+Download and install the mod_auth_openidc and libjose packages from the Release Page and then run the following commands:
+
+    a2enmod auth_openidc
+    service apache2 restart
+
+https://github.com/zmartzone/mod_auth_openidc/wiki/Gluu-Server
+
+fallstechdave@mmrxps17:~$ sudo a2enmod auth_openidc
+Enabling module auth_openidc.
+To activate the new configuration, you need to run:
+  systemctl restart apache2
+fallstechdave@mmrxps17:~$ 
+fallstechdave@mmrxps17:~$ sudo systemctl restart apache2
+fallstechdave@mmrxps17:~$ 
+
+fallstechdave@mmrxps17:/etc/apache2/mods-available$ ls -latr *auth*
+-rw-r--r-- 1 root root    76 Dec 31  2014 auth_openidc.load
+-rw-r--r-- 1 root root 60155 Dec 31  2014 auth_openidc.conf
+-rw-r--r-- 1 root root    94 Feb 23  2021 authz_user.load
+-rw-r--r-- 1 root root    74 Feb 23  2021 authz_owner.load
+-rw-r--r-- 1 root root    94 Feb 23  2021 authz_host.load
+-rw-r--r-- 1 root root   104 Feb 23  2021 authz_groupfile.load
+-rw-r--r-- 1 root root    92 Feb 23  2021 authz_dbm.load
+-rw-r--r-- 1 root root    96 Feb 23  2021 authz_dbd.load
+-rw-r--r-- 1 root root    72 Feb 23  2021 authz_core.load
+-rw-r--r-- 1 root root    90 Feb 23  2021 authnz_ldap.load
+-rw-r--r-- 1 root root    74 Feb 23  2021 authnz_fcgi.load
+-rw-r--r-- 1 root root    78 Feb 23  2021 authn_socache.load
+-rw-r--r-- 1 root root    72 Feb 23  2021 authn_file.load
+-rw-r--r-- 1 root root    70 Feb 23  2021 authn_dbm.load
+-rw-r--r-- 1 root root    85 Feb 23  2021 authn_dbd.load
+-rw-r--r-- 1 root root    72 Feb 23  2021 authn_core.load
+-rw-r--r-- 1 root root    72 Feb 23  2021 authn_anon.load
+-rw-r--r-- 1 root root   100 Feb 23  2021 auth_form.load
+-rw-r--r-- 1 root root    96 Feb 23  2021 auth_digest.load
+-rw-r--r-- 1 root root    94 Feb 23  2021 auth_basic.load
+fallstechdave@mmrxps17:/etc/apache2/mods-available$ 
+
+fallstechdave@mmrxps17:/etc/apache2/mods-available$ ls -latr *openidc* 
+-rw-r--r-- 1 root root    76 Dec 31  2014 auth_openidc.load
+-rw-r--r-- 1 root root 60155 Dec 31  2014 auth_openidc.conf
+fallstechdave@mmrxps17:/etc/apache2/mods-available$ 
+fallstechdave@mmrxps17:/etc/apache2/mods-available$ ls -latr *passenger*
+-rw-r--r-- 1 root root 206 May  8 14:50 passenger.load
+-rw-r--r-- 1 root root 305 May  8 15:01 passenger.conf
+fallstechdave@mmrxps17:/etc/apache2/mods-available$ 
+
+fallstechdave@mmrxps17:/etc/apache2/mods-available$ ls -latr *.conf
+-rw-r--r-- 1 root root 60155 Dec 31  2014 auth_openidc.conf
+-rw-r--r-- 1 root root   324 Feb 23  2021 userdir.conf
+-rw-r--r-- 1 root root   749 Feb 23  2021 status.conf
+-rw-r--r-- 1 root root  3110 Feb 23  2021 ssl.conf
+-rw-r--r-- 1 root root  1280 Feb 23  2021 setenvif.conf
+-rw-r--r-- 1 root root  1190 Feb 23  2021 reqtimeout.conf
+-rw-r--r-- 1 root root  2511 Feb 23  2021 proxy_html.conf
+-rw-r--r-- 1 root root   189 Feb 23  2021 proxy_ftp.conf
+-rw-r--r-- 1 root root   822 Feb 23  2021 proxy.conf
+-rw-r--r-- 1 root root   347 Feb 23  2021 proxy_balancer.conf
+-rw-r--r-- 1 root root   724 Feb 23  2021 negotiation.conf
+-rw-r--r-- 1 root root   836 Feb 23  2021 mpm_worker.conf
+-rw-r--r-- 1 root root   571 Feb 23  2021 mpm_prefork.conf
+-rw-r--r-- 1 root root   668 Feb 23  2021 mpm_event.conf
+-rw-r--r-- 1 root root   120 Feb 23  2021 mime_magic.conf
+-rw-r--r-- 1 root root   121 Feb 23  2021 ldap.conf
+-rw-r--r-- 1 root root   402 Feb 23  2021 info.conf
+-rw-r--r-- 1 root root   157 Feb 23  2021 dir.conf
+-rw-r--r-- 1 root root    83 Feb 23  2021 dav_fs.conf
+-rw-r--r-- 1 root root   115 Feb 23  2021 cgid.conf
+-rw-r--r-- 1 root root   889 Feb 23  2021 cache_disk.conf
+-rw-r--r-- 1 root root  3374 Feb 23  2021 autoindex.conf
+-rw-r--r-- 1 root root   843 Feb 23  2021 alias.conf
+-rw-r--r-- 1 root root   377 Feb 23  2021 actions.conf
+-rw-r--r-- 1 root root  7676 Apr 26 14:02 mime.conf
+-rw-r--r-- 1 root root  1240 Apr 26 14:02 http2.conf
+-rw-r--r-- 1 root root   395 Apr 26 14:02 deflate.conf
+-rw-r--r-- 1 root root   305 May  8 15:01 passenger.conf
+fallstechdave@mmrxps17:/etc/apache2/mods-available$ 
+
+#OIDCRedirectURI https://www.example.com/protected/redirect_uri
+#OIDCCryptoPassphrase [ <passphrase> | "exec:/path/to/otherProgram arg1" ]
+#OIDCMetadataDir /var/cache/apache2/mod_auth_openidc/metadata
+#OIDCProviderMetadataURL <url>
+#OIDCProviderIssuer <issuer>
+#OIDCProviderAuthorizationEndpoint <authorization_endpoint>
+#OIDCProviderJwksUri <jwks_url>
+#OIDCProviderTokenEndpoint <token_endpoint>
+#OIDCProviderTokenEndpointAuth [ client_secret_basic | client_secret_post | client_secret_jwt | private_key_jwt | none ]
+#OIDCProviderTokenEndpointParams <urlencoded-name1>=<urlencoded-value1>[&<urlencoded-nameN>=<urlencoded-valueN>]* 
+#OIDCProviderUserInfoEndpoint <user_info_endpoint>
+#OIDCProviderCheckSessionIFrame <url>
+#OIDCProviderEndSessionEndpoint <url>
+#OIDCProviderRevocationEndpoint <url>
+#OIDCProviderBackChannelLogoutSupported [On|Off]
+#OIDCProviderRegistrationEndpointJson <json-string>
+#OIDCScope "<scope(s)-separated-by-spaces-and-enclosed-in-double-quotes>"
+#OIDCAuthRequestParams <query-encoded-string>
+#OIDCSSLValidateServer [On|Off]
+#OIDCCABundlePath <path>
+#OIDCValidateIssuer [On|Off]
+#OIDCUserInfoRefreshInterval <seconds>
+#OIDCJWKSRefreshInterval <seconds>
+#OIDCUserInfoTokenMethod [authz_header|post_param]
+#OIDCPublicKeyFiles ([<kid>#]<filename>)+
+#OIDCPrivateKeyFiles ([<kid>#]<filename>)+
+#OIDCResponseType ["code"|"id_token"|"id_token token"|"code id_token"|"code token"|"code id_token token"]
+#OIDCResponseMode [fragment|query|form_post]
+#OIDCClientID <client_id>
+#OIDCClientSecret <client_secret>
+#OIDCClientTokenEndpointCert <filename>
+#OIDCClientTokenEndpointKey <filename>
+#OIDCClientTokenEndpointKeyPassword [ <passphrase> | "exec:/path/to/otherProgram arg1" ]
+#OIDCClientName <client_name>
+#OIDCClientContact <contact>
+#OIDCPKCEMethod [plain|S256|referred_tb]
+#OIDCTokenBindingPolicy [disabled|optional|required|enforced]
+#OIDCClientJwksUri <url>
+#OIDCIDTokenSignedResponseAlg [RS256|RS384|RS512|PS256|PS384|PS512|HS256|HS384|HS512|ES256|ES384|ES512]
+#OIDCIDTokenEncryptedResponseAlg [RSA1_5|A128KW|A256KW|RSA-OAEP]
+#OIDCIDTokenEncryptedResponseEnc [A128CBC-HS256|A256CBC-HS512|A256GCM]
+#OIDCUserInfoSignedResponseAlg RS256|RS384|RS512|PS256|PS384|PS512|HS256|HS384|HS512|ES256|ES384|ES512]
+#OIDCUserInfoEncryptedResponseAlg [RSA1_5|A128KW|A256KW|RSA-OAEP]
+#OIDCUserInfoEncryptedResponseEnc [A128CBC-HS256|A256CBC-HS512|A256GCM]
+#OIDCOAuthServerMetadataURL <url>
+#OIDCOAuthIntrospectionEndpoint <token-introspection-endpoint>
+#OIDCOAuthClientID <client_id>
+#OIDCOAuthClientSecret <client_secret>
+#OIDCOAuthIntrospectionEndpointAuth [ client_secret_basic | client_secret_post | client_secret_jwt | private_key_jwt | bearer_access_token | none ]
+#OIDCOAuthIntrospectionClientAuthBearerToken [ a-static-bearer-token | ]
+#OIDCOAuthIntrospectionEndpointCert <filename>
+#OIDCOAuthIntrospectionEndpointKey <filename>
+#OIDCOAuthIntrospectionEndpointMethod [POST|GET]
+#OIDCOAuthIntrospectionEndpointParams <urlencoded-name1>=<urlencoded-value1>[&<urlencoded-nameN>=<urlencoded-valueN>]* 
+#OIDCOAuthIntrospectionTokenParamName <param_name>
+#OIDCOAuthTokenExpiryClaim <claim-name> [absolute|relative] [mandatory|optional]
+#OIDCOAuthTokenIntrospectionInterval <seconds>
+#OIDCOAuthSSLValidateServer [On|Off]
+#OIDCOAuthVerifySharedKeys ([plain|b64|hex#][<kid>#]<key>)+
+#OIDCOAuthVerifyCertFiles ([<kid>#]<filename>)+
+#OIDCOAuthVerifyJwksUri <jwks_url>
+#OIDCOAuthRemoteUserClaim <claim-name> [<regular-expression>] [substitution-string]
+#OIDCOAuthAcceptTokenAs [header|post|query|cookie[:<cookie-name>|basic]+
+#OIDCOAuthAccessTokenBindingPolicy [disabled|optional|required|enforced]
+#OIDCCookiePath <cookie-path>
+#OIDCCookieDomain <cookie-domain>
+#OIDCCookie <cookie-name>
+#OIDCSessionCookieChunkSize <bytes>
+#OIDCCookieHTTPOnly [On|Off]
+#OIDCCookieSameSite [On|Off]
+#OIDCPassCookies [<cookie-name>]+
+#OIDCStripCookies [<cookie-name>]+
+#OIDCStateMaxNumberOfCookies <number> [false|true]
+#OIDCStateCookiePrefix <cookie-prefix>
+#OIDCSessionInactivityTimeout <seconds>
+#OIDCSessionMaxDuration <seconds>
+#OIDCSessionType server-cache[:persistent]|client-cookie[:persistent]
+#OIDCSessionCacheFallbackToCookie [On|Off]
+#OIDCCacheType [shm|memcache|file[|redis]]
+#OIDCCacheEncrypt [On|Off]
+#OIDCCacheDir /var/cache/apache2/mod_auth_openidc/cache
+#OIDCMemCacheServers "(<hostname>[:<port>])+"
+#OIDCRedisCacheServer <hostname>[:<port>]
+#OIDCRedisCachePassword <password>
+#OIDCRedisCacheDatabase <number>
+#OIDCRedisCacheConnectTimeout <seconds>
+#OIDCRedisCacheTimeout <seconds>
+#OIDCDiscoverURL <discovery-url>
+#OIDCHTMLErrorTemplate <filename>
+#OIDCDefaultURL <default-url>
+#OIDCDefaultLoggedOutURL <url>
+#OIDCPathScope "<scope(s)-separated-by-spaces-and-enclosed-in-double-quotes>"
+#OIDCPathAuthRequestParams <query-encoded-string>
+#OIDCIDTokenIatSlack <seconds>
+#OIDCClaimPrefix <prefix>
+#OIDCClaimDelimiter <char>
+#OIDCRemoteUserClaim <claim-name>[@] [<regular-expression>] [substitution-string]
+#OIDCPassIDTokenAs [claims|payload|serialized]+
+#OIDCPassUserInfoAs [claims|json|jwt]+
+#OIDCPassClaimsAs [none|headers|environment|both] [base64url]
+#OIDCAuthNHeader <header-name>
+#OIDCHTTPTimeoutLong <seconds>
+#OIDCHTTPTimeoutShort <seconds>
+#OIDCStateTimeout <seconds>
+#OIDCScrubRequestHeaders [On|Off] 
+#OIDCOutgoingProxy <host>[:<port>]
+#OIDCUnAuthAction [auth|pass|401|407|410] [<expression-to-detect-non-auth-request>]
+#OIDCUnAutzAction [401|403|302|auth] [<argument>]
+#OIDCPreservePost [On|Off]
+#OIDCPassRefreshToken [On|Off]
+#OIDCRequestObject <stringified-and-double-quote-escaped-JSON-object>
+#OIDCProviderMetadataRefreshInterval <seconds>
+#OIDCInfoHook [iat|access_token|access_token_expires|id_token|userinfo|refresh_token|exp|timeout|remote_user|session]+
+#OIDCBlackListedClaims [<claim>]+
+#OIDCWhiteListedClaims [<claim>]+
+#OIDCRefreshAccessTokenBeforeExpiry <seconds> [logout_on_error]
+#OIDCStateInputHeaders [none|user-agent|x-forwarded-for|both]
+#OIDCRedirectURLsAllowed [<regexp>]+
+#OIDCLogoutXFrameOptions <value>
+#OIDCXForwardedHeaders <header>+
+
+
