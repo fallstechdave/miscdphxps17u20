@@ -1,0 +1,137 @@
+Sat 09 Jul 2022 10:24:16 AM EDT
+
+https://github.com/zmartzone/mod_auth_openidc
+https://github.com/zmartzone/mod_auth_openidc/wiki/Keycloak
+https://www.keycloak.org/
+https://www.keycloak.org/guides
+https://www.keycloak.org/getting-started/getting-started-zip
+
+Guides / Getting started / OpenJDK
+
+OpenJDK  Get started with Keycloak on bare metal
+
+Before you start
+Make sure you have OpenJDK 11 or newer installed.
+
+First step is to download and extract keycloak-18.0.2.zip from the Keycloak website.
+
+After extracting you should have a directory named keycloak-18.0.2.
+Start Keycloak
+From a terminal open the directory keycloak-18.0.2, then to start Keycloak run the following command.
+On Linux run:    bin/kc.sh start-dev
+On Windows run:  bin/kc.bat start-dev
+
+https://grails.org/download.html
+$ curl -s https://get.sdkman.io | bash
+$ source "$HOME/.sdkman/bin/sdkman-init.sh"
+$ sdk install grails
+$ grails -version
+
+https://sdkman.io/
+https://sdkman.io/install
+
+$ curl -s "https://get.sdkman.io" | bash
+$ source "$HOME/.sdkman/bin/sdkman-init.sh"
+$ sdk version
+  sdkman 5.15.0
+
+$ sdk help
+$ sdk install java
+$ sdk install scala 3.1.3
+$ sdk install groovy 3.0.0-SNAPSHOT /path/to/groovy-3.0.0-SNAPSHOT
+$ sdk install java 17-zulu /Library/Java/JavaVirtualMachines/zulu-17.jdk/Contents/Home
+$ sdk list
+$ sdk list groovy
+$ sdk use scala 3.1.3        Choose to use a given version in the current terminal: 
+$ sdk default scala 3.1.3    This will ensure that all subsequent shells will start with version 3.1.3 in use. 
+$ sdk current java
+$ sdk current
+$ sdk home java 17.0.3-tem
+/home/myuser/.sdkman/candidates/java/17.0.3-tem
+
+fallstechdave@mmrxps17:~$ sdk version
+==== BROADCAST =================================================================
+* 2022-07-07: ki 0.5.2 available on SDKMAN! https://github.com/Kotlin/kotlin-interactive-shell/releases/tag/v0.5.2
+* 2022-07-06: gradle 7.5-rc-4 available on SDKMAN!
+* 2022-07-06: quarkus 2.10.2.Final available on SDKMAN! https://github.com/quarkusio/quarkus/releases/tag/2.10.2.Final
+================================================================================
+
+SDKMAN 5.15.0
+fallstechdave@mmrxps17:~$ 
+fallstechdave@mmrxps17:~$ sdk list java
+
+... these are my preferred sources ...  (why doesn't sdkman also include the redhat openjdk?)
+
+================================================================================
+Available Java Versions for Linux 64bit
+================================================================================
+ Vendor        | Use | Version      | Dist    | Status     | Identifier
+--------------------------------------------------------------------------------
+ Corretto      |     | 18.0.1       | amzn    |            | 18.0.1-amzn         
+               |     | 17.0.3.6.1   | amzn    |            | 17.0.3.6.1-amzn     
+               |     | 17.0.0.35.1  | amzn    |            | 17.0.0.35.1-amzn    
+               |     | 11.0.15.9.1  | amzn    |            | 11.0.15.9.1-amzn    
+               |     | 11.0.12.7.1  | amzn    |            | 11.0.12.7.1-amzn    
+               |     | 8.332.08.1   | amzn    |            | 8.332.08.1-amzn   
+ Temurin       |     | 18.0.1       | tem     |            | 18.0.1-tem          
+               |     | 17.0.3       | tem     |            | 17.0.3-tem          
+               |     | 11.0.15      | tem     |            | 11.0.15-tem         
+               |     | 8.0.332      | tem     |            | 8.0.332-tem    
+ Zulu          |     | 18.0.1       | zulu    |            | 18.0.1-zulu         
+               |     | 18.0.1.fx    | zulu    |            | 18.0.1.fx-zulu      
+               |     | 17.0.3       | zulu    |            | 17.0.3-zulu         
+               |     | 17.0.3.fx    | zulu    |            | 17.0.3.fx-zulu      
+               |     | 11.0.15      | zulu    |            | 11.0.15-zulu        
+               |     | 11.0.15.fx   | zulu    |            | 11.0.15.fx-zulu     
+               |     | 8.0.332      | zulu    |            | 8.0.332-zulu        
+               |     | 8.0.332.fx   | zulu    |            | 8.0.332.fx-zulu     
+               |     | 7.0.342      | zulu    |            | 7.0.342-zulu        
+               |     | 6.0.119      | zulu    |            | 6.0.119-zulu        
+================================================================================
+
+sdk install java 8.0.332-tem    
+sdk install java 11.0.15-tem     
+sdk install java 17.0.3-tem    
+sdk install java 18.0.1-tem 
+sdk install groovy
+sdk install grails
+
+sdk current java
+sdk home java 18.0.1-tem 
+
+fallstechdave@mmrxps17:~$ sdk home java 18.0.1-tem 
+/home/fallstechdave/.sdkman/candidates/java/18.0.1-tem
+fallstechdave@mmrxps17:~$ 
+
+
+ Temurin       | >>> | 18.0.1       | tem     | installed  | 18.0.1-tem          
+               |     | 17.0.3       | tem     | installed  | 17.0.3-tem          
+               |     | 11.0.15      | tem     | installed  | 11.0.15-tem         
+               |     | 8.0.332      | tem     | installed  | 8.0.332-tem        
+
+https://www.oracle.com/java/technologies/downloads/
+https://developers.redhat.com/products/openjdk/download
+https://adoptopenjdk.net/
+https://adoptium.net/temurin/releases/?version=11    Eclipse Temurin™ Latest Releases
+
+= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
+
+fallstechdave@mmrxps17:~$ date
+Sat 09 Jul 2022 10:22:41 AM EDT
+fallstechdave@mmrxps17:~$ 
+fallstechdave@mmrxps17:~$ date > stuff-20220709.txt
+fallstechdave@mmrxps17:~$ code   stuff-20220709.txt
+fallstechdave@mmrxps17:~$ 
+fallstechdave@mmrxps17:~$ java -version
+
+Command 'java' not found, but can be installed with:
+
+sudo apt install default-jre              # version 2:1.11-72, or
+sudo apt install openjdk-11-jre-headless  # version 11.0.15+10-0ubuntu0.20.04.1
+sudo apt install openjdk-13-jre-headless  # version 13.0.7+5-0ubuntu1~20.04
+sudo apt install openjdk-16-jre-headless  # version 16.0.1+9-1~20.04
+sudo apt install openjdk-17-jre-headless  # version 17.0.3+7-0ubuntu0.20.04.1
+sudo apt install openjdk-8-jre-headless   # version 8u312-b07-0ubuntu1~20.04
+
+fallstechdave@mmrxps17:~$ 
+fallstechdave@mmrxps17:~$ 

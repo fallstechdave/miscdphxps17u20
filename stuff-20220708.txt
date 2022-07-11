@@ -1,0 +1,29 @@
+Fri 08 Jul 2022 08:02:48 AM EDT
+
+Command 'rbenv' not found, but can be installed with:
+
+sudo apt install rbenv
+
+
+Command 'rbenv' not found, but can be installed with:
+
+sudo apt install rbenv
+
+fallstechdave@mmrxps17:~$ 
+fallstechdave@mmrxps17:~$ date
+Fri 08 Jul 2022 08:02:25 AM EDT
+fallstechdave@mmrxps17:~$ 
+fallstechdave@mmrxps17:~$ date > stuff-20220708.txt
+fallstechdave@mmrxps17:~$ code   stuff-20220708.txt
+fallstechdave@mmrxps17:~$ 
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+# eval "$(rbenv init -)"
+# eval "$(rbenv init -)"
+export PATH="$HOME/.rbenv/bin:$PATH"
+eval "$(rbenv init -)"
+
+
+

@@ -1,0 +1,523 @@
+Sun 10 Jul 2022 08:14:09 AM EDT
+
+fallstechdave@mmrxps17:~$ 
+fallstechdave@mmrxps17:~$ date
+Sun 10 Jul 2022 08:13:43 AM EDT
+fallstechdave@mmrxps17:~$ 
+fallstechdave@mmrxps17:~$ date > stuff-20220710.txt
+fallstechdave@mmrxps17:~$ code   stuff-20220710.txt
+fallstechdave@mmrxps17:~$ 
+fallstechdave@mmrxps17:~$ sdk current
+
+Using:
+
+grails: 5.2.0
+groovy: 4.0.3
+java: 18.0.1-tem
+fallstechdave@mmrxps17:~$ 
+fallstechdave@mmrxps17:~$ sdk default java 8.0.332-tem
+
+Default java version set to 8.0.332-tem
+fallstechdave@mmrxps17:~$ sdk default grails 2.5.4
+
+Default grails version set to 2.5.4
+fallstechdave@mmrxps17:~$ 
+fallstechdave@mmrxps17:~$ sdk current
+
+Using:
+
+grails: 2.5.4
+groovy: 4.0.3
+java: 8.0.332-tem
+fallstechdave@mmrxps17:~$ 
+fallstechdave@mmrxps17:~$ grails --version
+Grails version: 2.5.4
+fallstechdave@mmrxps17:~$ java -version
+openjdk version "1.8.0_332"
+OpenJDK Runtime Environment (Temurin)(build 1.8.0_332-b09)
+OpenJDK 64-Bit Server VM (Temurin)(build 25.332-b09, mixed mode)
+fallstechdave@mmrxps17:~$ 
+fallstechdave@mmrxps17:~$ sdk default java 8.0.332-tem
+
+Default java version set to 8.0.332-tem
+fallstechdave@mmrxps17:~$ sdk default grails 2.5.4
+
+Default grails version set to 2.5.4
+fallstechdave@mmrxps17:~$ 
+fallstechdave@mmrxps17:~$ sdk current
+
+Using:
+
+grails: 2.5.4
+groovy: 4.0.3
+java: 8.0.332-tem
+fallstechdave@mmrxps17:~$ 
+fallstechdave@mmrxps17:~$ grails --version
+Grails version: 2.5.4
+fallstechdave@mmrxps17:~$ java -version
+openjdk version "1.8.0_332"
+OpenJDK Runtime Environment (Temurin)(build 1.8.0_332-b09)
+OpenJDK 64-Bit Server VM (Temurin)(build 25.332-b09, mixed mode)
+fallstechdave@mmrxps17:~$ 
+fallstechdave@mmrxps17:~$ cd ~/.sdkman/candidates/
+fallstechdave@mmrxps17:~/.sdkman/candidates$ 
+fallstechdave@mmrxps17:~/.sdkman/candidates$ ls -la
+total 20
+drwxrwxr-x  5 fallstechdave fallstechdave 4096 Jul  9 11:08 .
+drwxrwxr-x 11 fallstechdave fallstechdave 4096 Jul  9 10:46 ..
+drwxrwxr-x  4 fallstechdave fallstechdave 4096 Jul 10 08:22 grails
+drwxrwxr-x  3 fallstechdave fallstechdave 4096 Jul  9 11:08 groovy
+drwxrwxr-x  6 fallstechdave fallstechdave 4096 Jul 10 08:21 java
+fallstechdave@mmrxps17:~/.sdkman/candidates$ 
+fallstechdave@mmrxps17:~/.sdkman/candidates$ tree -d -L 2
+.
+├── grails
+│   ├── 2.5.4
+│   ├── 5.2.0
+│   └── current -> 2.5.4
+├── groovy
+│   ├── 4.0.3
+│   └── current -> 4.0.3
+└── java
+    ├── 11.0.15-tem
+    ├── 17.0.3-tem
+    ├── 18.0.1-tem
+    ├── 8.0.332-tem
+    └── current -> 8.0.332-tem
+
+13 directories
+fallstechdave@mmrxps17:~/.sdkman/candidates$ 
+
+
+fallstechdave@mmrxps17:~$ 
+fallstechdave@mmrxps17:~$ mkdir grailsprojects
+fallstechdave@mmrxps17:~$ cd grailsprojects/
+fallstechdave@mmrxps17:~/grailsprojects$ 
+fallstechdave@mmrxps17:~/grailsprojects$ grails create-app testboot254
+
+| Created Grails Application at /home/fallstechdave/grailsprojects/testboot254
+
+fallstechdave@mmrxps17:~/grailsprojects$ 
+fallstechdave@mmrxps17:~/grailsprojects$ cd testboot254/
+fallstechdave@mmrxps17:~/grailsprojects/testboot254$ 
+fallstechdave@mmrxps17:~/grailsprojects/testboot254$ ls -latr
+total 68
+drwxrwxr-x  4 fallstechdave fallstechdave 4096 Jul 10 08:28 src
+drwxrwxr-x  3 fallstechdave fallstechdave 4096 Jul 10 08:28 ..
+drwxrwxr-x  4 fallstechdave fallstechdave 4096 Jul 10 08:28 test
+drwxrwxr-x  2 fallstechdave fallstechdave 4096 Jul 10 08:28 scripts
+drwxrwxr-x  2 fallstechdave fallstechdave 4096 Jul 10 08:28 lib
+drwxrwxr-x  7 fallstechdave fallstechdave 4096 Jul 10 08:28 web-app
+drwxrwxr-x 11 fallstechdave fallstechdave 4096 Jul 10 08:28 grails-app
+-rw-rw-r--  1 fallstechdave fallstechdave 1003 Jul 10 08:28 .classpath
+-rw-rw-r--  1 fallstechdave fallstechdave  484 Jul 10 08:28 .project
+-rw-rw-r--  1 fallstechdave fallstechdave  114 Jul 10 08:28 application.properties
+drwxrwxr-x  2 fallstechdave fallstechdave 4096 Jul 10 08:28 wrapper
+-rw-rw-r--  1 fallstechdave fallstechdave 5972 Jul 10 08:28 grailsw.bat
+-rwxrw-r--  1 fallstechdave fallstechdave 9604 Jul 10 08:28 grailsw
+drwxrwxr-x  9 fallstechdave fallstechdave 4096 Jul 10 08:28 .
+fallstechdave@mmrxps17:~/grailsprojects/testboot254$ 
+fallstechdave@mmrxps17:~/grailsprojects/testboot254$ code .
+
+fallstechdave@mmrxps17:~/grailsprojects/testboot254$ 
+fallstechdave@mmrxps17:~/grailsprojects/testboot254$ grails run-app
+
+| Running Grails application
+| Error 2022-07-10 09:07:50,581 [localhost-startStop-1] ERROR conf.BootStrap  - testboot254 error BootStrap.init
+testboot254 BootStrap.init at Sun Jul 10 09:07:50 EDT 2022
+| Server running. Browse to http://localhost:8080/testboot254
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+class BootStrap {
+
+  def init = { servletContext ->
+    log.error("testboot254 error BootStrap.init")  // default logging level (see Config.groovy)
+    log.warn( "testboot254 warn BootStrap.init")
+    log.info( "testboot254 info BootStrap.init")
+    log.debug("testboot254 debug BootStrap.init")
+    log.trace("testboot254 trace BootStrap.init")
+    println("testboot254 BootStrap.init at ${new Date()}")
+  }
+
+  def destroy = {
+    log.error("testboot254 error BootStrap.destroy")  // default logging level (see Config.groovy)
+    log.warn( "testboot254 warn BootStrap.destroy")
+    log.info( "testboot254 info BootStrap.destroy")
+    log.debug("testboot254 debug BootStrap.destroy")
+    log.trace("testboot254 trace BootStrap.destroy")
+    println("testboot254 BootStrap.destroy at ${new Date()}")
+  }
+
+}
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+https://start.grails.org/
+Grails Application Forge
+curl -O https://start.grails.org/myProject.zip -d version=5.0.0
+curl -O https://start.grails.org/myProject.zip -d version=2.5.4
+
+fallstechdave@mmrxps17:~/grailsprojects$ 
+fallstechdave@mmrxps17:~/grailsprojects$ 
+fallstechdave@mmrxps17:~/grailsprojects$ curl -O https://start.grails.org/myProject.zip -d version=2.5.4
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100    65    0    52  100    13    339     84 --:--:-- --:--:-- --:--:--   424
+fallstechdave@mmrxps17:~/grailsprojects$ 
+fallstechdave@mmrxps17:~/grailsprojects$ ls -latr
+total 16
+drwxr-xr-x 32 fallstechdave fallstechdave 4096 Jul 10 08:35 ..
+drwxrwxr-x 10 fallstechdave fallstechdave 4096 Jul 10 08:37 testboot254
+-rw-rw-r--  1 fallstechdave fallstechdave   52 Jul 10 09:36 myProject.zip
+drwxrwxr-x  3 fallstechdave fallstechdave 4096 Jul 10 09:36 .
+fallstechdave@mmrxps17:~/grailsprojects$ 
+fallstechdave@mmrxps17:~/grailsprojects$ cat myProject.zip 
+{"version":"The version specified is not supported"}
+fallstechdave@mmrxps17:~/grailsprojects$ 
+fallstechdave@mmrxps17:~/grailsprojects$ 
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+https://github.com/github/gitignore
+A collection of .gitignore templates
+
+# .gitignore for Grails 1.2 and 1.3
+# Although this should work for most versions of grails, it is
+# suggested that you use the "grails integrate-with --git" command
+# to generate your .gitignore file.
+
+# web application files
+/web-app/WEB-INF/classes
+
+# default HSQL database files for production mode
+/prodDb.*
+
+# general HSQL database files
+*Db.properties
+*Db.script
+
+# logs
+/stacktrace.log
+/test/reports
+/logs
+
+# project release file
+/*.war
+
+# plugin release files
+/*.zip
+/plugin.xml
+
+# older plugin install locations
+/plugins
+/web-app/plugins
+
+# "temporary" build files
+/target
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+fallstechdave@mmrxps17:~/grailsprojects/testboot254$ 
+fallstechdave@mmrxps17:~/grailsprojects/testboot254$ grails integrate-with --git
+fallstechdave@mmrxps17:~/grailsprojects/testboot254$ 
+fallstechdave@mmrxps17:~/grailsprojects/testboot254$ cat .gitignore 
+*.iws
+*Db.properties
+*Db.script
+.settings
+stacktrace.log
+/*.zip
+/plugin.xml
+/*.log
+/*DB.*
+/cobertura.ser
+.DS_Store
+/target/
+/out/
+/web-app/plugins
+/web-app/WEB-INF/classes
+/.link_to_grails_plugins/
+/target-eclipse/
+fallstechdave@mmrxps17:~/grailsprojects/testboot254$ 
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+fallstechdave@mmrxps17:~/grailsprojects/testboot254$ rm -rf target
+fallstechdave@mmrxps17:~/grailsprojects/testboot254$ tree -d
+.
+├── grails-app
+│   ├── assets
+│   │   ├── images
+│   │   │   └── skin
+│   │   ├── javascripts
+│   │   └── stylesheets
+│   ├── conf
+│   │   ├── hibernate
+│   │   └── spring
+│   ├── controllers
+│   ├── domain
+│   ├── i18n
+│   ├── migrations
+│   ├── services
+│   ├── taglib
+│   ├── utils
+│   └── views
+│       └── layouts
+├── lib
+├── scripts
+├── src
+│   ├── groovy
+│   └── java
+├── test
+│   ├── integration
+│   └── unit
+├── web-app
+│   ├── css
+│   ├── images
+│   ├── js
+│   ├── META-INF
+│   └── WEB-INF
+│       └── tld
+└── wrapper
+
+34 directories
+fallstechdave@mmrxps17:~/grailsprojects/testboot254$ 
+fallstechdave@mmrxps17:~/grailsprojects/testboot254$ git init
+Initialized empty Git repository in /home/fallstechdave/grailsprojects/testboot254/.git/
+fallstechdave@mmrxps17:~/grailsprojects/testboot254$ 
+fallstechdave@mmrxps17:~/grailsprojects/testboot254$ du
+4	./scripts
+4	./test/integration
+4	./test/unit
+12	./test
+4	./lib
+4	./.git/branches
+8	./.git/info
+4	./.git/refs/tags
+4	./.git/refs/heads
+12	./.git/refs
+56	./.git/hooks
+4	./.git/objects/info
+4	./.git/objects/pack
+12	./.git/objects
+108	./.git
+4	./grails-app/migrations
+4	./grails-app/taglib
+8	./grails-app/conf/spring
+4	./grails-app/conf/hibernate
+40	./grails-app/conf
+48	./grails-app/assets/images/skin
+116	./grails-app/assets/images
+28	./grails-app/assets/stylesheets
+8	./grails-app/assets/javascripts
+156	./grails-app/assets
+4	./grails-app/utils
+76	./grails-app/i18n
+4	./grails-app/services
+4	./grails-app/domain
+8	./grails-app/views/layouts
+20	./grails-app/views
+4	./grails-app/controllers
+320	./grails-app
+156	./web-app/WEB-INF/tld
+168	./web-app/WEB-INF
+4	./web-app/images
+4	./web-app/css
+4	./web-app/META-INF
+4	./web-app/js
+188	./web-app
+4	./src/groovy
+4	./src/java
+12	./src
+436	./wrapper
+1140	.
+fallstechdave@mmrxps17:~/grailsprojects/testboot254$ 
+
+git remote add origin git@github.com:fallstechdave/testboot254.git
+git branch -M main
+git push -u origin main
+
+fallstechdave@mmrxps17:~/grailsprojects/testboot254$ git log --pretty=format:"%h - %an, %ad : %s" -10
+f5c6e84 - fallstechdave, Sun Jul 10 09:53:13 2022 -0400 : Create README.md
+0355c7c - fallstechdave, Sun Jul 10 09:50:39 2022 -0400 : first commit
+fallstechdave@mmrxps17:~/grailsprojects/testboot254$ 
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+https://ubuntu.com/tutorials/install-and-configure-apache#1-overview
+
+sudo apt update
+sudo apt install apache2
+
+https://manpages.ubuntu.com/manpages/bionic/man8/a2ensite.8.html
+
+    a2ensite [ [-q|--quiet] site]
+    a2dissite [ [-q|--quiet] site]
+
+https://www.digitalocean.com/community/questions/how-to-get-apache-virtual-hosts-working
+
+https://www.digitalocean.com/community/tutorials/how-to-set-up-apache-virtual-hosts-on-ubuntu-20-04
+
+sudo mkdir -p /var/www/your_domain_1/public_html
+sudo mkdir -p /var/www/your_domain_2/public_html
+sudo chown -R $USER:$USER /var/www/your_domain_1/public_html
+sudo chown -R $USER:$USER /var/www/your_domain_2/public_html
+sudo chmod -R 755 /var/www
+nano /var/www/your_domain_1/public_html/index.html
+
+  <html>
+    <head>
+      <title>Welcome to your_domain_1!</title>
+    </head>
+    <body>
+      <h1>Success! The your_domain_1 virtual host is working!</h1>
+    </body>
+  </html>
+
+sudo nano /etc/apache2/sites-available/your_domain_1.conf
+
+  <VirtualHost *:80>
+    ...
+      ServerAdmin admin@your_domain_1
+      ServerName your_domain_1
+      ServerAlias www.your_domain_1
+      DocumentRoot /var/www/your_domain_1/public_html
+      ...
+      ErrorLog ${APACHE_LOG_DIR}/error.log
+      CustomLog ${APACHE_LOG_DIR}/access.log combined
+      ...
+  </VirtualHost>
+
+sudo a2ensite your_domain_1.conf
+sudo a2ensite your_domain_2.conf
+sudo a2dissite 000-default.conf
+sudo systemctl restart apache2
+sudo systemctl status apache2
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+fallstechdave@mmrxps17:/etc/apache2/sites-available$ pwd -P
+/etc/apache2/sites-available
+fallstechdave@mmrxps17:/etc/apache2/sites-available$ ls -latr
+total 28
+-rw-r--r-- 1 root          root          6338 Feb 23  2021 default-ssl.conf
+-rw-r--r-- 1 root          root          1332 Feb 23  2021 000-default.conf
+drwxr-xr-x 8 root          root          4096 Jul  1 07:10 ..
+-rw-r--r-- 1 root          root           239 Jul  1 07:37 wire.conf
+drwxr-xr-x 2 root          root          4096 Jul  1 08:54 .
+-rw-r--r-- 1 fallstechdave fallstechdave  545 Jul  1 10:45 wire5.conf
+fallstechdave@mmrxps17:/etc/apache2/sites-available$ 
+fallstechdave@mmrxps17:/etc/apache2/sites-available$ cat wire5.conf 
+<VirtualHost *:80>
+    ServerName localhost
+    PassengerDisableAnonymousTelemetry on
+    # Tell Apache and Passenger where your app's 'public' directory is
+    DocumentRoot /home/fallstechdave/railsprojects/wire5/public
+    PassengerRuby /home/fallstechdave/.rbenv/versions/3.1.2/bin/ruby
+    # Relax Apache security settings
+    <Directory /home/fallstechdave/railsprojects/wire5/public>
+      Allow from all
+      Options -MultiViews
+      # Uncomment this if you're on Apache > 2.4:
+      Require all granted
+    </Directory>
+</VirtualHost>
+fallstechdave@mmrxps17:/etc/apache2/sites-available$ 
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+https://www.keycloak.org/
+https://www.keycloak.org/guides
+https://www.keycloak.org/getting-started/getting-started-zip
+https://www.keycloak.org/downloads
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+fallstechdave@mmrxps17:~/Downloads$ 
+fallstechdave@mmrxps17:~/Downloads$ ls -latr
+total 670600
+-rw-rw-r--  1 fallstechdave fallstechdave  83667280 Jun 30 08:41 code_1.68.1-1655263094_amd64.deb
+-rw-rw-r--  1 fallstechdave fallstechdave 117711933 Jun 30 08:42 code-1.68.1-1655263151.el7.x86_64.rpm
+-rw-rw-r--  1 fallstechdave fallstechdave 116922965 Jun 30 08:42 code-stable-x64-1655263335.tar.gz
+-rw-rw-r--  1 fallstechdave fallstechdave     18012 Jun 30 09:24 mysql-apt-config_0.8.22-1_all.deb
+-rw-rw-r--  1 fallstechdave fallstechdave    178948 Jul  6 08:47 libapache2-mod-auth-openidc_2.4.11.2-1.bionic+1_amd64.deb
+-rw-rw-r--  1 fallstechdave fallstechdave    182556 Jul  6 08:48 libapache2-mod-auth-openidc_2.4.11.2-1.bullseye+1_amd64.deb
+-rw-rw-r--  1 fallstechdave fallstechdave    181724 Jul  6 08:48 libapache2-mod-auth-openidc_2.4.11.2-1.buster+1_amd64.deb
+-rw-rw-r--  1 fallstechdave fallstechdave    180340 Jul  6 08:48 libapache2-mod-auth-openidc_2.4.11.2-1.focal+1_amd64.deb
+-rw-rw-r--  1 fallstechdave fallstechdave    442992 Jul  6 08:48 mod_auth_openidc-2.4.11.2-1.el7.x86_64.rpm
+-rw-rw-r--  1 fallstechdave fallstechdave    201832 Jul  6 08:48 mod_auth_openidc-2.4.11.2-1.el8.x86_64.rpm
+-rw-rw-r--  1 fallstechdave fallstechdave    599513 Jul  6 08:48 mod_auth_openidc-2.4.11.2.tar.gz
+-rw-rw-r--  1 fallstechdave fallstechdave    311947 Jul  6 08:48 mod_auth_openidc-2.4.11.2.zip
+drwxr-xr-x 32 fallstechdave fallstechdave      4096 Jul 10 08:35 ..
+-rw-rw-r--  1 fallstechdave fallstechdave 183063539 Jul 10 11:19 keycloak-18.0.2.zip
+-rw-rw-r--  1 fallstechdave fallstechdave        40 Jul 10 11:19 keycloak-18.0.2.zip.sha1
+-rw-rw-r--  1 fallstechdave fallstechdave 182976004 Jul 10 11:20 keycloak-18.0.2.tar.gz
+-rw-rw-r--  1 fallstechdave fallstechdave        40 Jul 10 11:20 keycloak-18.0.2.tar.gz.sha1
+drwxr-xr-x  2 fallstechdave fallstechdave      4096 Jul 10 11:21 .
+fallstechdave@mmrxps17:~/Downloads$ 
+fallstechdave@mmrxps17:~/Downloads$ cat keycloak-18.0.2.tar.gz.sha1 
+9c1959265ee745f1f8331079053e563d59d3a95b
+fallstechdave@mmrxps17:~/Downloads$ 
+fallstechdave@mmrxps17:~/Downloads$ sha1sum keycloak-18.0.2.tar.gz
+9c1959265ee745f1f8331079053e563d59d3a95b  keycloak-18.0.2.tar.gz
+fallstechdave@mmrxps17:~/Downloads$ 
+fallstechdave@mmrxps17:~/Downloads$ mkdir keycloak
+fallstechdave@mmrxps17:~/Downloads$ cp -p keycloak-18.0.2.tar.gz keycloak
+fallstechdave@mmrxps17:~/Downloads$ cd keycloak/
+fallstechdave@mmrxps17:~/Downloads/keycloak$ ls -la
+total 178696
+drwxrwxr-x 2 fallstechdave fallstechdave      4096 Jul 10 11:23 .
+drwxr-xr-x 3 fallstechdave fallstechdave      4096 Jul 10 11:23 ..
+-rw-rw-r-- 1 fallstechdave fallstechdave 182976004 Jul 10 11:20 keycloak-18.0.2.tar.gz
+fallstechdave@mmrxps17:~/Downloads/keycloak$ tar xf keycloak-18.0.2.tar.gz 
+fallstechdave@mmrxps17:~/Downloads/keycloak$ 
+fallstechdave@mmrxps17:~/Downloads/keycloak$ ls -latr
+total 178700
+-rw-rw-r-- 1 fallstechdave fallstechdave 182976004 Jul 10 11:20 keycloak-18.0.2.tar.gz
+drwxr-xr-x 3 fallstechdave fallstechdave      4096 Jul 10 11:23 ..
+drwxrwxr-x 3 fallstechdave fallstechdave      4096 Jul 10 11:23 .
+drwxrwxr-x 7 fallstechdave fallstechdave      4096 Jul 10 11:23 keycloak-18.0.2
+fallstechdave@mmrxps17:~/Downloads/keycloak$ 
+fallstechdave@mmrxps17:~/Downloads/keycloak$ ls -latr keycloak-18.0.2
+total 48
+-rw-r--r-- 1 fallstechdave fallstechdave 11358 Feb 10 01:03 LICENSE.txt
+-rw-r--r-- 1 fallstechdave fallstechdave    26 Feb 10 01:03 version.txt
+-rw-r--r-- 1 fallstechdave fallstechdave   492 Feb 10 01:03 README.md
+drwxr-xr-x 5 fallstechdave fallstechdave  4096 Jun 24 07:32 lib
+drwxr-xr-x 3 fallstechdave fallstechdave  4096 Jun 24 07:32 bin
+drwxrwxr-x 2 fallstechdave fallstechdave  4096 Jul 10 11:23 themes
+drwxrwxr-x 3 fallstechdave fallstechdave  4096 Jul 10 11:23 ..
+drwxrwxr-x 2 fallstechdave fallstechdave  4096 Jul 10 11:23 providers
+drwxrwxr-x 2 fallstechdave fallstechdave  4096 Jul 10 11:23 conf
+drwxrwxr-x 7 fallstechdave fallstechdave  4096 Jul 10 11:23 .
+fallstechdave@mmrxps17:~/Downloads/keycloak$ 
+fallstechdave@mmrxps17:~/Downloads/keycloak/keycloak-18.0.2$ 
+fallstechdave@mmrxps17:~/Downloads/keycloak/keycloak-18.0.2$ sdk default java 17.0.3-tem 
+
+Default java version set to 17.0.3-tem
+fallstechdave@mmrxps17:~/Downloads/keycloak/keycloak-18.0.2$ java -version
+openjdk version "17.0.3" 2022-04-19
+OpenJDK Runtime Environment Temurin-17.0.3+7 (build 17.0.3+7)
+OpenJDK 64-Bit Server VM Temurin-17.0.3+7 (build 17.0.3+7, mixed mode, sharing)
+fallstechdave@mmrxps17:~/Downloads/keycloak/keycloak-18.0.2$ 
+fallstechdave@mmrxps17:~/Downloads/keycloak/keycloak-18.0.2$ bin/kc.sh start-dev
+Updating the configuration and installing your custom providers, if any. Please wait.
+2022-07-10 11:34:21,516 INFO  [io.quarkus.deployment.QuarkusAugmentor] (main) Quarkus augmentation completed in 2552ms
+2022-07-10 11:34:22,811 INFO  [org.keycloak.quarkus.runtime.hostname.DefaultHostnameProvider] (main) Hostname settings: FrontEnd: <request>, Strict HTTPS: false, Path: <request>, Strict BackChannel: false, Admin: <request>, Port: -1, Proxied: false
+2022-07-10 11:34:23,136 WARN  [org.infinispan.PERSISTENCE] (keycloak-cache-init) ISPN000554: jboss-marshalling is deprecated and planned for removal
+2022-07-10 11:34:23,153 WARN  [org.infinispan.CONFIG] (keycloak-cache-init) ISPN000569: Unable to persist Infinispan internal caches as no global state enabled
+2022-07-10 11:34:23,166 INFO  [org.infinispan.CONTAINER] (keycloak-cache-init) ISPN000556: Starting user marshaller 'org.infinispan.jboss.marshalling.core.JBossUserMarshaller'
+2022-07-10 11:34:23,304 INFO  [org.infinispan.CONTAINER] (keycloak-cache-init) ISPN000128: Infinispan version: Infinispan 'Triskaidekaphobia' 13.0.9.Final
+2022-07-10 11:34:24,165 INFO  [org.keycloak.quarkus.runtime.storage.database.liquibase.QuarkusJpaUpdaterProvider] (main) Initializing database schema. Using changelog META-INF/jpa-changelog-master.xml
+2022-07-10 11:34:25,844 INFO  [org.keycloak.connections.infinispan.DefaultInfinispanConnectionProviderFactory] (main) Node name: node_196242, Site name: null
+2022-07-10 11:34:25,891 INFO  [org.keycloak.services] (main) KC-SERVICES0050: Initializing master realm
+2022-07-10 11:34:26,633 INFO  [io.quarkus] (main) Keycloak 18.0.2 on JVM (powered by Quarkus 2.7.5.Final) started in 5.009s. Listening on: http://0.0.0.0:8080
+2022-07-10 11:34:26,633 INFO  [io.quarkus] (main) Profile dev activated. 
+2022-07-10 11:34:26,633 INFO  [io.quarkus] (main) Installed features: [agroal, cdi, hibernate-orm, jdbc-h2, jdbc-mariadb, jdbc-mssql, jdbc-mysql, jdbc-oracle, jdbc-postgresql, keycloak, narayana-jta, reactive-routes, resteasy, resteasy-jackson, smallrye-context-propagation, smallrye-health, smallrye-metrics, vault, vertx]
+2022-07-10 11:34:26,637 WARN  [org.keycloak.quarkus.runtime.KeycloakMain] (main) Running the server in development mode. DO NOT use this configuration in production.
+
+http://localhost:8080/
+Welcome to Keycloak
+
+
