@@ -1,0 +1,491 @@
+Tue 12 Jul 2022 06:38:56 AM EDT
+
+fallstechdave@mmrxps17:~$ date
+Tue 12 Jul 2022 06:38:44 AM EDT
+fallstechdave@mmrxps17:~$ 
+fallstechdave@mmrxps17:~$ date > stuff-20220712.txt
+fallstechdave@mmrxps17:~$ code   stuff-20220712.txt
+fallstechdave@mmrxps17:~$ 
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+https://www.keycloak.org/
+https://www.keycloak.org/guides
+https://www.keycloak.org/getting-started/getting-started-zip
+https://www.keycloak.org/downloads
+
+mod_auth_openidc  apache   keycloak
+
+https://openid.net/specs/openid-connect-core-1_0.html
+
+https://github.com/zmartzone/mod_auth_openidc
+https://github.com/zmartzone/mod_auth_openidc/wiki
+https://github.com/zmartzone/mod_auth_openidc/wiki/Authorization
+https://github.com/zmartzone/mod_auth_openidc/wiki/Caching
+https://github.com/zmartzone/mod_auth_openidc/blob/master/auth_openidc.conf
+https://github.com/zmartzone/mod_auth_openidc/blob/master/auth_openidc.conf
+
+https://github.com/zmartzone/mod_auth_openidc/wiki/Keycloak
+
+https://github.com/zmartzone/mod_auth_openidc/blob/master/README.md
+
+https://www.keycloak.org/getting-started/getting-started-zip
+https://www.keycloak.org/documentation
+https://www.keycloak.org/docs/latest/release_notes/index.html
+https://www.keycloak.org/guides#getting-started
+https://www.keycloak.org/guides#server
+https://www.keycloak.org/server/configuration
+https://www.keycloak.org/server/containers
+
+https://www.keycloak.org/guides
+https://www.keycloak.org/guides#server
+https://www.keycloak.org/server/containers
+
+
+Guides
+Release Notes 	
+Getting Started 	How to get started with Keycloak
+Server Installation and Configuration 	Installation and offline configuration of the Keycloak server
+Server Container Image 	Documentation specific to the server container image
+Securing Applications and Services 	How to secure applications and services with Keycloak
+Server Administration 	Management and runtime configuration of the Keycloak server
+Server Developer 	Creating themes and providers to customize the Keycloak server
+Authorization Services 	Centrally manage fine-grained permissions for applications and services
+Upgrading 	Upgrading Keycloak server and adapters
+
+
+https://www.keycloak.org/documentation
+https://www.keycloak.org/docs/latest/release_notes/index.html
+https://www.keycloak.org/guides#getting-started
+https://www.keycloak.org/guides#server
+https://www.keycloak.org/server/containers
+https://www.keycloak.org/docs/latest/securing_apps/index.html
+https://www.keycloak.org/docs/latest/server_admin/index.html
+https://www.keycloak.org/docs/latest/server_development/index.html
+https://www.keycloak.org/docs/latest/authorization_services/index.html
+https://www.keycloak.org/docs/latest/authorization_services/index.html#_overview_terminology
+https://www.keycloak.org/docs/latest/upgrading/index.html
+
+https://github.com/zmartzone/mod_auth_openidc/wiki/Keycloak
+
+	OIDCProviderMetadataURL https://keycloak.example.net/auth/realms/Testrealm/.well-known/openid-configuration
+	OIDCRedirectURI https://myserver.example.not/oauth2callback
+	OIDCCryptoPassphrase 0123456789
+	OIDCClientID testclient
+	OIDCClientSecret ca446a2d-a65f-4e84-95a7-d20eb36989d8
+	# See https://github.com/Reposoft/openidc-keycloak-test/issues/7
+	OIDCProviderTokenEndpointAuth client_secret_basic
+
+	OIDCRemoteUserClaim email
+	OIDCScope "openid email"
+
+
+https://www.keycloak.org/getting-started/getting-started-zip
+
+Start Keycloak
+From a terminal open the directory keycloak-18.0.2, then to start Keycloak run the following command.
+On Linux run:
+bin/kc.sh start-dev
+
+Create an admin user
+Keycloak does not come with a default admin user, which means before you can start using Keycloak you need to create an admin user.
+To do this open http://localhost:8080/, then fill in the form with your preferred username and password.
+
+http://localhost:8080/admin
+
+fallstechdave@mmrxps17:~/Downloads/keycloak/keycloak-18.0.2$ 
+fallstechdave@mmrxps17:~/Downloads/keycloak/keycloak-18.0.2$ ls -latr
+total 52
+-rw-r--r-- 1 fallstechdave fallstechdave 11358 Feb 10 01:03 LICENSE.txt
+-rw-r--r-- 1 fallstechdave fallstechdave    26 Feb 10 01:03 version.txt
+-rw-r--r-- 1 fallstechdave fallstechdave   492 Feb 10 01:03 README.md
+drwxr-xr-x 5 fallstechdave fallstechdave  4096 Jun 24 07:32 lib
+drwxr-xr-x 3 fallstechdave fallstechdave  4096 Jun 24 07:32 bin
+drwxrwxr-x 2 fallstechdave fallstechdave  4096 Jul 10 11:23 themes
+drwxrwxr-x 3 fallstechdave fallstechdave  4096 Jul 10 11:23 ..
+drwxrwxr-x 2 fallstechdave fallstechdave  4096 Jul 10 11:23 providers
+drwxrwxr-x 2 fallstechdave fallstechdave  4096 Jul 10 11:23 conf
+drwxrwxr-x 3 fallstechdave fallstechdave  4096 Jul 10 11:34 data
+drwxrwxr-x 8 fallstechdave fallstechdave  4096 Jul 10 11:34 .
+fallstechdave@mmrxps17:~/Downloads/keycloak/keycloak-18.0.2$ 
+fallstechdave@mmrxps17:~/Downloads/keycloak/keycloak-18.0.2$ bin/kc.sh start-dev
+2022-07-12 20:14:07,924 INFO  [org.keycloak.quarkus.runtime.hostname.DefaultHostnameProvider] (main) Hostname settings: FrontEnd: <request>, Strict HTTPS: false, Path: <request>, Strict BackChannel: false, Admin: <request>, Port: -1, Proxied: false
+2022-07-12 20:14:08,250 WARN  [org.infinispan.PERSISTENCE] (keycloak-cache-init) ISPN000554: jboss-marshalling is deprecated and planned for removal
+2022-07-12 20:14:08,310 WARN  [org.infinispan.CONFIG] (keycloak-cache-init) ISPN000569: Unable to persist Infinispan internal caches as no global state enabled
+2022-07-12 20:14:08,325 INFO  [org.infinispan.CONTAINER] (keycloak-cache-init) ISPN000556: Starting user marshaller 'org.infinispan.jboss.marshalling.core.JBossUserMarshaller'
+2022-07-12 20:14:08,414 INFO  [org.infinispan.CONTAINER] (keycloak-cache-init) ISPN000128: Infinispan version: Infinispan 'Triskaidekaphobia' 13.0.9.Final
+2022-07-12 20:14:08,674 INFO  [org.keycloak.connections.infinispan.DefaultInfinispanConnectionProviderFactory] (main) Node name: node_202690, Site name: null
+2022-07-12 20:14:08,792 INFO  [io.quarkus] (main) Keycloak 18.0.2 on JVM (powered by Quarkus 2.7.5.Final) started in 2.283s. Listening on: http://0.0.0.0:8080
+2022-07-12 20:14:08,793 INFO  [io.quarkus] (main) Profile dev activated. 
+2022-07-12 20:14:08,793 INFO  [io.quarkus] (main) Installed features: [agroal, cdi, hibernate-orm, jdbc-h2, jdbc-mariadb, jdbc-mssql, jdbc-mysql, jdbc-oracle, jdbc-postgresql, keycloak, narayana-jta, reactive-routes, resteasy, resteasy-jackson, smallrye-context-propagation, smallrye-health, smallrye-metrics, vault, vertx]
+2022-07-12 20:14:08,795 WARN  [org.keycloak.quarkus.runtime.KeycloakMain] (main) Running the server in development mode. DO NOT use this configuration in production.
+
+http://localhost:8080/admin
+http://localhost:8080/realms/master/protocol/openid-connect/auth?client_id=security-admin-console&redirect_uri=http%3A%2F%2Flocalhost%3A8080%2Fadmin%2Fmaster%2Fconsole%2F&state=5744b4d1-0c34-4121-aaa9-9cdbdceb62c6&response_mode=fragment&response_type=code&scope=openid&nonce=7d4785f3-6a0f-4d6a-95f9-937469ad5c46&code_challenge=uK9tUTmj-1z0u3l0y9kUi3c63tGnMICkFxWXEfokzFc&code_challenge_method=S256
+https://www.keycloak.org/getting-started/getting-started-zip
+
+Create an admin user
+
+Keycloak does not come with a default admin user, which means before you can start using Keycloak you need to create an admin user.
+
+To do this open http://localhost:8080/, then fill in the form with your preferred username and password.
+Login to the admin console
+
+Go to the Keycloak Admin Console and login with the username and password you created earlier.
+Create a realm
+
+A realm in Keycloak is the equivalent of a tenant. It allows creating isolated groups of applications and users. By default there is a single realm in Keycloak called master. This is dedicated to manage Keycloak and should not be used for your own applications.
+
+Let’s create our first realm.
+
+    Open the Keycloak Admin Console
+
+    Hover the mouse over the dropdown in the top-left corner where it says Master, then click on Add realm
+
+    Fill in the form with the following values:
+
+        Name: myrealm
+
+    Click Create
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+http://localhost:8080/
+
+Keycloak
+Welcome to Keycloak
+Administration Console
+Please create an initial admin user to get started.
+
+Username
+Password
+Password confirmation
+Documentation
+User Guide, Admin REST API and Javadocs
+Keycloak Project
+Mailing List
+Report an issue
+JBoss and JBoss Community
+
+kcadmin / kcadminpw
+myrealm
+myuser / mypassord    (David Holberton david.holberton@fallstechnology.com)
+myuser / mypassword2
+
+https://www.keycloak.org/getting-started/getting-started-zip
+http://localhost:8080/realms/myrealm/account/#/
+
+https://www.keycloak.org/app/
+https://www.keycloak.org/app/#url=http://localhost:8080&realm=myrealm&client=myclient
+
+Generate Private Key
+
+MIICnzCCAYcCBgGB9RoicjANBgkqhkiG9w0BAQsFADATMREwDwYDVQQDDAhteWNsaWVudDAeFw0yMjA3MTMwMTA3MTlaFw0zMjA3MTMwMTA4NTlaMBMxETAPBgNVBAMMCG15Y2xpZW50MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEApk/ms7eTUjFX+xZYDr6qyS0HFRb4mtRAuT52ODkBQJm7+/4Gf0DYbY0CDs85TfXZnhKSYJEPNdBgR0hj8h/d8qI7s1P8tSHS4zbghBRemEwpX4whBBkx+Qsp32Rs5q6bDVtGKkAi68A3U3rbtwiVbAYP2fqspfx5b7tJHfgfQ5maq+5nKZrPgxb2V2JEbN9/0gFDbjd6/KRT+XhnQlhL8Gvno8TMvfTVkRLteNc/b9PyYuFvenhYUDCHMskd8yZg0F1uKBAblk7k4fAnL9RaYLdbEwpLZjAyaXZogjamRVB02+rCuOY0banEFdXbD8Fk84P7AErosDobKc937q/a0wIDAQABMA0GCSqGSIb3DQEBCwUAA4IBAQCZ9Vh0uiK493fXqVPEpIADrFo+WkZgMIG/oioWdQ6aU+If1Ll73QqyqagXNJlzXYmDLIa39yV6Km1EQEK237Um8+Uf9W4BkcSZhrMJ8LoSRi/P5fFK0G46cUZD6/L7bM6Y5iPRMuydeSeVJfksy95Ti8VLA+uIgJYL9f5XhFPlSZDAS8qttvkTR9RvjzRSSSfH5SK9KYZ5N5zMDMQHOtQ1F6YgX2WmBYnb/i7GCzDft1GhVzyL02XuGal/0XoIEqU+zzYEDdxZp0QR/Ks/kdAh5T7N6eaG7lYDOth5cG9/cWQZUdnDMWKyHkcaEpVUBjTRAu1GEhvAfcaSw8gK9FHh
+
+Archive Format:  JKS
+Key Alias:       myclient
+Key Password:    myclientkeypw
+Store Password:  myclientstorepw
+
+Archive Format:  JKS
+Key Alias:       myclient
+Key Password:    mykcclientkeypw
+Store Password:  mykcmyclientstorepw
+
+http://localhost:8080/realms/myrealm/.well-known/openid-configuration
+
+	
+issuer	"http://localhost:8080/realms/myrealm"
+authorization_endpoint	"http://localhost:8080/realms/myrealm/protocol/openid-connect/auth"
+token_endpoint	"http://localhost:8080/realms/myrealm/protocol/openid-connect/token"
+introspection_endpoint	"http://localhost:8080/realms/myrealm/protocol/openid-connect/token/introspect"
+userinfo_endpoint	"http://localhost:8080/realms/myrealm/protocol/openid-connect/userinfo"
+end_session_endpoint	"http://localhost:8080/realms/myrealm/protocol/openid-connect/logout"
+frontchannel_logout_session_supported	true
+frontchannel_logout_supported	true
+jwks_uri	"http://localhost:8080/realms/myrealm/protocol/openid-connect/certs"
+check_session_iframe	"http://localhost:8080/realms/myrealm/protocol/openid-connect/login-status-iframe.html"
+grant_types_supported	
+0	"authorization_code"
+1	"implicit"
+2	"refresh_token"
+3	"password"
+4	"client_credentials"
+5	"urn:ietf:params:oauth:grant-type:device_code"
+6	"urn:openid:params:grant-type:ciba"
+acr_values_supported	
+0	"0"
+1	"1"
+response_types_supported	
+0	"code"
+1	"none"
+2	"id_token"
+3	"token"
+4	"id_token token"
+5	"code id_token"
+6	"code token"
+7	"code id_token token"
+subject_types_supported	
+0	"public"
+1	"pairwise"
+id_token_signing_alg_values_supported	
+0	"PS384"
+1	"ES384"
+2	"RS384"
+3	"HS256"
+4	"HS512"
+5	"ES256"
+6	"RS256"
+7	"HS384"
+8	"ES512"
+9	"PS256"
+10	"PS512"
+11	"RS512"
+id_token_encryption_alg_values_supported	
+0	"RSA-OAEP"
+1	"RSA-OAEP-256"
+2	"RSA1_5"
+id_token_encryption_enc_values_supported	
+0	"A256GCM"
+1	"A192GCM"
+2	"A128GCM"
+3	"A128CBC-HS256"
+4	"A192CBC-HS384"
+5	"A256CBC-HS512"
+userinfo_signing_alg_values_supported	
+0	"PS384"
+1	"ES384"
+2	"RS384"
+3	"HS256"
+4	"HS512"
+5	"ES256"
+6	"RS256"
+7	"HS384"
+8	"ES512"
+9	"PS256"
+10	"PS512"
+11	"RS512"
+12	"none"
+userinfo_encryption_alg_values_supported	
+0	"RSA-OAEP"
+1	"RSA-OAEP-256"
+2	"RSA1_5"
+userinfo_encryption_enc_values_supported	
+0	"A256GCM"
+1	"A192GCM"
+2	"A128GCM"
+3	"A128CBC-HS256"
+4	"A192CBC-HS384"
+5	"A256CBC-HS512"
+request_object_signing_alg_values_supported	
+0	"PS384"
+1	"ES384"
+2	"RS384"
+3	"HS256"
+4	"HS512"
+5	"ES256"
+6	"RS256"
+7	"HS384"
+8	"ES512"
+9	"PS256"
+10	"PS512"
+11	"RS512"
+12	"none"
+request_object_encryption_alg_values_supported	
+0	"RSA-OAEP"
+1	"RSA-OAEP-256"
+2	"RSA1_5"
+request_object_encryption_enc_values_supported	
+0	"A256GCM"
+1	"A192GCM"
+2	"A128GCM"
+3	"A128CBC-HS256"
+4	"A192CBC-HS384"
+5	"A256CBC-HS512"
+response_modes_supported	
+0	"query"
+1	"fragment"
+2	"form_post"
+3	"query.jwt"
+4	"fragment.jwt"
+5	"form_post.jwt"
+6	"jwt"
+registration_endpoint	"http://localhost:8080/realms/myrealm/clients-registrations/openid-connect"
+token_endpoint_auth_methods_supported	
+0	"private_key_jwt"
+1	"client_secret_basic"
+2	"client_secret_post"
+3	"tls_client_auth"
+4	"client_secret_jwt"
+token_endpoint_auth_signing_alg_values_supported	
+0	"PS384"
+1	"ES384"
+2	"RS384"
+3	"HS256"
+4	"HS512"
+5	"ES256"
+6	"RS256"
+7	"HS384"
+8	"ES512"
+9	"PS256"
+10	"PS512"
+11	"RS512"
+introspection_endpoint_auth_methods_supported	
+0	"private_key_jwt"
+1	"client_secret_basic"
+2	"client_secret_post"
+3	"tls_client_auth"
+4	"client_secret_jwt"
+introspection_endpoint_auth_signing_alg_values_supported	
+0	"PS384"
+1	"ES384"
+2	"RS384"
+3	"HS256"
+4	"HS512"
+5	"ES256"
+6	"RS256"
+7	"HS384"
+8	"ES512"
+9	"PS256"
+10	"PS512"
+11	"RS512"
+authorization_signing_alg_values_supported	
+0	"PS384"
+1	"ES384"
+2	"RS384"
+3	"HS256"
+4	"HS512"
+5	"ES256"
+6	"RS256"
+7	"HS384"
+8	"ES512"
+9	"PS256"
+10	"PS512"
+11	"RS512"
+authorization_encryption_alg_values_supported	
+0	"RSA-OAEP"
+1	"RSA-OAEP-256"
+2	"RSA1_5"
+authorization_encryption_enc_values_supported	
+0	"A256GCM"
+1	"A192GCM"
+2	"A128GCM"
+3	"A128CBC-HS256"
+4	"A192CBC-HS384"
+5	"A256CBC-HS512"
+claims_supported	
+0	"aud"
+1	"sub"
+2	"iss"
+3	"auth_time"
+4	"name"
+5	"given_name"
+6	"family_name"
+7	"preferred_username"
+8	"email"
+9	"acr"
+claim_types_supported	
+0	"normal"
+claims_parameter_supported	true
+scopes_supported	
+0	"openid"
+1	"microprofile-jwt"
+2	"address"
+3	"offline_access"
+4	"profile"
+5	"phone"
+6	"web-origins"
+7	"roles"
+8	"email"
+9	"acr"
+request_parameter_supported	true
+request_uri_parameter_supported	true
+require_request_uri_registration	true
+code_challenge_methods_supported	
+0	"plain"
+1	"S256"
+tls_client_certificate_bound_access_tokens	true
+revocation_endpoint	"http://localhost:8080/realms/myrealm/protocol/openid-connect/revoke"
+revocation_endpoint_auth_methods_supported	
+0	"private_key_jwt"
+1	"client_secret_basic"
+2	"client_secret_post"
+3	"tls_client_auth"
+4	"client_secret_jwt"
+revocation_endpoint_auth_signing_alg_values_supported	
+0	"PS384"
+1	"ES384"
+2	"RS384"
+3	"HS256"
+4	"HS512"
+5	"ES256"
+6	"RS256"
+7	"HS384"
+8	"ES512"
+9	"PS256"
+10	"PS512"
+11	"RS512"
+backchannel_logout_supported	true
+backchannel_logout_session_supported	true
+device_authorization_endpoint	"http://localhost:8080/realms/myrealm/protocol/openid-connect/auth/device"
+backchannel_token_delivery_modes_supported	
+0	"poll"
+1	"ping"
+backchannel_authentication_endpoint	"http://localhost:8080/realms/myrealm/protocol/openid-connect/ext/ciba/auth"
+backchannel_authentication_request_signing_alg_values_supported	
+0	"PS384"
+1	"ES384"
+2	"RS384"
+3	"ES256"
+4	"RS256"
+5	"ES512"
+6	"PS256"
+7	"PS512"
+8	"RS512"
+require_pushed_authorization_requests	false
+pushed_authorization_request_endpoint	"http://localhost:8080/realms/myrealm/protocol/openid-connect/ext/par/request"
+mtls_endpoint_aliases	
+token_endpoint	"http://localhost:8080/realms/myrealm/protocol/openid-connect/token"
+revocation_endpoint	"http://localhost:8080/realms/myrealm/protocol/openid-connect/revoke"
+introspection_endpoint	"http://localhost:8080/realms/myrealm/protocol/openid-connect/token/introspect"
+device_authorization_endpoint	"http://localhost:8080/realms/myrealm/protocol/openid-connect/auth/device"
+registration_endpoint	"http://localhost:8080/realms/myrealm/clients-registrations/openid-connect"
+userinfo_endpoint	"http://localhost:8080/realms/myrealm/protocol/openid-connect/userinfo"
+pushed_authorization_request_endpoint	"http://localhost:8080/realms/myrealm/protocol/openid-connect/ext/par/request"
+backchannel_authentication_endpoint	"http://localhost:8080/realms/myrealm/protocol/openid-connect/ext/ciba/auth"
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+fallstechdave@mmrxps17:/etc/apache2$ date
+Tue 12 Jul 2022 09:29:28 PM EDT
+fallstechdave@mmrxps17:/etc/apache2$ 
+fallstechdave@mmrxps17:/etc/apache2$ pwd -P
+/etc/apache2
+fallstechdave@mmrxps17:/etc/apache2$ 
+fallstechdave@mmrxps17:/etc/apache2$ ls -latr
+total 96
+-rw-r--r--   1 root root   320 Feb 23  2021 ports.conf
+-rw-r--r--   1 root root 31063 Feb 23  2021 magic
+-rw-r--r--   1 root root  1782 Feb 23  2021 envvars
+-rw-r--r--   1 root root  7224 Jun 14 09:30 apache2.conf
+drwxr-xr-x   8 root root  4096 Jul  1 07:10 .
+drwxr-xr-x   2 root root  4096 Jul  1 07:52 conf-available
+drwxr-xr-x   2 root root  4096 Jul  1 07:52 conf-enabled
+drwxr-xr-x   2 root root  4096 Jul  1 08:52 sites-enabled
+drwxr-xr-x   2 root root  4096 Jul  1 08:54 sites-available
+drwxr-xr-x   2 root root 12288 Jul  6 15:54 mods-available
+drwxr-xr-x   2 root root  4096 Jul  6 20:26 mods-enabled
+drwxr-xr-x 135 root root 12288 Jul  9 10:25 ..
+fallstechdave@mmrxps17:/etc/apache2$ 
+fallstechdave@mmrxps17:/etc/apache2$ du .
+4	./conf-enabled
+652	./mods-available
+4	./sites-enabled
+28	./conf-available
+4	./mods-enabled
+24	./sites-available
+768	.
+fallstechdave@mmrxps17:/etc/apache2$ 
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+

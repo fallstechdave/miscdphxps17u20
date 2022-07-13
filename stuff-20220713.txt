@@ -1,0 +1,475 @@
+Wed 13 Jul 2022 06:08:54 AM EDT
+
+fallstechdave@mmrxps17:~$ date
+Wed 13 Jul 2022 06:08:36 AM EDT
+fallstechdave@mmrxps17:~$ 
+fallstechdave@mmrxps17:~$ date > stuff-20220713.txt
+fallstechdave@mmrxps17:~$ code   stuff-20220713.txt
+fallstechdave@mmrxps17:~$ 
+
+http://localhost/articles     ... this works fine
+https://localhost/articles    ... "Unable to connect"
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+https://www.digitalocean.com/community/tutorials/how-to-create-a-self-signed-ssl-certificate-for-apache-in-ubuntu-20-04
+
+sudo apt update
+sudo apt install apache2
+sudo ufw allow "Apache Full"
+
+sudo a2enmod ssl
+sudo systemctl restart apache2
+
+sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/ssl/private/apache-selfsigned.key -out /etc/ssl/certs/apache-selfsigned.crt
+
+    Country Name (2 letter code) [XX]:US
+    State or Province Name (full name) []:Example
+    Locality Name (eg, city) [Default City]:Example 
+    Organization Name (eg, company) [Default Company Ltd]:Example Inc
+    Organizational Unit Name (eg, section) []:Example Dept
+    Common Name (eg, your name or your server's hostname) []:your_domain_or_ip
+    Email Address []:webmaster@example.com
+
+sudo nano /etc/apache2/sites-available/your_domain_or_ip.conf
+
+    <VirtualHost *:443>
+    ServerName your_domain_or_ip
+    DocumentRoot /var/www/your_domain_or_ip
+
+    SSLEngine on
+    SSLCertificateFile /etc/ssl/certs/apache-selfsigned.crt
+    SSLCertificateKeyFile /etc/ssl/private/apache-selfsigned.key
+    </VirtualHost>
+
+sudo apache2ctl configtest
+sudo systemctl reload apache2
+sudo ufw allow "Apache Full"
+
+sudo nano /etc/apache2/sites-available/your_domain_or_ip.conf
+
+    <VirtualHost *:80>
+        ServerName your_domain_or_ip
+        Redirect / https://your_domain_or_ip/
+    </VirtualHost>
+
+sudo apachectl configtest
+sudo systemctl reload apache2
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+fallstechdave@mmrxps17:~$ 
+fallstechdave@mmrxps17:~$ cd /etc/apache
+bash: cd: /etc/apache: No such file or directory
+fallstechdave@mmrxps17:~$ cd /etc/apache2/
+fallstechdave@mmrxps17:/etc/apache2$ 
+fallstechdave@mmrxps17:/etc/apache2$ ls -latr
+total 96
+-rw-r--r--   1 root root   320 Feb 23  2021 ports.conf
+-rw-r--r--   1 root root 31063 Feb 23  2021 magic
+-rw-r--r--   1 root root  1782 Feb 23  2021 envvars
+-rw-r--r--   1 root root  7224 Jun 14 09:30 apache2.conf
+drwxr-xr-x   8 root root  4096 Jul  1 07:10 .
+drwxr-xr-x   2 root root  4096 Jul  1 07:52 conf-available
+drwxr-xr-x   2 root root  4096 Jul  1 07:52 conf-enabled
+drwxr-xr-x   2 root root  4096 Jul  1 08:52 sites-enabled
+drwxr-xr-x   2 root root  4096 Jul  1 08:54 sites-available
+drwxr-xr-x   2 root root  4096 Jul  6 20:26 mods-enabled
+drwxr-xr-x 135 root root 12288 Jul  9 10:25 ..
+drwxr-xr-x   2 root root 12288 Jul 12 21:39 mods-available
+fallstechdave@mmrxps17:/etc/apache2$ 
+fallstechdave@mmrxps17:/etc/apache2$ ls -latr conf-available/ | tail
+total 32
+-rw-r--r-- 1 root root  127 Aug 11  2013 javascript-common.conf
+-rw-r--r-- 1 root root  455 Feb 23  2021 serve-cgi-bin.conf
+-rw-r--r-- 1 root root 2174 Feb 23  2021 security.conf
+-rw-r--r-- 1 root root  189 Feb 23  2021 other-vhosts-access-log.conf
+-rw-r--r-- 1 root root 3224 Feb 23  2021 localized-error-pages.conf
+-rw-r--r-- 1 root root  315 Feb 23  2021 charset.conf
+drwxr-xr-x 8 root root 4096 Jul  1 07:10 ..
+drwxr-xr-x 2 root root 4096 Jul  1 07:52 .
+fallstechdave@mmrxps17:/etc/apache2$ 
+fallstechdave@mmrxps17:/etc/apache2$ ls -latr sites-available/ | tail 
+total 28
+-rw-r--r-- 1 root          root          6338 Feb 23  2021 default-ssl.conf
+-rw-r--r-- 1 root          root          1332 Feb 23  2021 000-default.conf
+drwxr-xr-x 8 root          root          4096 Jul  1 07:10 ..
+-rw-r--r-- 1 root          root           239 Jul  1 07:37 wire.conf
+drwxr-xr-x 2 root          root          4096 Jul  1 08:54 .
+-rw-r--r-- 1 fallstechdave fallstechdave  545 Jul  1 10:45 wire5.conf
+fallstechdave@mmrxps17:/etc/apache2$ 
+fallstechdave@mmrxps17:/etc/apache2$ cat sites-available/wire5.conf
+<VirtualHost *:80>
+    ServerName localhost
+    PassengerDisableAnonymousTelemetry on
+    # Tell Apache and Passenger where your app's 'public' directory is
+    DocumentRoot /home/fallstechdave/railsprojects/wire5/public
+    PassengerRuby /home/fallstechdave/.rbenv/versions/3.1.2/bin/ruby
+    # Relax Apache security settings
+    <Directory /home/fallstechdave/railsprojects/wire5/public>
+      Allow from all
+      Options -MultiViews
+      # Uncomment this if you're on Apache > 2.4:
+      Require all granted
+    </Directory>
+</VirtualHost>
+fallstechdave@mmrxps17:/etc/apache2$ 
+fallstechdave@mmrxps17:/etc/apache2$ code .
+
+/etc/apache2/sites-available/wire5.conf
+
+<VirtualHost *:443>
+  ServerName 127.0.0.1
+  PassengerDisableAnonymousTelemetry on
+  # Tell Apache and Passenger where your app's 'public' directory is
+  DocumentRoot /home/fallstechdave/railsprojects/wire5/public
+  PassengerRuby /home/fallstechdave/.rbenv/versions/3.1.2/bin/ruby
+  SSLEngine on
+  SSLCertificateFile /etc/ssl/certs/apache-selfsigned.crt
+  SSLCertificateKeyFile /etc/ssl/private/apache-selfsigned.key
+
+  # Relax Apache security settings
+  <Directory /home/fallstechdave/railsprojects/wire5/public>
+    Allow from all
+    Options -MultiViews
+    # Uncomment this if you're on Apache > 2.4:
+    Require all granted
+  </Directory>
+</VirtualHost>
+
+<VirtualHost *:80>
+  ServerName 127.0.0.1
+  Redirect / https://127.0.0.1
+</VirtualHost>
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+fallstechdave@mmrxps17:~$ 
+fallstechdave@mmrxps17:~$ sudo a2enmod ssl
+Considering dependency setenvif for ssl:
+Module setenvif already enabled
+Considering dependency mime for ssl:
+Module mime already enabled
+Considering dependency socache_shmcb for ssl:
+Enabling module socache_shmcb.
+Enabling module ssl.
+See /usr/share/doc/apache2/README.Debian.gz on how to configure SSL and create self-signed certificates.
+To activate the new configuration, you need to run:
+  systemctl restart apache2
+fallstechdave@mmrxps17:~$ 
+fallstechdave@mmrxps17:~$ sudo systemctl restart apache2
+Job for apache2.service failed because the control process exited with error code.
+See "systemctl status apache2.service" and "journalctl -xe" for details.
+fallstechdave@mmrxps17:~$ 
+
+
+fallstechdave@mmrxps17:~$ 
+fallstechdave@mmrxps17:~$ sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/ssl/private/apache-selfsigned.key -out /etc/ssl/certs/apache-selfsigned.crt
+Generating a RSA private key
+..............................+++++
+.......................+++++
+writing new private key to '/etc/ssl/private/apache-selfsigned.key'
+-----
+You are about to be asked to enter information that will be incorporated
+into your certificate request.
+What you are about to enter is what is called a Distinguished Name or a DN.
+There are quite a few fields but you can leave some blank
+For some fields there will be a default value,
+If you enter '.', the field will be left blank.
+-----
+Country Name (2 letter code) [AU]:US
+State or Province Name (full name) [Some-State]:VA
+Locality Name (eg, city) []:Ashburn
+Organization Name (eg, company) [Internet Widgits Pty Ltd]:FallsTechnology
+Organizational Unit Name (eg, section) []:Software
+Common Name (e.g. server FQDN or YOUR name) []:127.0.0.1
+Email Address []:david.holberton@fallstechnology.com
+fallstechdave@mmrxps17:~$ 
+
+fallstechdave@mmrxps17:~$ 
+fallstechdave@mmrxps17:~$ ls -latr /etc/ssl/certs | tail
+lrwxrwxrwx 1 root root     26 Jun 30 08:37 e35234b1.0 -> Certum_Trusted_Root_CA.pem
+lrwxrwxrwx 1 root root     39 Jun 30 08:37 b81b93f0.0 -> AC_RAIZ_FNMT-RCM_SERVIDORES_SEGUROS.pem
+lrwxrwxrwx 1 root root     29 Jun 30 08:37 b433981b.0 -> ANF_Secure_Server_Root_CA.pem
+lrwxrwxrwx 1 root root     20 Jun 30 08:37 9482e63a.0 -> Certum_EC-384_CA.pem
+lrwxrwxrwx 1 root root     21 Jun 30 08:37 37268f71.0 -> ssl-cert-snakeoil.pem
+lrwxrwxrwx 1 root root     23 Jun 30 08:37 002c0b4f.0 -> GlobalSign_Root_R46.pem
+-rw-r--r-- 1 root root 195453 Jun 30 08:37 ca-certificates.crt
+drwxr-xr-x 4 root root   4096 Jul  6 15:58 ..
+-rw-r--r-- 1 root root   1497 Jul 13 06:36 apache-selfsigned.crt
+drwxr-xr-x 2 root root  16384 Jul 13 06:36 .
+fallstechdave@mmrxps17:~$ 
+fallstechdave@mmrxps17:~$ ls -latr /etc/ssl/private/ | tail
+ls: cannot open directory '/etc/ssl/private/': Permission denied
+fallstechdave@mmrxps17:~$ 
+fallstechdave@mmrxps17:~$ sudo ls -latr /etc/ssl/private/ | tail
+total 16
+-rw-r----- 1 root ssl-cert 1704 Jun 30 08:26 ssl-cert-snakeoil.key
+drwxr-xr-x 4 root root     4096 Jul  6 15:58 ..
+-rw------- 1 root root     1704 Jul 13 06:34 apache-selfsigned.key
+drwx--x--- 2 root ssl-cert 4096 Jul 13 06:34 .
+fallstechdave@mmrxps17:~$ 
+fallstechdave@mmrxps17:~$ sudo apachectl configtest
+WARNING: PassengerDisableAnonymousTelemetry cannot occur within <VirtualHost> section
+AH00558: apache2: Could not reliably determine the server's fully qualified domain name, using 127.0.1.1. Set the 'ServerName' directive globally to suppress this message
+Syntax OK
+fallstechdave@mmrxps17:~$ 
+fallstechdave@mmrxps17:~$ sudo systemctl restart apache2
+fallstechdave@mmrxps17:~$ 
+
+http://localhost/articles   ... redirects to URL https://127.0.0.1articles/   "Hmm. We’re having trouble finding that site."
+https://127.0.0.1/articles  ... "Warning: Potential Security Risk Ahead" ... "Advanced..." ... "Accept the Risk and Continue" ... works fine after that
+https://localhost/articles  ... "Warning: Potential Security Risk Ahead" ... "Advanced..." ... "Accept the Risk and Continue" ... works fine after that
+
+fallstechdave@mmrxps17:~$ sudo systemctl restart apache2
+fallstechdave@mmrxps17:~$ sudo apachectl configtest
+WARNING: PassengerDisableAnonymousTelemetry cannot occur within <VirtualHost> section
+AH00558: apache2: Could not reliably determine the server's fully qualified domain name, using 127.0.1.1. Set the 'ServerName' directive globally to suppress this message
+Syntax OK
+fallstechdave@mmrxps17:~$ 
+
+<VirtualHost *:443>
+  ServerName 127.0.0.1
+  PassengerDisableAnonymousTelemetry on
+  # Tell Apache and Passenger where your app's 'public' directory is
+  DocumentRoot /home/fallstechdave/railsprojects/wire5/public
+  PassengerRuby /home/fallstechdave/.rbenv/versions/3.1.2/bin/ruby
+  SSLEngine on
+  SSLCertificateFile /etc/ssl/certs/apache-selfsigned.crt
+  SSLCertificateKeyFile /etc/ssl/private/apache-selfsigned.key
+
+  # Relax Apache security settings
+  <Directory /home/fallstechdave/railsprojects/wire5/public>
+    Allow from all
+    Options -MultiViews
+    # Uncomment this if you're on Apache > 2.4:
+    Require all granted
+  </Directory>
+</VirtualHost>
+
+<VirtualHost *:80>
+  ServerName 127.0.0.1
+  Redirect / https://127.0.0.1/
+</VirtualHost>
+
+http://localhost/articles   ... redirects to URL https://127.0.0.1/articles
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+https://github.com/keycloak/keycloak-documentation/blob/main/securing_apps/topics/oidc/mod-auth-openidc.adoc
+
+An example configuration would look like the following.
+
+    LoadModule auth_openidc_module modules/mod_auth_openidc.so
+
+    ServerName ${HOSTIP}
+
+    <VirtualHost *:80>
+
+        ServerAdmin webmaster@localhost
+        DocumentRoot /var/www/html
+
+        #this is required by mod_auth_openidc
+        OIDCCryptoPassphrase a-random-secret-used-by-apache-oidc-and-balancer
+
+        OIDCProviderMetadataURL ${KC_ADDR}{kc_realms_path}/${KC_REALM}/.well-known/openid-configuration
+
+        OIDCClientID ${CLIENT_ID}
+        OIDCClientSecret ${CLIENT_SECRET}
+        OIDCRedirectURI http://${HOSTIP}/${CLIENT_APP_NAME}/redirect_uri
+
+        # maps the prefered_username claim to the REMOTE_USER environment variable
+        OIDCRemoteUserClaim preferred_username
+
+        <Location /${CLIENT_APP_NAME}/>
+            AuthType openid-connect
+            Require valid-user
+        </Location>
+    </VirtualHost>
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+https://github.com/zmartzone/mod_auth_openidc/wiki/Keycloak
+
+    OIDCProviderMetadataURL https://keycloak.example.net/auth/realms/Testrealm/.well-known/openid-configuration
+    OIDCRedirectURI https://myserver.example.not/oauth2callback
+    OIDCCryptoPassphrase 0123456789
+    OIDCClientID testclient
+    OIDCClientSecret ca446a2d-a65f-4e84-95a7-d20eb36989d8
+    # See https://github.com/Reposoft/openidc-keycloak-test/issues/7
+    OIDCProviderTokenEndpointAuth client_secret_basic
+
+    OIDCRemoteUserClaim email
+    OIDCScope "openid email"
+
+https://github.com/zmartzone/mod_auth_openidc/wiki/OAuth-2.0-Resource-Server#keycloak
+https://github.com/zmartzone/mod_auth_openidc/wiki/Keycloak
+https://github.com/Reposoft/openidc-keycloak-test
+https://github.com/Reposoft/openidc-keycloak-test/issues/7
+
+ls -latr /var/log/apache2
+code /var/log/apache2
+
+fallstechdave@mmrxps17:/var/log/apache2$ code .
+fallstechdave@mmrxps17:/var/log/apache2$ ls -latr /var/log/apache2
+total 160
+-rw-r-----  1 root adm     1226 Jul  1 08:41 access.log.1
+-rw-r-----  1 root adm      282 Jul  1 10:46 other_vhosts_access.log.3.gz
+-rw-r-----  1 root adm     7107 Jul  3 00:00 error.log.9.gz
+-rw-r-----  1 root adm        0 Jul  3 00:00 access.log
+-rw-r-----  1 root adm      422 Jul  3 00:00 error.log.8.gz
+-rw-r-----  1 root adm     1345 Jul  6 20:21 other_vhosts_access.log.2.gz
+-rw-r-----  1 root adm     5225 Jul  6 20:55 error.log.7.gz
+-rw-r-----  1 root adm     1310 Jul  7 09:05 error.log.6.gz
+-rw-r-----  1 root adm     1299 Jul  8 08:23 error.log.5.gz
+-rw-r-----  1 root adm     1502 Jul 10 00:00 error.log.4.gz
+-rw-r-----  1 root adm      360 Jul 10 08:35 other_vhosts_access.log.1
+-rw-r-----  1 root adm     1228 Jul 11 00:00 error.log.3.gz
+-rw-r-----  1 root adm      938 Jul 11 05:31 error.log.2.gz
+-rw-r-----  1 root adm    20580 Jul 12 21:58 error.log.1
+drwxr-x---  2 root adm     4096 Jul 13 06:07 .
+drwxrwxr-x 16 root syslog  4096 Jul 13 06:08 ..
+-rw-r-----  1 root adm    42229 Jul 13 08:24 error.log
+-rw-r-----  1 root adm    16761 Jul 13 08:24 other_vhosts_access.log
+fallstechdave@mmrxps17:/var/log/apache2$ 
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+fallstechdave@mmrxps17:/etc/apache2/mods-available$ date
+Wed 13 Jul 2022 08:35:55 AM EDT
+fallstechdave@mmrxps17:/etc/apache2/mods-available$ pwd -P
+/etc/apache2/mods-available
+fallstechdave@mmrxps17:/etc/apache2/mods-available$ ls -latr | tail
+-rw-r--r-- 1 root          root             56 Apr 26 14:02 md.load
+-rw-r--r-- 1 root          root           1240 Apr 26 14:02 http2.conf
+-rw-r--r-- 1 root          root            395 Apr 26 14:02 deflate.conf
+-rw-r--r-- 1 root          root             58 Apr 26 14:02 dav.load
+-rw-r--r-- 1 root          root             64 Apr 26 14:02 brotli.load
+-rw-r--r-- 1 root          root            206 May  8 14:50 passenger.load
+-rw-r--r-- 1 root          root            305 May  8 15:01 passenger.conf
+drwxr-xr-x 8 root          root           4096 Jul  1 07:10 ..
+drwxr-xr-x 2 root          root          12288 Jul 12 21:39 .
+-rw-r--r-- 1 fallstechdave fallstechdave  2890 Jul 13 08:17 auth_openidc.conf
+fallstechdave@mmrxps17:/etc/apache2/mods-available$ 
+fallstechdave@mmrxps17:/etc/apache2/mods-available$ cat auth_openidc.conf
+########################################################################################
+#
+# Common Settings
+#
+########################################################################################
+
+# (Mandatory)
+# The redirect_uri for this OpenID Connect client; this is a vanity URL
+# that must ONLY point to a path on your server protected by this module
+# but it must NOT point to any actual content that needs to be served.
+# You can use a relative URL like /protected/redirect_uri if you want to
+# support multiple vhosts that belong to the same security domain in a dynamic way
+#OIDCRedirectURI https://www.example.com/protected/redirect_uri
+OIDCRedirectURI https://www.example.com/protected/redirect_uri
+
+# (Mandatory)
+# Set a password for crypto purposes, this is used for:
+# - encryption of the (temporary) state cookie
+# - encryption of cache entries, that may include the session cookie, see: OIDCCacheEncrypt and OIDCSessionType
+# Note that an encrypted cache mechanism can be shared between servers if they use the same OIDCCryptoPassphrase
+# If the value begins with exec: the resulting command will be executed and the
+# first line returned to standard output by the program will be used as the password, e.g:
+#    OIDCCryptoPassphrase "exec:/bin/bash -c \"head /dev/urandom | tr -dc A-Za-z0-9 | head -c 32\""
+# (notice that the above typically only works in non-clustered environments)
+# The command may be absolute or relative to the web server root.
+#OIDCCryptoPassphrase [ <passphrase> | "exec:/path/to/otherProgram arg1" ]
+OIDCCryptoPassphrase myphrase
+
+#
+# All other entries below this are optional though some may be required in a
+# particular setup e.g. OAuth 2.0 Resource Server vs. OpenID Connect Relying Party
+#
+
+OIDCProviderMetadataURL https://keycloak.example.net/auth/realms/Testrealm/.well-known/openid-configuration
+OIDCRedirectURI https://localhost/oauth2callback
+OIDCCryptoPassphrase 0123456789
+OIDCClientID myclient
+OIDCClientSecret ca446a2d-a65f-4e84-95a7-d20eb36989d8
+# See https://github.com/Reposoft/openidc-keycloak-test/issues/7
+OIDCProviderTokenEndpointAuth client_secret_basic
+
+OIDCRemoteUserClaim email
+OIDCScope "openid email"
+
+
+    # issuer	"http://localhost:8080/realms/myrealm"
+    # authorization_endpoint	"http://localhost:8080/realms/myrealm/protocol/openid-connect/auth"
+    # token_endpoint	"http://localhost:8080/realms/myrealm/protocol/openid-connect/token"
+    # introspection_endpoint	"http://localhost:8080/realms/myrealm/protocol/openid-connect/token/introspect"
+    # userinfo_endpoint	"http://localhost:8080/realms/myrealm/protocol/openid-connect/userinfo"
+    # end_session_endpoint	"http://localhost:8080/realms/myrealm/protocol/openid-connect/logout"
+    # frontchannel_logout_session_supported	true
+    # frontchannel_logout_supported	true
+    # jwks_uri	"http://localhost:8080/realms/myrealm/protocol/openid-connect/certs"fallstechdave@mmrxps17:/etc/apache2/mods-available$ 
+
+fallstechdave@mmrxps17:/etc/apache2/mods-available$ 
+
+fallstechdave@mmrxps17:/etc/apache2/mods-available$ 
+fallstechdave@mmrxps17:/etc/apache2/mods-available$ date
+Wed 13 Jul 2022 08:44:56 AM EDT
+fallstechdave@mmrxps17:/etc/apache2/mods-available$ cat auth_openidc.conf
+########################################################################################
+#
+# Common Settings
+#
+########################################################################################
+
+# (Mandatory)
+# The redirect_uri for this OpenID Connect client; this is a vanity URL
+# that must ONLY point to a path on your server protected by this module
+# but it must NOT point to any actual content that needs to be served.
+# You can use a relative URL like /protected/redirect_uri if you want to
+# support multiple vhosts that belong to the same security domain in a dynamic way
+#OIDCRedirectURI https://www.example.com/protected/redirect_uri
+OIDCRedirectURI https://127.0.0.1/articles/redirect_uri
+
+# (Mandatory)
+# Set a password for crypto purposes, this is used for:
+# - encryption of the (temporary) state cookie
+# - encryption of cache entries, that may include the session cookie, see: OIDCCacheEncrypt and OIDCSessionType
+# Note that an encrypted cache mechanism can be shared between servers if they use the same OIDCCryptoPassphrase
+# If the value begins with exec: the resulting command will be executed and the
+# first line returned to standard output by the program will be used as the password, e.g:
+#    OIDCCryptoPassphrase "exec:/bin/bash -c \"head /dev/urandom | tr -dc A-Za-z0-9 | head -c 32\""
+# (notice that the above typically only works in non-clustered environments)
+# The command may be absolute or relative to the web server root.
+#OIDCCryptoPassphrase [ <passphrase> | "exec:/path/to/otherProgram arg1" ]
+OIDCCryptoPassphrase myphrase
+
+#
+# All other entries below this are optional though some may be required in a
+# particular setup e.g. OAuth 2.0 Resource Server vs. OpenID Connect Relying Party
+#
+
+OIDCProviderMetadataURL https://127.0.0.1/auth/realms/myrealm/.well-known/openid-configuration
+OIDCRedirectURI https://127.0.0.1/oauth2callback
+# OIDCCryptoPassphrase 0123456789
+OIDCClientID myclient
+OIDCClientSecret ca446a2d-a65f-4e84-95a7-d20eb36989d8
+# See https://github.com/Reposoft/openidc-keycloak-test/issues/7
+OIDCProviderTokenEndpointAuth client_secret_basic
+
+OIDCRemoteUserClaim email
+OIDCScope "openid email"
+
+
+    # issuer	"http://localhost:8080/realms/myrealm"
+    # authorization_endpoint	"http://localhost:8080/realms/myrealm/protocol/openid-connect/auth"
+    # token_endpoint	"http://localhost:8080/realms/myrealm/protocol/openid-connect/token"
+    # introspection_endpoint	"http://localhost:8080/realms/myrealm/protocol/openid-connect/token/introspect"
+    # userinfo_endpoint	"http://localhost:8080/realms/myrealm/protocol/openid-connect/userinfo"
+    # end_session_endpoint	"http://localhost:8080/realms/myrealm/protocol/openid-connect/logout"
+    # frontchannel_logout_session_supported	true
+    # frontchannel_logout_supported	true
+    # jwks_uri	"http://localhost:8080/realms/myrealm/protocol/openid-connect/certs"
+    
+fallstechdave@mmrxps17:/etc/apache2/mods-available$ 
+
+
+
+
