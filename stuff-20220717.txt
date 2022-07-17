@@ -1,0 +1,1017 @@
+Sun 17 Jul 2022 08:51:26 AM EDT
+
+fallstechdave@mmrxps17:~$ date
+Sun 17 Jul 2022 08:51:10 AM EDT
+fallstechdave@mmrxps17:~$ 
+fallstechdave@mmrxps17:~$ date > stuff-20220717.txt
+fallstechdave@mmrxps17:~$ code   stuff-20220717.txt
+fallstechdave@mmrxps17:~$ 
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+https://www.digitalocean.com/community/tutorials/how-to-set-up-a-firewall-with-ufw-on-ubuntu-18-04
+https://www.digitalocean.com/community/tutorials/how-to-set-up-a-firewall-with-ufw-on-ubuntu-20-04
+sudo ufw enable
+sudo ufw status verbose
+
+fallstechdave@mmrxps17:~$ sudo ufw status verbose
+[sudo] password for fallstechdave: 
+Status: inactive
+fallstechdave@mmrxps17:~$ 
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+https://www.keycloak.org/
+https://www.keycloak.org/getting-started/getting-started-zip
+
+Before you start
+Make sure you have OpenJDK 11 or newer installed.
+Download Keycloak
+First step is to download and extract keycloak-18.0.2.zip from the Keycloak website.
+After extracting you should have a directory named keycloak-18.0.2.
+Start Keycloak
+From a terminal open the directory keycloak-18.0.2, then to start Keycloak run the following command.
+On Linux run:
+bin/kc.sh start-dev
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+https://www.keycloak.org/getting-started/getting-started-docker
+
+Before you start
+Make sure you have Docker installed.
+Start Keycloak
+From a terminal start Keycloak with the following command:
+docker run -p 8080:8080 -e KEYCLOAK_ADMIN=admin -e KEYCLOAK_ADMIN_PASSWORD=admin quay.io/keycloak/keycloak:18.0.2 start-dev
+This will start Keycloak exposed on the local port 8080. It will also create an initial admin user with username admin and password admin.
+Login to the admin console
+Go to the Keycloak Admin Console and login with the username and password you created earlier.
+
+http://localhost:8080/admin
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+https://quarkus.io/guides/security-keycloak-authorization
+
+Clone the Git repository: git clone https://github.com/quarkusio/quarkus-quickstarts.git, or download an archive.
+The solution is located in the security-keycloak-authorization-quickstart directory.
+
+quarkus create app org.acme:security-keycloak-authorization-quickstart \
+    --extension=oidc,keycloak-authorization,resteasy-reactive-jackson \
+    --no-code
+cd security-keycloak-authorization-quickstart
+
+Configuring the application
+
+The OpenID Connect extension allows you to define the adapter configuration using the application.properties file which should be located at the src/main/resources directory.
+
+# OIDC Configuration
+%prod.quarkus.oidc.auth-server-url=https://localhost:8543/realms/quarkus
+quarkus.oidc.client-id=backend-service
+quarkus.oidc.credentials.secret=secret
+quarkus.oidc.tls.verification=none
+
+# Enable Policy Enforcement
+quarkus.keycloak.policy-enforcer.enable=true
+
+# Tell Dev Services for Keycloak to import the realm file
+# This property is not effective when running the application in JVM or Native modes
+quarkus.keycloak.devservices.realm-path=quarkus-realm.json
+
+Starting and Configuring the Keycloak Server
+	Do not start the Keycloak server when you run the application in a dev mode - Dev Services for Keycloak will launch a container. See Running the Application in Dev mode section below for more information.
+
+To start a Keycloak Server you can use Docker and just run the following command:
+
+docker run --name keycloak -e KEYCLOAK_ADMIN=admin -e KEYCLOAK_ADMIN_PASSWORD=admin -p 8543:8443 -v "$(pwd)"/config/keycloak-keystore.jks:/etc/keycloak-keystore.jks quay.io/keycloak/keycloak:{keycloak.version} start  --hostname-strict=false --https-key-store-file=/etc/keycloak-keystore.jks
+
+where keycloak.version should be set to 17.0.0 or higher.
+
+You should be able to access your Keycloak Server at localhost:8543.
+
+Log in as the admin user to access the Keycloak Administration Console. Username should be admin and password admin.
+
+Import the realm configuration file to create a new realm. For more details, see the Keycloak documentation about how to create a new realm.
+
+https://github.com/quarkusio/quarkus-quickstarts/tree/main/security-keycloak-authorization-quickstart/config/quarkus-realm.json
+
+After importing the realm you can see the resource permissions:
+
+export access_token=$(\
+    curl --insecure -X POST https://localhost:8543/realms/quarkus/protocol/openid-connect/token \
+    --user backend-service:secret \
+    -H 'content-type: application/x-www-form-urlencoded' \
+    -d 'username=alice&password=alice&grant_type=password' | jq --raw-output '.access_token' \
+ )
+
+
+
+
+
+
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+fallstechdave@mmrxps17:~/Downloads$ mv keycloak-18* keycloak
+fallstechdave@mmrxps17:~/Downloads$ ls -latr
+total 322888
+-rw-rw-r--  1 fallstechdave fallstechdave  83667280 Jun 30 08:41  code_1.68.1-1655263094_amd64.deb
+-rw-rw-r--  1 fallstechdave fallstechdave 117711933 Jun 30 08:42  code-1.68.1-1655263151.el7.x86_64.rpm
+-rw-rw-r--  1 fallstechdave fallstechdave 116922965 Jun 30 08:42  code-stable-x64-1655263335.tar.gz
+-rw-rw-r--  1 fallstechdave fallstechdave     18012 Jun 30 09:24  mysql-apt-config_0.8.22-1_all.deb
+-rw-rw-r--  1 fallstechdave fallstechdave    178948 Jul  6 08:47  libapache2-mod-auth-openidc_2.4.11.2-1.bionic+1_amd64.deb
+-rw-rw-r--  1 fallstechdave fallstechdave    182556 Jul  6 08:48  libapache2-mod-auth-openidc_2.4.11.2-1.bullseye+1_amd64.deb
+-rw-rw-r--  1 fallstechdave fallstechdave    181724 Jul  6 08:48  libapache2-mod-auth-openidc_2.4.11.2-1.buster+1_amd64.deb
+-rw-rw-r--  1 fallstechdave fallstechdave    180340 Jul  6 08:48  libapache2-mod-auth-openidc_2.4.11.2-1.focal+1_amd64.deb
+-rw-rw-r--  1 fallstechdave fallstechdave    442992 Jul  6 08:48  mod_auth_openidc-2.4.11.2-1.el7.x86_64.rpm
+-rw-rw-r--  1 fallstechdave fallstechdave    201832 Jul  6 08:48  mod_auth_openidc-2.4.11.2-1.el8.x86_64.rpm
+-rw-rw-r--  1 fallstechdave fallstechdave    599513 Jul  6 08:48  mod_auth_openidc-2.4.11.2.tar.gz
+-rw-rw-r--  1 fallstechdave fallstechdave    311947 Jul  6 08:48  mod_auth_openidc-2.4.11.2.zip
+-rw-rw-r--  1 fallstechdave fallstechdave      2030 Jul 12 21:08  keystore.jks
+-rw-rw-r--  1 fallstechdave fallstechdave      3416 Jul 15 14:21  myclient.json
+-rw-rw-r--  1 fallstechdave fallstechdave      3416 Jul 15 14:22 'myclient(1).json'
+-rw-rw-r--  1 fallstechdave fallstechdave      3470 Jul 15 14:54 'myclient(2).json'
+-rw-rw-r--  1 fallstechdave fallstechdave   9968335 Jul 15 16:52  h2-2022-06-13.zip
+drwxrwxr-x  3 fallstechdave fallstechdave      4096 Jul 15 17:00  h2-2022-06-13
+drwxr-xr-x 33 fallstechdave fallstechdave      4096 Jul 17 08:52  ..
+drwxrwxr-x  3 fallstechdave fallstechdave      4096 Jul 17 08:56  keycloak
+drwxr-xr-x  4 fallstechdave fallstechdave      4096 Jul 17 08:56  .
+fallstechdave@mmrxps17:~/Downloads$ 
+fallstechdave@mmrxps17:~/Downloads$ ls -latr keycloak/
+total 357484
+-rw-rw-r-- 1 fallstechdave fallstechdave 183063539 Jul 10 11:19 keycloak-18.0.2.zip
+-rw-rw-r-- 1 fallstechdave fallstechdave        40 Jul 10 11:19 keycloak-18.0.2.zip.sha1
+-rw-rw-r-- 1 fallstechdave fallstechdave 182976004 Jul 10 11:20 keycloak-18.0.2.tar.gz
+-rw-rw-r-- 1 fallstechdave fallstechdave        40 Jul 10 11:20 keycloak-18.0.2.tar.gz.sha1
+drwxrwxr-x 8 fallstechdave fallstechdave      4096 Jul 10 11:34 keycloak-18.0.2
+drwxr-xr-x 4 fallstechdave fallstechdave      4096 Jul 17 08:56 ..
+drwxrwxr-x 3 fallstechdave fallstechdave      4096 Jul 17 08:56 .
+fallstechdave@mmrxps17:~/Downloads$ 
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+fallstechdave@mmrxps17:~/Downloads$ 
+fallstechdave@mmrxps17:~/Downloads$ docker
+
+Command 'docker' not found, but can be installed with:
+
+sudo snap install docker     # version 20.10.14, or
+sudo apt  install docker.io  # version 20.10.12-0ubuntu2~20.04.1
+
+See 'snap info docker' for additional versions.
+
+fallstechdave@mmrxps17:~/Downloads$ sudo apt install docker.io
+[sudo] password for fallstechdave: 
+Reading package lists... Done
+Building dependency tree       
+Reading state information... Done
+The following packages were automatically installed and are no longer required:
+  chromium-codecs-ffmpeg-extra gstreamer1.0-vaapi libfwupdplugin1 libgstreamer-plugins-bad1.0-0 libnvidia-cfg1-510 libnvidia-common-510 libnvidia-decode-510 libnvidia-encode-510 libnvidia-extra-510
+  libnvidia-fbc1-510 libnvidia-gl-510 libva-wayland2 libx11-xcb1:i386 libxnvctrl0 nvidia-compute-utils-510 nvidia-kernel-source-510 nvidia-settings nvidia-utils-510 screen-resolution-extra
+  xserver-xorg-video-nvidia-510
+Use 'sudo apt autoremove' to remove them.
+The following additional packages will be installed:
+  bridge-utils containerd pigz runc ubuntu-fan
+Suggested packages:
+  ifupdown aufs-tools btrfs-progs cgroupfs-mount | cgroup-lite debootstrap docker-doc rinse zfs-fuse | zfsutils
+The following NEW packages will be installed:
+  bridge-utils containerd docker.io pigz runc ubuntu-fan
+0 upgraded, 6 newly installed, 0 to remove and 4 not upgraded.
+Need to get 68.9 MB of archives.
+After this operation, 333 MB of additional disk space will be used.
+Do you want to continue? [Y/n] y
+Get:1 http://us.archive.ubuntu.com/ubuntu focal/universe amd64 pigz amd64 2.4-1 [57.4 kB]
+Get:2 http://us.archive.ubuntu.com/ubuntu focal/main amd64 bridge-utils amd64 1.6-2ubuntu1 [30.5 kB]
+Get:3 http://us.archive.ubuntu.com/ubuntu focal-updates/main amd64 runc amd64 1.1.0-0ubuntu1~20.04.1 [3,892 kB]
+Get:4 http://us.archive.ubuntu.com/ubuntu focal-updates/main amd64 containerd amd64 1.5.9-0ubuntu1~20.04.4 [33.0 MB]
+Get:5 http://us.archive.ubuntu.com/ubuntu focal-updates/universe amd64 docker.io amd64 20.10.12-0ubuntu2~20.04.1 [31.8 MB]
+Get:6 http://us.archive.ubuntu.com/ubuntu focal-updates/main amd64 ubuntu-fan all 0.12.13ubuntu0.1 [34.4 kB]
+Fetched 68.9 MB in 1s (65.6 MB/s)      
+Preconfiguring packages ...
+Selecting previously unselected package pigz.
+(Reading database ... 229148 files and directories currently installed.)
+Preparing to unpack .../0-pigz_2.4-1_amd64.deb ...
+Unpacking pigz (2.4-1) ...
+Selecting previously unselected package bridge-utils.
+Preparing to unpack .../1-bridge-utils_1.6-2ubuntu1_amd64.deb ...
+Unpacking bridge-utils (1.6-2ubuntu1) ...
+Selecting previously unselected package runc.
+Preparing to unpack .../2-runc_1.1.0-0ubuntu1~20.04.1_amd64.deb ...
+Unpacking runc (1.1.0-0ubuntu1~20.04.1) ...
+Selecting previously unselected package containerd.
+Preparing to unpack .../3-containerd_1.5.9-0ubuntu1~20.04.4_amd64.deb ...
+Unpacking containerd (1.5.9-0ubuntu1~20.04.4) ...
+Selecting previously unselected package docker.io.
+Preparing to unpack .../4-docker.io_20.10.12-0ubuntu2~20.04.1_amd64.deb ...
+Unpacking docker.io (20.10.12-0ubuntu2~20.04.1) ...
+Selecting previously unselected package ubuntu-fan.
+Preparing to unpack .../5-ubuntu-fan_0.12.13ubuntu0.1_all.deb ...
+Unpacking ubuntu-fan (0.12.13ubuntu0.1) ...
+Setting up runc (1.1.0-0ubuntu1~20.04.1) ...
+Setting up bridge-utils (1.6-2ubuntu1) ...
+Setting up pigz (2.4-1) ...
+Setting up containerd (1.5.9-0ubuntu1~20.04.4) ...
+Created symlink /etc/systemd/system/multi-user.target.wants/containerd.service → /lib/systemd/system/containerd.service.
+Setting up ubuntu-fan (0.12.13ubuntu0.1) ...
+Created symlink /etc/systemd/system/multi-user.target.wants/ubuntu-fan.service → /lib/systemd/system/ubuntu-fan.service.
+Setting up docker.io (20.10.12-0ubuntu2~20.04.1) ...
+Adding group `docker' (GID 136) ...
+Done.
+Created symlink /etc/systemd/system/multi-user.target.wants/docker.service → /lib/systemd/system/docker.service.
+Created symlink /etc/systemd/system/sockets.target.wants/docker.socket → /lib/systemd/system/docker.socket.
+Processing triggers for systemd (245.4-4ubuntu3.17) ...
+Processing triggers for man-db (2.9.1-1) ...
+fallstechdave@mmrxps17:~/Downloads$ 
+fallstechdave@mmrxps17:~/Downloads$ docker -v
+Docker version 20.10.12, build 20.10.12-0ubuntu2~20.04.1
+fallstechdave@mmrxps17:~/Downloads$ 
+fallstechdave@mmrxps17:~/Downloads$ docker
+
+Usage:  docker [OPTIONS] COMMAND
+
+A self-sufficient runtime for containers
+
+Options:
+      --config string      Location of client config files (default "/home/fallstechdave/.docker")
+  -c, --context string     Name of the context to use to connect to the daemon (overrides DOCKER_HOST env var and default context set with "docker context use")
+  -D, --debug              Enable debug mode
+  -H, --host list          Daemon socket(s) to connect to
+  -l, --log-level string   Set the logging level ("debug"|"info"|"warn"|"error"|"fatal") (default "info")
+      --tls                Use TLS; implied by --tlsverify
+      --tlscacert string   Trust certs signed only by this CA (default "/home/fallstechdave/.docker/ca.pem")
+      --tlscert string     Path to TLS certificate file (default "/home/fallstechdave/.docker/cert.pem")
+      --tlskey string      Path to TLS key file (default "/home/fallstechdave/.docker/key.pem")
+      --tlsverify          Use TLS and verify the remote
+  -v, --version            Print version information and quit
+
+Management Commands:
+  builder     Manage builds
+  config      Manage Docker configs
+  container   Manage containers
+  context     Manage contexts
+  image       Manage images
+  manifest    Manage Docker image manifests and manifest lists
+  network     Manage networks
+  node        Manage Swarm nodes
+  plugin      Manage plugins
+  secret      Manage Docker secrets
+  service     Manage services
+  stack       Manage Docker stacks
+  swarm       Manage Swarm
+  system      Manage Docker
+  trust       Manage trust on Docker images
+  volume      Manage volumes
+
+Commands:
+  attach      Attach local standard input, output, and error streams to a running container
+  build       Build an image from a Dockerfile
+  commit      Create a new image from a container's changes
+  cp          Copy files/folders between a container and the local filesystem
+  create      Create a new container
+  diff        Inspect changes to files or directories on a container's filesystem
+  events      Get real time events from the server
+  exec        Run a command in a running container
+  export      Export a container's filesystem as a tar archive
+  history     Show the history of an image
+  images      List images
+  import      Import the contents from a tarball to create a filesystem image
+  info        Display system-wide information
+  inspect     Return low-level information on Docker objects
+  kill        Kill one or more running containers
+  load        Load an image from a tar archive or STDIN
+  login       Log in to a Docker registry
+  logout      Log out from a Docker registry
+  logs        Fetch the logs of a container
+  pause       Pause all processes within one or more containers
+  port        List port mappings or a specific mapping for the container
+  ps          List containers
+  pull        Pull an image or a repository from a registry
+  push        Push an image or a repository to a registry
+  rename      Rename a container
+  restart     Restart one or more containers
+  rm          Remove one or more containers
+  rmi         Remove one or more images
+  run         Run a command in a new container
+  save        Save one or more images to a tar archive (streamed to STDOUT by default)
+  search      Search the Docker Hub for images
+  start       Start one or more stopped containers
+  stats       Display a live stream of container(s) resource usage statistics
+  stop        Stop one or more running containers
+  tag         Create a tag TARGET_IMAGE that refers to SOURCE_IMAGE
+  top         Display the running processes of a container
+  unpause     Unpause all processes within one or more containers
+  update      Update configuration of one or more containers
+  version     Show the Docker version information
+  wait        Block until one or more containers stop, then print their exit codes
+
+Run 'docker COMMAND --help' for more information on a command.
+
+To get more help with docker, check out our guides at https://docs.docker.com/go/guides/
+fallstechdave@mmrxps17:~/Downloads$ 
+fallstechdave@mmrxps17:~/Downloads$ docker run --help
+
+Usage:  docker run [OPTIONS] IMAGE [COMMAND] [ARG...]
+
+Run a command in a new container
+
+Options:
+      --add-host list                  Add a custom host-to-IP mapping (host:ip)
+  -a, --attach list                    Attach to STDIN, STDOUT or STDERR
+      --blkio-weight uint16            Block IO (relative weight), between 10 and 1000, or 0 to disable (default 0)
+      --blkio-weight-device list       Block IO weight (relative device weight) (default [])
+      --cap-add list                   Add Linux capabilities
+      --cap-drop list                  Drop Linux capabilities
+      --cgroup-parent string           Optional parent cgroup for the container
+      --cgroupns string                Cgroup namespace to use (host|private)
+                                       'host':    Run the container in the Docker host's cgroup namespace
+                                       'private': Run the container in its own private cgroup namespace
+                                       '':        Use the cgroup namespace as configured by the
+                                                  default-cgroupns-mode option on the daemon (default)
+      --cidfile string                 Write the container ID to the file
+      --cpu-period int                 Limit CPU CFS (Completely Fair Scheduler) period
+      --cpu-quota int                  Limit CPU CFS (Completely Fair Scheduler) quota
+      --cpu-rt-period int              Limit CPU real-time period in microseconds
+      --cpu-rt-runtime int             Limit CPU real-time runtime in microseconds
+  -c, --cpu-shares int                 CPU shares (relative weight)
+      --cpus decimal                   Number of CPUs
+      --cpuset-cpus string             CPUs in which to allow execution (0-3, 0,1)
+      --cpuset-mems string             MEMs in which to allow execution (0-3, 0,1)
+  -d, --detach                         Run container in background and print container ID
+      --detach-keys string             Override the key sequence for detaching a container
+      --device list                    Add a host device to the container
+      --device-cgroup-rule list        Add a rule to the cgroup allowed devices list
+      --device-read-bps list           Limit read rate (bytes per second) from a device (default [])
+      --device-read-iops list          Limit read rate (IO per second) from a device (default [])
+      --device-write-bps list          Limit write rate (bytes per second) to a device (default [])
+      --device-write-iops list         Limit write rate (IO per second) to a device (default [])
+      --disable-content-trust          Skip image verification (default true)
+      --dns list                       Set custom DNS servers
+      --dns-option list                Set DNS options
+      --dns-search list                Set custom DNS search domains
+      --domainname string              Container NIS domain name
+      --entrypoint string              Overwrite the default ENTRYPOINT of the image
+  -e, --env list                       Set environment variables
+      --env-file list                  Read in a file of environment variables
+      --expose list                    Expose a port or a range of ports
+      --gpus gpu-request               GPU devices to add to the container ('all' to pass all GPUs)
+      --group-add list                 Add additional groups to join
+      --health-cmd string              Command to run to check health
+      --health-interval duration       Time between running the check (ms|s|m|h) (default 0s)
+      --health-retries int             Consecutive failures needed to report unhealthy
+      --health-start-period duration   Start period for the container to initialize before starting health-retries countdown (ms|s|m|h) (default 0s)
+      --health-timeout duration        Maximum time to allow one check to run (ms|s|m|h) (default 0s)
+      --help                           Print usage
+  -h, --hostname string                Container host name
+      --init                           Run an init inside the container that forwards signals and reaps processes
+  -i, --interactive                    Keep STDIN open even if not attached
+      --ip string                      IPv4 address (e.g., 172.30.100.104)
+      --ip6 string                     IPv6 address (e.g., 2001:db8::33)
+      --ipc string                     IPC mode to use
+      --isolation string               Container isolation technology
+      --kernel-memory bytes            Kernel memory limit
+  -l, --label list                     Set meta data on a container
+      --label-file list                Read in a line delimited file of labels
+      --link list                      Add link to another container
+      --link-local-ip list             Container IPv4/IPv6 link-local addresses
+      --log-driver string              Logging driver for the container
+      --log-opt list                   Log driver options
+      --mac-address string             Container MAC address (e.g., 92:d0:c6:0a:29:33)
+  -m, --memory bytes                   Memory limit
+      --memory-reservation bytes       Memory soft limit
+      --memory-swap bytes              Swap limit equal to memory plus swap: '-1' to enable unlimited swap
+      --memory-swappiness int          Tune container memory swappiness (0 to 100) (default -1)
+      --mount mount                    Attach a filesystem mount to the container
+      --name string                    Assign a name to the container
+      --network network                Connect a container to a network
+      --network-alias list             Add network-scoped alias for the container
+      --no-healthcheck                 Disable any container-specified HEALTHCHECK
+      --oom-kill-disable               Disable OOM Killer
+      --oom-score-adj int              Tune host's OOM preferences (-1000 to 1000)
+      --pid string                     PID namespace to use
+      --pids-limit int                 Tune container pids limit (set -1 for unlimited)
+      --platform string                Set platform if server is multi-platform capable
+      --privileged                     Give extended privileges to this container
+  -p, --publish list                   Publish a container's port(s) to the host
+  -P, --publish-all                    Publish all exposed ports to random ports
+      --pull string                    Pull image before running ("always"|"missing"|"never") (default "missing")
+      --read-only                      Mount the container's root filesystem as read only
+      --restart string                 Restart policy to apply when a container exits (default "no")
+      --rm                             Automatically remove the container when it exits
+      --runtime string                 Runtime to use for this container
+      --security-opt list              Security Options
+      --shm-size bytes                 Size of /dev/shm
+      --sig-proxy                      Proxy received signals to the process (default true)
+      --stop-signal string             Signal to stop a container (default "SIGTERM")
+      --stop-timeout int               Timeout (in seconds) to stop a container
+      --storage-opt list               Storage driver options for the container
+      --sysctl map                     Sysctl options (default map[])
+      --tmpfs list                     Mount a tmpfs directory
+  -t, --tty                            Allocate a pseudo-TTY
+      --ulimit ulimit                  Ulimit options (default [])
+  -u, --user string                    Username or UID (format: <name|uid>[:<group|gid>])
+      --userns string                  User namespace to use
+      --uts string                     UTS namespace to use
+  -v, --volume list                    Bind mount a volume
+      --volume-driver string           Optional volume driver for the container
+      --volumes-from list              Mount volumes from the specified container(s)
+  -w, --workdir string                 Working directory inside the container
+fallstechdave@mmrxps17:~/Downloads$ 
+fallstechdave@mmrxps17:~/Downloads$ 
+
+
+= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
+
+https://quarkus.io/
+
+A Kubernetes Native Java stack tailored for OpenJDK HotSpot and GraalVM, crafted from the best of breed Java libraries and standards.
+
+Now Available
+Quarkus 2.10.2
+
+Read the release notes
+
+https://quarkus.io/get-started/
+
+Step 1
+Install via Command Line Interface
+
+Open your favorite terminal and use JBang to install the Quarkus CLI. You do not need to have Java installed first.
+For Linux, macOS, and Windows (using WSL or bash compatible shell like Cygwin or MinGW)
+
+curl -Ls https://sh.jbang.dev | bash -s - trust add https://repo1.maven.org/maven2/io/quarkus/quarkus-cli/
+curl -Ls https://sh.jbang.dev | bash -s - app install --fresh --force quarkus@quarkusio
+
+If it's your first time to install, you'll need to restart your shell.
+Or, you can also install the CLI with SDKMAN!
+
+sdk install quarkus
+
+Step 2
+Create the Getting Started Application
+
+Run this script in your CLI:
+
+quarkus create && cd code-with-quarkus
+
+Step 3
+Run the Getting Started Application
+
+Run this script in your CLI:
+
+quarkus dev
+
+Boom! Your Quarkus app is now running at localhost:8080
+
+= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
+
+fallstechdave@mmrxps17:~/Downloads$ sdk list quarkus
+fallstechdave@mmrxps17:~/Downloads$ 
+
+================================================================================
+Available Quarkus Versions
+================================================================================
+     2.10.2.Final        2.7.1.Final                                            
+     2.10.1.Final        2.7.0.Final                                            
+     2.10.0.Final        2.6.3.Final                                            
+     2.9.2.Final         2.6.2.Final                                            
+     2.9.1.Final                                                                
+     2.9.0.Final                                                                
+     2.8.3.Final                                                                
+     2.8.2.Final                                                                
+     2.8.1.Final                                                                
+     2.8.0.Final                                                                
+     2.7.6.Final                                                                
+     2.7.5.Final                                                                
+     2.7.4.Final                                                                
+     2.7.3.Final                                                                
+     2.7.2.Final                                                                
+
+================================================================================
++ - local version
+* - installed
+> - currently in use
+================================================================================
+
+fallstechdave@mmrxps17:~/Downloads$ 
+fallstechdave@mmrxps17:~/Downloads$ sdk current
+
+Using:
+
+grails: 2.5.4
+groovy: 4.0.3
+java: 17.0.3-tem
+fallstechdave@mmrxps17:~/Downloads$ 
+fallstechdave@mmrxps17:~/Downloads$ sdk install quarkus
+
+Downloading: quarkus 2.10.2.Final
+
+In progress...
+
+#################################################################################################################################################################################################### 100.0%
+
+Installing: quarkus 2.10.2.Final
+Done installing!
+
+Setting quarkus 2.10.2.Final as default.
+fallstechdave@mmrxps17:~/Downloads$ 
+fallstechdave@mmrxps17:~/Downloads$ sdk current
+
+Using:
+
+grails: 2.5.4
+groovy: 4.0.3
+java: 17.0.3-tem
+quarkus: 2.10.2.Final
+fallstechdave@mmrxps17:~/Downloads$ 
+fallstechdave@mmrxps17:~/Downloads$ quarkus --version
+2.10.2.Final
+fallstechdave@mmrxps17:~/Downloads$ 
+
+= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
+
+allstechdave@mmrxps17:~/quarkusprojects$ 
+fallstechdave@mmrxps17:~/quarkusprojects$ quarkus create app org.acme:security-keycloak-authorization-quickstart \
+>     --extension=oidc,keycloak-authorization,resteasy-reactive-jackson \
+>     --no-code
+Looking for the newly published extensions in registry.quarkus.io
+-----------
+selected extensions: 
+- io.quarkus:quarkus-resteasy-reactive-jackson
+- io.quarkus:quarkus-oidc
+- io.quarkus:quarkus-keycloak-authorization
+
+
+applying codestarts...
+📚  java
+🔨  maven
+📦  quarkus
+📝  config-properties
+🔧  dockerfiles
+🔧  maven-wrapper
+
+-----------
+[SUCCESS] ✅  quarkus project has been successfully generated in:
+--> /home/fallstechdave/quarkusprojects/security-keycloak-authorization-quickstart
+-----------
+Navigate into this directory and get started: quarkus dev
+fallstechdave@mmrxps17:~/quarkusprojects$ cd security-keycloak-authorization-quickstart
+fallstechdave@mmrxps17:~/quarkusprojects/security-keycloak-authorization-quickstart$ 
+fallstechdave@mmrxps17:~/quarkusprojects/security-keycloak-authorization-quickstart$ 
+
+= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
+
+fallstechdave@mmrxps17:~/quarkusprojects$ 
+fallstechdave@mmrxps17:~/quarkusprojects$ quarkus create && cd code-with-quarkus
+Creating an app (default project type, see --help).
+-----------
+
+applying codestarts...
+📚  java
+🔨  maven
+📦  quarkus
+📝  config-properties
+🔧  dockerfiles
+🔧  maven-wrapper
+🚀  resteasy-reactive-codestart
+
+-----------
+[SUCCESS] ✅  quarkus project has been successfully generated in:
+--> /home/fallstechdave/quarkusprojects/code-with-quarkus
+-----------
+Navigate into this directory and get started: quarkus dev
+fallstechdave@mmrxps17:~/quarkusprojects/code-with-quarkus$ 
+fallstechdave@mmrxps17:~/quarkusprojects/code-with-quarkus$ quarkus dev
+--2022-07-17 09:53:08--  https://repo.maven.apache.org/maven2/org/apache/maven/wrapper/maven-wrapper/3.1.0/maven-wrapper-3.1.0.jar
+Resolving repo.maven.apache.org (repo.maven.apache.org)... 199.232.192.215, 199.232.196.215
+Connecting to repo.maven.apache.org (repo.maven.apache.org)|199.232.192.215|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 58727 (57K) [application/java-archive]
+Saving to: ‘/home/fallstechdave/quarkusprojects/code-with-quarkus/.mvn/wrapper/maven-wrapper.jar’
+
+/home/fallstechdave/quarkusprojects/code-with-quar 100%[===============================================================================================================>]  57.35K  --.-KB/s    in 0.006s  
+
+2022-07-17 09:53:08 (8.66 MB/s) - ‘/home/fallstechdave/quarkusprojects/code-with-quarkus/.mvn/wrapper/maven-wrapper.jar’ saved [58727/58727]
+
+[INFO] Scanning for projects...
+Downloading from central: https://repo.maven.apache.org/maven2/io/quarkus/platform/quarkus-maven-plugin/2.10.2.Final/quarkus-maven-plugin-2.10.2.Final.pom
+Downloaded from central: https://repo.maven.apache.org/maven2/io/quarkus/platform/quarkus-maven-plugin/2.10.2.Final/quarkus-maven-plugin-2.10.2.Final.pom (6.9 kB at 95 kB/s)
+Downloading from central: https://repo.maven.apache.org/maven2/io/quarkus/platform/quarkus-platform-parent/2.10.2.Final/quarkus-platform-parent-2.10.2.Final.pom
+Downloaded from central: https://repo.maven.apache.org/maven2/io/quarkus/platform/quarkus-platform-parent/2.10.2.Final/quarkus-platform-parent-2.10.2.Final.pom (2.2 kB at 112 kB/s)
+Downloading from central: https://repo.maven.apache.org/maven2/io/quarkus/platform/quarkus-platform-config/2.10.2.Final/quarkus-platform-config-2.10.2.Final.pom
+Downloaded from central: https://repo.maven.apache.org/maven2/io/quarkus/platform/quarkus-platform-config/2.10.2.Final/quarkus-platform-config-2.10.2.Final.pom (54 kB at 1.8 MB/s)
+Downloading from central: https://repo.maven.apache.org/maven2/org/jboss/jboss-parent/36/jboss-parent-36.pom
+Downloaded from central: https://repo.maven.apache.org/maven2/org/jboss/jboss-parent/36/jboss-parent-36.pom (66 kB at 1.8 MB/s)
+Downloading from central: https://repo.maven.apache.org/maven2/io/quarkus/platform/quarkus-bom/2.10.2.Final/quarkus-bom-2.10.2.Final.pom
+Downloaded from central: https://repo.maven.apache.org/maven2/io/quarkus/platform/quarkus-bom/2.10.2.Final/quarkus-bom-2.10.2.Final.pom (342 kB at 8.2 MB/s)
+Downloading from central: https://repo.maven.apache.org/maven2/io/quarkus/quarkus-bootstrap-core/2.10.2.Final/quarkus-bootstrap-core-2.10.2.Final.pom
+Downloaded from central: https://repo.maven.apache.org/maven2/io/quarkus/quarkus-bootstrap-core/2.10.2.Final/quarkus-bootstrap-core-2.10.2.Final.pom (3.9 kB at 169 kB/s)
+Downloading from central: https://repo.maven.apache.org/maven2/io/quarkus/quarkus-bootstrap-parent/2.10.2.Final/quarkus-bootstrap-parent-2.10.2.Final.pom
+Downloaded from central: https://repo.maven.apache.org/maven2/io/quarkus/quarkus-bootstrap-parent/2.10.2.Final/quarkus-bootstrap-parent-2.10.2.Final.pom (26 kB at 992 kB/s)
+Downloading from central: https://repo.maven.apache.org/maven2/org/jboss/jboss-parent/39/jboss-parent-39.pom
+
+... lots of lines omitted here ...
+
+Downloading from central: https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-compiler-javac/2.8.4/plexus-compiler-javac-2.8.4.jar
+Downloaded from central: https://repo.maven.apache.org/maven2/com/thoughtworks/qdox/qdox/2.0-M9/qdox-2.0-M9.jar (317 kB at 3.0 MB/s)
+Downloaded from central: https://repo.maven.apache.org/maven2/org/ow2/asm/asm/6.2/asm-6.2.jar (111 kB at 1.0 MB/s)
+Downloaded from central: https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-compiler-api/2.8.4/plexus-compiler-api-2.8.4.jar (27 kB at 246 kB/s)
+Downloaded from central: https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-compiler-manager/2.8.4/plexus-compiler-manager-2.8.4.jar (4.7 kB at 38 kB/s)
+Downloaded from central: https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-compiler-javac/2.8.4/plexus-compiler-javac-2.8.4.jar (21 kB at 166 kB/s)
+[INFO] Changes detected - recompiling the module!
+[INFO] Compiling 1 source file to /home/fallstechdave/quarkusprojects/code-with-quarkus/target/classes
+[INFO] Invoking org.apache.maven.plugins:maven-resources-plugin:2.6:testResources) @ code-with-quarkus
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] skip non existing resourceDirectory /home/fallstechdave/quarkusprojects/code-with-quarkus/src/test/resources
+[INFO] Invoking io.quarkus.platform:quarkus-maven-plugin:2.10.2.Final:generate-code-tests) @ code-with-quarkus
+[INFO] Invoking org.apache.maven.plugins:maven-compiler-plugin:3.8.1:testCompile) @ code-with-quarkus
+[INFO] Changes detected - recompiling the module!
+[INFO] Compiling 2 source files to /home/fallstechdave/quarkusprojects/code-with-quarkus/target/test-classes
+Listening for transport dt_socket at address: 5005
+__  ____  __  _____   ___  __ ____  ______ 
+ --/ __ \/ / / / _ | / _ \/ //_/ / / / __/ 
+ -/ /_/ / /_/ / __ |/ , _/ ,< / /_/ /\ \   
+--\___\_\____/_/ |_/_/|_/_/|_|\____/___/   
+2022-07-17 09:53:28,412 INFO  [io.quarkus] (Quarkus Main Thread) code-with-quarkus 1.0.0-SNAPSHOT on JVM (powered by Quarkus 2.10.2.Final) started in 0.966s. Listening on: http://localhost:8080
+
+2022-07-17 09:53:28,419 INFO  [io.quarkus] (Quarkus Main Thread) Profile dev activated. Live Coding activated.
+2022-07-17 09:53:28,420 INFO  [io.quarkus] (Quarkus Main Thread) Installed features: [cdi, resteasy-reactive, smallrye-context-propagation, vertx]
+
+--
+Tests paused
+Press [r] to resume testing, [o] Toggle test output, [:] for the terminal, [h] for more options>
+
+http://localhost:8080/
+
+Congratulations!
+Application
+
+    GroupId: org.acme
+    ArtifactId: code-with-quarkus
+    Version: 1.0.0-SNAPSHOT
+    Quarkus Version: 2.10.2.Final
+
+You just made a Quarkus application.
+
+This page is served by Quarkus.
+
+http://localhost:8080/q/dev/
+
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  04:33 min
+[INFO] Finished at: 2022-07-17T09:57:42-04:00
+[INFO] ------------------------------------------------------------------------
+fallstechdave@mmrxps17:~/quarkusprojects/code-with-quarkus$ 
+
+= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
+
+docker run -p 8080:8080 -e KEYCLOAK_ADMIN=admin -e KEYCLOAK_ADMIN_PASSWORD=admin quay.io/keycloak/keycloak:18.0.2 start-dev
+
+docker run --name keycloak -e KEYCLOAK_ADMIN=admin -e KEYCLOAK_ADMIN_PASSWORD=admin -p 8543:8443 -v "$(pwd)"/config/keycloak-keystore.jks:/etc/keycloak-keystore.jks quay.io/keycloak/keycloak:18.0.2 start  --hostname-strict=false --https-key-store-file=/etc/keycloak-keystore.jks
+
+where keycloak.version should be set to 17.0.0 or higher.
+
+You should be able to access your Keycloak Server at localhost:8543.
+
+/home/fallstechdave/repositories/quarkus-quickstarts/security-keycloak-authorization-quickstart/
+/home/fallstechdave/repositories/quarkus-quickstarts/security-keycloak-authorization-quickstart/config/quarkus-realm.json
+
+cd /home/fallstechdave/repositories/quarkus-quickstarts/security-keycloak-authorization-quickstart/
+docker run --name keycloak -e KEYCLOAK_ADMIN=admin -e KEYCLOAK_ADMIN_PASSWORD=admin -p 8543:8443 -v "$(pwd)"/config/keycloak-keystore.jks:/etc/keycloak-keystore.jks quay.io/keycloak/keycloak:18.0.2 start  --hostname-strict=false --https-key-store-file=/etc/keycloak-keystore.jks
+
+
+fallstechdave@mmrxps17:~/repositories/quarkus-quickstarts/security-keycloak-authorization-quickstart$ 
+fallstechdave@mmrxps17:~/repositories/quarkus-quickstarts/security-keycloak-authorization-quickstart$ docker run --name keycloak -e KEYCLOAK_ADMIN=admin -e KEYCLOAK_ADMIN_PASSWORD=admin -p 8543:8443 -v "$(pwd)"/config/keycloak-keystore.jks:/etc/keycloak-keystore.jks quay.io/keycloak/keycloak:18.0.2 start  --hostname-strict=false --https-key-store-file=/etc/keycloak-keystore.jks
+docker: Got permission denied while trying to connect to the Docker daemon socket at unix:///var/run/docker.sock: Post "http://%2Fvar%2Frun%2Fdocker.sock/v1.24/containers/create?name=keycloak": dial unix /var/run/docker.sock: connect: permission denied.
+See 'docker run --help'.
+
+fallstechdave@mmrxps17:~/repositories/quarkus-quickstarts/security-keycloak-authorization-quickstart$ sudo docker run --name keycloak -e KEYCLOAK_ADMIN=admin -e KEYCLOAK_ADMIN_PASSWORD=admin -p 8543:8443 -v "$(pwd)"/config/keycloak-keystore.jks:/etc/keycloak-keystore.jks quay.io/keycloak/keycloak:18.0.2 start  --hostname-strict=false --https-key-store-file=/etc/keycloak-keystore.jks
+[sudo] password for fallstechdave: 
+Unable to find image 'quay.io/keycloak/keycloak:18.0.2' locally
+18.0.2: Pulling from keycloak/keycloak
+6963f872abfa: Pull complete 
+3dbfdcfb8c04: Pull complete 
+8ad940a6151a: Pull complete 
+59d776764424: Pull complete 
+Digest: sha256:b4841a7b8401fd209bfcddf10773cdfa7c7cfde4bf7e87780663226be5587ee2
+Status: Downloaded newer image for quay.io/keycloak/keycloak:18.0.2
+2022-07-17 14:16:00,879 INFO  [org.keycloak.quarkus.runtime.hostname.DefaultHostnameProvider] (main) Hostname settings: FrontEnd: <request>, Strict HTTPS: true, Path: <request>, Strict BackChannel: false, Admin: <request>, Port: -1, Proxied: false
+2022-07-17 14:16:01,300 WARN  [org.infinispan.PERSISTENCE] (keycloak-cache-init) ISPN000554: jboss-marshalling is deprecated and planned for removal
+2022-07-17 14:16:01,326 WARN  [org.infinispan.CONFIG] (keycloak-cache-init) ISPN000569: Unable to persist Infinispan internal caches as no global state enabled
+2022-07-17 14:16:01,361 INFO  [org.infinispan.CONTAINER] (keycloak-cache-init) ISPN000556: Starting user marshaller 'org.infinispan.jboss.marshalling.core.JBossUserMarshaller'
+2022-07-17 14:16:01,470 INFO  [org.infinispan.CONTAINER] (keycloak-cache-init) ISPN000128: Infinispan version: Infinispan 'Triskaidekaphobia' 13.0.9.Final
+2022-07-17 14:16:01,558 INFO  [org.infinispan.CLUSTER] (keycloak-cache-init) ISPN000078: Starting JGroups channel `ISPN`
+2022-07-17 14:16:01,558 INFO  [org.infinispan.CLUSTER] (keycloak-cache-init) ISPN000088: Unable to use any JGroups configuration mechanisms provided in properties {}. Using default JGroups configuration!
+2022-07-17 14:16:01,606 WARN  [org.jgroups.protocols.UDP] (keycloak-cache-init) JGRP000015: the send buffer of socket MulticastSocket was set to 1.00MB, but the OS only allocated 212.99KB
+2022-07-17 14:16:01,606 WARN  [org.jgroups.protocols.UDP] (keycloak-cache-init) JGRP000015: the receive buffer of socket MulticastSocket was set to 20.00MB, but the OS only allocated 212.99KB
+2022-07-17 14:16:01,606 WARN  [org.jgroups.protocols.UDP] (keycloak-cache-init) JGRP000015: the send buffer of socket MulticastSocket was set to 1.00MB, but the OS only allocated 212.99KB
+2022-07-17 14:16:01,606 WARN  [org.jgroups.protocols.UDP] (keycloak-cache-init) JGRP000015: the receive buffer of socket MulticastSocket was set to 25.00MB, but the OS only allocated 212.99KB
+2022-07-17 14:16:02,157 INFO  [org.keycloak.quarkus.runtime.storage.database.liquibase.QuarkusJpaUpdaterProvider] (main) Initializing database schema. Using changelog META-INF/jpa-changelog-master.xml
+2022-07-17 14:16:03,611 INFO  [org.jgroups.protocols.pbcast.GMS] (keycloak-cache-init) a2d11171cef7-16561: no members discovered after 2002 ms: creating cluster as coordinator
+2022-07-17 14:16:03,618 INFO  [org.infinispan.CLUSTER] (keycloak-cache-init) ISPN000094: Received new cluster view for channel ISPN: [a2d11171cef7-16561|0] (1) [a2d11171cef7-16561]
+2022-07-17 14:16:03,621 INFO  [org.infinispan.CLUSTER] (keycloak-cache-init) ISPN000079: Channel `ISPN` local address is `a2d11171cef7-16561`, physical addresses are `[172.17.0.2:49047]`
+2022-07-17 14:16:04,045 INFO  [org.keycloak.connections.infinispan.DefaultInfinispanConnectionProviderFactory] (main) Node name: a2d11171cef7-16561, Site name: null
+2022-07-17 14:16:04,113 INFO  [org.keycloak.services] (main) KC-SERVICES0050: Initializing master realm
+2022-07-17 14:16:05,007 INFO  [org.keycloak.services] (main) KC-SERVICES0009: Added user 'admin' to realm 'master'
+2022-07-17 14:16:05,144 INFO  [io.quarkus] (main) Keycloak 18.0.2 on JVM (powered by Quarkus 2.7.5.Final) started in 5.570s. Listening on: https://0.0.0.0:8443
+2022-07-17 14:16:05,144 INFO  [io.quarkus] (main) Profile prod activated. 
+2022-07-17 14:16:05,144 INFO  [io.quarkus] (main) Installed features: [agroal, cdi, hibernate-orm, jdbc-h2, jdbc-mariadb, jdbc-mssql, jdbc-mysql, jdbc-oracle, jdbc-postgresql, keycloak, narayana-jta, reactive-routes, resteasy, resteasy-jackson, smallrye-context-propagation, smallrye-health, smallrye-metrics, vault, vertx]
+
+
+fallstechdave@mmrxps17:~/repositories/quarkus-quickstarts/security-keycloak-authorization-quickstart$ 
+fallstechdave@mmrxps17:~/repositories/quarkus-quickstarts/security-keycloak-authorization-quickstart$ sudo docker run --name keycloak -e KEYCLOAK_ADMIN=admin -e KEYCLOAK_ADMIN_PASSWORD=admin -p 8543:8443 -v "$(pwd)"/config/keycloak-keystore.jks:/etc/keycloak-keystore.jks quay.io/keycloak/keycloak:18.0.2 start  --hostname-strict=false --https-key-store-file=/etc/keycloak-keystore.jks
+[sudo] password for fallstechdave: 
+docker: Error response from daemon: Conflict. The container name "/keycloak" is already in use by container "a2d11171cef746302f8a40b38c8247ce6697c1e50b495624c16f5902cac4f28d". You have to remove (or rename) that container to be able to reuse that name.
+See 'docker run --help'.
+fallstechdave@mmrxps17:~/repositories/quarkus-quickstarts/security-keycloak-authorization-quickstart$ sudo run keycloak -p 8543:8443
+sudo: run: command not found
+fallstechdave@mmrxps17:~/repositories/quarkus-quickstarts/security-keycloak-authorization-quickstart$ sudo docker run keycloak -p 8543:8443
+Unable to find image 'keycloak:latest' locally
+docker: Error response from daemon: pull access denied for keycloak, repository does not exist or may require 'docker login': denied: requested access to the resource is denied.
+See 'docker run --help'.
+fallstechdave@mmrxps17:~/repositories/quarkus-quickstarts/security-keycloak-authorization-quickstart$ 
+
+sudo docker run --name keycloak -e KEYCLOAK_ADMIN=admin -e KEYCLOAK_ADMIN_PASSWORD=admin -p 8543:8443 -v "$(pwd)"/config/keycloak-keystore.jks:/etc/keycloak-keystore.jks quay.io/keycloak/keycloak:18.0.2 start  --hostname-strict=false --https-key-store-file=/etc/keycloak-keystore.jks
+
+sudo docker run -e KEYCLOAK_ADMIN=admin -e KEYCLOAK_ADMIN_PASSWORD=admin -p 8543:8443 -v "$(pwd)"/config/keycloak-keystore.jks:/etc/keycloak-keystore.jks quay.io/keycloak/keycloak:18.0.2 start  --hostname-strict=false --https-key-store-file=/etc/keycloak-keystore.jks
+
+= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
+
+curl -vvv --insecure -X POST http://localhost:8080/realms/quarkus/protocol/openid-connect/token \
+> --user backend-service:secret \
+> -H 'content-type: application/x-www-form-urlencoded' \
+> -d 'username=admin&password=admin&grant_type=password' 
+
+fallstechdave@mmrxps17:~$ 
+fallstechdave@mmrxps17:~$ curl -vvv --insecure -X POST http://localhost:8080/realms/quarkus/protocol/openid-connect/token \
+> --user backend-service:secret \
+> -H 'content-type: application/x-www-form-urlencoded' \
+> -d 'username=admin&password=admin&grant_type=password' 
+Note: Unnecessary use of -X or --request, POST is already inferred.
+*   Trying 127.0.0.1:8080...
+* TCP_NODELAY set
+* Connected to localhost (127.0.0.1) port 8080 (#0)
+* Server auth using Basic with user 'backend-service'
+> POST /realms/quarkus/protocol/openid-connect/token HTTP/1.1
+> Host: localhost:8080
+> Authorization: Basic YmFja2VuZC1zZXJ2aWNlOnNlY3JldA==
+> User-Agent: curl/7.68.0
+> Accept: */*
+> content-type: application/x-www-form-urlencoded
+> Content-Length: 49
+> 
+* upload completely sent off: 49 out of 49 bytes
+* Mark bundle as not supporting multiuse
+< HTTP/1.1 200 OK
+< Referrer-Policy: no-referrer
+< X-Frame-Options: SAMEORIGIN
+< Strict-Transport-Security: max-age=31536000; includeSubDomains
+< Cache-Control: no-store
+< X-Content-Type-Options: nosniff
+< Set-Cookie: KEYCLOAK_LOCALE=; Version=1; Comment=Expiring cookie; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Max-Age=0; Path=/realms/quarkus/; HttpOnly
+< Set-Cookie: KC_RESTART=; Version=1; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Max-Age=0; Path=/realms/quarkus/; HttpOnly
+< Pragma: no-cache
+< X-XSS-Protection: 1; mode=block
+< Content-Type: application/json
+< content-length: 1882
+< 
+{"access_token":"eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJjZklBRE5feHhDSm1Wa1d5Ti1QTlhFRXZNVVdzMnI2OEN4dG1oRUROelhVIn0.eyJleHAiOjE2NTgwNzExMDUsImlhdCI6MTY1ODA3MDgwNSwianRpIjoiODkwNjc4ZTItZDZkMS00NGU1LTk4ZGMtYmJjNWVkNTczN2FkIiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo4MDgwL3JlYWxtcy9xdWFya3VzIiwic3ViIjoiYWYxMzRjYWItZjQxYy00Njc1LWIxNDEtMjA1Zjk3NWRiNjc5IiwidHlwIjoiQmVhcmVyIiwiYXpwIjoiYmFja2VuZC1zZXJ2aWNlIiwic2Vzc2lvbl9zdGF0ZSI6IjUzZjJmZWQxLTUyOWQtNDhkMi1hMTE2LTU0Y2M4N2Y3NmQ0ZSIsInJlYWxtX2FjY2VzcyI6eyJyb2xlcyI6WyJhZG1pbiIsInVzZXIiXX0sInNjb3BlIjoiZW1haWwgcHJvZmlsZSIsInNpZCI6IjUzZjJmZWQxLTUyOWQtNDhkMi1hMTE2LTU0Y2M4N2Y3NmQ0ZSIsImVtYWlsX3ZlcmlmaWVkIjpmYWxzZSwicHJlZmVycmVkX3VzZXJuYW1lIjoiYWRtaW4ifQ.LOhIFRy0h1je8v1btGjmaE19xFUnmKWW_z4OOT14jPTJgYkNo0gT3M1ZIlj3vCSVumno_A8RMrtu3jXGbvjA-8MK82ILRDy-yrWvjDa0m5iV2C_zxlyQTJeOuQO2V_hlx8n72w-uobpVwGFfD0JfvXiDJhuNKhBuFth5X5RjJ72X1-JlsrtUlhcGE2BNNvMPRB-c6cWErEJNoNP4XHrjeYIMmm4N4OE_5F8yoPDdcVgXRSfIMpG7XE24Kig47ZSBJ2sZdIbC_trNaX4J5Y2v-lD2iPqUh4Hy9w6kwFwbuCZ7m-LBvo7wtdSTg50RLc--2aUH* Connection #0 to host localhost left intact
+B7WbPIrVIzhmwzw-Mg","expires_in":300,"refresh_expires_in":1800,"refresh_token":"eyJhbGciOiJIUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICI5NmFmZDAwZS04NWNmLTRkMzUtYjE4ZS0wNjFkMzgxM2Q4YjIifQ.eyJleHAiOjE2NTgwNzI2MDUsImlhdCI6MTY1ODA3MDgwNSwianRpIjoiNjM1ODk2ODYtNGJjZi00M2JmLTgxZTItNWIwMDM1MzMwZjg2IiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo4MDgwL3JlYWxtcy9xdWFya3VzIiwiYXVkIjoiaHR0cDovL2xvY2FsaG9zdDo4MDgwL3JlYWxtcy9xdWFya3VzIiwic3ViIjoiYWYxMzRjYWItZjQxYy00Njc1LWIxNDEtMjA1Zjk3NWRiNjc5IiwidHlwIjoiUmVmcmVzaCIsImF6cCI6ImJhY2tlbmQtc2VydmljZSIsInNlc3Npb25fc3RhdGUiOiI1M2YyZmVkMS01MjlkLTQ4ZDItYTExNi01NGNjODdmNzZkNGUiLCJzY29wZSI6ImVtYWlsIHByb2ZpbGUiLCJzaWQiOiI1M2YyZmVkMS01MjlkLTQ4ZDItYTExNi01NGNjODdmNzZkNGUifQ.cKce3oaCnCPllUlwjM6yxskRKwkQ027nIVF5m3B_XBw","token_type":"Bearer","not-before-policy":0,"session_state":"53f2fed1-529d-48d2-a116-54cc87f76d4e","scope":"email profile"}fallstechdave@mmrxps17:~$ 
+fallstechdave@mmrxps17:~$ 
+
+= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
+
+curl -vvv --insecure -X POST http://localhost:8080/realms/quarkus/protocol/openid-connect/token \
+--user backend-service:secret \
+-H 'content-type: application/x-www-form-urlencoded' \
+-d 'username=admin&password=admin&grant_type=password' 
+
+fallstechdave@mmrxps17:~$ curl -vvv --insecure -X POST http://localhost:8080/realms/quarkus/protocol/openid-connect/token \
+> --user backend-service:secret \
+> -H 'content-type: application/x-www-form-urlencoded' \
+> -d 'username=admin&password=admin&grant_type=password' 
+Note: Unnecessary use of -X or --request, POST is already inferred.
+*   Trying 127.0.0.1:8080...
+* TCP_NODELAY set
+* Connected to localhost (127.0.0.1) port 8080 (#0)
+* Server auth using Basic with user 'backend-service'
+> POST /realms/quarkus/protocol/openid-connect/token HTTP/1.1
+> Host: localhost:8080
+> Authorization: Basic YmFja2VuZC1zZXJ2aWNlOnNlY3JldA==
+> User-Agent: curl/7.68.0
+> Accept: */*
+> content-type: application/x-www-form-urlencoded
+> Content-Length: 49
+> 
+* upload completely sent off: 49 out of 49 bytes
+* Mark bundle as not supporting multiuse
+< HTTP/1.1 200 OK
+< Referrer-Policy: no-referrer
+< X-Frame-Options: SAMEORIGIN
+< Strict-Transport-Security: max-age=31536000; includeSubDomains
+< Cache-Control: no-store
+< X-Content-Type-Options: nosniff
+< Set-Cookie: KEYCLOAK_LOCALE=; Version=1; Comment=Expiring cookie; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Max-Age=0; Path=/realms/quarkus/; HttpOnly
+< Set-Cookie: KC_RESTART=; Version=1; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Max-Age=0; Path=/realms/quarkus/; HttpOnly
+< Pragma: no-cache
+< X-XSS-Protection: 1; mode=block
+< Content-Type: application/json
+< content-length: 1882
+< 
+{"access_token":"eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJjZklBRE5feHhDSm1Wa1d5Ti1QTlhFRXZNVVdzMnI2OEN4dG1oRUROelhVIn0.eyJleHAiOjE2NTgwNzM0OTMsImlhdCI6MTY1ODA3MzE5MywianRpIjoiYjZjZTNhN2UtZjRjNy00NWE1LWIyZjctZGEwZmI5ODI1NmI3IiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo4MDgwL3JlYWxtcy9xdWFya3VzIiwic3ViIjoiYWYxMzRjYWItZjQxYy00Njc1LWIxNDEtMjA1Zjk3NWRiNjc5IiwidHlwIjoiQmVhcmVyIiwiYXpwIjoiYmFja2VuZC1zZXJ2aWNlIiwic2Vzc2lvbl9zdGF0ZSI6IjdkYTVhMmFlLThjMzAtNDIzYy05YzUxLWQ4ZWUwYTg5M2EwZiIsInJlYWxtX2FjY2VzcyI6eyJyb2xlcyI6WyJhZG1pbiIsInVzZXIiXX0sInNjb3BlIjoiZW1haWwgcHJvZmlsZSIsInNpZCI6IjdkYTVhMmFlLThjMzAtNDIzYy05YzUxLWQ4ZWUwYTg5M2EwZiIsImVtYWlsX3ZlcmlmaWVkIjpmYWxzZSwicHJlZmVycmVkX3VzZXJuYW1lIjoiYWRtaW4ifQ.RdO_4cU11ibBqgo5vgKDDR6tgZbzOTeAv5okndhZOUfzRiPFb6pMmmGyNEzm9euKCPUg27vTQnYdn5Cii3uvUwRYv_1qperYmZ_EQXe1vnUYEGqZUDku9L7sQbaguYOtv4TN7iMWNwdLt9huoiACjWUEJIfTmVutUQUddWOYkO4ChlACX-UmGVM8pM45cP19_UawhMkCKD3JJxaR9sVPxfFboo4FaLTHhHc9nG5V4utTV0ww4FMm4Q2l1JHAuXHMMJ06z4AWp5vmIH6Cv7V1JGjSYPfYl-V1gO32qJ3GDX2to4mMhPAAY0L4VyN2YA1zT_QG* Connection #0 to host localhost left intact
+FQ6SaKrN5pCVZ-ftRg","expires_in":300,"refresh_expires_in":1800,"refresh_token":"eyJhbGciOiJIUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICI5NmFmZDAwZS04NWNmLTRkMzUtYjE4ZS0wNjFkMzgxM2Q4YjIifQ.eyJleHAiOjE2NTgwNzQ5OTMsImlhdCI6MTY1ODA3MzE5MywianRpIjoiZWQ3NDU2NzQtNjliNy00MDFkLThjOTItZDA1Y2RhMTRlNGE4IiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo4MDgwL3JlYWxtcy9xdWFya3VzIiwiYXVkIjoiaHR0cDovL2xvY2FsaG9zdDo4MDgwL3JlYWxtcy9xdWFya3VzIiwic3ViIjoiYWYxMzRjYWItZjQxYy00Njc1LWIxNDEtMjA1Zjk3NWRiNjc5IiwidHlwIjoiUmVmcmVzaCIsImF6cCI6ImJhY2tlbmQtc2VydmljZSIsInNlc3Npb25fc3RhdGUiOiI3ZGE1YTJhZS04YzMwLTQyM2MtOWM1MS1kOGVlMGE4OTNhMGYiLCJzY29wZSI6ImVtYWlsIHByb2ZpbGUiLCJzaWQiOiI3ZGE1YTJhZS04YzMwLTQyM2MtOWM1MS1kOGVlMGE4OTNhMGYifQ.r0Cyw0smHWoztkrEU8fx6lHiZL9ooglvCrWop-W3aOE","token_type":"Bearer","not-before-policy":0,"session_state":"7da5a2ae-8c30-423c-9c51-d8ee0a893a0f","scope":"email profile"}fallstechdave@mmrxps17:~$ 
+fallstechdave@mmrxps17:~$ 
+fallstechdave@mmrxps17:~$ 
+
+= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
+
+curl --insecure -X POST http://localhost:8080/realms/quarkus/protocol/openid-connect/token \
+--user backend-service:secret \
+-H 'content-type: application/x-www-form-urlencoded' \
+-d 'username=admin&password=admin&grant_type=password' 
+
+fallstechdave@mmrxps17:~$ 
+fallstechdave@mmrxps17:~$ curl --insecure -X POST http://localhost:8080/realms/quarkus/protocol/openid-connect/token \
+> --user backend-service:secret \
+> -H 'content-type: application/x-www-form-urlencoded' \
+> -d 'username=admin&password=admin&grant_type=password' 
+{"access_token":"eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJjZklBRE5feHhDSm1Wa1d5Ti1QTlhFRXZNVVdzMnI2OEN4dG1oRUROelhVIn0.eyJleHAiOjE2NTgwNzM2NDgsImlhdCI6MTY1ODA3MzM0OCwianRpIjoiOTVlMGExNmEtMTBhZi00OWI0LWI4NmEtOWM4YTdmMmZlY2Y4IiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo4MDgwL3JlYWxtcy9xdWFya3VzIiwic3ViIjoiYWYxMzRjYWItZjQxYy00Njc1LWIxNDEtMjA1Zjk3NWRiNjc5IiwidHlwIjoiQmVhcmVyIiwiYXpwIjoiYmFja2VuZC1zZXJ2aWNlIiwic2Vzc2lvbl9zdGF0ZSI6IjMzNTYyNWVmLTI4NGItNDRhOC04ZDg2LTBkYjRjZmU3Mzg4MSIsInJlYWxtX2FjY2VzcyI6eyJyb2xlcyI6WyJhZG1pbiIsInVzZXIiXX0sInNjb3BlIjoiZW1haWwgcHJvZmlsZSIsInNpZCI6IjMzNTYyNWVmLTI4NGItNDRhOC04ZDg2LTBkYjRjZmU3Mzg4MSIsImVtYWlsX3ZlcmlmaWVkIjpmYWxzZSwicHJlZmVycmVkX3VzZXJuYW1lIjoiYWRtaW4ifQ.bwdf3Dnsz0B7KUIRnrfPalPshTVBG6v120fsPbTZcYERTGbzwUl3gb7GL8lEnF9gP9GmqXsjBKXYJkWyhdfJFBSbo2z5oOKlKeWzCBFxBVrpM6rCmxlwbIbSBjfEH5N4YorhUSi0m7Fm2u6nMG-6pgaeCpylST6vvsFXLK9JKfq7F_1gwWRjye9i21Na95mCwaI3pqMq-4bg3Noraq-4rfHVOk9lmXsBXxdUCxZF-X5LW-VOuop0YB3cLeDP-tz_hJQ-pvl2-pC3xIFWLo766WXWplRSdnwvzvJN9WVrZAF89SazxGl_fDO49MUVcyRgrKtv2DRRAwFyQ_x_ZIe7ug","expires_in":300,"refresh_expires_in":1800,"refresh_token":"eyJhbGciOiJIUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICI5NmFmZDAwZS04NWNmLTRkMzUtYjE4ZS0wNjFkMzgxM2Q4YjIifQ.eyJleHAiOjE2NTgwNzUxNDgsImlhdCI6MTY1ODA3MzM0OCwianRpIjoiZmMxYTRhMjgtNDQ2ZS00YWZhLWJmYmYtZmQyNDgxZWUzNzQ3IiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo4MDgwL3JlYWxtcy9xdWFya3VzIiwiYXVkIjoiaHR0cDovL2xvY2FsaG9zdDo4MDgwL3JlYWxtcy9xdWFya3VzIiwic3ViIjoiYWYxMzRjYWItZjQxYy00Njc1LWIxNDEtMjA1Zjk3NWRiNjc5IiwidHlwIjoiUmVmcmVzaCIsImF6cCI6ImJhY2tlbmQtc2VydmljZSIsInNlc3Npb25fc3RhdGUiOiIzMzU2MjVlZi0yODRiLTQ0YTgtOGQ4Ni0wZGI0Y2ZlNzM4ODEiLCJzY29wZSI6ImVtYWlsIHByb2ZpbGUiLCJzaWQiOiIzMzU2MjVlZi0yODRiLTQ0YTgtOGQ4Ni0wZGI0Y2ZlNzM4ODEifQ.QQNs_RqD6HIo2mvSv7QM8nDVa96bo4mByUxE33y5pYM","token_type":"Bearer","not-before-policy":0,"session_state":"335625ef-284b-44a8-8d86-0db4cfe73881","scope":"email profile"}fallstechdave@mmrxps17:~$ 
+fallstechdave@mmrxps17:~$ 
+
+= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
+
+curl --insecure -X POST http://localhost:8080/realms/quarkus/protocol/openid-connect/token \
+--user backend-service:secret \
+-H 'content-type: application/x-www-form-urlencoded' \
+-d 'username=admin&password=admin&grant_type=password' | jq
+
+fallstechdave@mmrxps17:~$ curl --insecure -X POST http://localhost:8080/realms/quarkus/protocol/openid-connect/token \
+> --user backend-service:secret \
+> -H 'content-type: application/x-www-form-urlencoded' \
+> -d 'username=admin&password=admin&grant_type=password' | jq
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100  1931  100  1882  100    49  81826   2130 --:--:-- --:--:-- --:--:-- 87772
+{
+  "access_token": "eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJjZklBRE5feHhDSm1Wa1d5Ti1QTlhFRXZNVVdzMnI2OEN4dG1oRUROelhVIn0.eyJleHAiOjE2NTgwNzM2OTEsImlhdCI6MTY1ODA3MzM5MSwianRpIjoiZTU4MGQzZWQtYzdhOC00NDdkLWEzYmYtYjFmMzdlM2M4ZDMzIiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo4MDgwL3JlYWxtcy9xdWFya3VzIiwic3ViIjoiYWYxMzRjYWItZjQxYy00Njc1LWIxNDEtMjA1Zjk3NWRiNjc5IiwidHlwIjoiQmVhcmVyIiwiYXpwIjoiYmFja2VuZC1zZXJ2aWNlIiwic2Vzc2lvbl9zdGF0ZSI6Ijk4MmZhZDM4LTA4YzEtNGFjYy05ZWE4LTljMzM0MWFiYmRmYiIsInJlYWxtX2FjY2VzcyI6eyJyb2xlcyI6WyJhZG1pbiIsInVzZXIiXX0sInNjb3BlIjoiZW1haWwgcHJvZmlsZSIsInNpZCI6Ijk4MmZhZDM4LTA4YzEtNGFjYy05ZWE4LTljMzM0MWFiYmRmYiIsImVtYWlsX3ZlcmlmaWVkIjpmYWxzZSwicHJlZmVycmVkX3VzZXJuYW1lIjoiYWRtaW4ifQ.m4IXors9W8jvt1EjZQMIR4gExJS20GxulUUSsqIT_tFndRJvIxrj99wqoytaYqEQnHI2pKkqBfVkEhjTztDkH5UJdlyBa1Rxv_45G3yJ288inw19Q0-Q4Acrc4GltZme1SREx7WUqajMhdYavBGGN9WXkYsWqi3d0QlAIQ9XnIfRIm9CjN5UbVaW_hFPxByyqrld2buy7KGiqxV_dhO44dbFA4XyXRdWTvIqTyXpcOfINw0P9bwLB0-FS2IX8mZryPKOI6R-v6kDJXuiPYreMjTtqfi1zIETGpzzYum8Z_ZWC40ktWC3-sEf3I4I-SisC50om_FpBpqtiADwaNz_UA",
+  "expires_in": 300,
+  "refresh_expires_in": 1800,
+  "refresh_token": "eyJhbGciOiJIUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICI5NmFmZDAwZS04NWNmLTRkMzUtYjE4ZS0wNjFkMzgxM2Q4YjIifQ.eyJleHAiOjE2NTgwNzUxOTEsImlhdCI6MTY1ODA3MzM5MSwianRpIjoiNjdjMzFkODItYzk3MS00Y2Y1LWEwZjktZTFhNmE5MTQyNWIwIiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo4MDgwL3JlYWxtcy9xdWFya3VzIiwiYXVkIjoiaHR0cDovL2xvY2FsaG9zdDo4MDgwL3JlYWxtcy9xdWFya3VzIiwic3ViIjoiYWYxMzRjYWItZjQxYy00Njc1LWIxNDEtMjA1Zjk3NWRiNjc5IiwidHlwIjoiUmVmcmVzaCIsImF6cCI6ImJhY2tlbmQtc2VydmljZSIsInNlc3Npb25fc3RhdGUiOiI5ODJmYWQzOC0wOGMxLTRhY2MtOWVhOC05YzMzNDFhYmJkZmIiLCJzY29wZSI6ImVtYWlsIHByb2ZpbGUiLCJzaWQiOiI5ODJmYWQzOC0wOGMxLTRhY2MtOWVhOC05YzMzNDFhYmJkZmIifQ.SdHUMldt-2ZWm8dyYPMY2IKlYPjWFWcG_tUrLgTVFmk",
+  "token_type": "Bearer",
+  "not-before-policy": 0,
+  "session_state": "982fad38-08c1-4acc-9ea8-9c3341abbdfb",
+  "scope": "email profile"
+}
+fallstechdave@mmrxps17:~$ 
+fallstechdave@mmrxps17:~$ 
+
+= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
+
+curl --insecure -X POST http://localhost:8080/realms/quarkus/protocol/openid-connect/token \
+--user backend-service:secret \
+-H 'content-type: application/x-www-form-urlencoded' \
+-d 'username=alice&password=alice&grant_type=password' 
+
+fallstechdave@mmrxps17:~$ curl --insecure -X POST http://localhost:8080/realms/quarkus/protocol/openid-connect/token \
+> --user backend-service:secret \
+> -H 'content-type: application/x-www-form-urlencoded' \
+> -d 'username=alice&password=alice&grant_type=password' 
+{"error":"invalid_grant","error_description":"Account is not fully set up"}fallstechdave@mmrxps17:~$ 
+fallstechdave@mmrxps17:~$ 
+
+= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
+
+I had to finish enabling the "alice" account ...
+
+curl --insecure -X POST http://localhost:8080/realms/quarkus/protocol/openid-connect/token \
+--user backend-service:secret \
+-H 'content-type: application/x-www-form-urlencoded' \
+-d 'username=alice&password=alice&grant_type=password' 
+
+
+fallstechdave@mmrxps17:~$ curl --insecure -X POST http://localhost:8080/realms/quarkus/protocol/openid-connect/token --user backend-service:secret -H 'content-type: application/x-www-form-urlencoded' -d 'username=alice&password=alice&grant_type=password' 
+{"access_token":"eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJjZklBRE5feHhDSm1Wa1d5Ti1QTlhFRXZNVVdzMnI2OEN4dG1oRUROelhVIn0.eyJleHAiOjE2NTgwNzQ1MTcsImlhdCI6MTY1ODA3NDIxNywianRpIjoiMTJiMDJkMGItMTU1Yi00ODFiLTgxMjctNGI5M2I5ZjM0YWRlIiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo4MDgwL3JlYWxtcy9xdWFya3VzIiwic3ViIjoiZWI0MTIzYTMtYjcyMi00Nzk4LTlhZjUtODk1N2Y4MjM2NTdhIiwidHlwIjoiQmVhcmVyIiwiYXpwIjoiYmFja2VuZC1zZXJ2aWNlIiwic2Vzc2lvbl9zdGF0ZSI6IjU0N2NmZGJjLWZkZWMtNDM4Ni1hOGIxLTM2YmZiYzA2MTFhYiIsInJlYWxtX2FjY2VzcyI6eyJyb2xlcyI6WyJ1c2VyIl19LCJzY29wZSI6ImVtYWlsIHByb2ZpbGUiLCJzaWQiOiI1NDdjZmRiYy1mZGVjLTQzODYtYThiMS0zNmJmYmMwNjExYWIiLCJlbWFpbF92ZXJpZmllZCI6ZmFsc2UsIm5hbWUiOiJhbGljZSBjb29wZXIiLCJwcmVmZXJyZWRfdXNlcm5hbWUiOiJhbGljZSIsImdpdmVuX25hbWUiOiJhbGljZSIsImZhbWlseV9uYW1lIjoiY29vcGVyIiwiZW1haWwiOiJhbGljZS5jb29wZXJAZ21haWwuY29tIn0.X4KWSewsWSl2Y2kLA4D4OQsq6QskyIyVNx-RKUBZTo_ghEIapQ27xyRHCXN8ATj02AmbL-M_XmWV0UtoQIZiSmzzNSmfYFsuZHmk73r9V0cLjh9BR9JuiQfWPoKjpp33invf-0OfJ2BnmdXumCnjbfC_S-HWu4ZgMmFtl1-U8dQuvnog9Fy0vJL5A_jOqjcsKZFWICANzFkERrUa-xvdbwmb_hq9rST2VOpWTZ3JdZr9FlMgXoSfmu9V1RLvaqTX_CH8y643vp4GUCSM4NU_kvheIzqN6CKuaGgcaK0ZTOjERNvfitIcByAcQUQXuC2aVAY2NCF1dk2K6ysPooy9Kg","expires_in":300,"refresh_expires_in":1800,"refresh_token":"eyJhbGciOiJIUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICI5NmFmZDAwZS04NWNmLTRkMzUtYjE4ZS0wNjFkMzgxM2Q4YjIifQ.eyJleHAiOjE2NTgwNzYwMTcsImlhdCI6MTY1ODA3NDIxNywianRpIjoiZDU3YTMyNTMtMWRkYS00NzZkLTk5M2UtNjE2YjNiMWZhZmQ3IiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo4MDgwL3JlYWxtcy9xdWFya3VzIiwiYXVkIjoiaHR0cDovL2xvY2FsaG9zdDo4MDgwL3JlYWxtcy9xdWFya3VzIiwic3ViIjoiZWI0MTIzYTMtYjcyMi00Nzk4LTlhZjUtODk1N2Y4MjM2NTdhIiwidHlwIjoiUmVmcmVzaCIsImF6cCI6ImJhY2tlbmQtc2VydmljZSIsInNlc3Npb25fc3RhdGUiOiI1NDdjZmRiYy1mZGVjLTQzODYtYThiMS0zNmJmYmMwNjExYWIiLCJzY29wZSI6ImVtYWlsIHByb2ZpbGUiLCJzaWQiOiI1NDdjZmRiYy1mZGVjLTQzODYtYThiMS0zNmJmYmMwNjExYWIifQ.v9VYVm9DC07ASi77Rssn2-Z0ayPMi5Z378my8T7HHOM","token_type":"Bearer","not-before-policy":0,"session_state":"547cfdbc-fdec-4386-a8b1-36bfbc0611ab","scope":"email profile"}fallstechdave@mmrxps17:~$ 
+fallstechdave@mmrxps17:~$ 
+
+= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
+
+curl --insecure -X POST http://localhost:8080/realms/quarkus/protocol/openid-connect/token \
+--user backend-service:secret \
+-H 'content-type: application/x-www-form-urlencoded' \
+-d 'username=alice&password=alice&grant_type=password' | jq
+
+fallstechdave@mmrxps17:~$ curl --insecure -X POST http://localhost:8080/realms/quarkus/protocol/openid-connect/token \
+> --user backend-service:secret \
+> -H 'content-type: application/x-www-form-urlencoded' \
+> -d 'username=alice&password=alice&grant_type=password' | jq
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100  2052  100  2003  100    49  80120   1960 --:--:-- --:--:-- --:--:-- 82080
+{
+  "access_token": "eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJjZklBRE5feHhDSm1Wa1d5Ti1QTlhFRXZNVVdzMnI2OEN4dG1oRUROelhVIn0.eyJleHAiOjE2NTgwNzQ2NDgsImlhdCI6MTY1ODA3NDM0OCwianRpIjoiMDk2NWY2YmMtMzUwZi00NGYyLWI0OWEtNTA1ODgzMDAwOWQ3IiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo4MDgwL3JlYWxtcy9xdWFya3VzIiwic3ViIjoiZWI0MTIzYTMtYjcyMi00Nzk4LTlhZjUtODk1N2Y4MjM2NTdhIiwidHlwIjoiQmVhcmVyIiwiYXpwIjoiYmFja2VuZC1zZXJ2aWNlIiwic2Vzc2lvbl9zdGF0ZSI6ImViMjE5Nzk5LTkwMmItNDg5ZS04MjkyLTdmYWU4ZWEzN2YxMiIsInJlYWxtX2FjY2VzcyI6eyJyb2xlcyI6WyJ1c2VyIl19LCJzY29wZSI6ImVtYWlsIHByb2ZpbGUiLCJzaWQiOiJlYjIxOTc5OS05MDJiLTQ4OWUtODI5Mi03ZmFlOGVhMzdmMTIiLCJlbWFpbF92ZXJpZmllZCI6ZmFsc2UsIm5hbWUiOiJhbGljZSBjb29wZXIiLCJwcmVmZXJyZWRfdXNlcm5hbWUiOiJhbGljZSIsImdpdmVuX25hbWUiOiJhbGljZSIsImZhbWlseV9uYW1lIjoiY29vcGVyIiwiZW1haWwiOiJhbGljZS5jb29wZXJAZ21haWwuY29tIn0.S4mxyHMB91OkPfyODivFOT3M48-WxbAjbd2rZjQF_uAADUauYQcS9gqtyCGmmlcRaIouLelSjwPRze_8RtiuwNgsL44wqWuJZHYw4xwnpQLOb9VJAaST5rqbhLteFmHxZMMociksIw68lLNraeZR-HYA2DsqPVnPCFg3ZaRMwQPCcXtI55wcGNxitaf4a60npppS7hgogBiJhndACyGCHUClCN5L6zUxckqwYCGkdj3g34Msj-zcQl6VcEU1nq5Ea483kXTMDqQza0NiyZNXj-MLvF9Yb01Bo8oonDPUYQJV1L04dPNQjXBxpH0aGHtVLxmAndt03R_-sMvSkSeJqA",
+  "expires_in": 300,
+  "refresh_expires_in": 1800,
+  "refresh_token": "eyJhbGciOiJIUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICI5NmFmZDAwZS04NWNmLTRkMzUtYjE4ZS0wNjFkMzgxM2Q4YjIifQ.eyJleHAiOjE2NTgwNzYxNDgsImlhdCI6MTY1ODA3NDM0OCwianRpIjoiNzQ5N2NjMzItZmUwNS00ODkzLTlhMGEtM2ZiYWZmZjBmZGMzIiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo4MDgwL3JlYWxtcy9xdWFya3VzIiwiYXVkIjoiaHR0cDovL2xvY2FsaG9zdDo4MDgwL3JlYWxtcy9xdWFya3VzIiwic3ViIjoiZWI0MTIzYTMtYjcyMi00Nzk4LTlhZjUtODk1N2Y4MjM2NTdhIiwidHlwIjoiUmVmcmVzaCIsImF6cCI6ImJhY2tlbmQtc2VydmljZSIsInNlc3Npb25fc3RhdGUiOiJlYjIxOTc5OS05MDJiLTQ4OWUtODI5Mi03ZmFlOGVhMzdmMTIiLCJzY29wZSI6ImVtYWlsIHByb2ZpbGUiLCJzaWQiOiJlYjIxOTc5OS05MDJiLTQ4OWUtODI5Mi03ZmFlOGVhMzdmMTIifQ.3vf0eCyZtjy4nMcAeLtlLeonFUbCuEpWXQcuzBzmTjM",
+  "token_type": "Bearer",
+  "not-before-policy": 0,
+  "session_state": "eb219799-902b-489e-8292-7fae8ea37f12",
+  "scope": "email profile"
+}
+fallstechdave@mmrxps17:~$ 
+fallstechdave@mmrxps17:~$ 
+
+= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
+
+export access_token=$(\
+    curl --insecure -X POST http://localhost:8080/realms/quarkus/protocol/openid-connect/token \
+    --user backend-service:secret \
+    -H 'content-type: application/x-www-form-urlencoded' \
+    -d 'username=alice&password=alice&grant_type=password'  | jq --raw-output '.access_token' \
+ )
+
+echo $access_token
+
+fallstechdave@mmrxps17:~$ export access_token=$(\
+>     curl --insecure -X POST http://localhost:8080/realms/quarkus/protocol/openid-connect/token \
+>     --user backend-service:secret \
+>     -H 'content-type: application/x-www-form-urlencoded' \
+>     -d 'username=alice&password=alice&grant_type=password'  | jq --raw-output '.access_token' \
+>  )
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100  2052  100  2003  100    49  83458   2041 --:--:-- --:--:-- --:--:-- 85500
+fallstechdave@mmrxps17:~$ 
+fallstechdave@mmrxps17:~$  echo $access_token
+eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJjZklBRE5feHhDSm1Wa1d5Ti1QTlhFRXZNVVdzMnI2OEN4dG1oRUROelhVIn0.eyJleHAiOjE2NTgwNzUyODAsImlhdCI6MTY1ODA3NDk4MCwianRpIjoiNTJiYjdlOTItYTNjZi00YWJmLTg2MDUtYzNhY2ZjMzE0NzI3IiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo4MDgwL3JlYWxtcy9xdWFya3VzIiwic3ViIjoiZWI0MTIzYTMtYjcyMi00Nzk4LTlhZjUtODk1N2Y4MjM2NTdhIiwidHlwIjoiQmVhcmVyIiwiYXpwIjoiYmFja2VuZC1zZXJ2aWNlIiwic2Vzc2lvbl9zdGF0ZSI6ImM0OGExYWEwLTY0ZDgtNDJiZS1iYjFlLTM0N2ZlZDNkYjkwMCIsInJlYWxtX2FjY2VzcyI6eyJyb2xlcyI6WyJ1c2VyIl19LCJzY29wZSI6ImVtYWlsIHByb2ZpbGUiLCJzaWQiOiJjNDhhMWFhMC02NGQ4LTQyYmUtYmIxZS0zNDdmZWQzZGI5MDAiLCJlbWFpbF92ZXJpZmllZCI6ZmFsc2UsIm5hbWUiOiJhbGljZSBjb29wZXIiLCJwcmVmZXJyZWRfdXNlcm5hbWUiOiJhbGljZSIsImdpdmVuX25hbWUiOiJhbGljZSIsImZhbWlseV9uYW1lIjoiY29vcGVyIiwiZW1haWwiOiJhbGljZS5jb29wZXJAZ21haWwuY29tIn0.lItFPvaWvu-RijGzgIGSFyGy2gd-XoPiTZWrF-TrMAM9eE_N0DNpm3vqTiE_pxQKDUladdb8i1rnOy6gFKj2xyqxwDTiYM5MZwLGJcTGQOkYWThPe1Azrrx3mpS77S7WlzCuBGNfJNBWBMeMKTt3EIaWe4CittZgMAl-VSEhRcA3QGP7d0qDA1PAMbZCF9IM5ImkPkJyUmJ5D-hvzaX1MK8qsCnMvVALsy_cQmG55NKA2OJHGGlSwNR9zB2-jzkjM8aIEHv12-4OwbqqyMTlFMJb4udJDKDIZXpjyfurNCrrNsJGRBWYOwokqCOegwKYWlxnhhBgC40eYgi9fsNhhg
+fallstechdave@mmrxps17:~$ 
+
+= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
+
+curl --insecure -X POST https://localhost:8080/realms/quarkus/protocol/openid-connect/token \
+--user backend-service:secret \
+-H 'content-type: application/x-www-form-urlencoded' \
+-d 'username=alice&password=alice&grant_type=password' 
+
+fallstechdave@mmrxps17:~$  curl --insecure -X POST https://localhost:8080/realms/quarkus/protocol/openid-connect/token \
+> --user backend-service:secret \
+> -H 'content-type: application/x-www-form-urlencoded' \
+> -d 'username=alice&password=alice&grant_type=password' 
+curl: (35) error:1408F10B:SSL routines:ssl3_get_record:wrong version number
+fallstechdave@mmrxps17:~$ 
+
+= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
+
+curl --insecure -X POST https://localhost:8443/realms/quarkus/protocol/openid-connect/token \
+--user backend-service:secret \
+-H 'content-type: application/x-www-form-urlencoded' \
+-d 'username=alice&password=alice&grant_type=password' 
+
+fallstechdave@mmrxps17:~$ curl --insecure -X POST https://localhost:8443/realms/quarkus/protocol/openid-connect/token \
+> --user backend-service:secret \
+> -H 'content-type: application/x-www-form-urlencoded' \
+> -d 'username=alice&password=alice&grant_type=password' 
+curl: (7) Failed to connect to localhost port 8443: Connection refused
+fallstechdave@mmrxps17:~$ 
+
+= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
+
+curl --insecure -X POST https://localhost:443/realms/quarkus/protocol/openid-connect/token \
+--user backend-service:secret \
+-H 'content-type: application/x-www-form-urlencoded' \
+-d 'username=alice&password=alice&grant_type=password' 
+
+fallstechdave@mmrxps17:~$ curl --insecure -X POST https://localhost:443/realms/quarkus/protocol/openid-connect/token \
+> --user backend-service:secret \
+> -H 'content-type: application/x-www-form-urlencoded' \
+> -d 'username=alice&password=alice&grant_type=password' 
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
+<html><head>
+<title>500 Internal Server Error</title>
+</head><body>
+<h1>Internal Server Error</h1>
+<p>The server encountered an internal error or
+misconfiguration and was unable to complete
+your request.</p>
+<p>Please contact the server administrator at 
+ [no address given] to inform them of the time this error occurred,
+ and the actions you performed just before this error.</p>
+<p>More information about this error may be available
+in the server error log.</p>
+<hr>
+<address>Apache/2.4.41 (Ubuntu) Server at localhost Port 443</address>
+</body></html>
+fallstechdave@mmrxps17:~$ 
+
+= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
+
+http://localhost:8080/realms/quarkus/protocol/openid-connect
+We are sorry... Page not found
+
+http://localhost:8080/
+Welcome to Keycloak
+
+http://localhost:8080/admin
+http://localhost:8080/admin/master/console/#/realms
+Select realm 
+

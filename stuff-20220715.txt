@@ -1,0 +1,981 @@
+Fri 15 Jul 2022 07:48:50 AM EDT
+
+fallstechdave@mmrxps17:~$ date
+Fri 15 Jul 2022 07:48:35 AM EDT
+fallstechdave@mmrxps17:~$ 
+fallstechdave@mmrxps17:~$ date > stuff-20220715.txt
+fallstechdave@mmrxps17:~$ code   stuff-20220715.txt
+fallstechdave@mmrxps17:~$ 
+
+fallstechdave@mmrxps17:~$ 
+fallstechdave@mmrxps17:~$ java -version
+openjdk version "17.0.3" 2022-04-19
+OpenJDK Runtime Environment Temurin-17.0.3+7 (build 17.0.3+7)
+OpenJDK 64-Bit Server VM Temurin-17.0.3+7 (build 17.0.3+7, mixed mode, sharing)
+fallstechdave@mmrxps17:~$ 
+fallstechdave@mmrxps17:~$ echo $JAVA_HOME
+/home/fallstechdave/.sdkman/candidates/java/current
+fallstechdave@mmrxps17:~$ 
+fallstechdave@mmrxps17:~$ 
+
+code /home/fallstechdave/Documents/
+code /etc/apache2/
+code /var/log/
+code /home/fallstechdave/Downloads/
+
+code /home/fallstechdave/Downloads/keycloak/keycloak-18.0.2
+code /var/log/apache2/
+code /var/www/
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+http://www.h2database.com/html/tutorial.html
+http://www.h2database.com/html/download.html
+java -jar h2*.jar
+
+cd <download directory>
+unzip h2*.zip
+cd h2/bin
+chmod +x h2.sh
+./h2.sh
+
+http://127.0.1.1:8082/login.do?jsessionid=45459606cd30ca0d80f814230de689d8
+
+SELECT * FROM INFORMATION_SCHEMA.USERS;
+USER_NAME  	IS_ADMIN  	REMARKS  
+KCADMIN	TRUE	null
+(1 row, 2 ms)
+
+http://localhost:8080/
+http://localhost:8080/admin
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+fallstechdave@mmrxps17:~$ docker
+
+Command 'docker' not found, but can be installed with:
+
+sudo snap install docker     # version 20.10.14, or
+sudo apt  install docker.io  # version 20.10.12-0ubuntu2~20.04.1
+
+See 'snap info docker' for additional versions.
+
+fallstechdave@mmrxps17:~$ 
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+fallstechdave@mmrxps17:~$ 
+fallstechdave@mmrxps17:~$ jq
+
+Command 'jq' not found, but can be installed with:
+
+sudo snap install jq  # version 1.5+dfsg-1, or
+sudo apt  install jq  # version 1.6-1ubuntu0.20.04.1
+
+See 'snap info jq' for additional versions.
+
+fallstechdave@mmrxps17:~$ sudo apt install jq
+[sudo] password for fallstechdave: 
+Reading package lists... Done
+Building dependency tree       
+Reading state information... Done
+The following packages were automatically installed and are no longer required:
+  chromium-codecs-ffmpeg-extra gstreamer1.0-vaapi libfwupdplugin1 libgstreamer-plugins-bad1.0-0 libnvidia-cfg1-510 libnvidia-common-510 libnvidia-decode-510 libnvidia-encode-510 libnvidia-extra-510
+  libnvidia-fbc1-510 libnvidia-gl-510 libva-wayland2 libx11-xcb1:i386 libxnvctrl0 nvidia-compute-utils-510 nvidia-kernel-source-510 nvidia-settings nvidia-utils-510 screen-resolution-extra
+  xserver-xorg-video-nvidia-510
+Use 'sudo apt autoremove' to remove them.
+The following additional packages will be installed:
+  libjq1 libonig5
+The following NEW packages will be installed:
+  jq libjq1 libonig5
+0 upgraded, 3 newly installed, 0 to remove and 19 not upgraded.
+Need to get 313 kB of archives.
+After this operation, 1,062 kB of additional disk space will be used.
+Do you want to continue? [Y/n] y
+Get:1 http://us.archive.ubuntu.com/ubuntu focal/universe amd64 libonig5 amd64 6.9.4-1 [142 kB]
+Get:2 http://us.archive.ubuntu.com/ubuntu focal-updates/universe amd64 libjq1 amd64 1.6-1ubuntu0.20.04.1 [121 kB]
+Get:3 http://us.archive.ubuntu.com/ubuntu focal-updates/universe amd64 jq amd64 1.6-1ubuntu0.20.04.1 [50.2 kB]
+Fetched 313 kB in 0s (1,942 kB/s)
+Selecting previously unselected package libonig5:amd64.
+(Reading database ... 193657 files and directories currently installed.)
+Preparing to unpack .../libonig5_6.9.4-1_amd64.deb ...
+Unpacking libonig5:amd64 (6.9.4-1) ...
+Selecting previously unselected package libjq1:amd64.
+Preparing to unpack .../libjq1_1.6-1ubuntu0.20.04.1_amd64.deb ...
+Unpacking libjq1:amd64 (1.6-1ubuntu0.20.04.1) ...
+Selecting previously unselected package jq.
+Preparing to unpack .../jq_1.6-1ubuntu0.20.04.1_amd64.deb ...
+Unpacking jq (1.6-1ubuntu0.20.04.1) ...
+Setting up libonig5:amd64 (6.9.4-1) ...
+Setting up libjq1:amd64 (1.6-1ubuntu0.20.04.1) ...
+Setting up jq (1.6-1ubuntu0.20.04.1) ...
+Processing triggers for man-db (2.9.1-1) ...
+Processing triggers for libc-bin (2.31-0ubuntu9.9) ...
+fallstechdave@mmrxps17:~$ 
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+https://quarkus.io/guides/
+https://quarkus.io/guides/security-keycloak-authorization
+
+    git clone https://github.com/quarkusio/quarkus-quickstarts.git
+
+    docker run --name keycloak -e KEYCLOAK_ADMIN=admin -e KEYCLOAK_ADMIN_PASSWORD=admin -p 8543:8443 -v "$(pwd)"/config/keycloak-keystore.jks:/etc/keycloak-keystore.jks quay.io/keycloak/keycloak:{keycloak.version} start  --hostname-strict=false --https-key-store-file=/etc/keycloak-keystore.jks
+
+https://www.keycloak.org/
+https://www.keycloak.org/guides
+https://www.keycloak.org/getting-started/getting-started-zip
+https://www.keycloak.org/downloads
+
+https://www.keycloak.org/server/configuration
+
+https://github.com/keycloak/keycloak/issues/10443
+
+kc.sh start-dev --http-port 8180
+
+https://www.keycloak.org/
+https://www.keycloak.org/guides
+https://www.keycloak.org/migration/migrating-to-quarkus
+https://www.keycloak.org/getting-started/getting-started-docker
+
+https://github.com/quarkusio/quarkus-quickstarts.git
+https://github.com/quarkusio/quarkus-quickstarts
+https://github.com/quarkusio/quarkus-quickstarts/tree/main/lifecycle-quickstart
+https://quarkus.io/guides/lifecycle
+
+https://www.keycloak.org/getting-started/getting-started-zip
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+fallstechdave@mmrxps17:~/repositories$  git clone https://github.com/quarkusio/quarkus-quickstarts.git
+Cloning into 'quarkus-quickstarts'...
+remote: Enumerating objects: 53716, done.
+remote: Counting objects: 100% (1648/1648), done.
+remote: Compressing objects: 100% (452/452), done.
+remote: Total 53716 (delta 1182), reused 1508 (delta 1055), pack-reused 52068
+Receiving objects: 100% (53716/53716), 9.02 MiB | 38.32 MiB/s, done.
+Resolving deltas: 100% (33282/33282), done.
+fallstechdave@mmrxps17:~/repositories$ ls -lagtr
+total 24
+drwxrwxr-x  12 fallstechdave 4096 Jul  2 12:43 passenger-ruby-rails-demo
+drwxrwxr-x   4 fallstechdave 4096 Jul  2 12:44 passenger-ruby-sinatra-demo
+drwxrwxr-x   3 fallstechdave 4096 Jul 14 09:25 miscmmrxps17u20
+drwxr-xr-x  32 fallstechdave 4096 Jul 15 07:53 ..
+drwxrwxr-x   6 fallstechdave 4096 Jul 15 08:52 .
+drwxrwxr-x 106 fallstechdave 4096 Jul 15 08:53 quarkus-quickstarts
+fallstechdave@mmrxps17:~/repositories$ 
+fallstechdave@mmrxps17:~/repositories$ 
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+export access_token=$(\
+    curl --insecure -X POST https://localhost:8543/realms/quarkus/protocol/openid-connect/token \
+    --user backend-service:secret \
+    -H 'content-type: application/x-www-form-urlencoded' \
+    -d 'username=alice&password=alice&grant_type=password' | jq --raw-output '.access_token' \
+ )
+
+bin/kc.sh start-dev
+bin/kc.sh start-dev --http-port 8543
+bin/kc.sh start-dev --https-port 8443
+bin/kc.sh start-dev --http-port 8543 --https-port 8443
+
+kcadmin   kcadminpw
+
+https://localhost/
+
+http://localhost:8080/realms/master/protocol/openid-connect/auth?client_id=security-admin-console&redirect_uri=http%3A%2F%2Flocalhost%3A8080%2Fadmin%2Fmaster%2Fconsole%2F&state=6356a79d-d77b-437d-9827-15b34a27943c&response_mode=fragment&response_type=code&scope=openid&nonce=73194f15-f1d0-45d8-86af-4a79391673d6&code_challenge=y9B-N6coERmzABQ1XzyqHjDf2MS9J_n6qoDMW7LUf4I&code_challenge_method=S256
+
+http://localhost:8080/admin/master/console/#/realms/myrealm
+
+http://localhost:8080/realms/master/protocol/openid-connect/auth    We are sorry... Invalid Request
+
+http://localhost:8080/realms/myrealm/protocol/openid-connect/auth   We are sorry... Invalid Request
+
+http://localhost:8080/realms/myrealm/account/#/     Welcome to Keycloak account management
+
+http://localhost:8080/realms/myrealm/protocol/openid-connect/auth?client_id=account-console&redirect_uri=http%3A%2F%2Flocalhost%3A8080%2Frealms%2Fmyrealm%2Faccount%2F%23%2Fpersonal-info&state=54dd655f-4311-4bdc-b9e1-87e40b117e8e&response_mode=fragment&response_type=code&scope=openid&nonce=0cf6914a-7c06-48da-8cb3-7a684365983c&code_challenge=5O7IDy4oNY5iMgwD7bSHOMhVTt-kE82lDlZPSdYZpa8&code_challenge_method=S256
+
+myuser mypassword2
+
+http://localhost:8080/realms/myrealm/account/#/personal-info
+
+http://localhost:8543/realms/master/protocol/openid-connect/auth?client_id=security-admin-console&redirect_uri=http%3A%2F%2Flocalhost%3A8543%2Fadmin%2Fmaster%2Fconsole%2F&state=9c29cc85-85c6-4229-846d-ecb3ea958420&response_mode=fragment&response_type=code&scope=openid&nonce=911fa86b-9dac-48ed-84e1-ce5323684c63&code_challenge=0poWkBhK-h3eO1V8iROdkfXrvCHhCTS-nmYX40juZa8&code_challenge_method=S256
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+curl --insecure -X POST https://localhost:8080/realms/myrealm//protocol/openid-connect/token \
+--user backend-service:secret \
+-H 'content-type: application/x-www-form-urlencoded' \
+-d 'username=kcadmin&password=mypassword2&grant_type=password' 
+
+curl --insecure -X POST http://localhost:8080/realms/myrealm/protocol/openid-connect/token \
+--user backend-service:secret \
+-H 'content-type: application/x-www-form-urlencoded' \
+-d 'username=kcadmin&password=mypassword2&grant_type=password' 
+
+curl --insecure -X POST https://localhost:8443/realms/myrealm/protocol/openid-connect/token \
+--user backend-service:secret \
+-H 'content-type: application/x-www-form-urlencoded' \
+-d 'username=kcadmin&password=kcadminpw&grant_type=password' 
+
+curl --insecure -X POST http://localhost:8543/realms/myrealm/protocol/openid-connect/token \
+--user backend-service:secret \
+-H 'content-type: application/x-www-form-urlencoded' \
+-d 'username=kcadmin&password=kcadminpw&grant_type=password' 
+
+curl --insecure -X POST http://localhost:8543/realms/myrealm/myclient/openid-connect/token \
+--user backend-service:secret \
+-H 'content-type: application/x-www-form-urlencoded' \
+-d 'username=kcadmin&password=kcadminpw&grant_type=password' 
+
+curl --insecure -X POST http://localhost:8443/realms/myrealm/myclient/openid-connect/token \
+--user backend-service:secret \
+-H 'content-type: application/x-www-form-urlencoded' \
+-d 'username=kcadmin&password=kcadminpw&grant_type=password' 
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+fallstechdave@mmrxps17:~/Downloads/keycloak/keycloak-18.0.2$ pwd
+/home/fallstechdave/Downloads/keycloak/keycloak-18.0.2
+fallstechdave@mmrxps17:~/Downloads/keycloak/keycloak-18.0.2$ du .
+8	./providers
+8	./themes
+19396	./bin/client
+19424	./bin
+24	./data/tmp/kc-gzip-cache/xhec2/js
+28	./data/tmp/kc-gzip-cache/xhec2
+32	./data/tmp/kc-gzip-cache
+36	./data/tmp
+1108	./data/h2
+1148	./data
+16	./conf
+35836	./lib/lib/deployment
+1456	./lib/lib/boot
+140620	./lib/lib/main
+177916	./lib/lib
+8	./lib/app
+1048	./lib/quarkus
+178980	./lib
+199608	.
+fallstechdave@mmrxps17:~/Downloads/keycloak/keycloak-18.0.2$ 
+fallstechdave@mmrxps17:~/Downloads/keycloak/keycloak-18.0.2$ bin/kc.sh start-dev
+2022-07-15 07:55:57,915 INFO  [org.keycloak.quarkus.runtime.hostname.DefaultHostnameProvider] (main) Hostname settings: FrontEnd: <request>, Strict HTTPS: false, Path: <request>, Strict BackChannel: false, Admin: <request>, Port: -1, Proxied: false
+2022-07-15 07:55:58,290 WARN  [org.infinispan.PERSISTENCE] (keycloak-cache-init) ISPN000554: jboss-marshalling is deprecated and planned for removal
+2022-07-15 07:55:58,303 WARN  [org.infinispan.CONFIG] (keycloak-cache-init) ISPN000569: Unable to persist Infinispan internal caches as no global state enabled
+2022-07-15 07:55:58,309 INFO  [org.infinispan.CONTAINER] (keycloak-cache-init) ISPN000556: Starting user marshaller 'org.infinispan.jboss.marshalling.core.JBossUserMarshaller'
+2022-07-15 07:55:58,401 INFO  [org.infinispan.CONTAINER] (keycloak-cache-init) ISPN000128: Infinispan version: Infinispan 'Triskaidekaphobia' 13.0.9.Final
+2022-07-15 07:55:58,644 INFO  [org.keycloak.connections.infinispan.DefaultInfinispanConnectionProviderFactory] (main) Node name: node_435398, Site name: null
+2022-07-15 07:55:58,759 INFO  [io.quarkus] (main) Keycloak 18.0.2 on JVM (powered by Quarkus 2.7.5.Final) started in 2.188s. Listening on: http://0.0.0.0:8080
+2022-07-15 07:55:58,760 INFO  [io.quarkus] (main) Profile dev activated. 
+2022-07-15 07:55:58,760 INFO  [io.quarkus] (main) Installed features: [agroal, cdi, hibernate-orm, jdbc-h2, jdbc-mariadb, jdbc-mssql, jdbc-mysql, jdbc-oracle, jdbc-postgresql, keycloak, narayana-jta, reactive-routes, resteasy, resteasy-jackson, smallrye-context-propagation, smallrye-health, smallrye-metrics, vault, vertx]
+2022-07-15 07:55:58,763 WARN  [org.keycloak.quarkus.runtime.KeycloakMain] (main) Running the server in development mode. DO NOT use this configuration in production.
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+fallstechdave@mmrxps17:~/Downloads/keycloak/keycloak-18.0.2$ 
+fallstechdave@mmrxps17:~/Downloads/keycloak/keycloak-18.0.2$ bin/kc.sh start-dev --help
+Start the server in development mode.
+
+Usage: 
+
+kc.sh start-dev [OPTIONS]
+
+Use this command if you want to run the server locally for development or
+testing purposes.
+
+Options:
+
+-h, --help           This help message.
+--help-all           This same help message but with additional options.
+--import-realm       Import realms during startup by reading any realm configuration file from the
+                       'data/import' directory.
+
+Database:
+
+--db-password <password>
+                     The password of the database user.
+--db-pool-initial-size <size>
+                     The initial size of the connection pool.
+--db-pool-max-size <size>
+                     The maximum size of the connection pool. Default: 100.
+--db-pool-min-size <size>
+                     The minimal size of the connection pool.
+--db-schema <schema> The database schema to be used.
+--db-url <jdbc-url>  The full database JDBC URL. If not provided, a default URL is set based on the
+                       selected database vendor. For instance, if using 'postgres', the default
+                       JDBC URL would be 'jdbc:postgresql://localhost/keycloak'.
+--db-url-database <dbname>
+                     Sets the database name of the default JDBC URL of the chosen vendor. If the
+                       `db-url` option is set, this option is ignored.
+--db-url-host <hostname>
+                     Sets the hostname of the default JDBC URL of the chosen vendor. If the
+                       `db-url` option is set, this option is ignored.
+--db-url-port <port> Sets the port of the default JDBC URL of the chosen vendor. If the `db-url`
+                       option is set, this option is ignored.
+--db-url-properties <properties>
+                     Sets the properties of the default JDBC URL of the chosen vendor. If the
+                       `db-url` option is set, this option is ignored.
+--db-username <username>
+                     The username of the database user.
+
+Hostname:
+
+--hostname <hostname>
+                     Hostname for the Keycloak server.
+--hostname-admin <hostname>
+                     The hostname for accessing the administration console. Use this option if you
+                       are exposing the administration console using a hostname other than the
+                       value set to the 'hostname' option.
+--hostname-path <path>
+                     This should be set if proxy uses a different context-path for Keycloak.
+--hostname-port <port>
+                     The port used by the proxy when exposing the hostname. Set this option if the
+                       proxy uses a port other than the default HTTP and HTTPS ports. Default: -1.
+--hostname-strict <true|false>
+                     Disables dynamically resolving the hostname from request headers. Should
+                       always be set to true in production, unless proxy verifies the Host header.
+                       Default: true.
+--hostname-strict-backchannel <true|false>
+                     By default backchannel URLs are dynamically resolved from request headers to
+                       allow internal and external applications. If all applications use the public
+                       URL this option should be enabled. Default: false.
+
+HTTP/TLS:
+
+--http-enabled <true|false>
+                     Enables the HTTP listener. Default: false.
+--http-host <host>   The used HTTP Host. Default: 0.0.0.0.
+--http-port <port>   The used HTTP port. Default: 8080.
+--https-certificate-file <file>
+                     The file path to a server certificate or certificate chain in PEM format.
+--https-certificate-key-file <file>
+                     The file path to a private key in PEM format.
+--https-cipher-suites <ciphers>
+                     The cipher suites to use. If none is given, a reasonable default is selected.
+--https-client-auth <auth>
+                     Configures the server to require/request client authentication. Possible
+                       Values: none, request, required. Default: none.
+--https-key-store-file <file>
+                     The key store which holds the certificate information instead of specifying
+                       separate files.
+--https-key-store-password <password>
+                     The password of the key store file. Default: password.
+--https-key-store-type <type>
+                     The type of the key store file. If not given, the type is automatically
+                       detected based on the file name.
+--https-port <port>  The used HTTPS port. Default: 8443.
+--https-protocols <protocols>
+                     The list of protocols to explicitly enable. Default: TLSv1.3.
+--https-trust-store-file <file>
+                     The trust store which holds the certificate information of the certificates to
+                       trust.
+--https-trust-store-password <password>
+                     The password of the trust store file.
+--https-trust-store-type <type>
+                     The type of the trust store file. If not given, the type is automatically
+                       detected based on the file name.
+
+Proxy:
+
+--proxy <mode>       The proxy address forwarding mode if the server is behind a reverse proxy.
+                       Possible values are: edge,reencrypt,passthrough Default: none.
+
+Vault:
+
+--vault-dir <dir>    If set, secrets can be obtained by reading the content of files within the
+                       given directory.
+
+Logging:
+
+--log <handler>      Enable one or more log handlers in a comma-separated list. Available log
+                       handlers are: console,file Default: console.
+--log-console-color <true|false>
+                     Enable or disable colors when logging to console. Default: false.
+--log-console-format <format>
+                     The format of unstructured console log entries. If the format has spaces in
+                       it, escape the value using "<format>". Default: %d{yyyy-MM-dd HH:mm:ss,SSS} %
+                       -5p [%c] (%t) %s%e%n.
+--log-console-output <default|json>
+                     Set the log output to JSON or default (plain) unstructured logging. Default:
+                       default.
+--log-file <path>/<file-name>.log
+                     Set the log file path and filename. Default: data/log/keycloak.log.
+--log-file-format <format>
+                     Set a format specific to file log entries. Default: %d{yyyy-MM-dd HH:mm:ss,
+                       SSS} %-5p [%c] (%t) %s%e%n.
+--log-level <category:level>
+                     The log level of the root category or a comma-separated list of individual
+                       categories and their levels. For the root category, you don't need to
+                       specify a category. Default: info.
+
+Do NOT start the server using this command when deploying to production.
+
+Use 'kc.sh start-dev --help-all' to list all available options, including build
+options.
+fallstechdave@mmrxps17:~/Downloads/keycloak/keycloak-18.0.2$ 
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+fallstechdave@mmrxps17:~/Downloads/keycloak/keycloak-18.0.2$ 
+fallstechdave@mmrxps17:~/Downloads/keycloak/keycloak-18.0.2$ 
+fallstechdave@mmrxps17:~/Downloads/keycloak/keycloak-18.0.2$ bin/kc.sh start-dev --https-port 8543
+2022-07-15 08:25:26,997 INFO  [org.keycloak.quarkus.runtime.hostname.DefaultHostnameProvider] (main) Hostname settings: FrontEnd: <request>, Strict HTTPS: false, Path: <request>, Strict BackChannel: false, Admin: <request>, Port: -1, Proxied: false
+2022-07-15 08:25:27,294 WARN  [org.infinispan.PERSISTENCE] (keycloak-cache-init) ISPN000554: jboss-marshalling is deprecated and planned for removal
+2022-07-15 08:25:27,353 WARN  [org.infinispan.CONFIG] (keycloak-cache-init) ISPN000569: Unable to persist Infinispan internal caches as no global state enabled
+2022-07-15 08:25:27,366 INFO  [org.infinispan.CONTAINER] (keycloak-cache-init) ISPN000556: Starting user marshaller 'org.infinispan.jboss.marshalling.core.JBossUserMarshaller'
+2022-07-15 08:25:27,457 INFO  [org.infinispan.CONTAINER] (keycloak-cache-init) ISPN000128: Infinispan version: Infinispan 'Triskaidekaphobia' 13.0.9.Final
+2022-07-15 08:25:27,707 INFO  [org.keycloak.connections.infinispan.DefaultInfinispanConnectionProviderFactory] (main) Node name: node_938288, Site name: null
+2022-07-15 08:25:27,834 INFO  [io.quarkus] (main) Keycloak 18.0.2 on JVM (powered by Quarkus 2.7.5.Final) started in 2.047s. Listening on: http://0.0.0.0:8080
+2022-07-15 08:25:27,835 INFO  [io.quarkus] (main) Profile dev activated. 
+2022-07-15 08:25:27,835 INFO  [io.quarkus] (main) Installed features: [agroal, cdi, hibernate-orm, jdbc-h2, jdbc-mariadb, jdbc-mssql, jdbc-mysql, jdbc-oracle, jdbc-postgresql, keycloak, narayana-jta, reactive-routes, resteasy, resteasy-jackson, smallrye-context-propagation, smallrye-health, smallrye-metrics, vault, vertx]
+2022-07-15 08:25:27,837 WARN  [org.keycloak.quarkus.runtime.KeycloakMain] (main) Running the server in development mode. DO NOT use this configuration in production.
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+fallstechdave@mmrxps17:~/Downloads/keycloak/keycloak-18.0.2$ 
+fallstechdave@mmrxps17:~/Downloads/keycloak/keycloak-18.0.2$ bin/kc.sh start-dev
+2022-07-15 08:29:22,513 INFO  [org.keycloak.quarkus.runtime.hostname.DefaultHostnameProvider] (main) Hostname settings: FrontEnd: <request>, Strict HTTPS: false, Path: <request>, Strict BackChannel: false, Admin: <request>, Port: -1, Proxied: false
+2022-07-15 08:29:22,791 WARN  [org.infinispan.PERSISTENCE] (keycloak-cache-init) ISPN000554: jboss-marshalling is deprecated and planned for removal
+2022-07-15 08:29:22,862 WARN  [org.infinispan.CONFIG] (keycloak-cache-init) ISPN000569: Unable to persist Infinispan internal caches as no global state enabled
+2022-07-15 08:29:22,882 INFO  [org.infinispan.CONTAINER] (keycloak-cache-init) ISPN000556: Starting user marshaller 'org.infinispan.jboss.marshalling.core.JBossUserMarshaller'
+2022-07-15 08:29:23,021 INFO  [org.infinispan.CONTAINER] (keycloak-cache-init) ISPN000128: Infinispan version: Infinispan 'Triskaidekaphobia' 13.0.9.Final
+2022-07-15 08:29:23,293 INFO  [org.keycloak.connections.infinispan.DefaultInfinispanConnectionProviderFactory] (main) Node name: node_460591, Site name: null
+2022-07-15 08:29:23,422 INFO  [io.quarkus] (main) Keycloak 18.0.2 on JVM (powered by Quarkus 2.7.5.Final) started in 2.193s. Listening on: http://0.0.0.0:8080
+2022-07-15 08:29:23,422 INFO  [io.quarkus] (main) Profile dev activated. 
+2022-07-15 08:29:23,422 INFO  [io.quarkus] (main) Installed features: [agroal, cdi, hibernate-orm, jdbc-h2, jdbc-mariadb, jdbc-mssql, jdbc-mysql, jdbc-oracle, jdbc-postgresql, keycloak, narayana-jta, reactive-routes, resteasy, resteasy-jackson, smallrye-context-propagation, smallrye-health, smallrye-metrics, vault, vertx]
+2022-07-15 08:29:23,424 WARN  [org.keycloak.quarkus.runtime.KeycloakMain] (main) Running the server in development mode. DO NOT use this configuration in production.
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+fallstechdave@mmrxps17:~/Downloads/keycloak/keycloak-18.0.2$ 
+fallstechdave@mmrxps17:~/Downloads/keycloak/keycloak-18.0.2$ bin/kc.sh start-dev --http-port 8543 --https-port 8443
+2022-07-15 09:04:22,678 INFO  [org.keycloak.quarkus.runtime.hostname.DefaultHostnameProvider] (main) Hostname settings: FrontEnd: <request>, Strict HTTPS: false, Path: <request>, Strict BackChannel: false, Admin: <request>, Port: -1, Proxied: false
+2022-07-15 09:04:23,311 WARN  [org.infinispan.PERSISTENCE] (keycloak-cache-init) ISPN000554: jboss-marshalling is deprecated and planned for removal
+2022-07-15 09:04:23,341 WARN  [org.infinispan.CONFIG] (keycloak-cache-init) ISPN000569: Unable to persist Infinispan internal caches as no global state enabled
+2022-07-15 09:04:23,359 INFO  [org.infinispan.CONTAINER] (keycloak-cache-init) ISPN000556: Starting user marshaller 'org.infinispan.jboss.marshalling.core.JBossUserMarshaller'
+2022-07-15 09:04:23,531 INFO  [org.infinispan.CONTAINER] (keycloak-cache-init) ISPN000128: Infinispan version: Infinispan 'Triskaidekaphobia' 13.0.9.Final
+2022-07-15 09:04:23,840 INFO  [org.keycloak.connections.infinispan.DefaultInfinispanConnectionProviderFactory] (main) Node name: node_51923, Site name: null
+2022-07-15 09:04:23,987 INFO  [io.quarkus] (main) Keycloak 18.0.2 on JVM (powered by Quarkus 2.7.5.Final) started in 3.020s. Listening on: http://0.0.0.0:8543
+2022-07-15 09:04:23,988 INFO  [io.quarkus] (main) Profile dev activated. 
+2022-07-15 09:04:23,988 INFO  [io.quarkus] (main) Installed features: [agroal, cdi, hibernate-orm, jdbc-h2, jdbc-mariadb, jdbc-mssql, jdbc-mysql, jdbc-oracle, jdbc-postgresql, keycloak, narayana-jta, reactive-routes, resteasy, resteasy-jackson, smallrye-context-propagation, smallrye-health, smallrye-metrics, vault, vertx]
+2022-07-15 09:04:23,992 WARN  [org.keycloak.quarkus.runtime.KeycloakMain] (main) Running the server in development mode. DO NOT use this configuration in production.
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+fallstechdave@mmrxps17:~$ 
+fallstechdave@mmrxps17:~$ curl --insecure -X POST https://localhost:8080/realms/myrealm//protocol/openid-connect/token \
+> --user backend-service:secret \
+> -H 'content-type: application/x-www-form-urlencoded' \
+> -d 'username=kcadmin&password=mypassword2&grant_type=password' 
+curl: (35) error:1408F10B:SSL routines:ssl3_get_record:wrong version number
+fallstechdave@mmrxps17:~$ 
+
+fallstechdave@mmrxps17:~$ curl --version
+curl 7.68.0 (x86_64-pc-linux-gnu) libcurl/7.68.0 OpenSSL/1.1.1f zlib/1.2.11 brotli/1.0.7 libidn2/2.2.0 libpsl/0.21.0 (+libidn2/2.2.0) libssh/0.9.3/openssl/zlib nghttp2/1.40.0 librtmp/2.3
+Release-Date: 2020-01-08
+Protocols: dict file ftp ftps gopher http https imap imaps ldap ldaps pop3 pop3s rtmp rtsp scp sftp smb smbs smtp smtps telnet tftp 
+Features: AsynchDNS brotli GSS-API HTTP2 HTTPS-proxy IDN IPv6 Kerberos Largefile libz NTLM NTLM_WB PSL SPNEGO SSL TLS-SRP UnixSockets
+fallstechdave@mmrxps17:~$ 
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+fallstechdave@mmrxps17:~$ curl --insecure -X POST http://localhost:8080/realms/myrealm//protocol/openid-connect/token \
+> --user backend-service:secret \
+> -H 'content-type: application/x-www-form-urlencoded' \
+> -d 'username=kcadmin&password=mypassword2&grant_type=password' 
+{"error":"RESTEASY003210: Could not find resource for full path: http://localhost:8080/realms/myrealm//protocol/openid-connect/token"}
+
+fallstechdave@mmrxps17:~$ 
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+fallstechdave@mmrxps17:~$ curl --insecure -X POST http://localhost:8543/realms/myrealm/myclient/openid-connect/token \
+> --user backend-service:secret \
+> -H 'content-type: application/x-www-form-urlencoded' \
+> -d 'username=kcadmin&password=kcadminpw&grant_type=password' 
+{"error":"HTTP 404 Not Found"}
+fallstechdave@mmrxps17:~$ 
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+fallstechdave@mmrxps17:~$ curl --insecure -X POST http://localhost:8443/realms/myrealm/myclient/openid-connect/token \
+> --user backend-service:secret \
+> -H 'content-type: application/x-www-form-urlencoded' \
+> -d 'username=kcadmin&password=kcadminpw&grant_type=password' 
+curl: (7) Failed to connect to localhost port 8443: Connection refused
+fallstechdave@mmrxps17:~$ 
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+https://github.com/keycloak/keycloak-documentation/blob/main/securing_apps/topics/oidc/mod-auth-openidc.adoc
+
+<VirtualHost *:80>
+
+    ServerAdmin webmaster@localhost
+    DocumentRoot /var/www/html
+
+    #this is required by mod_auth_openidc
+    OIDCCryptoPassphrase a-random-secret-used-by-apache-oidc-and-balancer
+
+    OIDCProviderMetadataURL ${KC_ADDR}{kc_realms_path}/${KC_REALM}/.well-known/openid-configuration
+
+    OIDCClientID ${CLIENT_ID}
+    OIDCClientSecret ${CLIENT_SECRET}
+    OIDCRedirectURI http://${HOSTIP}/${CLIENT_APP_NAME}/redirect_uri
+
+    # maps the prefered_username claim to the REMOTE_USER environment variable
+    OIDCRemoteUserClaim preferred_username
+
+    <Location /${CLIENT_APP_NAME}/>
+        AuthType openid-connect
+        Require valid-user
+    </Location>
+</VirtualHost>
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+https://www.keycloak.org/server/all-config
+
+http://localhost/articles
+http://localhost/articles/redirect_uri
+
+https://127.0.0.1/articles
+https://127.0.0.1/articles/redirect_uri
+
+grep -i "^http" stuff*.txt | sort -u | grep -i keycloak
+grep -i "^http" stuff*.txt | cut -c 20-
+grep -i "^http" stuff*.txt | cut -c 20- | sort -u | grep -i keycloak
+grep -i "^http" stuff*.txt | cut -c 20- | sort -u | grep -i openid
+grep -i "^http" stuff*.txt | cut -c 20- | sort -u | grep -i oidc
+
+grep -i "^http" stuff*.txt | cut -c 20- | sort -u | grep -i oidc
+grep -i "^http" stuff*.txt | cut -c 20- | sort -u | grep -i openid
+grep -i "^http" stuff*.txt | cut -c 20- | sort -u | grep -i keycloak
+
+OIDCProviderMetadataURL
+OIDCRedirectURI
+OIDCCryptoPassphrase
+OIDCClientSecret
+
+grep -i "OIDCProviderMetadataURL\|OIDCRedirectURI\|OIDCCryptoPassphrase\|OIDCClientSecret" 
+grep -i "OIDCProviderMetadataURL\|OIDCRedirectURI\|OIDCCryptoPassphrase\|OIDCClientSecret" stuff*.txt | cut -c 20- | sort -u
+grep -i "OIDCProviderMetadataURL\|OIDCRedirectURI\|OIDCCryptoPassphrase\|OIDCClientSecret" stuff*.txt | cut -c 20- | sed -e 's/^[ \t]*//' | sort -u
+
+fallstechdave@mmrxps17:~/Documents$ grep -i "^http" stuff*.txt | cut -c 20- | sort -u | grep -i oidc
+https://auth0.com/resources/ebooks/jwt-handbook?utm_content=jwt-handbook&utm_source=google&utm_medium=cpc&utm_term=-g-oidc&pm=true&utm_campaign=amer-sitelink&gclid=EAIaIQobChMI3-KqkaTk-AIV9v_jBx2h_A6dEAAYASABEgJeDfD_BwE
+https://auth0.com/resources/ebooks/the-openid-connect-handbook?utm_content=oidc-handbook-1utm_source=google&utm_medium=cpc&utm_term=oidc&utm_campaign=amer-usa-search-oidc?utm_id=go_cmp-12865209981_adg-123980878240_ad-517398498405_kwd-349435715211_dev-c_ext-_prd-_mca-_sig-EAIaIQobChMI3-KqkaTk-AIV9v_jBx2h_A6dEAAYASAAEgK_hvD_BwE&utm_source=google&gclid=EAIaIQobChMI3-KqkaTk-AIV9v_jBx2h_A6dEAAYASAAEgK_hvD_BwE
+https://auth0.com/signup?utm_source=google&utm_medium=cpc&utm_campaign=amer-sitelink&utm_content=signup&utm_content=signup&promo=sup&place=google-search-ad&type=sitelink-extension&text=try-auth0-for-freeutm_source=google&utm_medium=cpc&utm_term=oidc&utm_campaign=amer-usa-search-oidc?utm_id=go_cmp-12865209981_adg-123980878240_ad-517398498405_kwd-349435715211_dev-c_ext-22096040092_prd-_mca-_sig-EAIaIQobChMI3-KqkaTk-AIV9v_jBx2h_A6dEAAYASACEgJKXPD_BwE&utm_source=google&gclid=EAIaIQobChMI3-KqkaTk-AIV9v_jBx2h_A6dEAAYASACEgJKXPD_BwE
+https://github.com/keycloak/keycloak-documentation/blob/main/securing_apps/topics/oidc/mod-auth-openidc.adoc
+fallstechdave@mmrxps17:~/Documents$ 
+
+fallstechdave@mmrxps17:~/Documents$ grep -i "^http" stuff*.txt | cut -c 20- | sort -u | grep -i openid
+http://localhost:8080/realms/master/protocol/openid-connect/auth?client_id=security-admin-console&redirect_uri=http%3A%2F%2Flocalhost%3A8080%2Fadmin%2Fmaster%2Fconsole%2F&state=5744b4d1-0c34-4121-aaa9-9cdbdceb62c6&response_mode=fragment&response_type=code&scope=openid&nonce=7d4785f3-6a0f-4d6a-95f9-937469ad5c46&code_challenge=uK9tUTmj-1z0u3l0y9kUi3c63tGnMICkFxWXEfokzFc&code_challenge_method=S256
+http://localhost:8080/realms/master/protocol/openid-connect/auth?client_id=security-admin-console&redirect_uri=http%3A%2F%2Flocalhost%3A8080%2Fadmin%2Fmaster%2Fconsole%2F&state=6356a79d-d77b-437d-9827-15b34a27943c&response_mode=fragment&response_type=code&scope=openid&nonce=73194f15-f1d0-45d8-86af-4a79391673d6&code_challenge=y9B-N6coERmzABQ1XzyqHjDf2MS9J_n6qoDMW7LUf4I&code_challenge_method=S256
+http://localhost:8080/realms/master/protocol/openid-connect/auth    We are sorry... Invalid Request
+http://localhost:8080/realms/myrealm/protocol/openid-connect/auth?client_id=account-console&redirect_uri=http%3A%2F%2Flocalhost%3A8080%2Frealms%2Fmyrealm%2Faccount%2F%23%2Fpersonal-info&state=54dd655f-4311-4bdc-b9e1-87e40b117e8e&response_mode=fragment&response_type=code&scope=openid&nonce=0cf6914a-7c06-48da-8cb3-7a684365983c&code_challenge=5O7IDy4oNY5iMgwD7bSHOMhVTt-kE82lDlZPSdYZpa8&code_challenge_method=S256
+http://localhost:8080/realms/myrealm/protocol/openid-connect/auth   We are sorry... Invalid Request
+http://localhost:8080/realms/myrealm/.well-known/openid-configuration
+http://localhost:8543/realms/master/protocol/openid-connect/auth?client_id=security-admin-console&redirect_uri=http%3A%2F%2Flocalhost%3A8543%2Fadmin%2Fmaster%2Fconsole%2F&state=9c29cc85-85c6-4229-846d-ecb3ea958420&response_mode=fragment&response_type=code&scope=openid&nonce=911fa86b-9dac-48ed-84e1-ce5323684c63&code_challenge=0poWkBhK-h3eO1V8iROdkfXrvCHhCTS-nmYX40juZa8&code_challenge_method=S256
+https://auth0.com/resources/ebooks/the-openid-connect-handbook?utm_content=oidc-handbook-1utm_source=google&utm_medium=cpc&utm_term=oidc&utm_campaign=amer-usa-search-oidc?utm_id=go_cmp-12865209981_adg-123980878240_ad-517398498405_kwd-349435715211_dev-c_ext-_prd-_mca-_sig-EAIaIQobChMI3-KqkaTk-AIV9v_jBx2h_A6dEAAYASAAEgK_hvD_BwE&utm_source=google&gclid=EAIaIQobChMI3-KqkaTk-AIV9v_jBx2h_A6dEAAYASAAEgK_hvD_BwE
+https://github.com/keycloak/keycloak-documentation/blob/main/securing_apps/topics/oidc/mod-auth-openidc.adoc
+https://github.com/Reposoft/openidc-keycloak-test
+https://github.com/Reposoft/openidc-keycloak-test/issues/7
+https://github.com/zmartzone/mod_auth_openidc
+https://github.com/zmartzone/mod_auth_openidc
+https://github.com/zmartzone/mod_auth_openidc/blob/master/auth_openidc.conf
+https://github.com/zmartzone/mod_auth_openidc/blob/master/README.md
+https://github.com/zmartzone/mod_auth_openidc#openid-connect-sso-with-google-sign-in
+https://github.com/zmartzone/mod_auth_openidc/releases
+https://github.com/zmartzone/mod_auth_openidc/wiki
+https://github.com/zmartzone/mod_auth_openidc/wiki/Authorization
+https://github.com/zmartzone/mod_auth_openidc/wiki/Caching
+https://github.com/zmartzone/mod_auth_openidc/wiki/Gluu-Server
+https://github.com/zmartzone/mod_auth_openidc/wiki/Gluu-Server
+https://github.com/zmartzone/mod_auth_openidc/wiki/Keycloak
+https://github.com/zmartzone/mod_auth_openidc/wiki/OAuth-2.0-Resource-Server#keycloak
+https://openid.net/specs/openid-connect-core-1_0.html
+https://www.mod-auth-openidc.org/
+fallstechdave@mmrxps17:~/Documents$ 
+
+fallstechdave@mmrxps17:~/Documents$ grep -i "^http" stuff*.txt | cut -c 20- | sort -u | grep -i keycloak
+http://localhost:8080/realms/myrealm/account/#/     Welcome to Keycloak account management
+https://github.com/keycloak/keycloak-documentation/blob/main/securing_apps/topics/oidc/mod-auth-openidc.adoc
+https://github.com/keycloak/keycloak/issues/10443
+https://github.com/Reposoft/openidc-keycloak-test
+https://github.com/Reposoft/openidc-keycloak-test/issues/7
+https://github.com/zmartzone/mod_auth_openidc/wiki/Keycloak
+https://github.com/zmartzone/mod_auth_openidc/wiki/OAuth-2.0-Resource-Server#keycloak
+https://quarkus.io/guides/security-keycloak-authorization
+https://www.keycloak.org/
+https://www.keycloak.org/app/
+https://www.keycloak.org/app/#url=http://localhost:8080&realm=myrealm&client=myclient
+https://www.keycloak.org/docs/latest/authorization_services/index.html
+https://www.keycloak.org/docs/latest/authorization_services/index.html#_overview_terminology
+https://www.keycloak.org/docs/latest/release_notes/index.html
+https://www.keycloak.org/docs/latest/securing_apps/index.html
+https://www.keycloak.org/docs/latest/securing_apps/index.html#_mod_auth_mellon
+https://www.keycloak.org/docs/latest/securing_apps/index.html#_tomcat_adapter
+https://www.keycloak.org/docs/latest/server_admin/index.html
+https://www.keycloak.org/docs/latest/server_development/index.html
+https://www.keycloak.org/docs/latest/upgrading/index.html
+https://www.keycloak.org/documentation
+https://www.keycloak.org/downloads
+https://www.keycloak.org/getting-started/getting-started-docker
+https://www.keycloak.org/getting-started/getting-started-zip
+https://www.keycloak.org/guides
+https://www.keycloak.org/guides#getting-started
+https://www.keycloak.org/guides#server
+https://www.keycloak.org/migration/migrating-to-quarkus
+https://www.keycloak.org/server/all-config
+https://www.keycloak.org/server/configuration
+https://www.keycloak.org/server/containers
+https://www.keycloak.org/server/enabletls
+fallstechdave@mmrxps17:~/Documents$ 
+
+fallstechdave@mmrxps17:~/Documents$ grep -i "OIDCProviderMetadataURL\|OIDCRedirectURI\|OIDCCryptoPassphrase\|OIDCClientSecret" stuff*.txt | cut -c 20- | sed -e 's/^[ \t]*//' | sort -u
+grep -i "OIDCProviderMetadataURL\|OIDCRedirectURI\|OIDCCryptoPassphrase\|OIDCClientSecret" 
+grep -i "OIDCProviderMetadataURL\|OIDCRedirectURI\|OIDCCryptoPassphrase\|OIDCClientSecret" stuff*.txt | cut -c 20- | sed -e 's/^[ \t]*//' | sort -u
+grep -i "OIDCProviderMetadataURL\|OIDCRedirectURI\|OIDCCryptoPassphrase\|OIDCClientSecret" stuff*.txt | cut -c 20- | sort -u
+# Note that an encrypted cache mechanism can be shared between servers if they use the same OIDCCryptoPassphrase
+OIDCClientSecret
+OIDCClientSecret ${CLIENT_SECRET}
+OIDCClientSecret ca446a2d-a65f-4e84-95a7-d20eb36989d8
+:#OIDCClientSecret <client_secret>
+OIDCCryptoPassphrase
+# OIDCCryptoPassphrase 0123456789
+OIDCCryptoPassphrase 0123456789
+OIDCCryptoPassphrase a-random-secret-used-by-apache-oidc-and-balancer
+#    OIDCCryptoPassphrase "exec:/bin/bash -c \"head /dev/urandom | tr -dc A-Za-z0-9 | head -c 32\""
+OIDCCryptoPassphrase myphrase
+#OIDCCryptoPassphrase [ <passphrase> | "exec:/path/to/otherProgram arg1" ]
+:#OIDCCryptoPassphrase [ <passphrase> | "exec:/path/to/otherProgram arg1" ]
+OIDCProviderMetadataURL
+OIDCProviderMetadataURL ${KC_ADDR}{kc_realms_path}/${KC_REALM}/.well-known/openid-configuration
+OIDCProviderMetadataURL https://127.0.0.1/auth/realms/myrealm/.well-known/openid-configuration
+OIDCProviderMetadataURL https://keycloak.example.net/auth/realms/Testrealm/.well-known/openid-configuration
+:#OIDCProviderMetadataURL <url>
+OIDCRedirectURI
+OIDCRedirectURI http://${HOSTIP}/${CLIENT_APP_NAME}/redirect_uri
+OIDCRedirectURI https://127.0.0.1/articles/redirect_uri
+OIDCRedirectURI https://127.0.0.1/oauth2callback
+OIDCRedirectURI https://localhost/oauth2callback
+OIDCRedirectURI https://myserver.example.not/oauth2callback
+#OIDCRedirectURI https://www.example.com/protected/redirect_uri
+:#OIDCRedirectURI https://www.example.com/protected/redirect_uri
+OIDCRedirectURI https://www.example.com/protected/redirect_uri
+fallstechdave@mmrxps17:~/Documents$ 
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+https://www.keycloak.org/getting-started/getting-started-zip
+
+https://www.keycloak.org/app/#url=http://localhost:8080&realm=myrealm&client=myclient
+
+https://github.com/zmartzone/mod_auth_openidc/wiki/Keycloak
+
+	OIDCProviderMetadataURL https://keycloak.example.net/auth/realms/Testrealm/.well-known/openid-configuration
+	OIDCRedirectURI https://myserver.example.not/oauth2callback
+	OIDCCryptoPassphrase 0123456789
+	OIDCClientID testclient
+	OIDCClientSecret ca446a2d-a65f-4e84-95a7-d20eb36989d8
+	# See https://github.com/Reposoft/openidc-keycloak-test/issues/7
+	OIDCProviderTokenEndpointAuth client_secret_basic
+
+	OIDCRemoteUserClaim email
+	OIDCScope "openid email"
+
+= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
+
+sudo systemctl restart apache2
+
+sudo /usr/sbin/
+sudo /usr/sbin/passenger-status
+sudo /usr/sbin/passenger-memory-stats
+
+bin/kc.sh start-dev
+bin/kc.sh start-dev --http-port 8543
+bin/kc.sh start-dev --https-port 8443
+bin/kc.sh start-dev --http-port 8543 --https-port 8443
+
+/home/fallstechdave/Downloads/keycloak/keycloak-18.0.2/bin/kc.sh start-dev 
+/home/fallstechdave/Downloads/keycloak/keycloak-18.0.2/bin/kc.sh start-dev --http-port 8543
+/home/fallstechdave/Downloads/keycloak/keycloak-18.0.2/bin/kc.sh start-dev --https-port 8443
+/home/fallstechdave/Downloads/keycloak/keycloak-18.0.2/bin/kc.sh start-dev --http-port 8543 --https-port 8443
+
+http://localhost:8080/          Welcome to Keycloak
+http://localhost:8080/admin     Sign in to your account 
+http://localhost:8080/admin/master/console/#/realms/myrealm
+
+http://localhost/articles
+http://localhost/articles/redirect_uri
+
+https://127.0.0.1/articles
+https://127.0.0.1/articles/redirect_uri
+
+= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
+
+https://127.0.0.1:8080/auth/realms/myrealm/.well-known/openid-configuration    Secure Connection Failed
+http://127.0.0.1:8080/auth/realms/myrealm/.well-known/openid-configuration     the myrealm HTML Display name   We are sorry...
+
+https://127.0.0.1:8543/auth/realms/myrealm/.well-known/openid-configuration
+http://127.0.0.1:8543/auth/realms/myrealm/.well-known/openid-configuration
+
+https://127.0.0.1:8443/auth/realms/myrealm/.well-known/openid-configuration
+http://127.0.0.1:8443/auth/realms/myrealm/.well-known/openid-configuration
+
+https://www.keycloak.org/app/
+
+https://www.keycloak.org/app/#url=http://localhost:8080&realm=myrealm&client=myclient
+
+http://localhost:8080/realms/myrealm/protocol/openid-connect/auth?client_id=myclient&redirect_uri=https%3A%2F%2Fwww.keycloak.org%2Fapp%2F%23url%3Dhttp%3A%2F%2Flocalhost%3A8080%26realm%3Dmyrealm%26client%3Dmyclient&state=78b69220-a7e9-4269-a2e8-1cb849d4d6cf&response_mode=fragment&response_type=code&scope=openid&nonce=9b2ef8e2-03c7-4815-8fdb-e77aaeb4f6b0
+
+http://localhost:8080/realms/myrealm/protocol/openid-connect/auth
+
+http://localhost:8080/realms/myrealm/protocol/openid-connect/auth
+
+= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
+
+PtfnIgls1mJ18vd4M79PVmOuAdHDeqA7
+OIDCClientSecret PtfnIgls1mJ18vd4M79PVmOuAdHDeqA7
+
+http://localhost:8080/          Welcome to Keycloak
+http://localhost:8080/admin     Sign in to your account 
+
+... redirects to the following ...
+
+http://localhost:8080/realms/master/protocol/openid-connect/auth?client_id=security-admin-console&redirect_uri=http%3A%2F%2Flocalhost%3A8080%2Fadmin%2Fmaster%2Fconsole%2F&state=a829412d-5d58-4012-8fe5-813aeca653ed&response_mode=fragment&response_type=code&scope=openid&nonce=453f07e3-4f34-4ca4-ae7c-43431e329cae&code_challenge=-SiKPzW6e2RII9lKk6tW7xwL0AqyLOVt-cTsj-aupIs&code_challenge_method=S256
+
+http://localhost:8080/admin/master/console/#/realms/myrealm
+
+http://localhost:8080/realms/myrealm/broker/keycloak-oidc/endpoint
+
+https://github.com/zmartzone/mod_auth_openidc/blob/master/auth_openidc.conf#L16
+
+= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
+
+https://wjw465150.gitbooks.io/keycloak-documentation/content/server_admin/topics/clients/oidc/confidential.html
+
+= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
+
+{
+    "clientId": "myclient",
+    "rootUrl": "https://www.keycloak.org/app/",
+    "adminUrl": "https://www.keycloak.org/app/",
+    "baseUrl": "",
+    "surrogateAuthRequired": false,
+    "enabled": true,
+    "alwaysDisplayInConsole": false,
+    "clientAuthenticatorType": "client-secret",
+    "redirectUris": [
+        "https://www.keycloak.org/app/*"
+    ],
+    "webOrigins": [
+        "https://www.keycloak.org"
+    ],
+    "notBefore": 0,
+    "bearerOnly": false,
+    "consentRequired": false,
+    "standardFlowEnabled": true,
+    "implicitFlowEnabled": false,
+    "directAccessGrantsEnabled": true,
+    "serviceAccountsEnabled": false,
+    "publicClient": true,
+    "frontchannelLogout": false,
+    "protocol": "openid-connect",
+    "attributes": {
+        "saml.force.post.binding": "false",
+        "saml.multivalued.roles": "false",
+        "frontchannel.logout.session.required": "false",
+        "oauth2.device.authorization.grant.enabled": "false",
+        "backchannel.logout.revoke.offline.tokens": "false",
+        "saml.server.signature.keyinfo.ext": "false",
+        "use.refresh.tokens": "true",
+        "jwt.credential.certificate": "MIICnzCCAYcCBgGB9RoicjANBgkqhkiG9w0BAQsFADATMREwDwYDVQQDDAhteWNsaWVudDAeFw0yMjA3MTMwMTA3MTlaFw0zMjA3MTMwMTA4NTlaMBMxETAPBgNVBAMMCG15Y2xpZW50MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEApk/ms7eTUjFX+xZYDr6qyS0HFRb4mtRAuT52ODkBQJm7+/4Gf0DYbY0CDs85TfXZnhKSYJEPNdBgR0hj8h/d8qI7s1P8tSHS4zbghBRemEwpX4whBBkx+Qsp32Rs5q6bDVtGKkAi68A3U3rbtwiVbAYP2fqspfx5b7tJHfgfQ5maq+5nKZrPgxb2V2JEbN9/0gFDbjd6/KRT+XhnQlhL8Gvno8TMvfTVkRLteNc/b9PyYuFvenhYUDCHMskd8yZg0F1uKBAblk7k4fAnL9RaYLdbEwpLZjAyaXZogjamRVB02+rCuOY0banEFdXbD8Fk84P7AErosDobKc937q/a0wIDAQABMA0GCSqGSIb3DQEBCwUAA4IBAQCZ9Vh0uiK493fXqVPEpIADrFo+WkZgMIG/oioWdQ6aU+If1Ll73QqyqagXNJlzXYmDLIa39yV6Km1EQEK237Um8+Uf9W4BkcSZhrMJ8LoSRi/P5fFK0G46cUZD6/L7bM6Y5iPRMuydeSeVJfksy95Ti8VLA+uIgJYL9f5XhFPlSZDAS8qttvkTR9RvjzRSSSfH5SK9KYZ5N5zMDMQHOtQ1F6YgX2WmBYnb/i7GCzDft1GhVzyL02XuGal/0XoIEqU+zzYEDdxZp0QR/Ks/kdAh5T7N6eaG7lYDOth5cG9/cWQZUdnDMWKyHkcaEpVUBjTRAu1GEhvAfcaSw8gK9FHh",
+        "oidc.ciba.grant.enabled": "false",
+        "backchannel.logout.session.required": "true",
+        "client_credentials.use_refresh_token": "false",
+        "require.pushed.authorization.requests": "false",
+        "saml.client.signature": "false",
+        "saml.allow.ecp.flow": "false",
+        "id.token.as.detached.signature": "false",
+        "saml.assertion.signature": "false",
+        "saml.encrypt": "false",
+        "saml.server.signature": "false",
+        "exclude.session.state.from.auth.response": "false",
+        "saml.artifact.binding": "false",
+        "saml_force_name_id_format": "false",
+        "acr.loa.map": "{}",
+        "tls.client.certificate.bound.access.tokens": "false",
+        "saml.authnstatement": "false",
+        "display.on.consent.screen": "false",
+        "token.response.type.bearer.lower-case": "false",
+        "saml.onetimeuse.condition": "false"
+    },
+    "authenticationFlowBindingOverrides": {},
+    "fullScopeAllowed": true,
+    "nodeReRegistrationTimeout": -1,
+    "defaultClientScopes": [
+        "web-origins",
+        "acr",
+        "profile",
+        "roles",
+        "email"
+    ],
+    "optionalClientScopes": [
+        "address",
+        "phone",
+        "offline_access",
+        "microprofile-jwt"
+    ],
+    "access": {
+        "view": true,
+        "configure": true,
+        "manage": true
+    }
+}
+
+= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
+
+{
+    "clientId": "myclient",
+    "rootUrl": "https://www.keycloak.org/app/",
+    "adminUrl": "https://www.keycloak.org/app/",
+    "baseUrl": "",
+    "surrogateAuthRequired": false,
+    "enabled": true,
+    "alwaysDisplayInConsole": false,
+    "clientAuthenticatorType": "client-secret",
+    "redirectUris": [
+        "https://www.keycloak.org/app/*"
+    ],
+    "webOrigins": [
+        "https://www.keycloak.org"
+    ],
+    "notBefore": 0,
+    "bearerOnly": false,
+    "consentRequired": false,
+    "standardFlowEnabled": true,
+    "implicitFlowEnabled": false,
+    "directAccessGrantsEnabled": true,
+    "serviceAccountsEnabled": false,
+    "publicClient": false,
+    "frontchannelLogout": false,
+    "protocol": "openid-connect",
+    "attributes": {
+        "saml.force.post.binding": "false",
+        "saml.multivalued.roles": "false",
+        "frontchannel.logout.session.required": "false",
+        "oauth2.device.authorization.grant.enabled": "false",
+        "backchannel.logout.revoke.offline.tokens": "false",
+        "saml.server.signature.keyinfo.ext": "false",
+        "use.refresh.tokens": "true",
+        "jwt.credential.certificate": "MIICnzCCAYcCBgGB9RoicjANBgkqhkiG9w0BAQsFADATMREwDwYDVQQDDAhteWNsaWVudDAeFw0yMjA3MTMwMTA3MTlaFw0zMjA3MTMwMTA4NTlaMBMxETAPBgNVBAMMCG15Y2xpZW50MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEApk/ms7eTUjFX+xZYDr6qyS0HFRb4mtRAuT52ODkBQJm7+/4Gf0DYbY0CDs85TfXZnhKSYJEPNdBgR0hj8h/d8qI7s1P8tSHS4zbghBRemEwpX4whBBkx+Qsp32Rs5q6bDVtGKkAi68A3U3rbtwiVbAYP2fqspfx5b7tJHfgfQ5maq+5nKZrPgxb2V2JEbN9/0gFDbjd6/KRT+XhnQlhL8Gvno8TMvfTVkRLteNc/b9PyYuFvenhYUDCHMskd8yZg0F1uKBAblk7k4fAnL9RaYLdbEwpLZjAyaXZogjamRVB02+rCuOY0banEFdXbD8Fk84P7AErosDobKc937q/a0wIDAQABMA0GCSqGSIb3DQEBCwUAA4IBAQCZ9Vh0uiK493fXqVPEpIADrFo+WkZgMIG/oioWdQ6aU+If1Ll73QqyqagXNJlzXYmDLIa39yV6Km1EQEK237Um8+Uf9W4BkcSZhrMJ8LoSRi/P5fFK0G46cUZD6/L7bM6Y5iPRMuydeSeVJfksy95Ti8VLA+uIgJYL9f5XhFPlSZDAS8qttvkTR9RvjzRSSSfH5SK9KYZ5N5zMDMQHOtQ1F6YgX2WmBYnb/i7GCzDft1GhVzyL02XuGal/0XoIEqU+zzYEDdxZp0QR/Ks/kdAh5T7N6eaG7lYDOth5cG9/cWQZUdnDMWKyHkcaEpVUBjTRAu1GEhvAfcaSw8gK9FHh",
+        "oidc.ciba.grant.enabled": "false",
+        "backchannel.logout.session.required": "true",
+        "client_credentials.use_refresh_token": "false",
+        "require.pushed.authorization.requests": "false",
+        "saml.client.signature": "false",
+        "saml.allow.ecp.flow": "false",
+        "id.token.as.detached.signature": "false",
+        "saml.assertion.signature": "false",
+        "client.secret.creation.time": "1657910625",
+        "saml.encrypt": "false",
+        "saml.server.signature": "false",
+        "exclude.session.state.from.auth.response": "false",
+        "saml.artifact.binding": "false",
+        "saml_force_name_id_format": "false",
+        "acr.loa.map": "{}",
+        "tls.client.certificate.bound.access.tokens": "false",
+        "saml.authnstatement": "false",
+        "display.on.consent.screen": "false",
+        "token.response.type.bearer.lower-case": "false",
+        "saml.onetimeuse.condition": "false"
+    },
+    "authenticationFlowBindingOverrides": {},
+    "fullScopeAllowed": true,
+    "nodeReRegistrationTimeout": -1,
+    "defaultClientScopes": [
+        "web-origins",
+        "acr",
+        "profile",
+        "roles",
+        "email"
+    ],
+    "optionalClientScopes": [
+        "address",
+        "phone",
+        "offline_access",
+        "microprofile-jwt"
+    ],
+    "access": {
+        "view": true,
+        "configure": true,
+        "manage": true
+    }
+}
+
+= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
+
+https://wjw465150.gitbooks.io/keycloak-documentation/content/server_admin/topics/clients/oidc/service-accounts.html
+
+Service Accounts
+
+Each OIDC client has a built-in service account which allows it to obtain an access token. This is covered in the OAuth 2.0 specifiation under Client Credentials Grant. To use this feature you must set the Access Type of your client to confidential. When you do this, the Service Accounts Enabled switch will appear. You need to turn on this switch. Also make sure that you have configured your client credentials.
+
+To use it you must have registered a valid confidential Client and you need to check the switch Service Accounts Enabled in Keycloak admin console for this client. In tab Service Account Roles you can configure the roles available to the service account retrieved on behalf of this client. Don’t forget that you need those roles to be available in Scopes of this client as well (unless you have Full Scope Allowed on). As in normal login, roles from access token are the intersection of scopes and the service account roles.
+
+The REST URL to invoke on is /{server-root-usualy-auth}/realms/{realm-name}/protocol/openid-connect/token. Invoking on this URL is a POST request and requires you to post the client credentials. By default, client credentials are represented by clientId and clientSecret of the client in Authorization: Basic header, but you can also authenticate the client with a signed JWT assertion or any other custom mechanism for client authentication. You also need to use the parameter grant_type=client_credentials as per the OAuth2 specification.
+
+For example the POST invocation to retrieve a service account can look like this:
+
+    POST /auth/realms/demo/protocol/openid-connect/token
+    Authorization: Basic cHJvZHVjdC1zYS1jbGllbnQ6cGFzc3dvcmQ=
+    Content-Type: application/x-www-form-urlencoded
+
+    grant_type=client_credentials
+
+The response would be this standard JSON document from the OAuth 2.0 specification.
+
+HTTP/1.1 200 OK
+Content-Type: application/json;charset=UTF-8
+Cache-Control: no-store
+Pragma: no-cache
+
+{
+    "access_token":"2YotnFZFEjr1zCsicMWpAA",
+    "token_type":"bearer",
+    "expires_in":60,
+    "refresh_token":"tGzv3JOkF0XG5Qx2TlKWIA",
+    "refresh_expires_in":600,
+    "id_token":"tGzv3JOkF0XG5Qx2TlKWIA",
+    "not-before-policy":0,
+    "session_state":"234234-234234-234234"
+}
+
+The retrieved access token can be refreshed or logged out by an out-of-bound request.
+
+
+https://gluu.org/docs/gluu-server/3.1.0/integration/sswebapps/openidc-rp/
+
+https://www.pingidentity.com/en/lp/c/openid-connect.html?utm_source=Paid%20Search&utm_medium=cpc&utm_campaign=lp-openid-connect-ps&utm_content=591757982836&utm_term=open%20id%20connect&gclid=EAIaIQobChMIoJGlmIX8-AIV9PbjBx24YA6gEAAYASAAEgJkuPD_BwE
+
+https://curity.io/resources/learn/apache-mod-auth-openidc/
+
+OIDCProviderMetadataURL https://idsvr.example.com/oauth/v2/oauth-anonymous/.well-known/openid-configuration
+OIDCRedirectURI /protected
+OIDCClientID mod-auth-client
+OIDCClientSecret MyPa$$w0rd
+OIDCCryptoPassphrase MyPa$$phrase
+
+<Location /protected>
+  AuthType openid-connect
+  Require valid-user
+</Location>
+
+<Location /restricted>
+  AuthType openid-connect
+  Require claim read_restricted:true
+</Location>
+
+
