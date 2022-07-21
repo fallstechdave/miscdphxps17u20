@@ -1,0 +1,1208 @@
+Wed 20 Jul 2022 06:25:43 AM EDT
+
+fallstechdave@mmrxps17:~$ date
+Wed 20 Jul 2022 06:25:30 AM EDT
+fallstechdave@mmrxps17:~$ 
+fallstechdave@mmrxps17:~$ date > stuff-20220720.txt
+fallstechdave@mmrxps17:~$ code   stuff-20220720.txt
+fallstechdave@mmrxps17:~$ 
+fallstechdave@mmrxps17:~$ apachectl configtest
+AH00558: apache2: Could not reliably determine the server's fully qualified domain name, using 127.0.1.1. Set the 'ServerName' directive globally to suppress this message
+Syntax OK
+fallstechdave@mmrxps17:~$ 
+fallstechdave@mmrxps17:~$ systemctl status apache2
+● apache2.service - The Apache HTTP Server
+     Loaded: loaded (/lib/systemd/system/apache2.service; enabled; vendor preset: enabled)
+     Active: active (running) since Tue 2022-07-19 19:32:28 EDT; 10h ago
+       Docs: https://httpd.apache.org/docs/2.4/
+    Process: 42052 ExecStart=/usr/sbin/apachectl start (code=exited, status=0/SUCCESS)
+    Process: 44514 ExecReload=/usr/sbin/apachectl graceful (code=exited, status=0/SUCCESS)
+   Main PID: 42115 (apache2)
+      Tasks: 108 (limit: 18735)
+     Memory: 18.3M
+     CGroup: /system.slice/apache2.service
+             ├─42115 /usr/sbin/apache2 -k start
+             ├─44527 Passenger watchdog
+             ├─44534 Passenger core
+             ├─44564 /usr/sbin/apache2 -k start
+             └─44569 /usr/sbin/apache2 -k start
+
+Jul 19 19:32:28 mmrxps17 systemd[1]: Starting The Apache HTTP Server...
+Jul 19 19:32:28 mmrxps17 apachectl[42055]: AH00558: apache2: Could not reliably determine the server's fully qualified domain name, using 127.0.1.1. Set the 'ServerName' directive globally to suppress t>
+Jul 19 19:32:28 mmrxps17 systemd[1]: Started The Apache HTTP Server.
+Jul 20 00:00:09 mmrxps17 systemd[1]: Reloading The Apache HTTP Server.
+Jul 20 00:00:09 mmrxps17 apachectl[44517]: AH00558: apache2: Could not reliably determine the server's fully qualified domain name, using 127.0.1.1. Set the 'ServerName' directive globally to suppress t>
+Jul 20 00:00:09 mmrxps17 systemd[1]: Reloaded The Apache HTTP Server.
+fallstechdave@mmrxps17:~$ 
+
+... powered off and powered on laptop ...
+
+fallstechdave@mmrxps17:~$ systemctl status apache2
+  apache2.service - The Apache HTTP Server
+     Loaded: loaded (/lib/systemd/system/apache2.service; enabled; vendor preset: enabled)
+     Active: active (running) since Wed 2022-07-20 06:36:10 EDT; 2min 3s ago
+       Docs: https://httpd.apache.org/docs/2.4/
+    Process: 1000 ExecStart=/usr/sbin/apachectl start (code=exited, status=0/SUCCESS)
+      Tasks: 109 (limit: 18735)
+     Memory: 32.0M
+     CGroup: /system.slice/apache2.service
+             ├─1197 /usr/sbin/apache2 -k start
+             ├─1200 Passenger watchdog
+             ├─1204 Passenger core
+             ├─1252 /usr/sbin/apache2 -k start
+             └─1254 /usr/sbin/apache2 -k start
+
+Jul 20 06:36:10 mmrxps17 systemd[1]: Starting The Apache HTTP Server...
+Jul 20 06:36:10 mmrxps17 apachectl[1044]: AH00558: apache2: Could not reliably determine the server's fully qualified domain name, using 127.0.1.1. Set the 'ServerName' directive globally to suppress th>
+Jul 20 06:36:10 mmrxps17 systemd[1]: Started The Apache HTTP Server.
+fallstechdave@mmrxps17:~$ 
+fallstechdave@mmrxps17:~$ ls -latr /etc/apache/
+ls: cannot access '/etc/apache/': No such file or directory
+fallstechdave@mmrxps17:~$ ls -latr /etc/apache2/sites-enabled/
+total 8
+drwxr-xr-x 8 root root 4096 Jul  1 07:10 ..
+lrwxrwxrwx 1 root root   29 Jul 19 16:00 wire6.conf -> ../sites-available/wire6.conf
+drwxr-xr-x 2 root root 4096 Jul 19 16:00 .
+fallstechdave@mmrxps17:~$ 
+fallstechdave@mmrxps17:~$ ls -latr /etc/apache2/mods-enabled/ | tail
+lrwxrwxrwx 1 root root   29 Jul  1 07:10 status.load -> ../mods-available/status.load
+lrwxrwxrwx 1 root root   29 Jul  1 07:10 status.conf -> ../mods-available/status.conf
+lrwxrwxrwx 1 root root   33 Jul  1 07:10 reqtimeout.load -> ../mods-available/reqtimeout.load
+lrwxrwxrwx 1 root root   33 Jul  1 07:10 reqtimeout.conf -> ../mods-available/reqtimeout.conf
+lrwxrwxrwx 1 root root   32 Jul  1 07:52 passenger.load -> ../mods-available/passenger.load
+lrwxrwxrwx 1 root root   32 Jul  1 07:52 passenger.conf -> ../mods-available/passenger.conf
+lrwxrwxrwx 1 root root   36 Jul 13 06:31 socache_shmcb.load -> ../mods-available/socache_shmcb.load
+lrwxrwxrwx 1 root root   26 Jul 13 06:31 ssl.load -> ../mods-available/ssl.load
+lrwxrwxrwx 1 root root   26 Jul 13 06:31 ssl.conf -> ../mods-available/ssl.conf
+drwxr-xr-x 2 root root 4096 Jul 19 18:59 .
+fallstechdave@mmrxps17:~$ 
+fallstechdave@mmrxps17:/etc/apache2$ sudo systemctl restart apache2
+[sudo] password for fallstechdave: 
+fallstechdave@mmrxps17:/etc/apache2$ 
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+... both URLs below work fine ...
+
+http://127.0.0.1/articles
+http://127.0.0.1/redirect_uri
+
+/etc/apache2/sites-available/wire6.conf
+
+<VirtualHost *:80>
+  ServerName 127.0.0.1
+  # Redirect / https://127.0.0.1/
+
+  # # Tell Apache and Passenger where your app's 'public' directory is
+  DocumentRoot /home/fallstechdave/railsprojects/wire6/public
+  PassengerRuby /home/fallstechdave/.rbenv/versions/3.1.2/bin/ruby
+
+  # Relax Apache security settings
+  <Directory /home/fallstechdave/railsprojects/wire6/public>
+    Allow from all
+    Options -MultiViews
+    # Uncomment this if you're on Apache > 2.4:
+    Require all granted
+  </Directory>
+</VirtualHost>
+
+/var/log/apache2/other_vhosts_access.log
+
+127.0.0.1:80 127.0.0.1 - - [20/Jul/2022:06:47:01 -0400] "GET /articles/new HTTP/1.1" 200 3509 "http://127.0.0.1/articles" "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:102.0) Gecko/20100101 Firefox/102.0"
+127.0.0.1:80 127.0.0.1 - - [20/Jul/2022:06:47:45 -0400] "POST /articles HTTP/1.1" 302 1281 "http://127.0.0.1/articles/new" "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:102.0) Gecko/20100101 Firefox/102.0"
+127.0.0.1:80 127.0.0.1 - - [20/Jul/2022:06:47:45 -0400] "GET /articles/1 HTTP/1.1" 200 3291 "http://127.0.0.1/articles/new" "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:102.0) Gecko/20100101 Firefox/102.0"
+127.0.0.1:80 127.0.0.1 - - [20/Jul/2022:06:47:50 -0400] "GET /articles HTTP/1.1" 200 3074 "http://127.0.0.1/articles/1" "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:102.0) Gecko/20100101 Firefox/102.0"
+127.0.0.1:80 127.0.0.1 - - [20/Jul/2022:06:47:57 -0400] "GET /articles/new HTTP/1.1" 200 3509 "http://127.0.0.1/articles" "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:102.0) Gecko/20100101 Firefox/102.0"
+127.0.0.1:80 127.0.0.1 - - [20/Jul/2022:06:48:22 -0400] "POST /articles HTTP/1.1" 302 1283 "http://127.0.0.1/articles/new" "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:102.0) Gecko/20100101 Firefox/102.0"
+127.0.0.1:80 127.0.0.1 - - [20/Jul/2022:06:48:22 -0400] "GET /articles/2 HTTP/1.1" 200 3295 "http://127.0.0.1/articles/new" "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:102.0) Gecko/20100101 Firefox/102.0"
+127.0.0.1:80 127.0.0.1 - - [20/Jul/2022:06:48:26 -0400] "GET /articles HTTP/1.1" 200 3150 "http://127.0.0.1/articles/2" "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:102.0) Gecko/20100101 Firefox/102.0"
+127.0.0.1:80 127.0.0.1 - - [20/Jul/2022:06:50:40 -0400] "GET /redirect_uri HTTP/1.1" 200 2769 "-" "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:102.0) Gecko/20100101 Firefox/102.0"
+
+/home/fallstechdave/railsprojects/wire6/log/production.log
+
+I, [2022-07-20T06:48:22.308930 #6185]  INFO -- : [ffb133e7-e326-40f4-a953-751aab215f39] Started GET "/articles/2" for 127.0.0.1 at 2022-07-20 06:48:22 -0400
+I, [2022-07-20T06:48:22.309606 #6185]  INFO -- : [ffb133e7-e326-40f4-a953-751aab215f39] Processing by ArticlesController#show as TURBO_STREAM
+I, [2022-07-20T06:48:22.309651 #6185]  INFO -- : [ffb133e7-e326-40f4-a953-751aab215f39]   Parameters: {"id"=>"2"}
+I, [2022-07-20T06:48:22.312374 #6185]  INFO -- : [ffb133e7-e326-40f4-a953-751aab215f39]   Rendered articles/show.html.erb within layouts/application (Duration: 1.1ms | Allocations: 581)
+I, [2022-07-20T06:48:22.313141 #6185]  INFO -- : [ffb133e7-e326-40f4-a953-751aab215f39]   Rendered layout layouts/application.html.erb (Duration: 1.8ms | Allocations: 1290)
+I, [2022-07-20T06:48:22.313328 #6185]  INFO -- : [ffb133e7-e326-40f4-a953-751aab215f39] Completed 200 OK in 4ms (Views: 2.2ms | ActiveRecord: 0.6ms | Allocations: 1591)
+I, [2022-07-20T06:48:26.173080 #6185]  INFO -- : [0ee896c2-09ab-4aa3-8bd5-d522ba1d6d0c] Started GET "/articles" for 127.0.0.1 at 2022-07-20 06:48:26 -0400
+I, [2022-07-20T06:48:26.173642 #6185]  INFO -- : [0ee896c2-09ab-4aa3-8bd5-d522ba1d6d0c] Processing by ArticlesController#index as HTML
+I, [2022-07-20T06:48:26.175491 #6185]  INFO -- : [0ee896c2-09ab-4aa3-8bd5-d522ba1d6d0c]   Rendered articles/index.html.erb within layouts/application (Duration: 1.4ms | Allocations: 661)
+I, [2022-07-20T06:48:26.175925 #6185]  INFO -- : [0ee896c2-09ab-4aa3-8bd5-d522ba1d6d0c]   Rendered layout layouts/application.html.erb (Duration: 1.9ms | Allocations: 1378)
+I, [2022-07-20T06:48:26.176029 #6185]  INFO -- : [0ee896c2-09ab-4aa3-8bd5-d522ba1d6d0c] Completed 200 OK in 2ms (Views: 1.7ms | ActiveRecord: 0.4ms | Allocations: 1590)
+I, [2022-07-20T06:50:40.920007 #6185]  INFO -- : [35c314cb-15c8-4573-abd7-514b6d10e9fc] Started GET "/redirect_uri" for 127.0.0.1 at 2022-07-20 06:50:40 -0400
+I, [2022-07-20T06:50:40.920596 #6185]  INFO -- : [35c314cb-15c8-4573-abd7-514b6d10e9fc] Processing by RedirectUriController#oidc_get as HTML
+I, [2022-07-20T06:50:40.949540 #6185]  INFO -- : [35c314cb-15c8-4573-abd7-514b6d10e9fc]   Rendered redirect_uri/oidc_get.html.erb within layouts/application (Duration: 1.0ms | Allocations: 102)
+I, [2022-07-20T06:50:40.951535 #6185]  INFO -- : [35c314cb-15c8-4573-abd7-514b6d10e9fc]   Rendered layout layouts/application.html.erb (Duration: 3.1ms | Allocations: 1107)
+I, [2022-07-20T06:50:40.951677 #6185]  INFO -- : [35c314cb-15c8-4573-abd7-514b6d10e9fc] Completed 200 OK in 31ms (Views: 5.6ms | ActiveRecord: 0.0ms | Allocations: 2229)
+
+/home/fallstechdave/railsprojects/wire6/log/production.log
+
+I, [2022-07-20T06:50:40.920007 #6185]  INFO -- : [35c314cb-15c8-4573-abd7-514b6d10e9fc] Started GET "/redirect_uri" for 127.0.0.1 at 2022-07-20 06:50:40 -0400
+I, [2022-07-20T06:50:40.920596 #6185]  INFO -- : [35c314cb-15c8-4573-abd7-514b6d10e9fc] Processing by RedirectUriController#oidc_get as HTML
+I, [2022-07-20T06:50:40.949540 #6185]  INFO -- : [35c314cb-15c8-4573-abd7-514b6d10e9fc]   Rendered redirect_uri/oidc_get.html.erb within layouts/application (Duration: 1.0ms | Allocations: 102)
+I, [2022-07-20T06:50:40.951535 #6185]  INFO -- : [35c314cb-15c8-4573-abd7-514b6d10e9fc]   Rendered layout layouts/application.html.erb (Duration: 3.1ms | Allocations: 1107)
+I, [2022-07-20T06:50:40.951677 #6185]  INFO -- : [35c314cb-15c8-4573-abd7-514b6d10e9fc] Completed 200 OK in 31ms (Views: 5.6ms | ActiveRecord: 0.0ms | Allocations: 2229)
+I, [2022-07-20T07:13:05.158886 #6185]  INFO -- : [c005b0cb-0dc0-4fa7-b010-3d55a1d9eb13] Started GET "/redirect_uri" for 127.0.0.1 at 2022-07-20 07:13:05 -0400
+I, [2022-07-20T07:13:05.159364 #6185]  INFO -- : [c005b0cb-0dc0-4fa7-b010-3d55a1d9eb13] Processing by RedirectUriController#oidc_get as HTML
+I, [2022-07-20T07:13:05.159889 #6185]  INFO -- : [c005b0cb-0dc0-4fa7-b010-3d55a1d9eb13]   Rendered redirect_uri/oidc_get.html.erb within layouts/application (Duration: 0.0ms | Allocations: 4)
+I, [2022-07-20T07:13:05.160433 #6185]  INFO -- : [c005b0cb-0dc0-4fa7-b010-3d55a1d9eb13]   Rendered layout layouts/application.html.erb (Duration: 0.6ms | Allocations: 815)
+I, [2022-07-20T07:13:05.160530 #6185]  INFO -- : [c005b0cb-0dc0-4fa7-b010-3d55a1d9eb13] Completed 200 OK in 1ms (Views: 0.8ms | Allocations: 1478)
+
+I, [2022-07-20T07:17:19.571520 #9729]  INFO -- : [4de1abff-1cb6-4c90-b917-63fb0ecbf08f] Started GET "/redirect_uri" for 127.0.0.1 at 2022-07-20 07:17:19 -0400
+I, [2022-07-20T07:17:19.573138 #9729]  INFO -- : [4de1abff-1cb6-4c90-b917-63fb0ecbf08f] Processing by RedirectUriController#oidc_get as HTML
+I, [2022-07-20T07:17:19.573450 #9729]  INFO -- : [4de1abff-1cb6-4c90-b917-63fb0ecbf08f]  session = #<ActionDispatch::Request::Session:0x00007f3f84ff5cd8>
+I, [2022-07-20T07:17:19.573473 #9729]  INFO -- : [4de1abff-1cb6-4c90-b917-63fb0ecbf08f]  action_name = oidc_get
+I, [2022-07-20T07:17:19.573516 #9729]  INFO -- : [4de1abff-1cb6-4c90-b917-63fb0ecbf08f]  params = {"controller"=>"redirect_uri", "action"=>"oidc_get"}
+I, [2022-07-20T07:17:19.573792 #9729]  INFO -- : [4de1abff-1cb6-4c90-b917-63fb0ecbf08f]  cookies = #<ActionDispatch::Cookies::CookieJar:0x00007f3f8500ffc0>
+I, [2022-07-20T07:17:19.573811 #9729]  INFO -- : [4de1abff-1cb6-4c90-b917-63fb0ecbf08f]  request = #<ActionDispatch::Request:0x00007f3f84ff55a8>
+I, [2022-07-20T07:17:19.573821 #9729]  INFO -- : [4de1abff-1cb6-4c90-b917-63fb0ecbf08f]  request.method = GET
+I, [2022-07-20T07:17:19.573886 #9729]  INFO -- : [4de1abff-1cb6-4c90-b917-63fb0ecbf08f]  request.url() = http://127.0.0.1/redirect_uri
+I, [2022-07-20T07:17:19.573897 #9729]  INFO -- : [4de1abff-1cb6-4c90-b917-63fb0ecbf08f]  request.protocol() = http://
+I, [2022-07-20T07:17:19.573904 #9729]  INFO -- : [4de1abff-1cb6-4c90-b917-63fb0ecbf08f]  request.host() = 127.0.0.1
+I, [2022-07-20T07:17:19.573911 #9729]  INFO -- : [4de1abff-1cb6-4c90-b917-63fb0ecbf08f]  request.port() = 80
+I, [2022-07-20T07:17:19.573919 #9729]  INFO -- : [4de1abff-1cb6-4c90-b917-63fb0ecbf08f]  request.path() = /redirect_uri
+I, [2022-07-20T07:17:19.573926 #9729]  INFO -- : [4de1abff-1cb6-4c90-b917-63fb0ecbf08f]  request.query_string() = 
+I, [2022-07-20T07:17:19.573959 #9729]  INFO -- : [4de1abff-1cb6-4c90-b917-63fb0ecbf08f]  request.domain() = 
+I, [2022-07-20T07:17:19.573968 #9729]  INFO -- : [4de1abff-1cb6-4c90-b917-63fb0ecbf08f]  request.host_with_port() = 127.0.0.1
+I, [2022-07-20T07:17:19.573975 #9729]  INFO -- : [4de1abff-1cb6-4c90-b917-63fb0ecbf08f]  request.port_string() = 
+I, [2022-07-20T07:17:19.573988 #9729]  INFO -- : [4de1abff-1cb6-4c90-b917-63fb0ecbf08f]  request.ssl?() = false
+I, [2022-07-20T07:17:19.574002 #9729]  INFO -- : [4de1abff-1cb6-4c90-b917-63fb0ecbf08f]  request.remote_ip() = 127.0.0.1
+I, [2022-07-20T07:17:19.574011 #9729]  INFO -- : [4de1abff-1cb6-4c90-b917-63fb0ecbf08f]  request.xml_http_request?() = false
+I, [2022-07-20T07:17:19.574021 #9729]  INFO -- : [4de1abff-1cb6-4c90-b917-63fb0ecbf08f]  request.env()['HTTP_USER_AGENT'] = Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:102.0) Gecko/20100101 Firefox/102.0
+I, [2022-07-20T07:17:19.574029 #9729]  INFO -- : [4de1abff-1cb6-4c90-b917-63fb0ecbf08f]  request.env()['SERVER_SOFTWARE'] = Apache/2.4.41 (Ubuntu) Phusion_Passenger/6.0.14
+I, [2022-07-20T07:17:19.574191 #9729]  INFO -- : [4de1abff-1cb6-4c90-b917-63fb0ecbf08f]  request.accepts() = [#<Mime::Type:0x00007f3f867d57b8 @synonyms=["application/xhtml+xml"], @symbol=:html, @string="text/html", @hash=-1142244567604270060>, #<Mime::Type:0x00007f3f850113e8 @synonyms=[], @symbol=nil, @string="image/avif", @hash=-2878559527544076949>, #<Mime::Type:0x00007f3f85011320 @synonyms=[], @symbol=nil, @string="image/webp", @hash=-626327861319475510>, #<Mime::Type:0x00007f3f867d30a8 @synonyms=["text/xml", "application/x-xml"], @symbol=:xml, @string="application/xml", @hash=-1700066144730612460>, #<Mime::Type:0x00007f3f850112a8 @synonyms=[], @symbol=nil, @string="*/*", @hash=4206164767305397529>]
+I, [2022-07-20T07:17:19.574219 #9729]  INFO -- : [4de1abff-1cb6-4c90-b917-63fb0ecbf08f]  request.format() = text/html
+I, [2022-07-20T07:17:19.574235 #9729]  INFO -- : [4de1abff-1cb6-4c90-b917-63fb0ecbf08f]  request.content_type() = 
+I, [2022-07-20T07:17:19.574247 #9729]  INFO -- : [4de1abff-1cb6-4c90-b917-63fb0ecbf08f]  request.headers() = #<ActionDispatch::Http::Headers:0x00007f3f850009a8>
+I, [2022-07-20T07:17:19.574259 #9729]  INFO -- : [4de1abff-1cb6-4c90-b917-63fb0ecbf08f]  request.content_length() = 0
+I, [2022-07-20T07:17:19.574269 #9729]  INFO -- : [4de1abff-1cb6-4c90-b917-63fb0ecbf08f]  request.body = #<PhusionPassenger::Utils::TeeInput:0x00007f3f84feb3f0>
+I, [2022-07-20T07:17:19.574294 #9729]  INFO -- : [4de1abff-1cb6-4c90-b917-63fb0ecbf08f]    key = HTTP_USER_AGENT  value = Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:102.0) Gecko/20100101 Firefox/102.0
+I, [2022-07-20T07:17:19.574305 #9729]  INFO -- : [4de1abff-1cb6-4c90-b917-63fb0ecbf08f]    key = HTTP_SEC_FETCH_DEST  value = document
+I, [2022-07-20T07:17:19.574312 #9729]  INFO -- : [4de1abff-1cb6-4c90-b917-63fb0ecbf08f]    key = HTTP_ACCEPT_ENCODING  value = gzip, deflate, br
+I, [2022-07-20T07:17:19.574321 #9729]  INFO -- : [4de1abff-1cb6-4c90-b917-63fb0ecbf08f]    key = HTTP_SEC_FETCH_USER  value = ?1
+I, [2022-07-20T07:17:19.574327 #9729]  INFO -- : [4de1abff-1cb6-4c90-b917-63fb0ecbf08f]    key = HTTP_SEC_FETCH_SITE  value = none
+I, [2022-07-20T07:17:19.574334 #9729]  INFO -- : [4de1abff-1cb6-4c90-b917-63fb0ecbf08f]    key = HTTP_ACCEPT  value = text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8
+I, [2022-07-20T07:17:19.574341 #9729]  INFO -- : [4de1abff-1cb6-4c90-b917-63fb0ecbf08f]    key = HTTP_ACCEPT_LANGUAGE  value = en-US,en;q=0.5
+I, [2022-07-20T07:17:19.574349 #9729]  INFO -- : [4de1abff-1cb6-4c90-b917-63fb0ecbf08f]    key = HTTP_COOKIE  value = _wire6_session=AXYWnkJH1qOOzKUHiniZc3Pi%2F8Y73R7YksUICFchtmoApk4vhzdW8gvApahcdI%2FgN6FELPVf5p6X6%2Fqb0K0XbZkDpGi4JFhkpSHdWbCII1B6Ui9ivDnXb8Kfm34kq4i5UpzFoEkcml4k0KzGYJ2YG4Q7Q6hIddXjc7aqocGbCCkgxJs63YZ1G1v9Oe0eynj7BnVvAdfKx%2BJ%2FA44FYcjt%2F2X8HXDHQTBFcyFoYfrKl2DBkRx8ekQq1VVi%2FSXA5lk%2FQ4qgah1HtZ7ulMJhSWhuOgB%2F4gv4hw%3D%3D--FO8AE%2BEVsWPdEVah--PY4OFIh6RLoHEVt5zEfEPw%3D%3D
+I, [2022-07-20T07:17:19.574360 #9729]  INFO -- : [4de1abff-1cb6-4c90-b917-63fb0ecbf08f]    key = HTTP_SEC_FETCH_MODE  value = navigate
+I, [2022-07-20T07:17:19.574367 #9729]  INFO -- : [4de1abff-1cb6-4c90-b917-63fb0ecbf08f]    key = HTTP_HOST  value = 127.0.0.1
+I, [2022-07-20T07:17:19.574374 #9729]  INFO -- : [4de1abff-1cb6-4c90-b917-63fb0ecbf08f]    key = HTTP_UPGRADE_INSECURE_REQUESTS  value = 1
+I, [2022-07-20T07:17:19.574383 #9729]  INFO -- : [4de1abff-1cb6-4c90-b917-63fb0ecbf08f]    key = HTTP_IF_NONE_MATCH  value = W/"9469f4f8441a3f982d36e54d1c069c06-gzip"
+I, [2022-07-20T07:17:19.574401 #9729]  INFO -- : [4de1abff-1cb6-4c90-b917-63fb0ecbf08f]    key = HTTP_VERSION  value = HTTP/1.1
+I, [2022-07-20T07:17:19.574433 #9729]  INFO -- : [4de1abff-1cb6-4c90-b917-63fb0ecbf08f]  params.inspect = #<ActionController::Parameters {"controller"=>"redirect_uri", "action"=>"oidc_get"} permitted: false>
+I, [2022-07-20T07:17:19.574459 #9729]  INFO -- : [4de1abff-1cb6-4c90-b917-63fb0ecbf08f]  session.inspect = #<ActionDispatch::Request::Session:0xa988 not yet loaded>
+I, [2022-07-20T07:17:19.576800 #9729]  INFO -- : [4de1abff-1cb6-4c90-b917-63fb0ecbf08f]   Rendered redirect_uri/oidc_get.html.erb within layouts/application (Duration: 0.4ms | Allocations: 177)
+I, [2022-07-20T07:17:19.580772 #9729]  INFO -- : [4de1abff-1cb6-4c90-b917-63fb0ecbf08f]   Rendered layout layouts/application.html.erb (Duration: 4.5ms | Allocations: 3176)
+I, [2022-07-20T07:17:19.580992 #9729]  INFO -- : [4de1abff-1cb6-4c90-b917-63fb0ecbf08f] Completed 200 OK in 8ms (Views: 5.7ms | Allocations: 5472)
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+apachectl configtest
+sudo systemctl restart apache2
+systemctl status apache2
+passenger-memory-stats
+
+do not do this (not yet, at least)
+
+cd ~/Downloads/keycloak/keycloak-18.0.2/
+bin/kc.sh start-dev
+
+sudo systemctl start apache2.service  
+sudo systemctl enable apache2.service
+sudo systemctl stop apache2.service  
+sudo systemctl disable apache2.service
+
+sudo systemctl enable apache2.service --now
+sudo systemctl disable apache2.service --now
+
+https://www.tecmint.com/list-all-running-services-under-systemd-in-linux/
+systemctl list-units --type=service
+systemctl list-units --type=service --state=active
+systemctl list-units --type=service --state=running 
+
+fallstechdave@mmrxps17:~/Documents$ 
+fallstechdave@mmrxps17:~/Documents$ systemctl list-units --type=service --state=running 
+  UNIT                        LOAD   ACTIVE SUB     DESCRIPTION                                                     
+  accounts-daemon.service     loaded active running Accounts Service                                                
+  acpid.service               loaded active running ACPI event daemon                                               
+  apache2.service             loaded active running The Apache HTTP Server                                          
+  avahi-daemon.service        loaded active running Avahi mDNS/DNS-SD Stack                                         
+  bluetooth.service           loaded active running Bluetooth service                                               
+  bolt.service                loaded active running Thunderbolt system service                                      
+  colord.service              loaded active running Manage, Install and Generate Color Profiles                     
+  containerd.service          loaded active running containerd container runtime                                    
+  cron.service                loaded active running Regular background program processing daemon                    
+  cups-browsed.service        loaded active running Make remote CUPS printers available locally                     
+  cups.service                loaded active running CUPS Scheduler                                                  
+  dbus.service                loaded active running D-Bus System Message Bus                                        
+  docker.service              loaded active running Docker Application Container Engine                             
+  fwupd.service               loaded active running Firmware update daemon                                          
+  gdm.service                 loaded active running GNOME Display Manager                                           
+  iio-sensor-proxy.service    loaded active running IIO Sensor Proxy service                                        
+  irqbalance.service          loaded active running irqbalance daemon                                               
+  kerneloops.service          loaded active running Tool to automatically collect and submit kernel crash signatures
+  ModemManager.service        loaded active running Modem Manager                                                   
+  mysql.service               loaded active running MySQL Community Server                                          
+  networkd-dispatcher.service loaded active running Dispatcher daemon for systemd-networkd                          
+  NetworkManager.service      loaded active running Network Manager                                                 
+  polkit.service              loaded active running Authorization Manager                                           
+  rsyslog.service             loaded active running System Logging Service                                          
+  rtkit-daemon.service        loaded active running RealtimeKit Scheduling Policy Service                           
+  snapd.service               loaded active running Snap Daemon                                                     
+  switcheroo-control.service  loaded active running Switcheroo Control Proxy service                                
+  systemd-journald.service    loaded active running Journal Service                                                 
+  systemd-logind.service      loaded active running Login Service                                                   
+  systemd-resolved.service    loaded active running Network Name Resolution                                         
+  systemd-timesyncd.service   loaded active running Network Time Synchronization                                    
+  systemd-udevd.service       loaded active running udev Kernel Device Manager                                      
+  thermald.service            loaded active running Thermal Daemon Service                                          
+  udisks2.service             loaded active running Disk Manager                                                    
+  unattended-upgrades.service loaded active running Unattended Upgrades Shutdown                                    
+  upower.service              loaded active running Daemon for power management                                     
+  user@1000.service           loaded active running User Manager for UID 1000                                       
+  whoopsie.service            loaded active running crash report submission daemon                                  
+  wpa_supplicant.service      loaded active running WPA supplicant                                                  
+
+LOAD   = Reflects whether the unit definition was properly loaded.
+ACTIVE = The high-level unit activation state, i.e. generalization of SUB.
+SUB    = The low-level unit activation state, values depend on unit type.
+
+39 loaded units listed.
+fallstechdave@mmrxps17:~/Documents$ 
+fallstechdave@mmrxps17:~/Documents$ sudo systemctl disable apache2.service --now
+[sudo] password for fallstechdave: 
+Synchronizing state of apache2.service with SysV service script with /lib/systemd/systemd-sysv-install.
+Executing: /lib/systemd/systemd-sysv-install disable apache2
+Removed /etc/systemd/system/multi-user.target.wants/apache2.service.
+fallstechdave@mmrxps17:~/Documents$ 
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+https://www.datadoghq.com/blog/managing-rails-application-logs/
+
+Rails uses six different log levels: debug, info, warn, error, fatal, and unknown. Each level defines how much information your application will log:
+
+Debug: diagnostic information for developers and system administrators, including database calls or inspecting object attributes. This is the most verbose log level.
+
+The debug and info levels log the most information about application behavior, while the higher levels only log warnings or errors. By default, Rails applications generate logs at the debug level for all environments, including production. A single debug log entry can carry a lot of information:
+
+/home/fallstechdave/railsprojects/wire6/config/environments/production.rb
+  config.log_level = :info
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+fallstechdave@mmrxps17:~/Documents$ 
+fallstechdave@mmrxps17:~/Documents$ passenger-memory-stats
+Version: 6.0.14
+Date   : 2022-07-20 07:26:49 -0400
+
+--------- Apache processes ----------
+PID   PPID  VMSize     Private  Name
+-------------------------------------
+9473  1     80.3 MB    ?        /usr/sbin/apache2 -k start
+9497  9473  1961.0 MB  ?        /usr/sbin/apache2 -k start
+9502  9473  1961.0 MB  ?        /usr/sbin/apache2 -k start
+### Processes: 3
+### Total private dirty RSS: 0.00 MB (?)
+
+
+-------- Nginx processes --------
+
+### Processes: 0
+### Total private dirty RSS: 0.00 MB
+
+
+----- Passenger processes -----
+PID   VMSize     Private  Name
+-------------------------------
+9475  296.0 MB   ?        Passenger watchdog
+9479  3570.6 MB  ?        Passenger core
+9729  359.5 MB   89.5 MB  Passenger RubyApp: /home/fallstechdave/railsprojects/wire6 (production)
+### Processes: 3
+### Total private dirty RSS: 89.52 MB (?)
+*** WARNING: Please run this tool with sudo. Otherwise the private dirty RSS (a reliable metric for real memory usage) of processes cannot be determined.
+fallstechdave@mmrxps17:~/Documents$ 
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+fallstechdave@mmrxps17:~/Documents$ sudo passenger-memory-stats
+[sudo] password for fallstechdave: 
+Version: 6.0.14
+Date   : 2022-07-20 07:33:56 -0400
+
+--------- Apache processes ----------
+PID   PPID  VMSize     Private  Name
+-------------------------------------
+9473  1     80.3 MB    0.7 MB   /usr/sbin/apache2 -k start
+9497  9473  1961.0 MB  0.7 MB   /usr/sbin/apache2 -k start
+9502  9473  1961.0 MB  1.0 MB   /usr/sbin/apache2 -k start
+### Processes: 3
+### Total private dirty RSS: 2.43 MB
+
+
+-------- Nginx processes --------
+
+### Processes: 0
+### Total private dirty RSS: 0.00 MB
+
+
+----- Passenger processes -----
+PID   VMSize     Private  Name
+-------------------------------
+9475  296.0 MB   2.5 MB   Passenger watchdog
+9479  3570.6 MB  6.6 MB   Passenger core
+9729  359.5 MB   89.5 MB  Passenger RubyApp: /home/fallstechdave/railsprojects/wire6 (production)
+### Processes: 3
+### Total private dirty RSS: 98.71 MB
+fallstechdave@mmrxps17:~/Documents$ 
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+cd ~/Downloads/keycloak/keycloak-18.0.2/
+bin/kc.sh start-dev
+
+apachectl configtest
+sudo systemctl restart apache2
+systemctl status apache2
+sudo passenger-memory-stats
+
+fallstechdave@mmrxps17:~$ cd ~/Downloads/keycloak/keycloak-18.0.2/
+fallstechdave@mmrxps17:~/Downloads/keycloak/keycloak-18.0.2$ bin/kc.sh start-dev
+2022-07-20 07:37:57,462 INFO  [org.keycloak.quarkus.runtime.hostname.DefaultHostnameProvider] (main) Hostname settings: FrontEnd: <request>, Strict HTTPS: false, Path: <request>, Strict BackChannel: false, Admin: <request>, Port: -1, Proxied: false
+2022-07-20 07:37:57,802 WARN  [org.infinispan.PERSISTENCE] (keycloak-cache-init) ISPN000554: jboss-marshalling is deprecated and planned for removal
+2022-07-20 07:37:57,811 WARN  [org.infinispan.CONFIG] (keycloak-cache-init) ISPN000569: Unable to persist Infinispan internal caches as no global state enabled
+2022-07-20 07:37:57,822 INFO  [org.infinispan.CONTAINER] (keycloak-cache-init) ISPN000556: Starting user marshaller 'org.infinispan.jboss.marshalling.core.JBossUserMarshaller'
+2022-07-20 07:37:57,924 INFO  [org.infinispan.CONTAINER] (keycloak-cache-init) ISPN000128: Infinispan version: Infinispan 'Triskaidekaphobia' 13.0.9.Final
+2022-07-20 07:37:58,179 INFO  [org.keycloak.connections.infinispan.DefaultInfinispanConnectionProviderFactory] (main) Node name: node_418736, Site name: null
+2022-07-20 07:37:58,292 INFO  [io.quarkus] (main) Keycloak 18.0.2 on JVM (powered by Quarkus 2.7.5.Final) started in 2.367s. Listening on: http://0.0.0.0:8080
+2022-07-20 07:37:58,292 INFO  [io.quarkus] (main) Profile dev activated. 
+2022-07-20 07:37:58,292 INFO  [io.quarkus] (main) Installed features: [agroal, cdi, hibernate-orm, jdbc-h2, jdbc-mariadb, jdbc-mssql, jdbc-mysql, jdbc-oracle, jdbc-postgresql, keycloak, narayana-jta, reactive-routes, resteasy, resteasy-jackson, smallrye-context-propagation, smallrye-health, smallrye-metrics, vault, vertx]
+2022-07-20 07:37:58,294 WARN  [org.keycloak.quarkus.runtime.KeycloakMain] (main) Running the server in development mode. DO NOT use this configuration in production.
+
+fallstechdave@mmrxps17:~$ 
+fallstechdave@mmrxps17:~$ apachectl configtest
+AH00558: apache2: Could not reliably determine the server's fully qualified domain name, using 127.0.1.1. Set the 'ServerName' directive globally to suppress this message
+Syntax OK
+fallstechdave@mmrxps17:~$ sudo systemctl restart apache2
+[sudo] password for fallstechdave: 
+fallstechdave@mmrxps17:~$ 
+fallstechdave@mmrxps17:~$ systemctl status apache2
+● apache2.service - The Apache HTTP Server
+     Loaded: loaded (/lib/systemd/system/apache2.service; enabled; vendor preset: enabled)
+     Active: active (running) since Wed 2022-07-20 07:39:21 EDT; 23s ago
+       Docs: https://httpd.apache.org/docs/2.4/
+    Process: 11629 ExecStart=/usr/sbin/apachectl start (code=exited, status=0/SUCCESS)
+      Tasks: 109 (limit: 18735)
+     Memory: 17.2M
+     CGroup: /system.slice/apache2.service
+             ├─11692 /usr/sbin/apache2 -k start
+             ├─11694 Passenger watchdog
+             ├─11698 Passenger core
+             ├─11719 /usr/sbin/apache2 -k start
+             └─11725 /usr/sbin/apache2 -k start
+
+Jul 20 07:39:21 mmrxps17 systemd[1]: Starting The Apache HTTP Server...
+Jul 20 07:39:21 mmrxps17 apachectl[11632]: AH00558: apache2: Could not reliably determine the server's fully qualified domain name, using 127.0.1.1. Set the 'ServerName' directive globally to suppress t>
+Jul 20 07:39:21 mmrxps17 systemd[1]: Started The Apache HTTP Server.
+fallstechdave@mmrxps17:~$ 
+fallstechdave@mmrxps17:~$ sudo passenger-memory-stats
+Version: 6.0.14
+Date   : 2022-07-20 07:40:03 -0400
+
+---------- Apache processes -----------
+PID    PPID   VMSize     Private  Name
+---------------------------------------
+11692  1      80.3 MB    0.7 MB   /usr/sbin/apache2 -k start
+11719  11692  1961.0 MB  0.7 MB   /usr/sbin/apache2 -k start
+11725  11692  1961.0 MB  0.7 MB   /usr/sbin/apache2 -k start
+### Processes: 3
+### Total private dirty RSS: 2.15 MB
+
+
+-------- Nginx processes --------
+
+### Processes: 0
+### Total private dirty RSS: 0.00 MB
+
+
+----- Passenger processes ------
+PID    VMSize     Private  Name
+--------------------------------
+11694  296.0 MB   2.6 MB   Passenger watchdog
+11698  3313.2 MB  6.0 MB   Passenger core
+### Processes: 2
+### Total private dirty RSS: 8.50 MB
+fallstechdave@mmrxps17:~$ 
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+fallstechdave@mmrxps17:~$ 
+fallstechdave@mmrxps17:~$ systemctl status apache2
+● apache2.service - The Apache HTTP Server
+     Loaded: loaded (/lib/systemd/system/apache2.service; enabled; vendor preset: enabled)
+     Active: active (running) since Wed 2022-07-20 07:39:21 EDT; 4min 51s ago
+       Docs: https://httpd.apache.org/docs/2.4/
+    Process: 11629 ExecStart=/usr/sbin/apachectl start (code=exited, status=0/SUCCESS)
+      Tasks: 118 (limit: 18735)
+     Memory: 124.0M
+     CGroup: /system.slice/apache2.service
+             ├─11692 /usr/sbin/apache2 -k start
+             ├─11694 Passenger watchdog
+             ├─11698 Passenger core
+             ├─11719 /usr/sbin/apache2 -k start
+             ├─11725 /usr/sbin/apache2 -k start
+             ├─12105 Passenger AppPreloader: /home/fallstechdave/railsprojects/wire6
+             └─12148 Passenger RubyApp: /home/fallstechdave/railsprojects/wire6 (production)
+
+Jul 20 07:39:21 mmrxps17 systemd[1]: Starting The Apache HTTP Server...
+Jul 20 07:39:21 mmrxps17 apachectl[11632]: AH00558: apache2: Could not reliably determine the server's fully qualified domain name, using 127.0.1.1. Set the 'ServerName' directive globally to suppress t>
+Jul 20 07:39:21 mmrxps17 systemd[1]: Started The Apache HTTP Server.
+fallstechdave@mmrxps17:~$ 
+fallstechdave@mmrxps17:~$ sudo passenger-memory-stats
+Version: 6.0.14
+Date   : 2022-07-20 07:44:28 -0400
+
+---------- Apache processes -----------
+PID    PPID   VMSize     Private  Name
+---------------------------------------
+11692  1      80.3 MB    0.7 MB   /usr/sbin/apache2 -k start
+11719  11692  1961.0 MB  0.7 MB   /usr/sbin/apache2 -k start
+11725  11692  1961.0 MB  1.0 MB   /usr/sbin/apache2 -k start
+### Processes: 3
+### Total private dirty RSS: 2.41 MB
+
+
+-------- Nginx processes --------
+
+### Processes: 0
+### Total private dirty RSS: 0.00 MB
+
+
+----- Passenger processes ------
+PID    VMSize     Private  Name
+--------------------------------
+11694  296.0 MB   2.6 MB   Passenger watchdog
+11698  3570.5 MB  6.5 MB   Passenger core
+12105  227.5 MB   14.8 MB  Passenger AppPreloader: /home/fallstechdave/railsprojects/wire6
+12148  359.4 MB   17.3 MB  Passenger RubyApp: /home/fallstechdave/railsprojects/wire6 (production)
+### Processes: 4
+### Total private dirty RSS: 41.16 MB
+fallstechdave@mmrxps17:~$ 
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+the file /etc/apache2/mods-available/auth_openidc.conf contains nothing but comments
+
+sudo a2enmod  auth_openidc
+apachectl configtest
+sudo systemctl restart apache2
+systemctl status apache2
+sudo passenger-memory-stats
+
+fallstechdave@mmrxps17:~$ sudo a2enmod  auth_openidc
+Enabling module auth_openidc.
+To activate the new configuration, you need to run:
+  systemctl restart apache2
+fallstechdave@mmrxps17:~$ apachectl configtest
+AH00558: apache2: Could not reliably determine the server's fully qualified domain name, using 127.0.1.1. Set the 'ServerName' directive globally to suppress this message
+Syntax OK
+fallstechdave@mmrxps17:~$ sudo systemctl restart apache2
+fallstechdave@mmrxps17:~$ 
+fallstechdave@mmrxps17:~$ systemctl status apache2
+● apache2.service - The Apache HTTP Server
+     Loaded: loaded (/lib/systemd/system/apache2.service; enabled; vendor preset: enabled)
+     Active: active (running) since Wed 2022-07-20 07:47:31 EDT; 40s ago
+       Docs: https://httpd.apache.org/docs/2.4/
+    Process: 12502 ExecStart=/usr/sbin/apachectl start (code=exited, status=0/SUCCESS)
+      Tasks: 118 (limit: 18735)
+     Memory: 128.5M
+     CGroup: /system.slice/apache2.service
+             ├─12566 /usr/sbin/apache2 -k start
+             ├─12568 Passenger watchdog
+             ├─12571 Passenger core
+             ├─12617 /usr/sbin/apache2 -k start
+             ├─12624 /usr/sbin/apache2 -k start
+             ├─12693 Passenger AppPreloader: /home/fallstechdave/railsprojects/wire6
+             └─12736 Passenger RubyApp: /home/fallstechdave/railsprojects/wire6 (production)
+
+Jul 20 07:47:31 mmrxps17 systemd[1]: Starting The Apache HTTP Server...
+Jul 20 07:47:31 mmrxps17 apachectl[12505]: AH00558: apache2: Could not reliably determine the server's fully qualified domain name, using 127.0.1.1. Set the 'ServerName' directive globally to suppress t>
+Jul 20 07:47:31 mmrxps17 systemd[1]: Started The Apache HTTP Server.
+fallstechdave@mmrxps17:~$ 
+fallstechdave@mmrxps17:~$ sudo passenger-memory-stats
+Version: 6.0.14
+Date   : 2022-07-20 07:48:29 -0400
+
+---------- Apache processes -----------
+PID    PPID   VMSize     Private  Name
+---------------------------------------
+12566  1      102.8 MB   3.0 MB   /usr/sbin/apache2 -k start
+12617  12566  1983.5 MB  0.8 MB   /usr/sbin/apache2 -k start
+12624  12566  1983.5 MB  1.2 MB   /usr/sbin/apache2 -k start
+### Processes: 3
+### Total private dirty RSS: 4.96 MB
+
+
+-------- Nginx processes --------
+
+### Processes: 0
+### Total private dirty RSS: 0.00 MB
+
+
+----- Passenger processes ------
+PID    VMSize     Private  Name
+--------------------------------
+12568  296.0 MB   2.5 MB   Passenger watchdog
+12571  3506.5 MB  6.5 MB   Passenger core
+12693  227.5 MB   15.1 MB  Passenger AppPreloader: /home/fallstechdave/railsprojects/wire6
+12736  359.4 MB   17.7 MB  Passenger RubyApp: /home/fallstechdave/railsprojects/wire6 (production)
+### Processes: 4
+### Total private dirty RSS: 41.93 MB
+fallstechdave@mmrxps17:~$ 
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+repeat the above, but this time the file /etc/apache2/mods-available/auth_openidc.conf contains:
+
+# OIDCProviderMetadataURL https://127.0.0.1:8080/auth/realms/myrealm/.well-known/openid-configuration
+# OIDCProviderMetadataURL http://127.0.0.1:8080/auth/realms/quarkus/.well-known/openid-configuration
+OIDCProviderMetadataURL http://127.0.0.1:8080/realms/quarkus/.well-known/openid-configuration
+
+# OIDCRedirectURI https://127.0.0.1/articles/redirect_uri/
+OIDCRedirectURI https://127.0.0.1/redirect_uri/
+
+OIDCCryptoPassphrase 0123456789
+# OIDCClientID <client_id>
+# OIDCClientName <client_name>
+# OIDCClientSecret <client_secret>
+# OIDCProviderTokenEndpointAuth [ client_secret_basic | client_secret_post | client_secret_jwt | private_key_jwt | none ]
+
+OIDCClientID myclient
+# OIDCClientSecret PtfnIgls1mJ18vd4M79PVmOuAdHDeqA7
+OIDCClientSecret 5NDkdAuOwv2w91qQjKVfrwbVi1XnmCST
+
+OIDCProviderTokenEndpointAuth client_secret_basic
+
+OIDCRemoteUserClaim email
+OIDCScope "openid email"
+
+# <Location "/">
+#   Require valid-user
+#   AuthType openid-connect
+# </Location>
+
+
+apachectl configtest
+sudo systemctl restart apache2
+systemctl status apache2
+sudo passenger-memory-stats
+
+This URL contintues to work just fine, but there is no indication that the mod_auth_openidc code is communicating with the Keycloak software
+http://127.0.0.1/articles
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+... but if I uncomment these lines in /etc/apache2/mods-available/auth_openidc.conf 
+
+# <Location "/">
+#   Require valid-user
+#   AuthType openid-connect
+# </Location>
+
+... then the URL below no longer works correctly ...
+
+http://127.0.0.1/articles
+
+Internal Server Error
+
+The server encountered an internal error or misconfiguration and was unable to complete your request.
+
+Please contact the server administrator at [no address given] to inform them of the time this error occurred, and the actions you performed just before this error.
+
+More information about this error may be available in the server error log.
+Apache/2.4.41 (Ubuntu) Server at 127.0.0.1 Port 80
+
+/var/log/apache2/other_vhosts_access.log
+
+127.0.0.1:80 127.0.0.1 - - [20/Jul/2022:07:56:16 -0400] "GET /articles HTTP/1.1" 200 3140 "-" "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:102.0) Gecko/20100101 Firefox/102.0"
+127.0.0.1:80 127.0.0.1 - - [20/Jul/2022:08:01:37 -0400] "GET /articles HTTP/1.1" 500 1349 "-" "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:102.0) Gecko/20100101 Firefox/102.0"
+127.0.1.1:80 127.0.0.1 - - [20/Jul/2022:08:05:45 -0400] "\x16\x03\x01\x02" 400 483 "-" "-"
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+... so I made this modification to file /etc/apache2/sites-available/wire6.conf
+
+<VirtualHost *:443>
+  ServerName 127.0.0.1
+  # Tell Apache and Passenger where your app's 'public' directory is
+  DocumentRoot /home/fallstechdave/railsprojects/wire6/public
+  PassengerRuby /home/fallstechdave/.rbenv/versions/3.1.2/bin/ruby
+  SSLEngine on
+  SSLCertificateFile /etc/ssl/certs/apache-selfsigned.crt
+  SSLCertificateKeyFile /etc/ssl/private/apache-selfsigned.key
+
+  # Relax Apache security settings
+  <Directory /home/fallstechdave/railsprojects/wire6/public>
+    Allow from all
+    Options -MultiViews
+    # Uncomment this if you're on Apache > 2.4:
+    Require all granted
+  </Directory>
+</VirtualHost>
+
+<VirtualHost *:80>
+  ServerName 127.0.0.1
+  # Redirect / https://127.0.0.1/
+
+  # # Tell Apache and Passenger where your app's 'public' directory is
+  DocumentRoot /home/fallstechdave/railsprojects/wire6/public
+  PassengerRuby /home/fallstechdave/.rbenv/versions/3.1.2/bin/ruby
+
+  # Relax Apache security settings
+  <Directory /home/fallstechdave/railsprojects/wire6/public>
+    Allow from all
+    Options -MultiViews
+    # Uncomment this if you're on Apache > 2.4:
+    Require all granted
+  </Directory>
+</VirtualHost>
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+fallstechdave@mmrxps17:~$ 
+fallstechdave@mmrxps17:~$ apachectl configtest
+AH00526: Syntax error on line 8 of /etc/apache2/sites-enabled/wire6.conf:
+SSLCertificateKeyFile: file '/etc/ssl/private/apache-selfsigned.key' does not exist or is empty
+Action 'configtest' failed.
+The Apache error log may have more information.
+fallstechdave@mmrxps17:~$ 
+
+
+fallstechdave@mmrxps17:/etc/ssl$ 
+fallstechdave@mmrxps17:/etc/ssl$ ls -latr
+total 48
+-rw-r--r--   1 root root     10909 Apr 20  2020 openssl.cnf
+drwxr-xr-x   4 root root      4096 Jul  6 15:58 .
+drwx--x---   2 root ssl-cert  4096 Jul 13 06:34 private
+drwxr-xr-x   2 root root     16384 Jul 13 06:36 certs
+drwxr-xr-x 138 root root     12288 Jul 20 06:37 ..
+fallstechdave@mmrxps17:/etc/ssl$ 
+fallstechdave@mmrxps17:/etc/ssl$ sudo du
+[sudo] password for fallstechdave: 
+12	./private
+576	./certs
+604	.
+fallstechdave@mmrxps17:/etc/ssl$ sudo ls -latr ./private/ | tail
+total 16
+-rw-r----- 1 root ssl-cert 1704 Jun 30 08:26 ssl-cert-snakeoil.key
+drwxr-xr-x 4 root root     4096 Jul  6 15:58 ..
+-rw------- 1 root root     1704 Jul 13 06:34 apache-selfsigned.key
+drwx--x--- 2 root ssl-cert 4096 Jul 13 06:34 .
+fallstechdave@mmrxps17:/etc/ssl$ 
+fallstechdave@mmrxps17:/etc/ssl$ sudo ls -latr ./certs/ | tail
+lrwxrwxrwx 1 root root     26 Jun 30 08:37 e35234b1.0 -> Certum_Trusted_Root_CA.pem
+lrwxrwxrwx 1 root root     39 Jun 30 08:37 b81b93f0.0 -> AC_RAIZ_FNMT-RCM_SERVIDORES_SEGUROS.pem
+lrwxrwxrwx 1 root root     29 Jun 30 08:37 b433981b.0 -> ANF_Secure_Server_Root_CA.pem
+lrwxrwxrwx 1 root root     20 Jun 30 08:37 9482e63a.0 -> Certum_EC-384_CA.pem
+lrwxrwxrwx 1 root root     21 Jun 30 08:37 37268f71.0 -> ssl-cert-snakeoil.pem
+lrwxrwxrwx 1 root root     23 Jun 30 08:37 002c0b4f.0 -> GlobalSign_Root_R46.pem
+-rw-r--r-- 1 root root 195453 Jun 30 08:37 ca-certificates.crt
+drwxr-xr-x 4 root root   4096 Jul  6 15:58 ..
+-rw-r--r-- 1 root root   1497 Jul 13 06:36 apache-selfsigned.crt
+drwxr-xr-x 2 root root  16384 Jul 13 06:36 .
+fallstechdave@mmrxps17:/etc/ssl$ 
+fallstechdave@mmrxps17:/etc/ssl$ ls -latr /etc/ssl/private/apache-selfsigned.key
+ls: cannot access '/etc/ssl/private/apache-selfsigned.key': Permission denied
+fallstechdave@mmrxps17:/etc/ssl$ 
+fallstechdave@mmrxps17:/etc/ssl$ sudo chmod 744 private
+fallstechdave@mmrxps17:/etc/ssl$ 
+fallstechdave@mmrxps17:/etc/ssl$ ls -latr /etc/ssl/private/apache-selfsigned.key
+ls: cannot access '/etc/ssl/private/apache-selfsigned.key': Permission denied
+fallstechdave@mmrxps17:/etc/ssl$ 
+fallstechdave@mmrxps17:/etc/ssl$ ls -latr
+total 48
+-rw-r--r--   1 root root     10909 Apr 20  2020 openssl.cnf
+drwxr-xr-x   4 root root      4096 Jul  6 15:58 .
+drwxr--r--   2 root ssl-cert  4096 Jul 13 06:34 private
+drwxr-xr-x   2 root root     16384 Jul 13 06:36 certs
+drwxr-xr-x 138 root root     12288 Jul 20 06:37 ..
+fallstechdave@mmrxps17:/etc/ssl$ 
+fallstechdave@mmrxps17:/etc/ssl$ sudo chmod 777 private
+fallstechdave@mmrxps17:/etc/ssl$ sudo chmod 777 certs
+fallstechdave@mmrxps17:/etc/ssl$ 
+fallstechdave@mmrxps17:/etc/ssl$ ls -latr /etc/ssl/private/apache-selfsigned.key
+-rw------- 1 root root 1704 Jul 13 06:34 /etc/ssl/private/apache-selfsigned.key
+fallstechdave@mmrxps17:/etc/ssl$ 
+fallstechdave@mmrxps17:/etc/ssl$ sudo chmod 777 private/apache-selfsigned.key 
+fallstechdave@mmrxps17:/etc/ssl$ sudo chmod 777 certs/apache-selfsigned.crt 
+fallstechdave@mmrxps17:/etc/ssl$ 
+fallstechdave@mmrxps17:/etc/ssl$ ls -latr /etc/ssl/private/apache-selfsigned.key
+-rwxrwxrwx 1 root root 1704 Jul 13 06:34 /etc/ssl/private/apache-selfsigned.key
+fallstechdave@mmrxps17:/etc/ssl$ 
+fallstechdave@mmrxps17:/etc/ssl$ ls -latr /etc/ssl/certs/apache-selfsigned.crt 
+-rwxrwxrwx 1 root root 1497 Jul 13 06:36 /etc/ssl/certs/apache-selfsigned.crt
+fallstechdave@mmrxps17:/etc/ssl$ 
+fallstechdave@mmrxps17:/etc/ssl$ apachectl configtest
+AH00558: apache2: Could not reliably determine the server's fully qualified domain name, using 127.0.1.1. Set the 'ServerName' directive globally to suppress this message
+Syntax OK
+fallstechdave@mmrxps17:/etc/ssl$ 
+
+
+
+fallstechdave@mmrxps17:/etc/ssl$ 
+fallstechdave@mmrxps17:/etc/ssl$ sudo systemctl restart apache2
+fallstechdave@mmrxps17:/etc/ssl$ 
+fallstechdave@mmrxps17:/etc/ssl$ systemctl status apache2
+● apache2.service - The Apache HTTP Server
+     Loaded: loaded (/lib/systemd/system/apache2.service; enabled; vendor preset: enabled)
+     Active: active (running) since Wed 2022-07-20 08:28:14 EDT; 1min 10s ago
+       Docs: https://httpd.apache.org/docs/2.4/
+    Process: 17060 ExecStart=/usr/sbin/apachectl start (code=exited, status=0/SUCCESS)
+      Tasks: 109 (limit: 18735)
+     Memory: 21.2M
+     CGroup: /system.slice/apache2.service
+             ├─17123 /usr/sbin/apache2 -k start
+             ├─17126 Passenger watchdog
+             ├─17129 Passenger core
+             ├─17182 /usr/sbin/apache2 -k start
+             └─17183 /usr/sbin/apache2 -k start
+
+Jul 20 08:28:14 mmrxps17 systemd[1]: Starting The Apache HTTP Server...
+Jul 20 08:28:14 mmrxps17 apachectl[17063]: AH00558: apache2: Could not reliably determine the server's fully qualified domain name, using 127.0.1.1. Set the 'ServerName' directive globally to suppress t>
+Jul 20 08:28:14 mmrxps17 systemd[1]: Started The Apache HTTP Server.
+fallstechdave@mmrxps17:/etc/ssl$ 
+fallstechdave@mmrxps17:/etc/ssl$ sudo passenger-memory-stats
+Version: 6.0.14
+Date   : 2022-07-20 08:29:43 -0400
+
+---------- Apache processes -----------
+PID    PPID   VMSize     Private  Name
+---------------------------------------
+17123  1      102.8 MB   0.7 MB   /usr/sbin/apache2 -k start
+17182  17123  1983.6 MB  1.1 MB   /usr/sbin/apache2 -k start
+17183  17123  1983.5 MB  0.8 MB   /usr/sbin/apache2 -k start
+### Processes: 3
+### Total private dirty RSS: 2.59 MB
+
+
+-------- Nginx processes --------
+
+### Processes: 0
+### Total private dirty RSS: 0.00 MB
+
+
+----- Passenger processes ------
+PID    VMSize     Private  Name
+--------------------------------
+17126  296.1 MB   2.6 MB   Passenger watchdog
+17129  3377.2 MB  6.0 MB   Passenger core
+### Processes: 2
+### Total private dirty RSS: 8.55 MB
+fallstechdave@mmrxps17:/etc/ssl$ 
+
+= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
+
+http://127.0.0.1/articles
+
+Internal Server Error
+
+The server encountered an internal error or misconfiguration and was unable to complete your request.
+
+Please contact the server administrator at [no address given] to inform them of the time this error occurred, and the actions you performed just before this error.
+
+More information about this error may be available in the server error log.
+Apache/2.4.41 (Ubuntu) Server at 127.0.0.1 Port 80
+
+= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
+
+https://127.0.0.1/articles
+
+http://127.0.0.1:8080/realms/quarkus/protocol/openid-connect/auth?response_type=code&scope=openid%20email&client_id=myclient&state=5lqapwEWscAHsxRhE4mhHfNGl7g&redirect_uri=https%3A%2F%2F127.0.0.1%2Fredirect_uri%2F&nonce=VIslW72MJDRReua0FlJC3SxfBfWJ-1UNv2bI3dHhV2E
+
+quarkus We are sorry...
+Invalid parameter: redirect_uri
+
+fallstechdave@mmrxps17:~$ 
+fallstechdave@mmrxps17:~$ cd ~/Downloads/keycloak/keycloak-18.0.2/
+fallstechdave@mmrxps17:~/Downloads/keycloak/keycloak-18.0.2$ bin/kc.sh start-dev
+2022-07-20 07:37:57,462 INFO  [org.keycloak.quarkus.runtime.hostname.DefaultHostnameProvider] (main) Hostname settings: FrontEnd: <request>, Strict HTTPS: false, Path: <request>, Strict BackChannel: false, Admin: <request>, Port: -1, Proxied: false
+2022-07-20 07:37:57,802 WARN  [org.infinispan.PERSISTENCE] (keycloak-cache-init) ISPN000554: jboss-marshalling is deprecated and planned for removal
+2022-07-20 07:37:57,811 WARN  [org.infinispan.CONFIG] (keycloak-cache-init) ISPN000569: Unable to persist Infinispan internal caches as no global state enabled
+2022-07-20 07:37:57,822 INFO  [org.infinispan.CONTAINER] (keycloak-cache-init) ISPN000556: Starting user marshaller 'org.infinispan.jboss.marshalling.core.JBossUserMarshaller'
+2022-07-20 07:37:57,924 INFO  [org.infinispan.CONTAINER] (keycloak-cache-init) ISPN000128: Infinispan version: Infinispan 'Triskaidekaphobia' 13.0.9.Final
+2022-07-20 07:37:58,179 INFO  [org.keycloak.connections.infinispan.DefaultInfinispanConnectionProviderFactory] (main) Node name: node_418736, Site name: null
+2022-07-20 07:37:58,292 INFO  [io.quarkus] (main) Keycloak 18.0.2 on JVM (powered by Quarkus 2.7.5.Final) started in 2.367s. Listening on: http://0.0.0.0:8080
+2022-07-20 07:37:58,292 INFO  [io.quarkus] (main) Profile dev activated. 
+2022-07-20 07:37:58,292 INFO  [io.quarkus] (main) Installed features: [agroal, cdi, hibernate-orm, jdbc-h2, jdbc-mariadb, jdbc-mssql, jdbc-mysql, jdbc-oracle, jdbc-postgresql, keycloak, narayana-jta, reactive-routes, resteasy, resteasy-jackson, smallrye-context-propagation, smallrye-health, smallrye-metrics, vault, vertx]
+2022-07-20 07:37:58,294 WARN  [org.keycloak.quarkus.runtime.KeycloakMain] (main) Running the server in development mode. DO NOT use this configuration in production.
+2022-07-20 08:28:30,384 WARN  [org.keycloak.events] (executor-thread-0) type=LOGIN_ERROR, realmId=quarkus, clientId=myclient, userId=null, ipAddress=127.0.0.1, error=invalid_redirect_uri, redirect_uri=https://127.0.0.1/redirect_uri/
+2022-07-20 08:33:26,404 WARN  [org.keycloak.events] (executor-thread-5) type=LOGIN_ERROR, realmId=quarkus, clientId=myclient, userId=null, ipAddress=127.0.0.1, error=invalid_redirect_uri, redirect_uri=https://127.0.0.1/redirect_uri/
+
+
+https://127.0.0.1/redirect_uri/
+
+Error:
+Invalid Request
+Description:
+You've hit an OpenID Connect Redirect URI with no parameters, this is an invalid request; you should not open this URL in your browser directly, or have the server administrator use a different OIDCRedirectURI setting.
+
+https://stackoverflow.com/questions/45352880/keycloak-invalid-parameter-redirect-uri
+
+https://127.0.0.1/articles
+
+https://127.0.0.1/redirect_uri/?state=7qoo-MjvRXy1GIMkC1DueyPNBoY&session_state=46a21d3a-c383-491e-a8c3-1a63dd61ea6e&code=938025c4-e30c-4ceb-8222-ce6ab652091f.46a21d3a-c383-491e-a8c3-1a63dd61ea6e.d548652b-3ca0-4ef5-b7a4-0b84dcaf5d60
+
+Error:
+OpenID Connect Provider error: Error in handling response type.
+
+= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
+
+/var/log/apache2/error.log
+
+[Wed Jul 20 08:53:18.786150 2022] [ssl:warn] [pid 19078:tid 140144012569664] AH01906: 127.0.0.1:443:0 server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Wed Jul 20 08:53:18.787342 2022] [auth_openidc:warn] [pid 19078:tid 140144012569664] oidc_check_config_openid_openidc: the URL scheme (http) of the configured OIDCProviderMetadataURL SHOULD be "https" for security reasons!
+[Wed Jul 20 08:53:18.788269 2022] [mpm_event:notice] [pid 19078:tid 140144012569664] AH00489: Apache/2.4.41 (Ubuntu) Phusion_Passenger/6.0.14 OpenSSL/1.1.1f configured -- resuming normal operations
+[Wed Jul 20 08:53:18.788287 2022] [core:notice] [pid 19078:tid 140144012569664] AH00094: Command line: '/usr/sbin/apache2'
+[ N 2022-07-20 08:53:19.1343 19023/T1 age/Cor/TelemetryCollector.h:531 ]: Message from Phusion: End time can not be before or equal to begin time
+[ N 2022-07-20 08:53:19.3529 19023/T1 age/Cor/CoreMain.cpp:1325 ]: Passenger core shutdown finished
+[ N 2022-07-20 08:53:21.2845 19084/T5 age/Cor/SecurityUpdateChecker.h:519 ]: Security update check: no update found (next check in 24 hours)
+[Wed Jul 20 08:54:06.257403 2022] [auth_openidc:warn] [pid 19138:tid 140143893600000] [client 127.0.0.1:51370] oidc_clean_expired_state_cookies: state (mod_auth_openidc_state_le7zA_As-QP8WKCp40Ley-OSxnk) has expired (original_url=https://127.0.0.1/articles)
+[Wed Jul 20 08:54:06.257485 2022] [auth_openidc:warn] [pid 19138:tid 140143893600000] [client 127.0.0.1:51370] oidc_clean_expired_state_cookies: state (mod_auth_openidc_state_qMv4bykqk1cPzR_unybCRF9RplA) has expired (original_url=http://127.0.0.1/articles)
+[Wed Jul 20 08:54:06.257515 2022] [auth_openidc:warn] [pid 19138:tid 140143893600000] [client 127.0.0.1:51370] oidc_clean_expired_state_cookies: state (mod_auth_openidc_state_5lqapwEWscAHsxRhE4mhHfNGl7g) has expired (original_url=https://127.0.0.1/articles)
+[Wed Jul 20 08:59:48.098764 2022] [auth_openidc:warn] [pid 19138:tid 140143868421888] [client 127.0.0.1:51372] oidc_clean_expired_state_cookies: state (mod_auth_openidc_state_YU78jdQ0UpNlkMOQkXZX8xXJD0Q) has expired (original_url=https://127.0.0.1/articles)
+[Wed Jul 20 09:00:13.971647 2022] [auth_openidc:error] [pid 19138:tid 140143633622784] [client 127.0.0.1:51376] oidc_util_json_string_print: oidc_util_check_json_error: response contained an "error" entry with value: ""unauthorized_client""
+[Wed Jul 20 09:00:13.971681 2022] [auth_openidc:error] [pid 19138:tid 140143633622784] [client 127.0.0.1:51376] oidc_util_json_string_print: oidc_util_check_json_error: response contained an "error_description" entry with value: ""Client secret not provided in request""
+[Wed Jul 20 09:00:13.971687 2022] [auth_openidc:error] [pid 19138:tid 140143633622784] [client 127.0.0.1:51376] oidc_proto_resolve_code_and_validate_response: failed to resolve the code
+
+fallstechdave@mmrxps17:~$ 
+fallstechdave@mmrxps17:~$ cd ~/Downloads/keycloak/keycloak-18.0.2/
+fallstechdave@mmrxps17:~/Downloads/keycloak/keycloak-18.0.2$ bin/kc.sh start-dev
+2022-07-20 07:37:57,462 INFO  [org.keycloak.quarkus.runtime.hostname.DefaultHostnameProvider] (main) Hostname settings: FrontEnd: <request>, Strict HTTPS: false, Path: <request>, Strict BackChannel: false, Admin: <request>, Port: -1, Proxied: false
+2022-07-20 07:37:57,802 WARN  [org.infinispan.PERSISTENCE] (keycloak-cache-init) ISPN000554: jboss-marshalling is deprecated and planned for removal
+2022-07-20 07:37:57,811 WARN  [org.infinispan.CONFIG] (keycloak-cache-init) ISPN000569: Unable to persist Infinispan internal caches as no global state enabled
+2022-07-20 07:37:57,822 INFO  [org.infinispan.CONTAINER] (keycloak-cache-init) ISPN000556: Starting user marshaller 'org.infinispan.jboss.marshalling.core.JBossUserMarshaller'
+2022-07-20 07:37:57,924 INFO  [org.infinispan.CONTAINER] (keycloak-cache-init) ISPN000128: Infinispan version: Infinispan 'Triskaidekaphobia' 13.0.9.Final
+2022-07-20 07:37:58,179 INFO  [org.keycloak.connections.infinispan.DefaultInfinispanConnectionProviderFactory] (main) Node name: node_418736, Site name: null
+2022-07-20 07:37:58,292 INFO  [io.quarkus] (main) Keycloak 18.0.2 on JVM (powered by Quarkus 2.7.5.Final) started in 2.367s. Listening on: http://0.0.0.0:8080
+2022-07-20 07:37:58,292 INFO  [io.quarkus] (main) Profile dev activated. 
+2022-07-20 07:37:58,292 INFO  [io.quarkus] (main) Installed features: [agroal, cdi, hibernate-orm, jdbc-h2, jdbc-mariadb, jdbc-mssql, jdbc-mysql, jdbc-oracle, jdbc-postgresql, keycloak, narayana-jta, reactive-routes, resteasy, resteasy-jackson, smallrye-context-propagation, smallrye-health, smallrye-metrics, vault, vertx]
+2022-07-20 07:37:58,294 WARN  [org.keycloak.quarkus.runtime.KeycloakMain] (main) Running the server in development mode. DO NOT use this configuration in production.
+2022-07-20 08:28:30,384 WARN  [org.keycloak.events] (executor-thread-0) type=LOGIN_ERROR, realmId=quarkus, clientId=myclient, userId=null, ipAddress=127.0.0.1, error=invalid_redirect_uri, redirect_uri=https://127.0.0.1/redirect_uri/
+2022-07-20 08:33:26,404 WARN  [org.keycloak.events] (executor-thread-5) type=LOGIN_ERROR, realmId=quarkus, clientId=myclient, userId=null, ipAddress=127.0.0.1, error=invalid_redirect_uri, redirect_uri=https://127.0.0.1/redirect_uri/
+2022-07-20 08:54:06,280 WARN  [org.keycloak.events] (executor-thread-9) type=LOGIN_ERROR, realmId=quarkus, clientId=myclient, userId=null, ipAddress=127.0.0.1, error=invalid_redirect_uri, redirect_uri=https://127.0.0.1/redirect_uri/
+2022-07-20 09:00:13,971 WARN  [org.keycloak.events] (executor-thread-26) type=CODE_TO_TOKEN_ERROR, realmId=quarkus, clientId=myclient, userId=null, ipAddress=127.0.0.1, error=invalid_client_credentials, grant_type=authorization_code
+
+= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
+
+fallstechdave@mmrxps17:~$ 
+fallstechdave@mmrxps17:~$ cd ~/Downloads/keycloak/keycloak-18.0.2/
+fallstechdave@mmrxps17:~/Downloads/keycloak/keycloak-18.0.2$ bin/kc.sh start-dev
+2022-07-20 09:15:44,778 INFO  [org.keycloak.quarkus.runtime.hostname.DefaultHostnameProvider] (main) Hostname settings: FrontEnd: <request>, Strict HTTPS: false, Path: <request>, Strict BackChannel: false, Admin: <request>, Port: -1, Proxied: false
+2022-07-20 09:15:45,113 WARN  [org.infinispan.PERSISTENCE] (keycloak-cache-init) ISPN000554: jboss-marshalling is deprecated and planned for removal
+2022-07-20 09:15:45,148 WARN  [org.infinispan.CONFIG] (keycloak-cache-init) ISPN000569: Unable to persist Infinispan internal caches as no global state enabled
+2022-07-20 09:15:45,160 INFO  [org.infinispan.CONTAINER] (keycloak-cache-init) ISPN000556: Starting user marshaller 'org.infinispan.jboss.marshalling.core.JBossUserMarshaller'
+2022-07-20 09:15:45,253 INFO  [org.infinispan.CONTAINER] (keycloak-cache-init) ISPN000128: Infinispan version: Infinispan 'Triskaidekaphobia' 13.0.9.Final
+2022-07-20 09:15:45,489 INFO  [org.keycloak.connections.infinispan.DefaultInfinispanConnectionProviderFactory] (main) Node name: node_222710, Site name: null
+2022-07-20 09:15:45,628 INFO  [io.quarkus] (main) Keycloak 18.0.2 on JVM (powered by Quarkus 2.7.5.Final) started in 2.158s. Listening on: http://0.0.0.0:8080
+2022-07-20 09:15:45,629 INFO  [io.quarkus] (main) Profile dev activated. 
+2022-07-20 09:15:45,629 INFO  [io.quarkus] (main) Installed features: [agroal, cdi, hibernate-orm, jdbc-h2, jdbc-mariadb, jdbc-mssql, jdbc-mysql, jdbc-oracle, jdbc-postgresql, keycloak, narayana-jta, reactive-routes, resteasy, resteasy-jackson, smallrye-context-propagation, smallrye-health, smallrye-metrics, vault, vertx]
+2022-07-20 09:15:45,631 WARN  [org.keycloak.quarkus.runtime.KeycloakMain] (main) Running the server in development mode. DO NOT use this configuration in production.
+  
+/var/log/apache2/other_vhosts_access.log
+
+127.0.0.1:80 127.0.0.1 - - [20/Jul/2022:07:55:53 -0400] "GET /redirect_uri HTTP/1.1" 200 2765 "-" "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:102.0) Gecko/20100101 Firefox/102.0"
+127.0.1.1:80 127.0.0.1 - - [20/Jul/2022:07:56:05 -0400] "\x16\x03\x01\x02" 400 483 "-" "-"
+127.0.0.1:80 127.0.0.1 - - [20/Jul/2022:07:56:16 -0400] "GET /articles HTTP/1.1" 200 3140 "-" "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:102.0) Gecko/20100101 Firefox/102.0"
+127.0.0.1:80 127.0.0.1 - - [20/Jul/2022:08:01:37 -0400] "GET /articles HTTP/1.1" 500 1349 "-" "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:102.0) Gecko/20100101 Firefox/102.0"
+127.0.1.1:80 127.0.0.1 - - [20/Jul/2022:08:05:45 -0400] "\x16\x03\x01\x02" 400 483 "-" "-"
+127.0.0.1:443 127.0.0.1 - - [20/Jul/2022:08:28:30 -0400] "GET /articles HTTP/1.1" 302 3983 "-" "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:102.0) Gecko/20100101 Firefox/102.0"
+127.0.0.1:80 127.0.0.1 - - [20/Jul/2022:08:32:46 -0400] "GET /articles HTTP/1.1" 500 1349 "-" "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:102.0) Gecko/20100101 Firefox/102.0"
+127.0.0.1:80 127.0.0.1 - - [20/Jul/2022:08:33:18 -0400] "GET /articles HTTP/1.1" 500 1349 "-" "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:102.0) Gecko/20100101 Firefox/102.0"
+127.0.0.1:443 127.0.0.1 - - [20/Jul/2022:08:33:26 -0400] "GET /articles HTTP/1.1" 302 2187 "-" "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:102.0) Gecko/20100101 Firefox/102.0"
+127.0.0.1:443 127.0.0.1 - "" [20/Jul/2022:08:41:31 -0400] "GET /redirect_uri/ HTTP/1.1" 200 3516 "-" "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:102.0) Gecko/20100101 Firefox/102.0"
+127.0.0.1:443 127.0.0.1 - - [20/Jul/2022:08:41:31 -0400] "GET /favicon.ico HTTP/1.1" 401 698 "https://127.0.0.1/redirect_uri/" "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:102.0) Gecko/20100101 Firefox/102.0"
+127.0.0.1:443 127.0.0.1 - - [20/Jul/2022:08:41:31 -0400] "POST /redirect_uri/ HTTP/1.1" 500 1381 "https://127.0.0.1/redirect_uri/" "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:102.0) Gecko/20100101 Firefox/102.0"
+127.0.0.1:443 127.0.0.1 - - [20/Jul/2022:08:54:06 -0400] "GET /articles HTTP/1.1" 302 4295 "-" "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:102.0) Gecko/20100101 Firefox/102.0"
+127.0.0.1:443 127.0.0.1 - - [20/Jul/2022:08:59:48 -0400] "GET /articles HTTP/1.1" 302 3983 "-" "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:102.0) Gecko/20100101 Firefox/102.0"
+127.0.0.1:443 127.0.0.1 - "" [20/Jul/2022:09:00:13 -0400] "GET /redirect_uri/?state=7qoo-MjvRXy1GIMkC1DueyPNBoY&session_state=46a21d3a-c383-491e-a8c3-1a63dd61ea6e&code=938025c4-e30c-4ceb-8222-ce6ab652091f.46a21d3a-c383-491e-a8c3-1a63dd61ea6e.d548652b-3ca0-4ef5-b7a4-0b84dcaf5d60 HTTP/1.1" 200 1203 "-" "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:102.0) Gecko/20100101 Firefox/102.0"
+127.0.0.1:443 127.0.0.1 - - [20/Jul/2022:09:09:19 -0400] "GET /articles HTTP/1.1" 302 3838 "-" "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:102.0) Gecko/20100101 Firefox/102.0"
+127.0.0.1:443 127.0.0.1 - alice.cooper@gmail.com [20/Jul/2022:09:09:19 -0400] "GET /redirect_uri/?state=A6DEPEFGqvw4fkNLi0UqG034az4&session_state=46a21d3a-c383-491e-a8c3-1a63dd61ea6e&code=746e4c09-7c04-4c8c-93b5-e8d96a67db35.46a21d3a-c383-491e-a8c3-1a63dd61ea6e.d548652b-3ca0-4ef5-b7a4-0b84dcaf5d60 HTTP/1.1" 302 819 "-" "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:102.0) Gecko/20100101 Firefox/102.0"
+127.0.0.1:443 127.0.0.1 - alice.cooper@gmail.com [20/Jul/2022:09:09:19 -0400] "GET /articles HTTP/1.1" 200 3215 "-" "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:102.0) Gecko/20100101 Firefox/102.0"
+127.0.0.1:443 127.0.0.1 - alice.cooper@gmail.com [20/Jul/2022:09:09:20 -0400] "GET /assets/es-module-shims.min-d89e73202ec09dede55fb74115af9c5f9f2bb965433de1c2446e1faa6dac2470.js HTTP/1.1" 200 11516 "https://127.0.0.1/articles" "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:102.0) Gecko/20100101 Firefox/102.0"
+127.0.0.1:443 127.0.0.1 - alice.cooper@gmail.com [20/Jul/2022:09:09:20 -0400] "GET /assets/application-fe440406e54bdd95ec9046fd7f7b3f6803f9748857226012c8213a74c8350ae1.css HTTP/1.1" 200 841 "https://127.0.0.1/articles" "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:102.0) Gecko/20100101 Firefox/102.0"
+127.0.0.1:443 127.0.0.1 - alice.cooper@gmail.com [20/Jul/2022:09:09:20 -0400] "GET /assets/inter-font-8c3e82affb176f4bca9616b838d906343d1251adc8408efe02cf2b1e4fcf2bc4.css HTTP/1.1" 200 2482 "https://127.0.0.1/articles" "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:102.0) Gecko/20100101 Firefox/102.0"
+127.0.0.1:443 127.0.0.1 - alice.cooper@gmail.com [20/Jul/2022:09:09:20 -0400] "GET /assets/tailwind-c88d6f6e968e0279cbb0830096df8371d4041efbad435fecae3f132025a5c906.css HTTP/1.1" 200 3916 "https://127.0.0.1/articles" "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:102.0) Gecko/20100101 Firefox/102.0"
+127.0.0.1:443 127.0.0.1 - alice.cooper@gmail.com [20/Jul/2022:09:09:20 -0400] "GET /assets/Inter-roman.latin.var-4b87a3d384ea557b10afa9570b753eda868b12b5e51eea0977ffa6e641998f6a.woff2 HTTP/1.1" 200 52294 "https://127.0.0.1/assets/inter-font-8c3e82affb176f4bca9616b838d906343d1251adc8408efe02cf2b1e4fcf2bc4.css" "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:102.0) Gecko/20100101 Firefox/102.0"
+127.0.0.1:443 127.0.0.1 - alice.cooper@gmail.com [20/Jul/2022:09:09:20 -0400] "GET /assets/application-37f365cbecf1fa2810a8303f4b6571676fa1f9c56c248528bc14ddb857531b95.js HTTP/1.1" 200 503 "https://127.0.0.1/articles" "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:102.0) Gecko/20100101 Firefox/102.0"
+127.0.0.1:443 127.0.0.1 - alice.cooper@gmail.com [20/Jul/2022:09:09:20 -0400] "GET /assets/stimulus.min-b8a9738499c7a8362910cd545375417370d72a9776fb4e766df7671484e2beb7.js HTTP/1.1" 200 9096 "https://127.0.0.1/articles" "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:102.0) Gecko/20100101 Firefox/102.0"
+127.0.0.1:443 127.0.0.1 - alice.cooper@gmail.com [20/Jul/2022:09:09:20 -0400] "GET /assets/stimulus-loading-1fc59770fb1654500044afd3f5f6d7d00800e5be36746d55b94a2963a7a228aa.js HTTP/1.1" 200 1383 "https://127.0.0.1/articles" "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:102.0) Gecko/20100101 Firefox/102.0"
+127.0.0.1:443 127.0.0.1 - alice.cooper@gmail.com [20/Jul/2022:09:09:20 -0400] "GET /assets/turbo.min-e5023178542f05fc063cd1dc5865457259cc01f3fba76a28454060d33de6f429.js HTTP/1.1" 200 19910 "https://127.0.0.1/articles" "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:102.0) Gecko/20100101 Firefox/102.0"
+127.0.0.1:443 127.0.0.1 - alice.cooper@gmail.com [20/Jul/2022:09:09:20 -0400] "GET /assets/controllers/index-2db729dddcc5b979110e98de4b6720f83f91a123172e87281d5a58410fc43806.js HTTP/1.1" 200 625 "https://127.0.0.1/articles" "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:102.0) Gecko/20100101 Firefox/102.0"
+127.0.0.1:443 127.0.0.1 - alice.cooper@gmail.com [20/Jul/2022:09:09:20 -0400] "GET /assets/controllers/application-368d98631bccbf2349e0d4f8269afb3fe9625118341966de054759d96ea86c7e.js HTTP/1.1" 200 529 "https://127.0.0.1/articles" "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:102.0) Gecko/20100101 Firefox/102.0"
+127.0.0.1:443 127.0.0.1 - alice.cooper@gmail.com [20/Jul/2022:09:09:20 -0400] "GET /assets/controllers/hello_controller-549135e8e7c683a538c3d6d517339ba470fcfb79d62f738a0a089ba41851a554.js HTTP/1.1" 200 513 "https://127.0.0.1/articles" "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:102.0) Gecko/20100101 Firefox/102.0"
+127.0.0.1:443 127.0.0.1 - "" [20/Jul/2022:09:10:08 -0400] "GET /redirect_uri/ HTTP/1.1" 200 1865 "-" "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:102.0) Gecko/20100101 Firefox/102.0"
+127.0.0.1:443 127.0.0.1 - - [20/Jul/2022:09:10:08 -0400] "POST /redirect_uri/ HTTP/1.1" 500 1381 "https://127.0.0.1/redirect_uri/" "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:102.0) Gecko/20100101 Firefox/102.0"
+127.0.0.1:443 127.0.0.1 - - [20/Jul/2022:09:16:20 -0400] "GET /articles HTTP/1.1" 302 3838 "-" "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:102.0) Gecko/20100101 Firefox/102.0"
+127.0.0.1:443 127.0.0.1 - alice.cooper@gmail.com [20/Jul/2022:09:16:39 -0400] "GET /redirect_uri/?state=LMmNbusR-e2xDPs6vLU6rvA8cmY&session_state=088e3777-efbe-44be-a16a-f150461ff929&code=6a613fbb-859a-4894-8441-f91e2e39c586.088e3777-efbe-44be-a16a-f150461ff929.d548652b-3ca0-4ef5-b7a4-0b84dcaf5d60 HTTP/1.1" 302 1331 "-" "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:102.0) Gecko/20100101 Firefox/102.0"
+127.0.0.1:443 127.0.0.1 - alice.cooper@gmail.com [20/Jul/2022:09:16:39 -0400] "GET /articles HTTP/1.1" 200 3219 "-" "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:102.0) Gecko/20100101 Firefox/102.0"
+127.0.0.1:443 127.0.0.1 - - [20/Jul/2022:09:30:18 -0400] "GET /articles/1 HTTP/1.1" 401 2980 "https://127.0.0.1/articles" "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:102.0) Gecko/20100101 Firefox/102.0"
+
+/home/fallstechdave/railsprojects/wire6/log/production.log
+
+I, [2022-07-20T07:56:16.356493 #13804]  INFO -- : [8ecc10a0-7237-44c4-8900-471b9a00b738] Started GET "/articles" for 127.0.0.1 at 2022-07-20 07:56:16 -0400
+I, [2022-07-20T07:56:16.357869 #13804]  INFO -- : [8ecc10a0-7237-44c4-8900-471b9a00b738] Processing by ArticlesController#index as HTML
+I, [2022-07-20T07:56:16.385562 #13804]  INFO -- : [8ecc10a0-7237-44c4-8900-471b9a00b738]   Rendered articles/index.html.erb within layouts/application (Duration: 23.7ms | Allocations: 11546)
+I, [2022-07-20T07:56:16.386152 #13804]  INFO -- : [8ecc10a0-7237-44c4-8900-471b9a00b738]   Rendered layout layouts/application.html.erb (Duration: 24.3ms | Allocations: 12397)
+I, [2022-07-20T07:56:16.386297 #13804]  INFO -- : [8ecc10a0-7237-44c4-8900-471b9a00b738] Completed 200 OK in 28ms (Views: 25.8ms | ActiveRecord: 6.5ms | Allocations: 13335)
+I, [2022-07-20T09:09:19.963624 #20756]  INFO -- : [d2160524-c2a4-4bf7-bfb9-61c9ef042c39] Started GET "/articles" for 127.0.0.1 at 2022-07-20 09:09:19 -0400
+I, [2022-07-20T09:09:19.966335 #20756]  INFO -- : [d2160524-c2a4-4bf7-bfb9-61c9ef042c39] Processing by ArticlesController#index as HTML
+I, [2022-07-20T09:09:19.984202 #20756]  INFO -- : [d2160524-c2a4-4bf7-bfb9-61c9ef042c39]   Rendered articles/index.html.erb within layouts/application (Duration: 14.8ms | Allocations: 11820)
+I, [2022-07-20T09:09:19.985629 #20756]  INFO -- : [d2160524-c2a4-4bf7-bfb9-61c9ef042c39]   Rendered layout layouts/application.html.erb (Duration: 16.3ms | Allocations: 14515)
+I, [2022-07-20T09:09:19.985821 #20756]  INFO -- : [d2160524-c2a4-4bf7-bfb9-61c9ef042c39] Completed 200 OK in 19ms (Views: 17.5ms | ActiveRecord: 3.6ms | Allocations: 16085)
+I, [2022-07-20T09:16:40.125946 #4739]  INFO -- : [8b7be387-4c68-4bf6-a6c0-151a32bb42e9] Started GET "/articles" for 127.0.0.1 at 2022-07-20 09:16:40 -0400
+I, [2022-07-20T09:16:40.128433 #4739]  INFO -- : [8b7be387-4c68-4bf6-a6c0-151a32bb42e9] Processing by ArticlesController#index as HTML
+I, [2022-07-20T09:16:40.177089 #4739]  INFO -- : [8b7be387-4c68-4bf6-a6c0-151a32bb42e9]   Rendered articles/index.html.erb within layouts/application (Duration: 44.2ms | Allocations: 11691)
+I, [2022-07-20T09:16:40.179709 #4739]  INFO -- : [8b7be387-4c68-4bf6-a6c0-151a32bb42e9]   Rendered layout layouts/application.html.erb (Duration: 47.0ms | Allocations: 14422)
+I, [2022-07-20T09:16:40.179965 #4739]  INFO -- : [8b7be387-4c68-4bf6-a6c0-151a32bb42e9] Completed 200 OK in 51ms (Views: 48.9ms | ActiveRecord: 17.8ms | Allocations: 15992)
+
+
+https://127.0.0.1/articles/1
+
+Unauthorized
+This server could not verify that you are authorized to access the document requested. Either you supplied the wrong credentials (e.g., bad password), or your browser doesn't understand how to supply the credentials required.
+Apache/2.4.41 (Ubuntu) Server at 127.0.0.1 Port 443
+
+= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
+
+HEADERS
+
+Disable Cache
+16 requests
+228.06 KB / 25.78 KB transferred
+Finish: 268 ms
+DOMContentLoaded: 164 ms
+load: 221 ms
+	
+POST
+	http://127.0.0.1:8080/realms/quarkus/login-actions/authenticate?session_code=SyFBwpEpVwOyzQ__gzaelU2Fb1MlKYUnYoBAEA8uQaY&execution=79cd55de-8045-4a9d-ae66-45555faeb0c2&client_id=myclient&tab_id=1geqORYJ3DM
+Status
+302
+Found
+VersionHTTP/1.1
+Transferred4.36 KB (4.45 KB size)
+Referrer Policyno-referrer
+Request PriorityHighest
+
+	
+Cache-Control
+	no-store, must-revalidate, max-age=0
+content-length
+	0
+Content-Security-Policy
+	frame-src 'self'; frame-ancestors 'self'; object-src 'none';
+Location
+	https://127.0.0.1/redirect_uri/?state=SZV4rPAyesLmrHpya0XosofQ3jY&session_state=3ca559f3-ad8a-43bc-998a-e13ea352f1b1&code=b7fca8ec-49f7-4ffc-882b-6434aec9e970.3ca559f3-ad8a-43bc-998a-e13ea352f1b1.d548652b-3ca0-4ef5-b7a4-0b84dcaf5d60
+P3P
+	CP="This is not a P3P policy!"
+Referrer-Policy
+	no-referrer
+Set-Cookie
+	KEYCLOAK_LOCALE=; Version=1; Comment=Expiring cookie; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Max-Age=0; Path=/realms/quarkus/; HttpOnly
+Set-Cookie
+	KC_RESTART=; Version=1; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Max-Age=0; Path=/realms/quarkus/; HttpOnly
+Set-Cookie
+	KEYCLOAK_IDENTITY=eyJhbGciOiJIUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICI5NmFmZDAwZS04NWNmLTRkMzUtYjE4ZS0wNjFkMzgxM2Q4YjIifQ.eyJleHAiOjE2NTgzNjE3NTEsImlhdCI6MTY1ODMyNTc1MSwianRpIjoiMTc3OTQzZjAtM2NlZS00OGM2LWI0MmYtYTY1MjkyMzQ0Zjg5IiwiaXNzIjoiaHR0cDovLzEyNy4wLjAuMTo4MDgwL3JlYWxtcy9xdWFya3VzIiwic3ViIjoiZWI0MTIzYTMtYjcyMi00Nzk4LTlhZjUtODk1N2Y4MjM2NTdhIiwidHlwIjoiU2VyaWFsaXplZC1JRCIsInNlc3Npb25fc3RhdGUiOiIzY2E1NTlmMy1hZDhhLTQzYmMtOTk4YS1lMTNlYTM1MmYxYjEiLCJzaWQiOiIzY2E1NTlmMy1hZDhhLTQzYmMtOTk4YS1lMTNlYTM1MmYxYjEiLCJzdGF0ZV9jaGVja2VyIjoiNXpaaDhvdTBZbkNDR0E0LTlhN3AtTjF5ZENzTC1XazBEMkFfZHcyOTgzTSJ9.Ha-gDrd-mBW9x9iWGh1dsqCYoeoKcjsr0_s2onZ86Jg; Version=1; Path=/realms/quarkus/; SameSite=None; Secure; HttpOnly
+Set-Cookie
+	KEYCLOAK_IDENTITY_LEGACY=eyJhbGciOiJIUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICI5NmFmZDAwZS04NWNmLTRkMzUtYjE4ZS0wNjFkMzgxM2Q4YjIifQ.eyJleHAiOjE2NTgzNjE3NTEsImlhdCI6MTY1ODMyNTc1MSwianRpIjoiMTc3OTQzZjAtM2NlZS00OGM2LWI0MmYtYTY1MjkyMzQ0Zjg5IiwiaXNzIjoiaHR0cDovLzEyNy4wLjAuMTo4MDgwL3JlYWxtcy9xdWFya3VzIiwic3ViIjoiZWI0MTIzYTMtYjcyMi00Nzk4LTlhZjUtODk1N2Y4MjM2NTdhIiwidHlwIjoiU2VyaWFsaXplZC1JRCIsInNlc3Npb25fc3RhdGUiOiIzY2E1NTlmMy1hZDhhLTQzYmMtOTk4YS1lMTNlYTM1MmYxYjEiLCJzaWQiOiIzY2E1NTlmMy1hZDhhLTQzYmMtOTk4YS1lMTNlYTM1MmYxYjEiLCJzdGF0ZV9jaGVja2VyIjoiNXpaaDhvdTBZbkNDR0E0LTlhN3AtTjF5ZENzTC1XazBEMkFfZHcyOTgzTSJ9.Ha-gDrd-mBW9x9iWGh1dsqCYoeoKcjsr0_s2onZ86Jg; Version=1; Path=/realms/quarkus/; HttpOnly
+Set-Cookie
+	KEYCLOAK_SESSION=quarkus/eb4123a3-b722-4798-9af5-8957f823657a/3ca559f3-ad8a-43bc-998a-e13ea352f1b1; Version=1; Expires=Thu, 21-Jul-2022 00:02:31 GMT; Max-Age=36000; Path=/realms/quarkus/; SameSite=None; Secure
+Set-Cookie
+	KEYCLOAK_SESSION_LEGACY=quarkus/eb4123a3-b722-4798-9af5-8957f823657a/3ca559f3-ad8a-43bc-998a-e13ea352f1b1; Version=1; Expires=Thu, 21-Jul-2022 00:02:31 GMT; Max-Age=36000; Path=/realms/quarkus/
+Set-Cookie
+	KEYCLOAK_REMEMBER_ME=; Version=1; Comment=Expiring cookie; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Max-Age=0; Path=/realms/quarkus/; HttpOnly
+Strict-Transport-Security
+	max-age=31536000; includeSubDomains
+X-Content-Type-Options
+	nosniff
+X-Frame-Options
+	SAMEORIGIN
+X-Robots-Tag
+	none
+X-XSS-Protection
+	1; mode=block
+	
+Accept
+	text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8
+Accept-Encoding
+	gzip, deflate, br
+Accept-Language
+	en-US,en;q=0.5
+Connection
+	keep-alive
+Content-Length
+	43
+Content-Type
+	application/x-www-form-urlencoded
+Cookie
+	KEYCLOAK_SESSION=quarkus/eb4123a3-b722-4798-9af5-8957f823657a/088e3777-efbe-44be-a16a-f150461ff929; KEYCLOAK_SESSION_LEGACY=quarkus/eb4123a3-b722-4798-9af5-8957f823657a/088e3777-efbe-44be-a16a-f150461ff929; AUTH_SESSION_ID=3ca559f3-ad8a-43bc-998a-e13ea352f1b1; AUTH_SESSION_ID_LEGACY=3ca559f3-ad8a-43bc-998a-e13ea352f1b1; KC_RESTART=eyJhbGciOiJIUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICI5NmFmZDAwZS04NWNmLTRkMzUtYjE4ZS0wNjFkMzgxM2Q4YjIifQ.eyJjaWQiOiJteWNsaWVudCIsInB0eSI6Im9wZW5pZC1jb25uZWN0IiwicnVyaSI6Imh0dHBzOi8v…idc_state_SZV4rPAyesLmrHpya0XosofQ3jY=eyJhbGciOiAiZGlyIiwgImVuYyI6ICJBMjU2R0NNIn0..pAXH8CBdbDTs2WCf.N36NUn4MT78SDQheqTAW1e77QoN2ZyencnE9XOkZJu8RvdTP_ycj-JyPfGew2X0FYcZ_Lu2mYumKghUafAlUGBAMkoNjwx1nI3X6QojEQJi1W9mGVSxYxNtf9-haY8hvwUFB33-rEIZEVlqCecKyjfj7IGhwB_7LbrxNmCqv9tTx0xsibaGxZj9jAl_ZHNatIS-aBYnJYsNIXgVeMxdq9GvKg3SFCSRo__PomqyAfMTKYvwWa_mRoBZVTrcYt1WGAN2G8mc-emZR5UK1qwPWe_KDpeZhVqrjWS22NrWuHPL-SdI3fNEy4Zm2ZX2_FwBk4uontpLpelQBisPsd4ceBwk8odhvGqrHw0RgQn_rPu2pz06gFm7TMo98jN4Ui6H05M3a.LPROGLhvMLoA7AHYivSCvA
+Host
+	127.0.0.1:8080
+Origin
+	null
+Sec-Fetch-Dest
+	document
+Sec-Fetch-Mode
+	navigate
+Sec-Fetch-Site
+	same-origin
+Sec-Fetch-User
+	?1
+Upgrade-Insecure-Requests
+	1
+User-Agent
+	Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:102.0) Gecko/20100101 Firefox/102.0
+
+= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
+
+COOKIES
+
+Disable Cache
+16 requests
+228.06 KB / 25.78 KB transferred
+Finish: 268 ms
+DOMContentLoaded: 164 ms
+load: 221 ms
+
+	
+KC_RESTART	{…}
+expires	"1970-01-01T00:00:10.000Z"
+httpOnly	true
+path	"/realms/quarkus/"
+value	""
+KEYCLOAK_IDENTITY	
+httpOnly	true
+path	"/realms/quarkus/"
+samesite	"None"
+secure	true
+value	"eyJhbGciOiJIUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICI5NmFmZDAwZS04NWNmLTRkMzUtYjE4ZS0wNjFkMzgxM2Q4YjIifQ.eyJleHAiOjE2NTgzNjE3NTEsImlhdCI6MTY1ODMyNTc1MSwianRpIjoiMTc3OTQzZjAtM2NlZS00OGM2LWI0MmYtYTY1MjkyMzQ0Zjg5IiwiaXNzIjoiaHR0cDovLzEyNy4wLjAuMTo4MDgwL3JlYWxtcy9xdWFya3VzIiwic3ViIjoiZWI0MTIzYTMtYjcyMi00Nzk4LTlhZjUtODk1N2Y4MjM2NTdhIiwidHlwIjoiU2VyaWFsaXplZC1JRCIsInNlc3Npb25fc3RhdGUiOiIzY2E1NTlmMy1hZDhhLTQzYmMtOTk4YS1lMTNlYTM1MmYxYjEiLCJzaWQiOiIzY2E1NTlmMy1hZDhhLTQzYmMtOTk4YS1lMTNlYTM1MmYxYjEiLCJzdGF0ZV9jaGVja2VyIjoiNXpaaDhvdTBZbkNDR0E0LTlhN3AtTjF5ZENzTC1XazBEMkFfZHcyOTgzTSJ9.Ha-gDrd-mBW9x9iWGh1dsqCYoeoKcjsr0_s2onZ86Jg"
+KEYCLOAK_IDENTITY_LEGACY	
+httpOnly	true
+path	"/realms/quarkus/"
+value	"eyJhbGciOiJIUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICI5NmFmZDAwZS04NWNmLTRkMzUtYjE4ZS0wNjFkMzgxM2Q4YjIifQ.eyJleHAiOjE2NTgzNjE3NTEsImlhdCI6MTY1ODMyNTc1MSwianRpIjoiMTc3OTQzZjAtM2NlZS00OGM2LWI0MmYtYTY1MjkyMzQ0Zjg5IiwiaXNzIjoiaHR0cDovLzEyNy4wLjAuMTo4MDgwL3JlYWxtcy9xdWFya3VzIiwic3ViIjoiZWI0MTIzYTMtYjcyMi00Nzk4LTlhZjUtODk1N2Y4MjM2NTdhIiwidHlwIjoiU2VyaWFsaXplZC1JRCIsInNlc3Npb25fc3RhdGUiOiIzY2E1NTlmMy1hZDhhLTQzYmMtOTk4YS1lMTNlYTM1MmYxYjEiLCJzaWQiOiIzY2E1NTlmMy1hZDhhLTQzYmMtOTk4YS1lMTNlYTM1MmYxYjEiLCJzdGF0ZV9jaGVja2VyIjoiNXpaaDhvdTBZbkNDR0E0LTlhN3AtTjF5ZENzTC1XazBEMkFfZHcyOTgzTSJ9.Ha-gDrd-mBW9x9iWGh1dsqCYoeoKcjsr0_s2onZ86Jg"
+KEYCLOAK_LOCALE	{…}
+expires	"1970-01-01T00:00:10.000Z"
+httpOnly	true
+path	"/realms/quarkus/"
+value	""
+KEYCLOAK_REMEMBER_ME	{…}
+expires	"1970-01-01T00:00:10.000Z"
+httpOnly	true
+path	"/realms/quarkus/"
+value	""
+KEYCLOAK_SESSION	
+expires	"2022-07-21T00:02:31.000Z"
+path	"/realms/quarkus/"
+samesite	"None"
+secure	true
+value	"quarkus/eb4123a3-b722-4798-9af5-8957f823657a/3ca559f3-ad8a-43bc-998a-e13ea352f1b1"
+KEYCLOAK_SESSION_LEGACY	
+expires	"2022-07-21T00:02:31.000Z"
+path	"/realms/quarkus/"
+value	"quarkus/eb4123a3-b722-4798-9af5-8957f823657a/3ca559f3-ad8a-43bc-998a-e13ea352f1b1"
+
+    	
+    AUTH_SESSION_ID	"3ca559f3-ad8a-43bc-998a-e13ea352f1b1"
+    AUTH_SESSION_ID_LEGACY	"3ca559f3-ad8a-43bc-998a-e13ea352f1b1"
+    KC_RESTART	"eyJhbGciOiJIUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICI5NmFmZDAwZS04NWNmLTRkMzUtYjE4ZS0wNjFkMzgxM2Q4YjIifQ.eyJjaWQiOiJteWNsaWVudCIsInB0eSI6Im9wZW5pZC1jb25uZWN0IiwicnVyaSI6Imh0dHBzOi8vMTI3LjAuMC4xL3JlZGlyZWN0X3VyaS8iLCJhY3QiOiJBVVRIRU5USUNBVEUiLCJub3RlcyI6eyJzY29wZSI6Im9wZW5pZCBlbWFpbCIsImlzcyI6Imh0dHA6Ly8xMjcuMC4wLjE6ODA4MC9yZWFsbXMvcXVhcmt1cyIsInJlc3BvbnNlX3R5cGUiOiJjb2RlIiwicmVkaXJlY3RfdXJpIjoiaHR0cHM6Ly8xMjcuMC4wLjEvcmVkaXJlY3RfdXJpLyIsInN0YXRlIjoiU1pWNHJQQXllc0xtckhweWEwWG9zb2ZRM2pZIiwibm9uY2UiOiJoT1hJMU1DeVZONUVKU2N5RlU5ZUlrTEM4dEV2VXhlUG1YVnkybWpRUTVvIn19.DIITw_VXC7CPHWMvV2etIH3q8ep1QN_pYVUhUDj2rzI"
+    KEYCLOAK_SESSION	"quarkus/eb4123a3-b722-4798-9af5-8957f823657a/088e3777-efbe-44be-a16a-f150461ff929"
+    KEYCLOAK_SESSION_LEGACY	"quarkus/eb4123a3-b722-4798-9af5-8957f823657a/088e3777-efbe-44be-a16a-f150461ff929"
+    mod_auth_openidc_state_SZV4rPAyesLmrHpya0XosofQ3jY	"eyJhbGciOiAiZGlyIiwgImVuYyI6ICJBMjU2R0NNIn0..pAXH8CBdbDTs2WCf.N36NUn4MT78SDQheqTAW1e77QoN2ZyencnE9XOkZJu8RvdTP_ycj-JyPfGew2X0FYcZ_Lu2mYumKghUafAlUGBAMkoNjwx1nI3X6QojEQJi1W9mGVSxYxNtf9-haY8hvwUFB33-rEIZEVlqCecKyjfj7IGhwB_7LbrxNmCqv9tTx0xsibaGxZj9jAl_ZHNatIS-aBYnJYsNIXgVeMxdq9GvKg3SFCSRo__PomqyAfMTKYvwWa_mRoBZVTrcYt1WGAN2G8mc-emZR5UK1qwPWe_KDpeZhVqrjWS22NrWuHPL-SdI3fNEy4Zm2ZX2_FwBk4uontpLpelQBisPsd4ceBwk8odhvGqrHw0RgQn_rPu2pz06gFm7TMo98jN4Ui6H05M3a.LPROGLhvMLoA7AHYivSCvA"
+
+= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
+
+/etc/apache2/mods-available/auth_openidc.conf
+
+# OIDCProviderMetadataURL https://127.0.0.1:8080/auth/realms/myrealm/.well-known/openid-configuration
+# OIDCProviderMetadataURL http://127.0.0.1:8080/auth/realms/quarkus/.well-known/openid-configuration
+OIDCProviderMetadataURL http://127.0.0.1:8080/realms/quarkus/.well-known/openid-configuration
+
+# OIDCRedirectURI https://127.0.0.1/articles/redirect_uri/
+OIDCRedirectURI https://127.0.0.1/redirect_uri/
+
+OIDCCryptoPassphrase 0123456789
+# OIDCClientID <client_id>
+# OIDCClientName <client_name>
+# OIDCClientSecret <client_secret>
+# OIDCProviderTokenEndpointAuth [ client_secret_basic | client_secret_post | client_secret_jwt | private_key_jwt | none ]
+
+OIDCClientID myclient
+# OIDCClientSecret PtfnIgls1mJ18vd4M79PVmOuAdHDeqA7
+OIDCClientSecret 5NDkdAuOwv2w91qQjKVfrwbVi1XnmCST
+
+OIDCProviderTokenEndpointAuth client_secret_basic
+# OIDCProviderTokenEndpointAuth none
+
+OIDCRemoteUserClaim email
+OIDCScope "openid email"
+
+<Location "/">
+  Require valid-user
+  AuthType openid-connect
+</Location>
+
+
+https://localhost/articles
+http://localhost/articles
+
+fallstechdave@mmrxps17:/var/cache/apache2$ ls -latr
+total 16
+drwxr-xr-x  2 www-data www-data 4096 Jun 14 09:30 mod_cache_disk
+drwxr-xr-x 18 root     root     4096 Jul  1 07:10 ..
+drwx------  3 www-data root     4096 Jul  6 15:54 mod_auth_openidc
+drwxr-xr-x  4 root     root     4096 Jul  6 15:54 .
+fallstechdave@mmrxps17:/var/cache/apache2$ 
+fallstechdave@mmrxps17:/var/cache/apache2$ sudo tree
+.
+├── mod_auth_openidc
+│   └── metadata
+└── mod_cache_disk
+
+3 directories, 0 files
+fallstechdave@mmrxps17:/var/cache/apache2$ 
+fallstechdave@mmrxps17:/var/cache/apache2$ sudo ls -latrR mod_auth_openidc/
+mod_auth_openidc/:
+total 12
+drwx------ 2 www-data root 4096 Dec 31  2014 metadata
+drwxr-xr-x 4 root     root 4096 Jul  6 15:54 ..
+drwx------ 3 www-data root 4096 Jul  6 15:54 .
+
+mod_auth_openidc/metadata:
+total 8
+drwx------ 2 www-data root 4096 Dec 31  2014 .
+drwx------ 3 www-data root 4096 Jul  6 15:54 ..
+fallstechdave@mmrxps17:/var/cache/apache2$ 
+fallstechdave@mmrxps17:/var/cache/apache2$ 
+
+= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
+
+/var/log/apache2/error.log
+
+[Wed Jul 20 15:41:51.597064 2022] [ssl:warn] [pid 4948:tid 140475408804928] AH01906: 127.0.0.1:443:0 server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Wed Jul 20 15:41:51.598795 2022] [auth_openidc:warn] [pid 4948:tid 140475408804928] oidc_check_config_openid_openidc: the URL scheme (http) of the configured OIDCProviderMetadataURL SHOULD be "https" for security reasons!
+[Wed Jul 20 15:41:51.599876 2022] [mpm_event:notice] [pid 4948:tid 140475408804928] AH00489: Apache/2.4.41 (Ubuntu) Phusion_Passenger/6.0.14 OpenSSL/1.1.1f configured -- resuming normal operations
+[Wed Jul 20 15:41:51.599888 2022] [core:notice] [pid 4948:tid 140475408804928] AH00094: Command line: '/usr/sbin/apache2'
+[ N 2022-07-20 15:41:51.9259 4893/T1 age/Cor/TelemetryCollector.h:531 ]: Message from Phusion: End time can not be before or equal to begin time
+[ N 2022-07-20 15:41:52.1454 4893/T1 age/Cor/CoreMain.cpp:1325 ]: Passenger core shutdown finished
+[ N 2022-07-20 15:41:54.1043 4954/T5 age/Cor/SecurityUpdateChecker.h:519 ]: Security update check: no update found (next check in 24 hours)
+[Wed Jul 20 15:43:51.231185 2022] [auth_openidc:error] [pid 5008:tid 140475294021376] [client 127.0.0.1:37944] oidc_authenticate_user: the URL hostname (127.0.0.1) of the configured OIDCRedirectURI does not match the URL hostname of the URL being accessed (localhost): the "state" and "session" cookies will not be shared between the two!
+[Wed Jul 20 15:44:24.007182 2022] [auth_openidc:error] [pid 5008:tid 140475285628672] [client 127.0.0.1:55722] oidc_authenticate_user: the URL scheme (https) of the configured OIDCRedirectURI does not match the URL scheme of the URL being accessed (http): the "state" and "session" cookies will not be shared between the two!
+[Wed Jul 20 15:44:32.780757 2022] [auth_openidc:error] [pid 5008:tid 140475268843264] [client 127.0.0.1:55726] oidc_authenticate_user: the URL scheme (https) of the configured OIDCRedirectURI does not match the URL scheme of the URL being accessed (http): the "state" and "session" cookies will not be shared between the two!
+[Wed Jul 20 16:13:28.736030 2022] [auth_openidc:warn] [pid 5007:tid 140475268843264] [client 127.0.0.1:37948] oidc_clean_expired_state_cookies: state (mod_auth_openidc_state_8j7sqjQjMFoOOpfLZjxvEm3j8ZM) has expired (original_url=https://localhost/articles)
+[Wed Jul 20 16:13:28.736080 2022] [auth_openidc:warn] [pid 5007:tid 140475268843264] [client 127.0.0.1:37948] oidc_clean_expired_state_cookies: state (mod_auth_openidc_state_mn6bWIDKtRit_rQXOJLkyBiyd2g) has expired (original_url=http://localhost/articles)
+[Wed Jul 20 16:13:28.736106 2022] [auth_openidc:warn] [pid 5007:tid 140475268843264] [client 127.0.0.1:37948] oidc_clean_expired_state_cookies: state (mod_auth_openidc_state_vXnvlssDFc8BMgvHGXbGXOsbmvU) has expired (original_url=http://localhost/articles)
+[Wed Jul 20 16:13:28.736119 2022] [auth_openidc:error] [pid 5007:tid 140475268843264] [client 127.0.0.1:37948] oidc_authenticate_user: the URL hostname (127.0.0.1) of the configured OIDCRedirectURI does not match the URL hostname of the URL being accessed (localhost): the "state" and "session" cookies will not be shared between the two!
+[Wed Jul 20 16:13:41.471060 2022] [auth_openidc:error] [pid 5007:tid 140475252057856] [client 127.0.0.1:55728] oidc_authenticate_user: the URL scheme (https) of the configured OIDCRedirectURI does not match the URL scheme of the URL being accessed (http): the "state" and "session" cookies will not be shared between the two!
+
+

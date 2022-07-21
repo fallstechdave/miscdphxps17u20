@@ -1,0 +1,179 @@
+
+CREATE USER 'railsuser'@'localhost' IDENTIFIED BY 'railsuserpw';
+
+DROP DATABASE IF EXISTS wire6_development;
+DROP DATABASE IF EXISTS wire6_test;
+DROP DATABASE IF EXISTS wire6_production;
+CREATE DATABASE wire6_development;
+CREATE DATABASE wire6_test;
+CREATE DATABASE wire6_production;
+GRANT ALL PRIVILEGES ON wire6_development.* TO 'railsuser'@'localhost' WITH GRANT OPTION;
+GRANT ALL PRIVILEGES ON wire6_test.* TO 'railsuser'@'localhost' WITH GRANT OPTION;
+GRANT ALL PRIVILEGES ON wire6_production.* TO 'railsuser'@'localhost' WITH GRANT OPTION;
+
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| app_development    |
+| app_production     |
+| app_test           |
+| information_schema |
+| mysql              |
+| performance_schema |
+| sys                |
+| wire6_development  |
+| wire6_production   |
+| wire6_test         |
+| wire6_development  |
+| wire6_production   |
+| wire6_test         |
++--------------------+
+13 rows in set (0.01 sec)
+
+mysql> 
+
+
+
+
+cd ~/railsprojects
+rails new wire6 --css tailwind -d mysql
+cd wire6
+vi ./config/database.yml
+
+bin/rails generate scaffold Article \
+title:string{4000} summary:string{4000} doc_num:string{100} \
+image_caption:string{1000} has_attachments:boolean \
+worldwide:boolean date_published:date producing_office:string \
+country:string topic:string non_state_actor:string body:text
+
+rails generate controller RedirectUri
+
+bin/rails db:create
+bin/rails db:migrate
+bin/rails db:migrate:status
+bin/rails server
+
+use browser to view http://127.0.0.1:3000/
+use browser to view http://127.0.0.1:3000/articles
+
+mysqldump -u root -p wire6_development > wire6-development-mysqldump-20220707.sql
+
+RAILS_ENV=test       bundle exec rake db:create db:schema:load
+RAILS_ENV=production bundle exec rake db:create db:schema:load
+
+RAILS_ENV=test       bundle exec rake assets:precompile
+RAILS_ENV=production bundle exec rake assets:precompile
+
+https://guides.rubyonrails.org/getting_started.html
+
+bin/rails generate controller Apple index --skip-routes
+
+bin/rails generate controller Berry index foo bar baz
+
+bin/rails generate controller CherryPie oidc_get oidc_post oidc_put oidc_delete
+
+---------------------------------------------------------------
+
+/home/fallstechdave/railsprojects/wire6/config/routes.rb
+
+Rails.application.routes.draw do
+  get 'berry/index'
+  get 'berry/foo'
+  get 'berry/bar'
+  get 'berry/baz'
+  resources :articles
+  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+
+  # Defines the root path route ("/")
+  # root "articles#index"
+end
+
+Rails.application.routes.draw do
+  get 'cherry_pie/oidc_get'
+  get 'cherry_pie/oidc_post'
+  get 'cherry_pie/oidc_put'
+  get 'cherry_pie/oidc_delete'
+  get 'berry/index'
+  get 'berry/foo'
+  get 'berry/bar'
+  get 'berry/baz'
+  resources :articles
+  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+
+  # Defines the root path route ("/")
+  # root "articles#index"
+end
+
+
+Rails.application.routes.draw do
+
+  get 'cherry_pie/oidc_get'
+  post 'cherry_pie/oidc_post'
+  put 'cherry_pie/oidc_put'
+  delete 'cherry_pie/oidc_delete'
+
+    get 'cherry_pie/oidc_get'
+    post 'cherry_pie/oidc_post'
+    put 'cherry_pie/oidc_put'
+    delete 'cherry_pie/oidc_delete'
+
+  get 'berry/index'
+  get 'berry/foo'
+  get 'berry/bar'
+  get 'berry/baz'
+  resources :articles
+  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+
+  # Defines the root path route ("/")
+  # root "articles#index"
+end
+
+fallstechdave@mmrxps17:~/railsprojects/wire6$ 
+fallstechdave@mmrxps17:~/railsprojects/wire6$ bin/rails s
+=> Booting Puma
+=> Rails 7.0.3.1 application starting in development 
+=> Run `bin/rails server --help` for more startup options
+Puma starting in single mode...
+* Puma version: 5.6.4 (ruby 3.1.2-p20) ("Birdie's Version")
+*  Min threads: 5
+*  Max threads: 5
+*  Environment: development
+*          PID: 5514
+* Listening on http://127.0.0.1:3000
+* Listening on http://[::1]:3000
+Use Ctrl-C to stop
+
+fallstechdave@mmrxps17:~/railsprojects/wire6$ bin/rails db:migrate
+== 20220717221929 CreateArticles: migrating ===================================
+-- create_table(:articles)
+   -> 0.0272s
+== 20220717221929 CreateArticles: migrated (0.0273s) ==========================
+
+fallstechdave@mmrxps17:~/railsprojects/wire6$ 
+fallstechdave@mmrxps17:~/railsprojects/wire6$ bin/rails s
+=> Booting Puma
+=> Rails 7.0.3.1 application starting in development 
+=> Run `bin/rails server --help` for more startup options
+Puma starting in single mode...
+* Puma version: 5.6.4 (ruby 3.1.2-p20) ("Birdie's Version")
+*  Min threads: 5
+*  Max threads: 5
+*  Environment: development
+*          PID: 6043
+* Listening on http://127.0.0.1:3000
+* Listening on http://[::1]:3000
+Use Ctrl-C to stop
+
+
+
+http://localhost:3000/cherry_pie     Routing Error   No route matches [GET] "/cherry_pie"
+
+http://localhost:3000/cherrypie      Routing Error   No route matches [GET] "/cherrypie"
+
+http://localhost:3000/cherry_pie/oidc_get
+
+CherryPie#oidc_get
+Find me in app/views/cherry_pie/oidc_get.html.erb
+

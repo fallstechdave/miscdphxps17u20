@@ -1015,3 +1015,212 @@ http://localhost:8080/admin
 http://localhost:8080/admin/master/console/#/realms
 Select realm 
 
+
+
+
+= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
+
+keycloak well-known/openid-configuation
+
+https://stackoverflow.com/questions/28658735/what-are-keycloaks-oauth2-openid-connect-endpoints
+
+For Keycloak 1.2 the above information can be retrieved via the url
+
+http://keycloakhost:keycloakport/auth/realms/{realm}/.well-known/openid-configuration
+
+For example, if the realm name is demo:
+
+http://keycloakhost:keycloakport/auth/realms/demo/.well-known/openid-configuration
+
+An example output from above url:
+
+{
+    "issuer": "http://localhost:8080/auth/realms/demo",
+    "authorization_endpoint": "http://localhost:8080/auth/realms/demo/protocol/openid-connect/auth",
+    "token_endpoint": "http://localhost:8080/auth/realms/demo/protocol/openid-connect/token",
+    "userinfo_endpoint": "http://localhost:8080/auth/realms/demo/protocol/openid-connect/userinfo",
+    "end_session_endpoint": "http://localhost:8080/auth/realms/demo/protocol/openid-connect/logout",
+    "jwks_uri": "http://localhost:8080/auth/realms/demo/protocol/openid-connect/certs",
+    "grant_types_supported": [
+        "authorization_code",
+        "refresh_token",
+        "password"
+    ],
+    "response_types_supported": [
+        "code"
+    ],
+    "subject_types_supported": [
+        "public"
+    ],
+    "id_token_signing_alg_values_supported": [
+        "RS256"
+    ],
+    "response_modes_supported": [
+        "query"
+    ]
+}
+
+http://keycloakhost:keycloakport/auth/realms/demo/.well-known/openid-configuration
+
+
+
+curl -vvv --insecure -X GET http://localhost:8080/auth/realms/quarkus/
+
+curl -vvv http://localhost:8080/auth/realms/quarkus/
+
+curl -vvv http://localhost:8080/auth/realms/quarkus/.well-known/openid-configuration
+
+
+
+
+http://localhost:8080/auth/realms/quarkus/.well-known/openid-configuration
+
+curl --insecure -X POST http://localhost:8080/realms/quarkus/protocol/openid-connect/token \
+--user backend-service:secret \
+-H 'content-type: application/x-www-form-urlencoded' \
+-d 'username=alice&password=alice&grant_type=password' 
+
+curl -vvv --insecure -X POST http://localhost:8080/auth/realms/quarkus/.well-known/openid-configuration
+
+
+
+fallstechdave@mmrxps17:~/repositories/miscmmrxps17u20$ 
+fallstechdave@mmrxps17:~/repositories/miscmmrxps17u20$ curl -vvv --insecure -X POST http://localhost:8080/auth/realms/quarkus/.well-known/openid-configuration
+*   Trying 127.0.0.1:8080...
+* TCP_NODELAY set
+* Connected to localhost (127.0.0.1) port 8080 (#0)
+> POST /auth/realms/quarkus/.well-known/openid-configuration HTTP/1.1
+> Host: localhost:8080
+> User-Agent: curl/7.68.0
+> Accept: */*
+> 
+* Mark bundle as not supporting multiuse
+< HTTP/1.1 404 Not Found
+< Referrer-Policy: no-referrer
+< X-Frame-Options: SAMEORIGIN
+< Strict-Transport-Security: max-age=31536000; includeSubDomains
+< X-Content-Type-Options: nosniff
+< X-XSS-Protection: 1; mode=block
+< Content-Type: application/json
+< content-length: 141
+< 
+* Connection #0 to host localhost left intact
+{"error":"RESTEASY003210: Could not find resource for full path: http://localhost:8080/auth/realms/quarkus/.well-known/openid-configuration"}fallstechdave@mmrxps17:~/repositories/miscmmrxps17u20$ 
+fallstechdave@mmrxps17:~/repositories/miscmmrxps17u20$ 
+
+= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
+
+http://localhost:8080/auth/realms/demo
+http://localhost:8080/auth/realms/demo/protocol/openid-connect
+http://localhost:8080/auth/realms/demo/protocol/openid-connect/auth
+http://localhost:8080/auth/realms/demo/protocol/openid-connect/token
+http://localhost:8080/auth/realms/demo/protocol/openid-connect/userinfo
+http://localhost:8080/auth/realms/demo/protocol/openid-connect/logout
+http://localhost:8080/auth/realms/demo/protocol/openid-connect/certs
+
+curl -vvv http://localhost:8080/auth/realms/quarkus
+curl -vvv http://localhost:8080/auth/realms/quarkus/protocol/openid-connect
+curl -vvv http://localhost:8080/auth/realms/quarkus/protocol/openid-connect/auth
+curl -vvv http://localhost:8080/auth/realms/quarkus/protocol/openid-connect/token
+curl -vvv http://localhost:8080/auth/realms/quarkus/protocol/openid-connect/userinfo
+curl -vvv http://localhost:8080/auth/realms/quarkus/protocol/openid-connect/logout
+curl -vvv http://localhost:8080/auth/realms/quarkus/protocol/openid-connect/certs
+
+curl -vvv http://localhost:8080/auth/realms/quarkus --user backend-service:secret 
+curl -vvv http://localhost:8080/auth/realms/quarkus/protocol/openid-connect --user backend-service:secret 
+curl -vvv http://localhost:8080/auth/realms/quarkus/protocol/openid-connect/auth --user backend-service:secret 
+curl -vvv http://localhost:8080/auth/realms/quarkus/protocol/openid-connect/token --user backend-service:secret 
+curl -vvv http://localhost:8080/auth/realms/quarkus/protocol/openid-connect/userinfo --user backend-service:secret 
+curl -vvv http://localhost:8080/auth/realms/quarkus/protocol/openid-connect/logout --user backend-service:secret 
+curl -vvv http://localhost:8080/auth/realms/quarkus/protocol/openid-connect/certs --user backend-service:secret 
+
+= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
+
+http://localhost:8080/auth/realms/demo
+http://localhost:8080/auth/realms/demo/openid-connect
+http://localhost:8080/auth/realms/demo/openid-connect/auth
+http://localhost:8080/auth/realms/demo/openid-connect/token
+http://localhost:8080/auth/realms/demo/openid-connect/userinfo
+http://localhost:8080/auth/realms/demo/openid-connect/logout
+http://localhost:8080/auth/realms/demo/openid-connect/certs
+
+curl -vvv http://localhost:8080/auth/realms/quarkus
+curl -vvv http://localhost:8080/auth/realms/quarkus/openid-connect
+curl -vvv http://localhost:8080/auth/realms/quarkus/openid-connect/auth
+curl -vvv http://localhost:8080/auth/realms/quarkus/openid-connect/token
+curl -vvv http://localhost:8080/auth/realms/quarkus/openid-connect/userinfo
+curl -vvv http://localhost:8080/auth/realms/quarkus/openid-connect/logout
+curl -vvv http://localhost:8080/auth/realms/quarkus/openid-connect/certs
+
+curl -vvv http://localhost:8080/auth/realms/quarkus --user backend-service:secret 
+curl -vvv http://localhost:8080/auth/realms/quarkus/openid-connect --user backend-service:secret 
+curl -vvv http://localhost:8080/auth/realms/quarkus/openid-connect/auth --user backend-service:secret 
+curl -vvv http://localhost:8080/auth/realms/quarkus/openid-connect/token --user backend-service:secret 
+curl -vvv http://localhost:8080/auth/realms/quarkus/openid-connect/userinfo --user backend-service:secret 
+curl -vvv http://localhost:8080/auth/realms/quarkus/openid-connect/logout --user backend-service:secret 
+curl -vvv http://localhost:8080/auth/realms/quarkus/openid-connect/certs --user backend-service:secret 
+
+= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
+
+https://github.com/zmartzone/mod_auth_openidc/wiki/Keycloak
+
+https://issues.redhat.com/browse/KEYCLOAK-571
+
+https://github.com/zmartzone/mod_auth_openidc
+
+    OIDCProviderMetadataURL https://accounts.google.com/.well-known/openid-configuration
+    OIDCClientID <your-client-id-administered-through-the-google-api-console>
+    OIDCClientSecret <your-client-secret-administered-through-the-google-api-console>
+
+    # OIDCRedirectURI is a vanity URL that must point to a path protected by this module but must NOT point to any content
+    OIDCRedirectURI https://www.example.com/example/redirect_uri
+    OIDCCryptoPassphrase <password>
+
+    <Location /example/>
+    AuthType openid-connect
+    Require valid-user
+    </Location>
+
+    OIDCScope "openid email"
+    Require claim hd:<your-domain>
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+    LoadModule auth_openidc_module modules/mod_auth_openidc.so
+
+    OIDCProviderMetadataURL <issuer>/.well-known/openid-configuration
+    OIDCClientID <client_id>
+    OIDCClientSecret <client_secret>
+
+    # OIDCRedirectURI is a vanity URL that must point to a path protected by this module but must NOT point to any content
+    OIDCRedirectURI https://<hostname>/secure/redirect_uri
+    OIDCCryptoPassphrase <password>
+
+    <Location /secure>
+    AuthType openid-connect
+    Require valid-user
+    </Location>
+
+= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
+
+https://github.com/zmartzone/mod_auth_openidc/wiki/Keycloak
+
+    OIDCProviderMetadataURL https://keycloak.example.net/auth/realms/Testrealm/.well-known/openid-configuration
+    OIDCRedirectURI https://myserver.example.not/oauth2callback
+    OIDCCryptoPassphrase 0123456789
+    OIDCClientID testclient
+    OIDCClientSecret ca446a2d-a65f-4e84-95a7-d20eb36989d8
+    # See https://github.com/Reposoft/openidc-keycloak-test/issues/7
+    OIDCProviderTokenEndpointAuth client_secret_basic
+
+    OIDCRemoteUserClaim email
+    OIDCScope "openid email"
+
+= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
+
+/etc/apache2/sites-available/
+/etc/apache2/sites-available/wire5.conf
+
+/etc/apache2/mods-available/
+/etc/apache2/mods-available/auth_openidc.conf
+

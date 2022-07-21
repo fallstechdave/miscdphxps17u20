@@ -1,0 +1,11 @@
+Mon 18 Jul 2022 03:04:26 AM EDT
+
+fallstechdave@mmrxps17:~$ date
+Mon 18 Jul 2022 03:04:07 AM EDT
+fallstechdave@mmrxps17:~$ date > stuff-20220718.txt
+fallstechdave@mmrxps17:~$ code   stuff-20220718.txt
+fallstechdave@mmrxps17:~$ 
+
+
+
+

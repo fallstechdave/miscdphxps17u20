@@ -1,0 +1,218 @@
+Thu 21 Jul 2022 06:56:02 AM EDT
+
+fallstechdave@mmrxps17:~$ date
+Thu 21 Jul 2022 06:55:49 AM EDT
+fallstechdave@mmrxps17:~$ 
+fallstechdave@mmrxps17:~$ date > stuff-20220721.txt
+fallstechdave@mmrxps17:~$ code   stuff-20220721.txt
+fallstechdave@mmrxps17:~$ 
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+https://askubuntu.com/questions/178521/how-can-i-decode-a-base64-string-from-the-command-line
+
+$ openssl enc -base64 <<< 'Hello, World!'
+SGVsbG8sIFdvcmxkIQo=
+$ openssl enc -base64 -d <<< SGVsbG8sIFdvcmxkIQo=
+Hello, World!
+
+I did comment base64 command line in http://wiki.opensslfoundation.com/index.php?title=Command_Line_Utilities. So I issue a Warning when using openssl base64 decoding :
+
+openssl base64 -e <<< 'Welcome to openssl wiki'
+V2VsY29tZSB0byBvcGVuc3NsIHdpa2kK
+
+openssl base64 -d <<< 'V2VsY29tZSB0byBvcGVuc3NsIHdpa2kK'
+Welcome to openssl wiki
+
+warning base64 line length is limited to 64 characters by default in openssl :
+
+openssl base64 -e <<< 'Welcome to openssl wiki with a very long line
+that splits...'
+
+V2VsY29tZSB0byBvcGVuc3NsIHdpa2kgd2l0aCBhIHZlcnkgbG9uZyBsaW5lIHRo
+YXQgc3BsaXRzLi4uCg==
+
+openssl base64 -d <<< 'V2VsY29tZSB0byBvcGVuc3NsIHdpa2kgd2l0aCBhIHZlcnkgbG9uZyBsaW5lIHRoYXQgc3BsaXRzLi4uCg=='
+=> NOTHING !
+
+to be able to decode a base64 line without line feed that exceed 64 characters use -A option :
+
+openssl base64 -d -A <<<
+'V2VsY29tZSB0byBvcGVuc3NsIHdpa2kgd2l0aCBhIHZlcnkgbG9uZyBsaW5lIHRoYXQgc3BsaXRzLi4uCg=='
+
+Welcome to openssl wiki with a very long line that splits...
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+/home/fallstechdave/Documents/keycloak-identity-base64.txt
+
+openssl base64 -d < keycloak-identity-base64.txt
+openssl enc -base64 -d < keycloak-identity-base64.txt
+
+openssl base64 -d < keycloak-identity-predot-base64.txt
+openssl enc -base64 -d < keycloak-identity-predot-base64.txt
+
+base64 -d < keycloak-identity-base64.txt
+base64 --decode < keycloak-identity-base64.txt
+
+base64 -d < keycloak-identity-predot-base64.txt
+base64 --decode < keycloak-identity-predot-base64.txt
+
+base64 -d < keycloak-identity-postdot-base64.txt
+base64 --decode < keycloak-identity-postdot-base64.txt
+
+fallstechdave@mmrxps17:~/Documents$ man hexedit
+No manual entry for hexedit
+fallstechdave@mmrxps17:~/Documents$ hexedit
+
+Command 'hexedit' not found, but can be installed with:
+
+sudo apt install hexedit
+
+fallstechdave@mmrxps17:~/Documents$ sudo apt install hexedit
+[sudo] password for fallstechdave: 
+Reading package lists... Done
+Building dependency tree       
+Reading state information... Done
+The following packages were automatically installed and are no longer required:
+  chromium-codecs-ffmpeg-extra gstreamer1.0-vaapi libfwupdplugin1 libgstreamer-plugins-bad1.0-0 libnvidia-cfg1-510 libnvidia-common-510 libnvidia-decode-510 libnvidia-encode-510 libnvidia-extra-510
+  libnvidia-fbc1-510 libnvidia-gl-510 libva-wayland2 libx11-xcb1:i386 libxnvctrl0 nvidia-compute-utils-510 nvidia-kernel-source-510 nvidia-settings nvidia-utils-510 screen-resolution-extra
+  xserver-xorg-video-nvidia-510
+Use 'sudo apt autoremove' to remove them.
+The following NEW packages will be installed:
+  hexedit
+0 upgraded, 1 newly installed, 0 to remove and 4 not upgraded.
+Need to get 24.6 kB of archives.
+After this operation, 68.6 kB of additional disk space will be used.
+0% [Connecting to kazooie.canonical.com (91.189.91.39)]
+Get:1 http://us.archive.ubuntu.com/ubuntu focal/universe amd64 hexedit amd64 1.4.2-6 [24.6 kB]
+Fetched 24.6 kB in 3s (7,889 B/s)                      
+Selecting previously unselected package hexedit.
+(Reading database ... 229470 files and directories currently installed.)
+Preparing to unpack .../hexedit_1.4.2-6_amd64.deb ...
+Unpacking hexedit (1.4.2-6) ...
+Setting up hexedit (1.4.2-6) ...
+Processing triggers for man-db (2.9.1-1) ...
+fallstechdave@mmrxps17:~/Documents$ 
+fallstechdave@mmrxps17:~/Documents$ 
+
+hexedit keycloak-identity-predot-base64.txt
+
+00000000   65 79 4A 68  62 47 63 69  4F 69 4A 49  55 7A 49 31  eyJhbGciOiJIUzI1
+00000010   4E 69 49 73  49 6E 52 35  63 43 49 67  4F 69 41 69  NiIsInR5cCIgOiAi
+00000020   53 6C 64 55  49 69 77 69  61 32 6C 6B  49 69 41 36  SldUIiwia2lkIiA6
+00000030   49 43 49 35  4E 6D 46 6D  5A 44 41 77  5A 53 30 34  ICI5NmFmZDAwZS04
+00000040   4E 57 4E 6D  4C 54 52 6B  4D 7A 55 74  59 6A 45 34  NWNmLTRkMzUtYjE4
+00000050   5A 53 30 77  4E 6A 46 6B  4D 7A 67 78  4D 32 51 34  ZS0wNjFkMzgxM2Q4
+00000060   59 6A 49 69  66 51                                  YjIifQ
+00000070
+
+hexedit keycloak-identity-postdot-base64.txt
+
+00000000   65 79 4A 6C  65 48 41 69  4F 6A 45 32  4E 54 67 7A  eyJleHAiOjE2NTgz
+00000010   4E 6A 45 33  4E 54 45 73  49 6D 6C 68  64 43 49 36  NjE3NTEsImlhdCI6
+00000020   4D 54 59 31  4F 44 4D 79  4E 54 63 31  4D 53 77 69  MTY1ODMyNTc1MSwi
+00000030   61 6E 52 70  49 6A 6F 69  4D 54 63 33  4F 54 51 7A  anRpIjoiMTc3OTQz
+00000040   5A 6A 41 74  4D 32 4E 6C  5A 53 30 30  4F 47 4D 32  ZjAtM2NlZS00OGM2
+00000050   4C 57 49 30  4D 6D 59 74  59 54 59 31  4D 6A 6B 79  LWI0MmYtYTY1Mjky
+00000060   4D 7A 51 30  5A 6A 67 35  49 69 77 69  61 58 4E 7A  MzQ0Zjg5IiwiaXNz
+00000070   49 6A 6F 69  61 48 52 30  63 44 6F 76  4C 7A 45 79  IjoiaHR0cDovLzEy
+00000080   4E 79 34 77  4C 6A 41 75  4D 54 6F 34  4D 44 67 77  Ny4wLjAuMTo4MDgw
+00000090   4C 33 4A 6C  59 57 78 74  63 79 39 78  64 57 46 79  L3JlYWxtcy9xdWFy
+000000A0   61 33 56 7A  49 69 77 69  63 33 56 69  49 6A 6F 69  a3VzIiwic3ViIjoi
+000000B0   5A 57 49 30  4D 54 49 7A  59 54 4D 74  59 6A 63 79  ZWI0MTIzYTMtYjcy
+000000C0   4D 69 30 30  4E 7A 6B 34  4C 54 6C 68  5A 6A 55 74  Mi00Nzk4LTlhZjUt
+000000D0   4F 44 6B 31  4E 32 59 34  4D 6A 4D 32  4E 54 64 68  ODk1N2Y4MjM2NTdh
+000000E0   49 69 77 69  64 48 6C 77  49 6A 6F 69  55 32 56 79  IiwidHlwIjoiU2Vy
+000000F0   61 57 46 73  61 58 70 6C  5A 43 31 4A  52 43 49 73  aWFsaXplZC1JRCIs
+00000100   49 6E 4E 6C  63 33 4E 70  62 32 35 66  63 33 52 68  InNlc3Npb25fc3Rh
+00000110   64 47 55 69  4F 69 49 7A  59 32 45 31  4E 54 6C 6D  dGUiOiIzY2E1NTlm
+00000120   4D 79 31 68  5A 44 68 68  4C 54 51 7A  59 6D 4D 74  My1hZDhhLTQzYmMt
+00000130   4F 54 6B 34  59 53 31 6C  4D 54 4E 6C  59 54 4D 31  OTk4YS1lMTNlYTM1
+00000140   4D 6D 59 78  59 6A 45 69  4C 43 4A 7A  61 57 51 69  MmYxYjEiLCJzaWQi
+00000150   4F 69 49 7A  59 32 45 31  4E 54 6C 6D  4D 79 31 68  OiIzY2E1NTlmMy1h
+00000160   5A 44 68 68  4C 54 51 7A  59 6D 4D 74  4F 54 6B 34  ZDhhLTQzYmMtOTk4
+00000170   59 53 31 6C  4D 54 4E 6C  59 54 4D 31  4D 6D 59 78  YS1lMTNlYTM1MmYx
+00000180   59 6A 45 69  4C 43 4A 7A  64 47 46 30  5A 56 39 6A  YjEiLCJzdGF0ZV9j
+00000190   61 47 56 6A  61 32 56 79  49 6A 6F 69  4E 58 70 61  aGVja2VyIjoiNXpa
+000001A0   61 44 68 76  64 54 42 5A  62 6B 4E 44  52 30 45 30  aDhvdTBZbkNDR0E0
+000001B0   4C 54 6C 68  4E 33 41 74  54 6A 46 35  5A 45 4E 7A  LTlhN3AtTjF5ZENz
+000001C0   54 43 31 58  61 7A 42 45  4D 6B 46 66  5A 48 63 79  TC1XazBEMkFfZHcy
+000001D0   4F 54 67 7A  54 53 4A 39  2E 48 61 2D  67 44 72 64  OTgzTSJ9.Ha-gDrd
+000001E0   2D 6D 42 57  39 78 39 69  57 47 68 31  64 73 71 43  -mBW9x9iWGh1dsqC
+000001F0   59 6F 65 6F  4B 63 6A 73  72 30 5F 73  32 6F 6E 5A  YoeoKcjsr0_s2onZ
+00000200   38 36 4A 67                                         86Jg
+00000210
+00000220
+---  keycloak-identity-postdot-base64.txt       --0x0/0x204--------------------
+
+
+fallstechdave@mmrxps17:~/Documents$ 
+fallstechdave@mmrxps17:~/Documents$ openssl base64 -d < keycloak-identity-predot-base64.txt
+fallstechdave@mmrxps17:~/Documents$ 
+fallstechdave@mmrxps17:~/Documents$ openssl enc -base64 -d < keycloak-identity-predot-base64.txt
+fallstechdave@mmrxps17:~/Documents$ 
+fallstechdave@mmrxps17:~/Documents$ base64 -d < keycloak-identity-base64.txt
+{"alg":"HS256","typ" : "JWT","kid" : "96afd00e-85cf-4d35-b18e-061d3813d8b2"}base64: invalid input
+fallstechdave@mmrxps17:~/Documents$ 
+fallstechdave@mmrxps17:~/Documents$ base64 --decode < keycloak-identity-base64.txt
+{"alg":"HS256","typ" : "JWT","kid" : "96afd00e-85cf-4d35-b18e-061d3813d8b2"}base64: invalid input
+fallstechdave@mmrxps17:~/Documents$ 
+fallstechdave@mmrxps17:~/Documents$ 
+fallstechdave@mmrxps17:~/Documents$ base64 -d < keycloak-identity-predot-base64.txt
+{"alg":"HS256","typ" : "JWT","kid" : "96afd00e-85cf-4d35-b18e-061d3813d8b2"}base64: invalid input
+fallstechdave@mmrxps17:~/Documents$ 
+fallstechdave@mmrxps17:~/Documents$ base64 --decode < keycloak-identity-predot-base64.txt
+{"alg":"HS256","typ" : "JWT","kid" : "96afd00e-85cf-4d35-b18e-061d3813d8b2"}base64: invalid input
+fallstechdave@mmrxps17:~/Documents$ 
+fallstechdave@mmrxps17:~/Documents$ 
+fallstechdave@mmrxps17:~/Documents$ base64 -d < keycloak-identity-postdot-base64.txt
+{"exp":1658361751,"iat":1658325751,"jti":"177943f0-3cee-48c6-b42f-a65292344f89","iss":"http://127.0.0.1:8080/realms/quarkus","sub":"eb4123a3-b722-4798-9af5-8957f823657a","typ":"Serialized-ID","session_state":"3ca559f3-ad8a-43bc-998a-e13ea352f1b1","sid":"3ca559f3-ad8a-43bc-998a-e13ea352f1b1","state_checker":"5zZh8ou0YnCCGA4-9a7p-N1ydCsL-Wk0D2A_dw2983M"}base64: invalid input
+fallstechdave@mmrxps17:~/Documents$ 
+fallstechdave@mmrxps17:~/Documents$ base64 --decode < keycloak-identity-postdot-base64.txt
+{"exp":1658361751,"iat":1658325751,"jti":"177943f0-3cee-48c6-b42f-a65292344f89","iss":"http://127.0.0.1:8080/realms/quarkus","sub":"eb4123a3-b722-4798-9af5-8957f823657a","typ":"Serialized-ID","session_state":"3ca559f3-ad8a-43bc-998a-e13ea352f1b1","sid":"3ca559f3-ad8a-43bc-998a-e13ea352f1b1","state_checker":"5zZh8ou0YnCCGA4-9a7p-N1ydCsL-Wk0D2A_dw2983M"}base64: invalid input
+fallstechdave@mmrxps17:~/Documents$ 
+fallstechdave@mmrxps17:~/Documents$ 
+fallstechdave@mmrxps17:~/Documents$ ls -latr | tail
+-rw-rw-r--  1 fallstechdave fallstechdave   231 Jul 18 03:05 stuff-20220718.txt
+-rw-rw-r--  1 fallstechdave fallstechdave  5100 Jul 18 03:37 wire6-steps.txt
+-rw-rw-r--  1 fallstechdave fallstechdave 71156 Jul 20 06:34 stuff-20220719.txt
+-rw-rw-r--  1 fallstechdave fallstechdave 86448 Jul 20 16:23 stuff-20220720.txt
+drwxr-xr-x 34 fallstechdave fallstechdave  4096 Jul 21 06:56 ..
+-rw-rw-r--  1 fallstechdave fallstechdave   619 Jul 21 07:04 keycloak-identity-base64.txt
+-rw-rw-r--  1 fallstechdave fallstechdave   102 Jul 21 07:09 keycloak-identity-predot-base64.txt
+drwxr-xr-x  2 fallstechdave fallstechdave  4096 Jul 21 07:23 .
+-rw-rw-r--  1 fallstechdave fallstechdave   516 Jul 21 07:24 keycloak-identity-postdot-base64.txt
+-rw-rw-r--  1 fallstechdave fallstechdave  6948 Jul 21 07:29 stuff-20220721.txt
+fallstechdave@mmrxps17:~/Documents$ 
+fallstechdave@mmrxps17:~/Documents$ 
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+cd ~/Downloads/keycloak/keycloak-18.0.2/
+bin/kc.sh start-dev
+
+sudo a2enmod  auth_openidc
+sudo a2dismod auth_openidc
+
+apachectl configtest
+sudo systemctl restart apache2
+systemctl status apache2
+passenger-memory-stats
+
+sudo systemctl start apache2.service  
+sudo systemctl enable apache2.service
+sudo systemctl stop apache2.service  
+sudo systemctl disable apache2.service
+
+sudo systemctl enable apache2.service --now
+sudo systemctl disable apache2.service --now
+
+https://www.tecmint.com/list-all-running-services-under-systemd-in-linux/
+systemctl list-units --type=service
+systemctl list-units --type=service --state=active
+systemctl list-units --type=service --state=running 
+
+git remote add origin git@github.com:fallstechdave/wire6.git
+git branch -M 'main'
+git push -u origin 'main'
