@@ -1,0 +1,373 @@
+Fri 22 Jul 2022 06:48:38 AM EDT
+
+fallstechdave@mmrxps17:~$ date
+Fri 22 Jul 2022 06:48:24 AM EDT
+fallstechdave@mmrxps17:~$ 
+fallstechdave@mmrxps17:~$ date > stuff-20220722.txt
+fallstechdave@mmrxps17:~$ code   stuff-20220722.txt
+fallstechdave@mmrxps17:~$ 
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+https://jwt.io/
+
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
+
+eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWUsImlhdCI6MTUxNjIzOTAyMn0.VFb0qJ1LRg_4ujbZoRMXnVkUgiuKq5KxWqNdbKq_G9Vvz-S1zZa9LPxtHWKa64zDl2ofkT8F6jBt_K4riU-fPg
+
+https://jwt.io/introduction
+https://www.iana.org/assignments/jwt/jwt.xhtml
+
+NEW: get the JWT Handbook for free and learn JWTs in depth!
+What is JSON Web Token?
+
+JSON Web Token (JWT) is an open standard (RFC 7519) that defines a compact and self-contained way for securely transmitting information between parties as a JSON object. This information can be verified and trusted because it is digitally signed. JWTs can be signed using a secret (with the HMAC algorithm) or a public/private key pair using RSA or ECDSA.
+
+Although JWTs can be encrypted to also provide secrecy between parties, we will focus on signed tokens. Signed tokens can verify the integrity of the claims contained within it, while encrypted tokens hide those claims from other parties. When tokens are signed using public/private key pairs, the signature also certifies that only the party holding the private key is the one that signed it.
+When should you use JSON Web Tokens?
+
+Here are some scenarios where JSON Web Tokens are useful:
+
+    Authorization: This is the most common scenario for using JWT. Once the user is logged in, each subsequent request will include the JWT, allowing the user to access routes, services, and resources that are permitted with that token. Single Sign On is a feature that widely uses JWT nowadays, because of its small overhead and its ability to be easily used across different domains.
+
+    Information Exchange: JSON Web Tokens are a good way of securely transmitting information between parties. Because JWTs can be signed—for example, using public/private key pairs—you can be sure the senders are who they say they are. Additionally, as the signature is calculated using the header and the payload, you can also verify that the content hasn't been tampered with.
+
+What is the JSON Web Token structure?
+
+In its compact form, JSON Web Tokens consist of three parts separated by dots (.), which are:
+
+    Header
+    Payload
+    Signature
+
+Therefore, a JWT typically looks like the following.
+
+xxxxx.yyyyy.zzzzz
+
+Let's break down the different parts.
+Header
+
+The header typically consists of two parts: the type of the token, which is JWT, and the signing algorithm being used, such as HMAC SHA256 or RSA.
+
+For example:
+
+{
+  "alg": "HS256",
+  "typ": "JWT"
+}
+
+Then, this JSON is Base64Url encoded to form the first part of the JWT.
+Payload
+
+The second part of the token is the payload, which contains the claims. Claims are statements about an entity (typically, the user) and additional data. There are three types of claims: registered, public, and private claims.
+
+    Registered claims: These are a set of predefined claims which are not mandatory but recommended, to provide a set of useful, interoperable claims. Some of them are: iss (issuer), exp (expiration time), sub (subject), aud (audience), and others.
+
+        Notice that the claim names are only three characters long as JWT is meant to be compact.
+
+    Public claims: These can be defined at will by those using JWTs. But to avoid collisions they should be defined in the IANA JSON Web Token Registry or be defined as a URI that contains a collision resistant namespace.
+
+    Private claims: These are the custom claims created to share information between parties that agree on using them and are neither registered or public claims.
+
+An example payload could be:
+
+{
+  "sub": "1234567890",
+  "name": "John Doe",
+  "admin": true
+}
+
+The payload is then Base64Url encoded to form the second part of the JSON Web Token.
+
+    Do note that for signed tokens this information, though protected against tampering, is readable by anyone. Do not put secret information in the payload or header elements of a JWT unless it is encrypted.
+
+Signature
+
+To create the signature part you have to take the encoded header, the encoded payload, a secret, the algorithm specified in the header, and sign that.
+
+For example if you want to use the HMAC SHA256 algorithm, the signature will be created in the following way:
+
+HMACSHA256(
+  base64UrlEncode(header) + "." +
+  base64UrlEncode(payload),
+  secret)
+
+The signature is used to verify the message wasn't changed along the way, and, in the case of tokens signed with a private key, it can also verify that the sender of the JWT is who it says it is.
+Putting all together
+
+The output is three Base64-URL strings separated by dots that can be easily passed in HTML and HTTP environments, while being more compact when compared to XML-based standards such as SAML.
+
+The following shows a JWT that has the previous header and payload encoded, and it is signed with a secret. Encoded JWT
+
+If you want to play with JWT and put these concepts into practice, you can use jwt.io Debugger to decode, verify, and generate JWTs.
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+https://jwt.io/libraries
+
+java
+https://github.com/auth0/java-jwt
+https://bitbucket.org/b_c/jose4j/wiki/Home
+https://bitbucket.org/connect2id/nimbus-jose-jwt/src/master/
+https://github.com/jwtk/jjwt
+https://github.com/fusionauth/fusionauth-jwt
+https://github.com/vert-x3/vertx-auth
+
+ruby
+https://github.com/jwt/ruby-jwt
+https://github.com/garyf/json_web_token
+https://github.com/nov/json-jwt
+https://github.com/potatosalad/ruby-jose
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+https://auth0.com/learn/json-web-tokens/?_gl=1*tpp9a5*rollup_ga*MTQzMTcyOTIwNy4xNjU4NDg3MDgy*rollup_ga_F1G3E656YZ*MTY1ODQ4NzA4Mi4xLjEuMTY1ODQ4NzY5Ni41NA..&_ga=2.257608267.1507943377.1658487083-1431729207.1658487082
+
+https://en.wikipedia.org/wiki/Base64
+
+URL applications
+
+Base64 encoding can be helpful when fairly lengthy identifying information is used in an HTTP environment. For example, a database persistence framework for Java objects might use Base64 encoding to encode a relatively large unique id (generally 128-bit UUIDs) into a string for use as an HTTP parameter in HTTP forms or HTTP GET URLs. Also, many applications need to encode binary data in a way that is convenient for inclusion in URLs, including in hidden web form fields, and Base64 is a convenient encoding to render them in a compact way.
+
+Using standard Base64 in URL requires encoding of '+', '/' and '=' characters into special percent-encoded hexadecimal sequences ('+' becomes '%2B', '/' becomes '%2F' and '=' becomes '%3D'), which makes the string unnecessarily longer.
+
+For this reason, modified Base64 for URL variants exist (such as base64url in RFC 4648), where the '+' and '/' characters of standard Base64 are respectively replaced by '-' and '_', so that using URL encoders/decoders is no longer necessary and has no effect on the length of the encoded value, leaving the same encoded form intact for use in relational databases, web forms, and object identifiers in general. A popular site to make use of such is YouTube.[11] Some variants allow or require omitting the padding '=' signs to avoid them being confused with field separators, or require that any such padding be percent-encoded. Some libraries[which?] will encode '=' to '.', potentially exposing applications to relative path attacks when a folder name is encoded from user data.[citation needed] 
+
+
+"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/"
+
+"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_"
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+https://stackoverflow.com/questions/58957358/how-to-encode-and-decode-data-in-base64-and-base64url-by-using-unix-commands
+
+Base64 encode can be achieved by
+
+$ echo Some_data_to_be_converted | base64
+U29tZV9kYXRhX3RvX2JlIF9jb252ZXJ0ZWQK
+
+And Base64 decode can be achieved by
+
+$ echo U29tZV9kYXRhX3RvX2JlIF9jb252ZXJ0ZWQK | base64 -d
+Some_data_to_be_converted
+
+echo -n "Some_data_to_be_converted" | base64 | tr '/+' '_-' | tr -d '='
+
+echo Some_data_to_be_converted | base64 | sed 's/+/-/g; s,/,_,g'
+
+$ printf "xs?>>>" | basenc --base64
+eHM/Pj4+
+$ printf "xs?>>>" | basenc --base64url
+eHM_Pj4-
+
+This is the same suggestion as @jps but shorter. Also remember that echo by default always adds newline at the end, so when you want to encode it, you must add -n.
+
+echo -n "Some_data_to_be_converted" | base64 | tr '/+' '_-' | tr -d '='
+
+Decoding it back with bulit-in bash tools is more complicated as I didn't find an easy way to pad the string back with '=' so that the length will dividable by 4. Probably can be done with awk but I didn't dig deep enough. If you have local ruby it becomes trivial:
+
+2.6.2 > require 'base64'
+2.6.2 > Base64.urlsafe_encode64('test', padding: false)
+ => "dGVzdA"
+2.6.2 > Base64.urlsafe_decode64('dGVzdA')
+ => "test"
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+https://developer.mozilla.org/en-US/docs/Web/HTTP/Cookies
+
+The Set-Cookie and Cookie headers
+
+The Set-Cookie HTTP response header sends cookies from the server to the user agent. A simple cookie is set like this:
+
+Set-Cookie: <cookie-name>=<cookie-value>
+
+This instructs the server sending headers to tell the client to store a pair of cookies:
+
+HTTP/2.0 200 OK
+Content-Type: text/html
+Set-Cookie: yummy_cookie=choco
+Set-Cookie: tasty_cookie=strawberry
+
+[page content]
+
+Then, with every subsequent request to the server, the browser sends all previously stored cookies back to the server using the Cookie header.
+
+GET /sample_page.html HTTP/2.0
+Host: www.example.org
+Cookie: yummy_cookie=choco; tasty_cookie=strawberry
+
+Note: Here's how to use the Set-Cookie header in various server-side applications:
+
+https://api.rubyonrails.org/classes/ActionDispatch/Cookies.html
+
+ Ruby on Rails 7.0.3.1
+Class ActionDispatch::Cookies < Object
+
+    actionpack/lib/action_dispatch/middleware/cookies.rb
+    actionpack/lib/action_dispatch/railtie.rb
+    actionpack/lib/action_dispatch/testing/test_process.rb
+
+Read and write data to cookies through ActionController#cookies.
+
+When reading cookie data, the data is read from the HTTP request header, Cookie. When writing cookie data, the data is sent out in the HTTP response header, Set-Cookie.
+
+Examples of writing:
+
+# Sets a simple session cookie.
+# This cookie will be deleted when the user's browser is closed.
+cookies[:user_name] = "david"
+
+# Cookie values are String-based. Other data types need to be serialized.
+cookies[:lat_lon] = JSON.generate([47.68, -122.37])
+
+# Sets a cookie that expires in 1 hour.
+cookies[:login] = { value: "XJ-122", expires: 1.hour }
+
+# Sets a cookie that expires at a specific time.
+cookies[:login] = { value: "XJ-122", expires: Time.utc(2020, 10, 15, 5) }
+
+# Sets a signed cookie, which prevents users from tampering with its value.
+# It can be read using the signed method `cookies.signed[:name]`
+cookies.signed[:user_id] = current_user.id
+
+# Sets an encrypted cookie value before sending it to the client which
+# prevent users from reading and tampering with its value.
+# It can be read using the encrypted method `cookies.encrypted[:name]`
+cookies.encrypted[:discount] = 45
+
+# Sets a "permanent" cookie (which expires in 20 years from now).
+cookies.permanent[:login] = "XJ-122"
+
+# You can also chain these methods:
+cookies.signed.permanent[:login] = "XJ-122"
+
+Examples of reading:
+
+cookies[:user_name]           # => "david"
+cookies.size                  # => 2
+JSON.parse(cookies[:lat_lon]) # => [47.68, -122.37]
+cookies.signed[:login]        # => "XJ-122"
+cookies.encrypted[:discount]  # => 45
+
+Example for deleting:
+
+cookies.delete :user_name
+
+Please note that if you specify a :domain when setting a cookie, you must also specify the domain when deleting the cookie:
+
+cookies[:name] = {
+  value: 'a yummy cookie',
+  expires: 1.year,
+  domain: 'domain.com'
+}
+
+cookies.delete(:name, domain: 'domain.com')
+
+The option symbols for setting cookies are:
+
+    :value - The cookie's value.
+
+    :path - The path for which this cookie applies. Defaults to the root of the application.
+
+    :domain - The domain for which this cookie applies so you can restrict to the domain level. If you use a schema like www.example.com and want to share session with user.example.com set :domain to :all. To support multiple domains, provide an array, and the first domain matching request.host will be used. Make sure to specify the :domain option with :all or Array again when deleting cookies.
+
+    domain: nil  # Does not set cookie domain. (default)
+    domain: :all # Allow the cookie for the top most level
+                 # domain and subdomains.
+    domain: %w(.example.com .example.org) # Allow the cookie
+                                          # for concrete domain names.
+
+    :tld_length - When using :domain => :all, this option can be used to explicitly set the TLD length when using a short (<= 3 character) domain that is being interpreted as part of a TLD. For example, to share cookies between user1.lvh.me and user2.lvh.me, set :tld_length to 2.
+
+    :expires - The time at which this cookie expires, as a Time or ActiveSupport::Duration object.
+
+    :secure - Whether this cookie is only transmitted to HTTPS servers. Default is false.
+
+    :httponly - Whether this cookie is accessible via scripting or only HTTP. Defaults to false.
+
+    :same_site - The value of the SameSite cookie attribute, which determines how this cookie should be restricted in cross-site contexts. Possible values are nil, :none, :lax, and :strict. Defaults to :lax.
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+https://developer.mozilla.org/en-US/docs/Web/HTTP/Cookies
+
+Note: To see stored cookies (and other storage that a web page can use), you can enable the Storage Inspector in Developer Tools and select Cookies from the storage tree.
+
+https://firefox-source-docs.mozilla.org/devtools-user/storage_inspector/index.html
+
+You can open the Storage Inspector by selecting “Storage Inspector” from the Web Developer submenu in the Firefox Menu Panel (or Tools menu if you display the menu bar or are on macOS), or by pressing its Shift + F9 keyboard shortcut.
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+require 'base64'
+jwt_string = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
+puts jwt_string 
+
+jwt_array = jwt_string.split('.', -1)
+puts jwt_array
+puts jwt_array.length
+
+jwt_array.each do |jwt_section|
+    puts jwt_section
+    jwt_section_decode = Base64.urlsafe_decode64(jwt_section)
+    puts jwt_section_decode.class
+    puts jwt_section_decode
+    #if jwt_section_decode..is_a? String 
+end
+
+fallstechdave@mmrxps17:~$ 
+fallstechdave@mmrxps17:~$ irb
+irb(main):001:0> 
+irb(main):002:0> require 'base64'
+=> true
+irb(main):003:0> jwt_string = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
+=> "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
+irb(main):004:0> puts jwt_string 
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
+=> nil
+irb(main):005:0> 
+irb(main):006:0> jwt_array = jwt_string.split('.', -1)
+=> ["eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9", "eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ", "SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"]
+irb(main):007:0> puts jwt_array
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
+eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ
+SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
+=> nil
+irb(main):008:0> puts jwt_array.length
+3
+=> nil
+irb(main):009:0> 
+irb(main):010:1* jwt_array.each do |jwt_section|
+irb(main):011:1*     puts jwt_section
+irb(main):012:1*     jwt_section_decode = Base64.urlsafe_decode64(jwt_section)
+irb(main):013:1*     puts jwt_section_decode.class
+irb(main):014:1*     puts jwt_section_decode
+irb(main):015:1*     #if jwt_section_decode..is_a? String 
+irb(main):016:0> end
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
+String
+{"alg":"HS256","typ":"JWT"}
+eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ
+String
+{"sub":"1234567890","name":"John Doe","iat":1516239022}
+SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
+String
+(irb):14:in `write': "\xF9" from ASCII-8BIT to UTF-8 (Encoding::UndefinedConversionError)
+	from (irb):14:in `puts'
+	from (irb):14:in `puts'
+	from (irb):14:in `block in <top (required)>'
+	from (irb):10:in `each'
+	from (irb):10:in `<main>'
+	from /home/fallstechdave/.rbenv/versions/3.1.2/lib/ruby/gems/3.1.0/gems/irb-1.4.1/exe/irb:11:in `<top (required)>'
+	from /home/fallstechdave/.rbenv/versions/3.1.2/bin/irb:25:in `load'
+	from /home/fallstechdave/.rbenv/versions/3.1.2/bin/irb:25:in `<main>'
+irb(main):017:0> 
+irb(main):018:0> exit
+fallstechdave@mmrxps17:~$ 
+fallstechdave@mmrxps17:~$ 
+
+
+
+
