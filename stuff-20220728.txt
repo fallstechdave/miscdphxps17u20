@@ -1,0 +1,968 @@
+Thu 28 Jul 2022 03:35:33 AM EDT
+
+fallstechdave@mmrxps17:~$ date
+Thu 28 Jul 2022 03:35:14 AM EDT
+fallstechdave@mmrxps17:~$ 
+fallstechdave@mmrxps17:~$ date > stuff-20220728.txt
+fallstechdave@mmrxps17:~$ code   stuff-20220728.txt
+fallstechdave@mmrxps17:~$ 
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+cd ~/Downloads/keycloak/keycloak-18.0.2/
+bin/kc.sh start-dev
+
+sudo a2enmod  auth_openidc
+sudo a2dismod auth_openidc
+
+sudo a2enmod  passenger
+sudo a2dismod passenger
+
+sudo /usr/bin/passenger-config validate-install
+sudo /usr/sbin/passenger-memory-stats
+
+apachectl configtest
+sudo systemctl restart apache2
+systemctl status apache2
+passenger-memory-stats
+
+sudo systemctl start apache2.service  
+sudo systemctl enable apache2.service
+sudo systemctl stop apache2.service  
+sudo systemctl disable apache2.service
+
+sudo systemctl enable apache2.service --now
+sudo systemctl disable apache2.service --now
+
+https://www.tecmint.com/list-all-running-services-under-systemd-in-linux/
+systemctl list-units --type=service
+systemctl list-units --type=service --state=active
+systemctl list-units --type=service --state=running 
+
+http://localhost
+http://localhost/articles
+http://localhost/redirect_uri
+https://localhost
+https://localhost/articles
+https://localhost/redirect_uri
+http://127.0.0.1
+http://127.0.0.1/articles
+http://127.0.0.1/redirect_uri
+https://127.0.0.1
+https://127.0.0.1/articles
+https://127.0.0.1/redirect_uri
+
+fallstechdave@mmrxps17:/sbin$ whereis apache2
+apache2: /usr/sbin/apache2 /usr/lib/apache2 /etc/apache2 /usr/share/apache2 /usr/share/man/man8/apache2.8.gz
+fallstechdave@mmrxps17:/sbin$ 
+
+http://localhost:8080
+
+... how do I log into keycloak as user alice ???
+
+code ~/railsprojects/wire5/log
+code ~/railsprojects/wire6/log
+code /var/log/apache2
+
+ls -latr ~/railsprojects/wire5/log
+ls -latr ~/railsprojects/wire6/log
+ls -latr /var/log/apache2
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+fallstechdave@mmrxps17:/var/www$ pwd -P
+/var/www
+fallstechdave@mmrxps17:/var/www$ tree
+.
+├── html
+│   ├── index.html
+│   └── index.nginx-debian.html
+├── wire
+│   └── index.html
+├── wire5
+│   └── index.html
+└── wire6
+    └── index.html
+
+4 directories, 5 files
+fallstechdave@mmrxps17:/var/www$ 
+fallstechdave@mmrxps17:/var/www$ cat wire6/index.html 
+<html>
+    <head>
+        <title>Welcome to Your_domain!</title>
+    </head>
+    <body>
+        <h1>Success!  The your_domain virtual host is working!</h1>
+    </body>
+</html>
+
+fallstechdave@mmrxps17:/var/www$ 
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+fallstechdave@mmrxps17:/etc/apache2$ pwd -P
+/etc/apache2
+fallstechdave@mmrxps17:/etc/apache2$ 
+fallstechdave@mmrxps17:/etc/apache2$ tree -d
+.
+├── conf-available
+├── conf-enabled
+├── mods-available
+├── mods-enabled
+├── sites-available
+└── sites-enabled
+
+6 directories
+fallstechdave@mmrxps17:/etc/apache2$ 
+fallstechdave@mmrxps17:/etc/apache2$ ls -latr sites-available/
+total 36
+-rw-r--r-- 1 root          root          6338 Feb 23  2021 default-ssl.conf
+-rw-r--r-- 1 root          root          1332 Feb 23  2021 000-default.conf
+drwxr-xr-x 8 root          root          4096 Jul  1 07:10 ..
+-rw-r--r-- 1 fallstechdave fallstechdave  239 Jul  1 07:37 wire.conf
+-rw-r--r-- 1 fallstechdave fallstechdave  545 Jul  1 10:45 wire5.conf.save
+-rw-r--r-- 1 fallstechdave fallstechdave 1812 Jul 17 08:48 wire5.conf
+drwxr-xr-x 2 root          root          4096 Jul 19 15:59 .
+-rw-r--r-- 1 fallstechdave fallstechdave 1139 Jul 20 08:11 wire6.conf
+fallstechdave@mmrxps17:/etc/apache2$ 
+fallstechdave@mmrxps17:/etc/apache2$ ls -latr sites-enabled/
+total 8
+drwxr-xr-x 8 root root 4096 Jul  1 07:10 ..
+lrwxrwxrwx 1 root root   29 Jul 19 16:00 wire6.conf -> ../sites-available/wire6.conf
+drwxr-xr-x 2 root root 4096 Jul 19 16:00 .
+fallstechdave@mmrxps17:/etc/apache2$ 
+fallstechdave@mmrxps17:/etc/apache2$ 
+
+https://localhost/     The page you were looking for doesn't exist.
+https://localhost/articles/     works fine
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+fallstechdave@mmrxps17:/etc/apache2$ 
+fallstechdave@mmrxps17:/etc/apache2$ 
+fallstechdave@mmrxps17:/etc/apache2$ sudo a2enmod  auth_openidc
+Enabling module auth_openidc.
+To activate the new configuration, you need to run:
+  systemctl restart apache2
+fallstechdave@mmrxps17:/etc/apache2$ sudo systemctl restart apache2
+fallstechdave@mmrxps17:/etc/apache2$ 
+
+
+https://localhost/ 
+https://localhost/articles/
+Internal Server Error
+The server encountered an internal error or misconfiguration and was unable to complete your request.
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+fallstechdave@mmrxps17:~/Downloads/keycloak$ pwd -P
+/home/fallstechdave/Downloads/keycloak
+fallstechdave@mmrxps17:~/Downloads/keycloak$ tree -d
+.
+└── keycloak-18.0.2
+    ├── bin
+    │   └── client
+    ├── conf
+    ├── data
+    │   ├── h2
+    │   └── tmp
+    │       └── kc-gzip-cache
+    │           └── xhec2
+    │               └── js
+    ├── lib
+    │   ├── app
+    │   ├── lib
+    │   │   ├── boot
+    │   │   ├── deployment
+    │   │   └── main
+    │   └── quarkus
+    ├── providers
+    └── themes
+
+19 directories
+fallstechdave@mmrxps17:~/Downloads/keycloak$ 
+
+fallstechdave@mmrxps17:~/Documents$ 
+fallstechdave@mmrxps17:~/Documents$ cd ~/Downloads/keycloak/keycloak-18.0.2/
+fallstechdave@mmrxps17:~/Downloads/keycloak/keycloak-18.0.2$ bin/kc.sh start-dev
+2022-07-28 04:04:15,028 INFO  [org.keycloak.quarkus.runtime.hostname.DefaultHostnameProvider] (main) Hostname settings: FrontEnd: <request>, Strict HTTPS: false, Path: <request>, Strict BackChannel: false, Admin: <request>, Port: -1, Proxied: false
+2022-07-28 04:04:15,349 WARN  [org.infinispan.PERSISTENCE] (keycloak-cache-init) ISPN000554: jboss-marshalling is deprecated and planned for removal
+2022-07-28 04:04:15,412 WARN  [org.infinispan.CONFIG] (keycloak-cache-init) ISPN000569: Unable to persist Infinispan internal caches as no global state enabled
+2022-07-28 04:04:15,428 INFO  [org.infinispan.CONTAINER] (keycloak-cache-init) ISPN000556: Starting user marshaller 'org.infinispan.jboss.marshalling.core.JBossUserMarshaller'
+2022-07-28 04:04:15,529 INFO  [org.infinispan.CONTAINER] (keycloak-cache-init) ISPN000128: Infinispan version: Infinispan 'Triskaidekaphobia' 13.0.9.Final
+2022-07-28 04:04:15,815 INFO  [org.keycloak.connections.infinispan.DefaultInfinispanConnectionProviderFactory] (main) Node name: node_659456, Site name: null
+2022-07-28 04:04:15,971 INFO  [io.quarkus] (main) Keycloak 18.0.2 on JVM (powered by Quarkus 2.7.5.Final) started in 2.261s. Listening on: http://0.0.0.0:8080
+2022-07-28 04:04:15,972 INFO  [io.quarkus] (main) Profile dev activated. 
+2022-07-28 04:04:15,972 INFO  [io.quarkus] (main) Installed features: [agroal, cdi, hibernate-orm, jdbc-h2, jdbc-mariadb, jdbc-mssql, jdbc-mysql, jdbc-oracle, jdbc-postgresql, keycloak, narayana-jta, reactive-routes, resteasy, resteasy-jackson, smallrye-context-propagation, smallrye-health, smallrye-metrics, vault, vertx]
+2022-07-28 04:04:15,975 WARN  [org.keycloak.quarkus.runtime.KeycloakMain] (main) Running the server in development mode. DO NOT use this configuration in production.
+
+fallstechdave@mmrxps17:~$ sudo a2enmod  auth_openidc
+Enabling module auth_openidc.
+To activate the new configuration, you need to run:
+  systemctl restart apache2
+fallstechdave@mmrxps17:~$ sudo systemctl restart apache2
+fallstechdave@mmrxps17:~$ apachectl configtest
+AH00558: apache2: Could not reliably determine the server's fully qualified domain name, using 127.0.1.1. Set the 'ServerName' directive globally to suppress this message
+Syntax OK
+fallstechdave@mmrxps17:~$ 
+fallstechdave@mmrxps17:~$ systemctl status apache2
+  apache2.service - The Apache HTTP Server
+     Loaded: loaded (/lib/systemd/system/apache2.service; enabled; vendor preset: enabled)
+     Active: active (running) since Thu 2022-07-28 04:05:21 EDT; 53s ago
+       Docs: https://httpd.apache.org/docs/2.4/
+    Process: 19415 ExecStart=/usr/sbin/apachectl start (code=exited, status=0/SUCCESS)
+      Tasks: 109 (limit: 18735)
+     Memory: 20.8M
+     CGroup: /system.slice/apache2.service
+             ├─19479 /usr/sbin/apache2 -k start
+             ├─19482 Passenger watchdog
+             ├─19485 Passenger core
+             ├─19537 /usr/sbin/apache2 -k start
+             └─19539 /usr/sbin/apache2 -k start
+
+Jul 28 04:05:21 mmrxps17 systemd[1]: Starting The Apache HTTP Server...
+Jul 28 04:05:21 mmrxps17 apachectl[19418]: AH00558: apache2: Could not reliably determine the server's fully qualified domain name, using 127.0.1.1. Set the 'ServerName' directive globally to suppress t>
+Jul 28 04:05:21 mmrxps17 systemd[1]: Started The Apache HTTP Server.
+fallstechdave@mmrxps17:~$ 
+
+https://localhost/ 
+https://localhost/articles/
+Internal Server Error
+The server encountered an internal error or misconfiguration and was unable to complete your request.
+
+= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
+
+fallstechdave@mmrxps17:~$ 
+fallstechdave@mmrxps17:~$ cd Downloads/
+fallstechdave@mmrxps17:~/Downloads$ 
+fallstechdave@mmrxps17:~/Downloads$ ls -latr
+total 1015592
+-rw-rw-r--  1 fallstechdave fallstechdave  83667280 Jun 30 08:41  code_1.68.1-1655263094_amd64.deb
+-rw-rw-r--  1 fallstechdave fallstechdave 117711933 Jun 30 08:42  code-1.68.1-1655263151.el7.x86_64.rpm
+-rw-rw-r--  1 fallstechdave fallstechdave 116922965 Jun 30 08:42  code-stable-x64-1655263335.tar.gz
+-rw-rw-r--  1 fallstechdave fallstechdave     18012 Jun 30 09:24  mysql-apt-config_0.8.22-1_all.deb
+-rw-rw-r--  1 fallstechdave fallstechdave    178948 Jul  6 08:47  libapache2-mod-auth-openidc_2.4.11.2-1.bionic+1_amd64.deb
+-rw-rw-r--  1 fallstechdave fallstechdave    182556 Jul  6 08:48  libapache2-mod-auth-openidc_2.4.11.2-1.bullseye+1_amd64.deb
+-rw-rw-r--  1 fallstechdave fallstechdave    181724 Jul  6 08:48  libapache2-mod-auth-openidc_2.4.11.2-1.buster+1_amd64.deb
+-rw-rw-r--  1 fallstechdave fallstechdave    180340 Jul  6 08:48  libapache2-mod-auth-openidc_2.4.11.2-1.focal+1_amd64.deb
+-rw-rw-r--  1 fallstechdave fallstechdave    442992 Jul  6 08:48  mod_auth_openidc-2.4.11.2-1.el7.x86_64.rpm
+-rw-rw-r--  1 fallstechdave fallstechdave    201832 Jul  6 08:48  mod_auth_openidc-2.4.11.2-1.el8.x86_64.rpm
+-rw-rw-r--  1 fallstechdave fallstechdave    599513 Jul  6 08:48  mod_auth_openidc-2.4.11.2.tar.gz
+-rw-rw-r--  1 fallstechdave fallstechdave    311947 Jul  6 08:48  mod_auth_openidc-2.4.11.2.zip
+-rw-rw-r--  1 fallstechdave fallstechdave      2030 Jul 12 21:08  keystore.jks
+-rw-rw-r--  1 fallstechdave fallstechdave      3416 Jul 15 14:21  myclient.json
+-rw-rw-r--  1 fallstechdave fallstechdave      3416 Jul 15 14:22 'myclient(1).json'
+-rw-rw-r--  1 fallstechdave fallstechdave      3470 Jul 15 14:54 'myclient(2).json'
+-rw-rw-r--  1 fallstechdave fallstechdave   9968335 Jul 15 16:52  h2-2022-06-13.zip
+drwxrwxr-x  3 fallstechdave fallstechdave      4096 Jul 15 17:00  h2-2022-06-13
+drwxr-xr-x 34 fallstechdave fallstechdave      4096 Jul 28 04:29  ..
+-rw-rw-r--  1 fallstechdave fallstechdave 171675474 Jul 28 04:33  keycloak-19.0.0.zip
+-rw-rw-r--  1 fallstechdave fallstechdave        40 Jul 28 04:34  keycloak-19.0.0.zip.sha1
+-rw-rw-r--  1 fallstechdave fallstechdave 171578039 Jul 28 04:34  keycloak-19.0.0.tar.gz
+-rw-rw-r--  1 fallstechdave fallstechdave        40 Jul 28 04:34  keycloak-19.0.0.tar.gz.sha1
+-rw-rw-r--  1 fallstechdave fallstechdave 183063539 Jul 28 04:41  keycloak-18.0.2.zip
+-rw-rw-r--  1 fallstechdave fallstechdave        40 Jul 28 04:41  keycloak-18.0.2.zip.sha1
+-rw-rw-r--  1 fallstechdave fallstechdave 182976004 Jul 28 04:41  keycloak-18.0.2.tar.gz
+-rw-rw-r--  1 fallstechdave fallstechdave        40 Jul 28 04:41  keycloak-18.0.2.tar.gz.sha1
+drwxr-xr-x  4 fallstechdave fallstechdave      4096 Jul 28 04:48  .
+drwxrwxr-x  3 fallstechdave fallstechdave      4096 Jul 28 04:49  keycloak
+fallstechdave@mmrxps17:~/Downloads$ 
+fallstechdave@mmrxps17:~/Downloads$ cd keycloak/
+fallstechdave@mmrxps17:~/Downloads/keycloak$ ls -latr
+total 346448
+drwxr-xr-x 7 fallstechdave fallstechdave      4096 Jun 24 11:32 keycloak-18.0.2
+-rw-rw-r-- 1 fallstechdave fallstechdave 171675474 Jul 28 04:33 keycloak-19.0.0.zip
+-rw-rw-r-- 1 fallstechdave fallstechdave 183063539 Jul 28 04:41 keycloak-18.0.2.zip
+drwxr-xr-x 4 fallstechdave fallstechdave      4096 Jul 28 04:48 ..
+drwxrwxr-x 3 fallstechdave fallstechdave      4096 Jul 28 04:49 .
+fallstechdave@mmrxps17:~/Downloads/keycloak$ 
+
+fallstechdave@mmrxps17:~$ 
+fallstechdave@mmrxps17:~$ cd ~/Downloads/keycloak/keycloak-18.0.2/
+fallstechdave@mmrxps17:~/Downloads/keycloak/keycloak-18.0.2$ bin/kc.sh start-dev
+Updating the configuration and installing your custom providers, if any. Please wait.
+2022-07-28 04:53:02,426 INFO  [io.quarkus.deployment.QuarkusAugmentor] (main) Quarkus augmentation completed in 2139ms
+2022-07-28 04:53:03,721 INFO  [org.keycloak.quarkus.runtime.hostname.DefaultHostnameProvider] (main) Hostname settings: FrontEnd: <request>, Strict HTTPS: false, Path: <request>, Strict BackChannel: false, Admin: <request>, Port: -1, Proxied: false
+2022-07-28 04:53:04,072 WARN  [org.infinispan.CONFIG] (keycloak-cache-init) ISPN000569: Unable to persist Infinispan internal caches as no global state enabled
+2022-07-28 04:53:04,076 WARN  [org.infinispan.PERSISTENCE] (keycloak-cache-init) ISPN000554: jboss-marshalling is deprecated and planned for removal
+2022-07-28 04:53:04,081 INFO  [org.infinispan.CONTAINER] (keycloak-cache-init) ISPN000556: Starting user marshaller 'org.infinispan.jboss.marshalling.core.JBossUserMarshaller'
+2022-07-28 04:53:04,161 INFO  [org.infinispan.CONTAINER] (keycloak-cache-init) ISPN000128: Infinispan version: Infinispan 'Triskaidekaphobia' 13.0.9.Final
+2022-07-28 04:53:04,327 INFO  [org.keycloak.connections.infinispan.DefaultInfinispanConnectionProviderFactory] (main) Node name: node_625382, Site name: null
+2022-07-28 04:53:04,936 INFO  [org.keycloak.quarkus.runtime.storage.database.liquibase.QuarkusJpaUpdaterProvider] (main) Initializing database schema. Using changelog META-INF/jpa-changelog-master.xml
+2022-07-28 04:53:06,675 INFO  [org.keycloak.services] (main) KC-SERVICES0050: Initializing master realm
+2022-07-28 04:53:07,753 INFO  [io.quarkus] (main) Keycloak 18.0.2 on JVM (powered by Quarkus 2.7.5.Final) started in 5.214s. Listening on: http://0.0.0.0:8080
+2022-07-28 04:53:07,754 INFO  [io.quarkus] (main) Profile dev activated. 
+2022-07-28 04:53:07,754 INFO  [io.quarkus] (main) Installed features: [agroal, cdi, hibernate-orm, jdbc-h2, jdbc-mariadb, jdbc-mssql, jdbc-mysql, jdbc-oracle, jdbc-postgresql, keycloak, narayana-jta, reactive-routes, resteasy, resteasy-jackson, smallrye-context-propagation, smallrye-health, smallrye-metrics, vault, vertx]
+2022-07-28 04:53:07,760 WARN  [org.keycloak.quarkus.runtime.KeycloakMain] (main) Running the server in development mode. DO NOT use this configuration in production.
+
+= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
+
+https://www.keycloak.org/
+https://www.keycloak.org/downloads
+https://www.keycloak.org/guides
+https://www.keycloak.org/getting-started/getting-started-zip
+
+OpenJDK
+Get started with Keycloak on bare metal
+Before you start
+
+Make sure you have OpenJDK 11 or newer installed.
+Download Keycloak
+
+First step is to download and extract keycloak-19.0.0.zip from the Keycloak website.
+
+After extracting you should have a directory named keycloak-19.0.0.
+Start Keycloak
+
+From a terminal open the directory keycloak-19.0.0, then to start Keycloak run the following command.
+
+On Linux run:
+
+bin/kc.sh start-dev
+
+On Windows run:
+
+bin/kc.bat start-dev
+
+Create an admin user
+
+Keycloak does not come with a default admin user, which means before you can start using Keycloak you need to create an admin user.
+
+To do this open http://localhost:8080/, then fill in the form with your preferred username and password.
+Login to the admin console
+
+Go to the Keycloak Admin Console and login with the username and password you created earlier.
+Create a realm
+
+A realm in Keycloak is the equivalent of a tenant. It allows creating isolated groups of applications and users. By default there is a single realm in Keycloak called master. This is dedicated to manage Keycloak and should not be used for your own applications.
+
+Let’s create our first realm.
+
+    Open the Keycloak Admin Console
+
+    Hover the mouse over the dropdown in the top-left corner where it says Master, then click on Add realm
+
+    Fill in the form with the following values:
+
+        Name: myrealm
+
+    Click Create
+
+http://localhost:8080/realms/master/protocol/openid-connect/auth?client_id=security-admin-console&redirect_uri=http%3A%2F%2Flocalhost%3A8080%2Fadmin%2Fmaster%2Fconsole%2F&state=09d7cf81-af41-46cf-8c8c-c4e1f9bf740d&response_mode=fragment&response_type=code&scope=openid&nonce=abacec2a-ea61-4a04-b106-35b67fe5a11a&code_challenge=NQNbfDu3YH2TVRAPFu3pRO623R349feDMSMZS8dIuOM&code_challenge_method=S256
+
+= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
+
+https://quarkus.io/guides/security-openid-connect-client
+
+Dev Services for Keycloak will launch a Keycloak container and import a quarkus-realm.json.
+
+https://github.com/quarkusio/quarkus-quickstarts/blob/main/security-openid-connect-client-quickstart/config/quarkus-realm.json
+
+export access_token=$(\
+    curl --insecure -X POST http://localhost:8180/realms/quarkus/protocol/openid-connect/token \
+    --user backend-service:secret \
+    -H 'content-type: application/x-www-form-urlencoded' \
+    -d 'username=alice&password=alice&grant_type=password' | jq --raw-output '.access_token' \
+ )
+
+ curl --insecure -X POST http://localhost:8180/realms/quarkus/protocol/openid-connect/token \
+    --user backend-service:secret \
+    -H 'content-type: application/x-www-form-urlencoded' \
+    -d 'username=alice&password=alice&grant_type=password'
+
+fallstechdave@mmrxps17:~/Downloads$  curl --insecure -X POST http://localhost:8180/realms/quarkus/protocol/openid-connect/token \
+>     --user backend-service:secret \
+>     -H 'content-type: application/x-www-form-urlencoded' \
+>     -d 'username=alice&password=alice&grant_type=password'
+curl: (7) Failed to connect to localhost port 8180: Connection refused
+fallstechdave@mmrxps17:~/Downloads$ 
+
+curl --insecure -X POST http://localhost:8180/realms/quarkus/protocol/openid-connect/token \
+    --user backend-service:secret \
+    -H 'content-type: application/x-www-form-urlencoded' \
+    -d 'username=admin&password=admin&grant_type=password'
+
+fallstechdave@mmrxps17:~/Downloads$  curl --insecure -X POST http://localhost:8180/realms/quarkus/protocol/openid-connect/token \
+>     --user backend-service:secret \
+>     -H 'content-type: application/x-www-form-urlencoded' \
+>     -d 'username=admin&password=admin&grant_type=password'
+curl: (7) Failed to connect to localhost port 8180: Connection refused
+fallstechdave@mmrxps17:~/Downloads$ 
+
+curl --insecure -X POST http://localhost:8080/realms/quarkus/protocol/openid-connect/token \
+    --user backend-service:secret \
+    -H 'content-type: application/x-www-form-urlencoded' \
+    -d 'username=alice&password=alice&grant_type=password'
+
+fallstechdave@mmrxps17:~/Downloads$ 
+fallstechdave@mmrxps17:~/Downloads$ curl --insecure -X POST http://localhost:8080/realms/quarkus/protocol/openid-connect/token \
+>     --user backend-service:secret \
+>     -H 'content-type: application/x-www-form-urlencoded' \
+>     -d 'username=alice&password=alice&grant_type=password'
+{"access_token":"eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJjZklBRE5feHhDSm1Wa1d5Ti1QTlhFRXZNVVdzMnI2OEN4dG1oRUROelhVIn0.eyJleHAiOjE2NTkwMDA0MjYsImlhdCI6MTY1OTAwMDEyNiwianRpIjoiNWJkMDg1OGEtYWQyNi00MWQxLTlmYjctNTUzZWQ4NGE0ZjIxIiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo4MDgwL3JlYWxtcy9xdWFya3VzIiwic3ViIjoiZWI0MTIzYTMtYjcyMi00Nzk4LTlhZjUtODk1N2Y4MjM2NTdhIiwidHlwIjoiQmVhcmVyIiwiYXpwIjoiYmFja2VuZC1zZXJ2aWNlIiwic2Vzc2lvbl9zdGF0ZSI6Ijc2OTc5MTI0LTViY2EtNDA3Ni05MzA2LTRmZmEyMzU4NTNhOSIsInJlYWxtX2FjY2VzcyI6eyJyb2xlcyI6WyJ1c2VyIl19LCJzY29wZSI6ImVtYWlsIHByb2ZpbGUiLCJzaWQiOiI3Njk3OTEyNC01YmNhLTQwNzYtOTMwNi00ZmZhMjM1ODUzYTkiLCJlbWFpbF92ZXJpZmllZCI6ZmFsc2UsInByZWZlcnJlZF91c2VybmFtZSI6ImFsaWNlIn0.SE629zHPrRJmqJI97ZSNlX3_KRCpKl3k2Jsa7BrKxoo8-eWtCOuj-KEt1BWEG4B_hji-o0stKYIkuLK8s9DePcYU6uUPCVGJjjldFI1AUvTsxa_Y3H-zgBe_MJ0DARQ0qR8cepDTfUpCmBFgZFeJRYpFtFWJ3UkWzykf1beuQtYz4Zg_B1xsCXqPjzf_WmCSQx32o2F9-dIfY0yxgCRsnC1kxeKgeukqPsZ8fiMy2rhPBIGBGj2kNBB1wsFTUJ_3KKK5ZIHg3pOfKxdVWhltEnlcZTToGhW1KfVHp0aEc98v7Hw21mhvpemL5lYqA5snuH3YJo5LTsfWm_aSlEZ-Jg","expires_in":300,"refresh_expires_in":1800,"refresh_token":"eyJhbGciOiJIUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICI5NmFmZDAwZS04NWNmLTRkMzUtYjE4ZS0wNjFkMzgxM2Q4YjIifQ.eyJleHAiOjE2NTkwMDE5MjYsImlhdCI6MTY1OTAwMDEyNiwianRpIjoiMzc1ZTVjODctZGM3OC00MjBkLWE4ZGQtMDM4ZjY3NDc1MWFlIiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo4MDgwL3JlYWxtcy9xdWFya3VzIiwiYXVkIjoiaHR0cDovL2xvY2FsaG9zdDo4MDgwL3JlYWxtcy9xdWFya3VzIiwic3ViIjoiZWI0MTIzYTMtYjcyMi00Nzk4LTlhZjUtODk1N2Y4MjM2NTdhIiwidHlwIjoiUmVmcmVzaCIsImF6cCI6ImJhY2tlbmQtc2VydmljZSIsInNlc3Npb25fc3RhdGUiOiI3Njk3OTEyNC01YmNhLTQwNzYtOTMwNi00ZmZhMjM1ODUzYTkiLCJzY29wZSI6ImVtYWlsIHByb2ZpbGUiLCJzaWQiOiI3Njk3OTEyNC01YmNhLTQwNzYtOTMwNi00ZmZhMjM1ODUzYTkifQ.ZgVJ9Tcgle5q4Drkyq0mlgAlbdwa6da98vWTCJVS-N4","token_type":"Bearer","not-before-policy":0,"session_state":"76979124-5bca-4076-9306-4ffa235853a9","scope":"email profile"}fallstechdave@mmrxps17:~/Downloads$ 
+fallstechdave@mmrxps17:~/Downloads$ 
+
+curl --insecure -X POST http://localhost:8080/realms/quarkus/protocol/openid-connect/token \
+    --user backend-service:secret \
+    -H 'content-type: application/x-www-form-urlencoded' \
+    -d 'username=admin&password=admin&grant_type=password'
+
+fallstechdave@mmrxps17:~/Downloads$ 
+fallstechdave@mmrxps17:~/Downloads$ curl --insecure -X POST http://localhost:8080/realms/quarkus/protocol/openid-connect/token \
+>     --user backend-service:secret \
+>     -H 'content-type: application/x-www-form-urlencoded' \
+>     -d 'username=admin&password=admin&grant_type=password'
+{"access_token":"eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJjZklBRE5feHhDSm1Wa1d5Ti1QTlhFRXZNVVdzMnI2OEN4dG1oRUROelhVIn0.eyJleHAiOjE2NTkwMDA2MzYsImlhdCI6MTY1OTAwMDMzNiwianRpIjoiMmUxNWZiN2UtMjRjNi00NjFmLWFjNWMtM2IxY2VkYmY2ZTAzIiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo4MDgwL3JlYWxtcy9xdWFya3VzIiwic3ViIjoiYWYxMzRjYWItZjQxYy00Njc1LWIxNDEtMjA1Zjk3NWRiNjc5IiwidHlwIjoiQmVhcmVyIiwiYXpwIjoiYmFja2VuZC1zZXJ2aWNlIiwic2Vzc2lvbl9zdGF0ZSI6IjViM2I2ZTBkLTZkOWMtNDM5Mi04YWY5LTUzYmE1MDQ1NzAwYyIsInJlYWxtX2FjY2VzcyI6eyJyb2xlcyI6WyJhZG1pbiIsInVzZXIiXX0sInNjb3BlIjoiZW1haWwgcHJvZmlsZSIsInNpZCI6IjViM2I2ZTBkLTZkOWMtNDM5Mi04YWY5LTUzYmE1MDQ1NzAwYyIsImVtYWlsX3ZlcmlmaWVkIjpmYWxzZSwicHJlZmVycmVkX3VzZXJuYW1lIjoiYWRtaW4ifQ.aCk7V8gGsWQe6Iqf591Lr5PvqqpgBW01f8bpqzd9_10xvOkuncbhdrwIsemjTH5xj0vu6tyUxT7LKgJR-YuL4PQg4Zq8b2l--4EcampalRmMfYhI1U-VcrHfMlMo0uc8d4JkL93ncaX4NMhe4fPALq3kLjOU_G0d7s1E-wMfnVSpXvy6fgL0_iH0tm2cVJlc41CqvoIjjs7ZwfntWdmzEUK2XEaC0iEsKCI6s9-EZBeMnlk7r8cqcWtYQVo_o8uAnQNdRAAgSvZp-jEYJcXJDjr61KHlGy6msJlmJJTxiBgusRaHmoCOnYWrgcZolWz3e55CWELBI9UuCHx-_aONLQ","expires_in":300,"refresh_expires_in":1800,"refresh_token":"eyJhbGciOiJIUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICI5NmFmZDAwZS04NWNmLTRkMzUtYjE4ZS0wNjFkMzgxM2Q4YjIifQ.eyJleHAiOjE2NTkwMDIxMzYsImlhdCI6MTY1OTAwMDMzNiwianRpIjoiNTBhYTI0NDktNjJlOC00MjdiLWJlMmItYThjZjE5YzFmNDlhIiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo4MDgwL3JlYWxtcy9xdWFya3VzIiwiYXVkIjoiaHR0cDovL2xvY2FsaG9zdDo4MDgwL3JlYWxtcy9xdWFya3VzIiwic3ViIjoiYWYxMzRjYWItZjQxYy00Njc1LWIxNDEtMjA1Zjk3NWRiNjc5IiwidHlwIjoiUmVmcmVzaCIsImF6cCI6ImJhY2tlbmQtc2VydmljZSIsInNlc3Npb25fc3RhdGUiOiI1YjNiNmUwZC02ZDljLTQzOTItOGFmOS01M2JhNTA0NTcwMGMiLCJzY29wZSI6ImVtYWlsIHByb2ZpbGUiLCJzaWQiOiI1YjNiNmUwZC02ZDljLTQzOTItOGFmOS01M2JhNTA0NTcwMGMifQ.921zPb8St2jH7tlpCnGSlR_9gjHC_OVaXHPQJCnzeto","token_type":"Bearer","not-before-policy":0,"session_state":"5b3b6e0d-6d9c-4392-8af9-53ba5045700c","scope":"email profile"}fallstechdave@mmrxps17:~/Downloads$ 
+fallstechdave@mmrxps17:~/Downloads$ 
+
+= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
+
+fallstechdave@mmrxps17:~$ cd ~/Downloads/keycloak/keycloak-18.0.2/
+fallstechdave@mmrxps17:~/Downloads/keycloak/keycloak-18.0.2$ bin/kc.sh start-dev
+Updating the configuration and installing your custom providers, if any. Please wait.
+2022-07-28 04:53:02,426 INFO  [io.quarkus.deployment.QuarkusAugmentor] (main) Quarkus augmentation completed in 2139ms
+2022-07-28 04:53:03,721 INFO  [org.keycloak.quarkus.runtime.hostname.DefaultHostnameProvider] (main) Hostname settings: FrontEnd: <request>, Strict HTTPS: false, Path: <request>, Strict BackChannel: false, Admin: <request>, Port: -1, Proxied: false
+2022-07-28 04:53:04,072 WARN  [org.infinispan.CONFIG] (keycloak-cache-init) ISPN000569: Unable to persist Infinispan internal caches as no global state enabled
+2022-07-28 04:53:04,076 WARN  [org.infinispan.PERSISTENCE] (keycloak-cache-init) ISPN000554: jboss-marshalling is deprecated and planned for removal
+2022-07-28 04:53:04,081 INFO  [org.infinispan.CONTAINER] (keycloak-cache-init) ISPN000556: Starting user marshaller 'org.infinispan.jboss.marshalling.core.JBossUserMarshaller'
+2022-07-28 04:53:04,161 INFO  [org.infinispan.CONTAINER] (keycloak-cache-init) ISPN000128: Infinispan version: Infinispan 'Triskaidekaphobia' 13.0.9.Final
+2022-07-28 04:53:04,327 INFO  [org.keycloak.connections.infinispan.DefaultInfinispanConnectionProviderFactory] (main) Node name: node_625382, Site name: null
+2022-07-28 04:53:04,936 INFO  [org.keycloak.quarkus.runtime.storage.database.liquibase.QuarkusJpaUpdaterProvider] (main) Initializing database schema. Using changelog META-INF/jpa-changelog-master.xml
+2022-07-28 04:53:06,675 INFO  [org.keycloak.services] (main) KC-SERVICES0050: Initializing master realm
+2022-07-28 04:53:07,753 INFO  [io.quarkus] (main) Keycloak 18.0.2 on JVM (powered by Quarkus 2.7.5.Final) started in 5.214s. Listening on: http://0.0.0.0:8080
+2022-07-28 04:53:07,754 INFO  [io.quarkus] (main) Profile dev activated. 
+2022-07-28 04:53:07,754 INFO  [io.quarkus] (main) Installed features: [agroal, cdi, hibernate-orm, jdbc-h2, jdbc-mariadb, jdbc-mssql, jdbc-mysql, jdbc-oracle, jdbc-postgresql, keycloak, narayana-jta, reactive-routes, resteasy, resteasy-jackson, smallrye-context-propagation, smallrye-health, smallrye-metrics, vault, vertx]
+2022-07-28 04:53:07,760 WARN  [org.keycloak.quarkus.runtime.KeycloakMain] (main) Running the server in development mode. DO NOT use this configuration in production.
+2022-07-28 04:56:43,097 INFO  [org.keycloak.services] (executor-thread-2) KC-SERVICES0077: Created initial admin user with username admin
+2022-07-28 05:11:17,015 WARN  [org.keycloak.models.utils.RepresentationToModel] (executor-thread-24) Using deprecated 'credentials' format in JSON representation for user 'admin'. It will be removed in future versions
+2022-07-28 05:11:17,025 WARN  [org.keycloak.models.utils.RepresentationToModel] (executor-thread-24) Using deprecated 'credentials' format in JSON representation for user 'alice'. It will be removed in future versions
+2022-07-28 05:11:17,030 WARN  [org.keycloak.models.utils.RepresentationToModel] (executor-thread-24) Using deprecated 'credentials' format in JSON representation for user 'jdoe'. It will be removed in future versions
+
+= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
+
+export access_token=$(\
+    curl --insecure -X POST http://localhost:8080/realms/quarkus/protocol/openid-connect/token \
+    --user backend-service:secret \
+    -H 'content-type: application/x-www-form-urlencoded' \
+    -d 'username=alice&password=alice&grant_type=password' | jq --raw-output '.access_token' \
+ )
+
+fallstechdave@mmrxps17:~/Downloads$ echo $access_token
+eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJjZklBRE5feHhDSm1Wa1d5Ti1QTlhFRXZNVVdzMnI2OEN4dG1oRUROelhVIn0.eyJleHAiOjE2NTkwMDA5ODQsImlhdCI6MTY1OTAwMDY4NCwianRpIjoiM2YyZThmODEtNWU1MS00MjBmLTk5ZmQtODM3ZWZiOGY0MjU4IiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo4MDgwL3JlYWxtcy9xdWFya3VzIiwic3ViIjoiZWI0MTIzYTMtYjcyMi00Nzk4LTlhZjUtODk1N2Y4MjM2NTdhIiwidHlwIjoiQmVhcmVyIiwiYXpwIjoiYmFja2VuZC1zZXJ2aWNlIiwic2Vzc2lvbl9zdGF0ZSI6IjE5OGMwYTg2LTYwODItNDk1Mi1iMjJhLTYxNmUwYzQyOWQ5OCIsInJlYWxtX2FjY2VzcyI6eyJyb2xlcyI6WyJ1c2VyIl19LCJzY29wZSI6ImVtYWlsIHByb2ZpbGUiLCJzaWQiOiIxOThjMGE4Ni02MDgyLTQ5NTItYjIyYS02MTZlMGM0MjlkOTgiLCJlbWFpbF92ZXJpZmllZCI6ZmFsc2UsInByZWZlcnJlZF91c2VybmFtZSI6ImFsaWNlIn0.cwv9SfrhF9RNXI4TEUz42sAF8v93WyZq-f2e_LlRLtOaMqFYLwqVxartqnu-6EZKCH6vrnOeYfO3GU0Pb_DWLW92OPeRyeTszQl6AAEUppqBnS-mujOV_BslqjUyY3N48zqPcB7na5zMxHRptEAFj3hEsTzcYraxtAeHPPXOFu4esJUfCssgD6GcgrcCC9NbV-egLYoY7URCvHNVRzGCQ31MK0qm4rmkW6Ko7_AOBjWglV7JAlowNGDvOIdFloDTrgGcfmAmpWfmZBHnSUgSK0PYB0KdaWBNPbWHeBV3gC9C_x55__5oOiVhZfjsKNN-SRP3biBIDoVuVJoISO5mAw
+fallstechdave@mmrxps17:~/Downloads$ 
+
+curl -v -X GET \
+  http://localhost:8080/frontend/user-name-with-propagated-token` \
+  -H "Authorization: Bearer "$access_token
+
+curl -v -X GET \
+  http://localhost:8080/frontend/user-name-with-propagated-token \
+  -H "Authorization: Bearer "$access_token
+
+fallstechdave@mmrxps17:~/Downloads$ 
+fallstechdave@mmrxps17:~/Downloads$ curl -v -X GET \
+>   http://localhost:8080/frontend/user-name-with-propagated-token \
+>   -H "Authorization: Bearer "$access_token
+Note: Unnecessary use of -X or --request, GET is already inferred.
+*   Trying 127.0.0.1:8080...
+* TCP_NODELAY set
+* Connected to localhost (127.0.0.1) port 8080 (#0)
+> GET /frontend/user-name-with-propagated-token HTTP/1.1
+> Host: localhost:8080
+> User-Agent: curl/7.68.0
+> Accept: */*
+> Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJjZklBRE5feHhDSm1Wa1d5Ti1QTlhFRXZNVVdzMnI2OEN4dG1oRUROelhVIn0.eyJleHAiOjE2NTkwMDA5ODQsImlhdCI6MTY1OTAwMDY4NCwianRpIjoiM2YyZThmODEtNWU1MS00MjBmLTk5ZmQtODM3ZWZiOGY0MjU4IiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo4MDgwL3JlYWxtcy9xdWFya3VzIiwic3ViIjoiZWI0MTIzYTMtYjcyMi00Nzk4LTlhZjUtODk1N2Y4MjM2NTdhIiwidHlwIjoiQmVhcmVyIiwiYXpwIjoiYmFja2VuZC1zZXJ2aWNlIiwic2Vzc2lvbl9zdGF0ZSI6IjE5OGMwYTg2LTYwODItNDk1Mi1iMjJhLTYxNmUwYzQyOWQ5OCIsInJlYWxtX2FjY2VzcyI6eyJyb2xlcyI6WyJ1c2VyIl19LCJzY29wZSI6ImVtYWlsIHByb2ZpbGUiLCJzaWQiOiIxOThjMGE4Ni02MDgyLTQ5NTItYjIyYS02MTZlMGM0MjlkOTgiLCJlbWFpbF92ZXJpZmllZCI6ZmFsc2UsInByZWZlcnJlZF91c2VybmFtZSI6ImFsaWNlIn0.cwv9SfrhF9RNXI4TEUz42sAF8v93WyZq-f2e_LlRLtOaMqFYLwqVxartqnu-6EZKCH6vrnOeYfO3GU0Pb_DWLW92OPeRyeTszQl6AAEUppqBnS-mujOV_BslqjUyY3N48zqPcB7na5zMxHRptEAFj3hEsTzcYraxtAeHPPXOFu4esJUfCssgD6GcgrcCC9NbV-egLYoY7URCvHNVRzGCQ31MK0qm4rmkW6Ko7_AOBjWglV7JAlowNGDvOIdFloDTrgGcfmAmpWfmZBHnSUgSK0PYB0KdaWBNPbWHeBV3gC9C_x55__5oOiVhZfjsKNN-SRP3biBIDoVuVJoISO5mAw
+> 
+* Mark bundle as not supporting multiuse
+< HTTP/1.1 404 Not Found
+< Referrer-Policy: no-referrer
+< X-Frame-Options: SAMEORIGIN
+< Strict-Transport-Security: max-age=31536000; includeSubDomains
+< X-Content-Type-Options: nosniff
+< X-XSS-Protection: 1; mode=block
+< Content-Type: application/json
+< content-length: 129
+< 
+* Connection #0 to host localhost left intact
+{"error":"RESTEASY003210: Could not find resource for full path: http://localhost:8080/frontend/user-name-with-propagated-token"}
+fallstechdave@mmrxps17:~/Downloads$ 
+
+= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
+
+code ~/railsprojects/wire5/log
+code ~/railsprojects/wire6/log
+code /var/log/apache2
+
+ls -latr ~/railsprojects/wire5/log
+ls -latr ~/railsprojects/wire6/log
+ls -latr /var/log/apache2
+
+fallstechdave@mmrxps17:~$ 
+fallstechdave@mmrxps17:~$ ls -latr ~/railsprojects/wire5/log
+total 104
+-rw-rw-r--  1 fallstechdave fallstechdave     0 Jul  1 06:14 .keep
+-rw-rw-r--  1 fallstechdave fallstechdave 17585 Jul  2 13:26 development.log
+drwxrwxr-x  2 fallstechdave fallstechdave  4096 Jul  6 07:23 .
+-rw-rw-r--  1 fallstechdave fallstechdave  2650 Jul  6 07:23 test.log
+drwxrwxr-x 14 fallstechdave fallstechdave  4096 Jul  7 06:52 ..
+-rw-r--r--  1 fallstechdave fallstechdave 64813 Jul 15 18:27 production.log
+fallstechdave@mmrxps17:~$ 
+fallstechdave@mmrxps17:~$ ls -latr ~/railsprojects/wire6/log
+total 288
+-rw-rw-r--  1 fallstechdave fallstechdave      0 Jul 19 15:03 .keep
+-rw-rw-r--  1 fallstechdave fallstechdave   2650 Jul 19 15:30 test.log
+drwxrwxr-x  2 fallstechdave fallstechdave   4096 Jul 19 15:30 .
+-rw-rw-r--  1 fallstechdave fallstechdave 151023 Jul 20 11:40 development.log
+drwxrwxr-x 14 fallstechdave fallstechdave   4096 Jul 21 08:33 ..
+-rw-rw-r--  1 fallstechdave fallstechdave 125302 Jul 28 06:38 production.log
+fallstechdave@mmrxps17:~$ 
+fallstechdave@mmrxps17:~$ ls -latr /var/log/apache2
+total 256
+-rw-r-----  1 root adm     1226 Jul  1 08:41 access.log.1
+-rw-r-----  1 root adm      282 Jul  1 10:46 other_vhosts_access.log.8.gz
+-rw-r-----  1 root adm        0 Jul  3 00:00 access.log
+-rw-r-----  1 root adm     1345 Jul  6 20:21 other_vhosts_access.log.7.gz
+-rw-r-----  1 root adm     1299 Jul  8 08:23 error.log.14.gz
+-rw-r-----  1 root adm     1502 Jul 10 00:00 error.log.13.gz
+-rw-r-----  1 root adm      207 Jul 10 08:35 other_vhosts_access.log.6.gz
+-rw-r-----  1 root adm     1228 Jul 11 00:00 error.log.12.gz
+-rw-r-----  1 root adm      938 Jul 11 05:31 error.log.11.gz
+-rw-r-----  1 root adm     1991 Jul 12 21:58 error.log.10.gz
+-rw-r-----  1 root adm     2171 Jul 15 19:37 other_vhosts_access.log.5.gz
+-rw-r-----  1 root adm    13311 Jul 16 00:00 error.log.9.gz
+-rw-r-----  1 root adm     1200 Jul 17 00:00 error.log.8.gz
+-rw-r-----  1 root adm      141 Jul 17 12:21 other_vhosts_access.log.4.gz
+-rw-r-----  1 root adm     2154 Jul 18 03:01 error.log.7.gz
+-rw-r-----  1 root adm     2008 Jul 19 07:21 error.log.6.gz
+-rw-r-----  1 root adm      342 Jul 19 19:37 other_vhosts_access.log.3.gz
+-rw-r-----  1 root adm     8882 Jul 20 00:00 error.log.5.gz
+-rw-r-----  1 root adm     2526 Jul 20 16:13 other_vhosts_access.log.2.gz
+-rw-r-----  1 root adm    18056 Jul 21 06:54 error.log.4.gz
+-rw-r-----  1 root adm     5576 Jul 21 08:46 other_vhosts_access.log.1
+-rw-r-----  1 root adm     3237 Jul 21 08:47 error.log.3.gz
+-rw-r-----  1 root adm     1422 Jul 22 08:08 error.log.2.gz
+drwxr-x---  2 root adm     4096 Jul 28 03:21 .
+-rw-r-----  1 root adm    11039 Jul 28 03:21 error.log.1
+drwxrwxr-x 16 root syslog  4096 Jul 28 05:44 ..
+-rw-r-----  1 root adm    86822 Jul 28 06:32 error.log
+-rw-r-----  1 root adm    13927 Jul 28 06:38 other_vhosts_access.log
+fallstechdave@mmrxps17:~$ 
+fallstechdave@mmrxps17:~$ 
+
+
+= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
+
+fallstechdave@mmrxps17:/etc/apache2$ sudo /usr/bin/passenger-config validate-install
+[sudo] password for fallstechdave: 
+What would you like to validate?
+Use <space> to select.
+If the menu doesn't display correctly, press '!'
+
+ ‣ ⬢  Passenger itself
+   ⬡  Apache
+
+-------------------------------------------------------------------------
+
+ * Checking whether this Passenger install is in PATH... ✓
+ * Checking whether there are no other Passenger installations... ✓
+
+Everything looks good. :-)
+fallstechdave@mmrxps17:/etc/apache2$ sudo /usr/bin/passenger-config validate-install
+What would you like to validate?
+Use <space> to select.
+If the menu doesn't display correctly, press '!'
+
+   ⬢  Passenger itself
+ ‣ ⬡  Apache
+
+-------------------------------------------------------------------------
+
+ * Checking whether this Passenger install is in PATH... ✓
+ * Checking whether there are no other Passenger installations... ✓
+
+Everything looks good. :-)
+fallstechdave@mmrxps17:/etc/apache2$ 
+
+= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
+
+fallstechdave@mmrxps17:~$ sudo /usr/sbin/passenger-memory-stats
+Version: 6.0.14
+Date   : 2022-07-28 06:55:53 -0400
+
+---------- Apache processes -----------
+PID    PPID   VMSize     Private  Name
+---------------------------------------
+10407  1      80.3 MB    0.7 MB   /usr/sbin/apache2 -k start
+10441  10407  1961.3 MB  3.0 MB   /usr/sbin/apache2 -k start
+10444  10407  1961.2 MB  2.7 MB   /usr/sbin/apache2 -k start
+### Processes: 3
+### Total private dirty RSS: 6.38 MB
+
+
+-------- Nginx processes --------
+
+### Processes: 0
+### Total private dirty RSS: 0.00 MB
+
+
+----- Passenger processes ------
+PID    VMSize     Private  Name
+--------------------------------
+10409  296.1 MB   2.6 MB   Passenger watchdog
+10413  3506.5 MB  6.8 MB   Passenger core
+10811  359.5 MB   90.9 MB  Passenger RubyApp: /home/fallstechdave/railsprojects/wire6 (production)
+### Processes: 3
+### Total private dirty RSS: 100.21 MB
+fallstechdave@mmrxps17:~$ 
+
+= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
+
+/etc/apache2/mods-available/auth_openidc.conf
+
+# OIDCProviderMetadataURL https://127.0.0.1:8080/auth/realms/myrealm/.well-known/openid-configuration
+# OIDCProviderMetadataURL http://127.0.0.1:8080/auth/realms/quarkus/.well-known/openid-configuration
+OIDCProviderMetadataURL   http://127.0.0.1:8080/realms/quarkus/.well-known/openid-configuration
+
+# OIDCRedirectURI https://127.0.0.1/articles/redirect_uri/
+OIDCRedirectURI https://127.0.0.1/redirect_uri/
+
+OIDCCryptoPassphrase 0123456789
+# OIDCClientID <client_id>
+# OIDCClientName <client_name>
+# OIDCClientSecret <client_secret>
+# OIDCProviderTokenEndpointAuth [ client_secret_basic | client_secret_post | client_secret_jwt | private_key_jwt | none ]
+
+OIDCClientID myclient
+# OIDCClientSecret PtfnIgls1mJ18vd4M79PVmOuAdHDeqA7
+# OIDCClientSecret 5NDkdAuOwv2w91qQjKVfrwbVi1XnmCST
+OIDCClientSecret AVMvivcMJq57PmGQHvab5q5dKfg7IDgi
+
+OIDCProviderTokenEndpointAuth client_secret_basic
+# OIDCProviderTokenEndpointAuth none
+
+OIDCRemoteUserClaim email
+OIDCScope "openid email"
+
+<Location "/">
+  Require valid-user
+  AuthType openid-connect
+</Location>
+
+= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
+
+/etc/apache2/mods-available/passenger.conf
+
+### Begin automatically installed Phusion Passenger config snippet ###
+<IfModule mod_passenger.c>
+  PassengerRoot /usr/lib/ruby/vendor_ruby/phusion_passenger/locations.ini
+  PassengerDefaultRuby /usr/bin/passenger_free_ruby
+</IfModule>
+### End automatically installed Phusion Passenger config snippet ###
+
+= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
+
+/etc/apache2/sites-available/wire6.conf
+
+<VirtualHost *:443>
+  ServerName 127.0.0.1
+  # Tell Apache and Passenger where your app's 'public' directory is
+  DocumentRoot /home/fallstechdave/railsprojects/wire6/public
+  PassengerRuby /home/fallstechdave/.rbenv/versions/3.1.2/bin/ruby
+  SSLEngine on
+  SSLCertificateFile /etc/ssl/certs/apache-selfsigned.crt
+  SSLCertificateKeyFile /etc/ssl/private/apache-selfsigned.key
+
+  # Relax Apache security settings
+  <Directory /home/fallstechdave/railsprojects/wire6/public>
+    Allow from all
+    Options -MultiViews
+    # Uncomment this if you're on Apache > 2.4:
+    Require all granted
+  </Directory>
+</VirtualHost>
+
+<VirtualHost *:80>
+  ServerName 127.0.0.1
+  # Redirect / https://127.0.0.1/
+
+  # # Tell Apache and Passenger where your app's 'public' directory is
+  DocumentRoot /home/fallstechdave/railsprojects/wire6/public
+  PassengerRuby /home/fallstechdave/.rbenv/versions/3.1.2/bin/ruby
+
+  # Relax Apache security settings
+  <Directory /home/fallstechdave/railsprojects/wire6/public>
+    Allow from all
+    Options -MultiViews
+    # Uncomment this if you're on Apache > 2.4:
+    Require all granted
+  </Directory>
+</VirtualHost>
+
+= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
+
+https://github.com/keycloak/keycloak-documentation/blob/main/securing_apps/topics/oidc/mod-auth-openidc.adoc
+
+https://www.phusionpassenger.com/library/deploy/apache/deploy/ruby/
+
+
+<VirtualHost *:80>
+    ServerName yourserver.com
+
+    # Tell Apache and Passenger where your app's 'public' directory is
+    DocumentRoot /path-to-your-app/public
+
+    PassengerRuby /path-to-ruby
+
+    # Relax Apache security settings
+    <Directory /path-to-your-app/public>
+      Allow from all
+      Options -MultiViews
+      # Uncomment this if you're on Apache > 2.4:
+      #Require all granted
+    </Directory>
+</VirtualHost>
+
+= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
+
+fallstechdave@mmrxps17:~/Downloads/keycloak/keycloak-18.0.2$ bin/kc.sh start-dev
+2022-07-28 05:50:00,058 INFO  [org.keycloak.quarkus.runtime.hostname.DefaultHostnameProvider] (main) Hostname settings: FrontEnd: <request>, Strict HTTPS: false, Path: <request>, Strict BackChannel: false, Admin: <request>, Port: -1, Proxied: false
+2022-07-28 05:50:00,449 WARN  [org.infinispan.CONFIG] (keycloak-cache-init) ISPN000569: Unable to persist Infinispan internal caches as no global state enabled
+2022-07-28 05:50:00,468 WARN  [org.infinispan.PERSISTENCE] (keycloak-cache-init) ISPN000554: jboss-marshalling is deprecated and planned for removal
+2022-07-28 05:50:00,473 INFO  [org.infinispan.CONTAINER] (keycloak-cache-init) ISPN000556: Starting user marshaller 'org.infinispan.jboss.marshalling.core.JBossUserMarshaller'
+2022-07-28 05:50:00,563 INFO  [org.infinispan.CONTAINER] (keycloak-cache-init) ISPN000128: Infinispan version: Infinispan 'Triskaidekaphobia' 13.0.9.Final
+2022-07-28 05:50:00,787 INFO  [org.keycloak.connections.infinispan.DefaultInfinispanConnectionProviderFactory] (main) Node name: node_241821, Site name: null
+2022-07-28 05:50:01,041 INFO  [io.quarkus] (main) Keycloak 18.0.2 on JVM (powered by Quarkus 2.7.5.Final) started in 2.243s. Listening on: http://0.0.0.0:8080
+2022-07-28 05:50:01,041 INFO  [io.quarkus] (main) Profile dev activated. 
+2022-07-28 05:50:01,042 INFO  [io.quarkus] (main) Installed features: [agroal, cdi, hibernate-orm, jdbc-h2, jdbc-mariadb, jdbc-mssql, jdbc-mysql, jdbc-oracle, jdbc-postgresql, keycloak, narayana-jta, reactive-routes, resteasy, resteasy-jackson, smallrye-context-propagation, smallrye-health, smallrye-metrics, vault, vertx]
+2022-07-28 05:50:01,044 WARN  [org.keycloak.quarkus.runtime.KeycloakMain] (main) Running the server in development mode. DO NOT use this configuration in production.
+^C2022-07-28 07:24:12,983 INFO  [io.quarkus] (Shutdown thread) Keycloak stopped in 0.154s
+fallstechdave@mmrxps17:~/Downloads/keycloak/keycloak-18.0.2$ ^C
+fallstechdave@mmrxps17:~/Downloads/keycloak/keycloak-18.0.2$ ^C
+fallstechdave@mmrxps17:~/Downloads/keycloak/keycloak-18.0.2$ 
+fallstechdave@mmrxps17:~/Downloads/keycloak/keycloak-18.0.2$ cd ~/Downloads/keycloak/keycloak-18.0.2/
+fallstechdave@mmrxps17:~/Downloads/keycloak/keycloak-18.0.2$ bin/kc.sh start-dev
+2022-07-28 07:24:29,543 INFO  [org.keycloak.quarkus.runtime.hostname.DefaultHostnameProvider] (main) Hostname settings: FrontEnd: <request>, Strict HTTPS: false, Path: <request>, Strict BackChannel: false, Admin: <request>, Port: -1, Proxied: false
+2022-07-28 07:24:29,916 WARN  [org.infinispan.CONFIG] (keycloak-cache-init) ISPN000569: Unable to persist Infinispan internal caches as no global state enabled
+2022-07-28 07:24:29,919 WARN  [org.infinispan.PERSISTENCE] (keycloak-cache-init) ISPN000554: jboss-marshalling is deprecated and planned for removal
+2022-07-28 07:24:29,923 INFO  [org.infinispan.CONTAINER] (keycloak-cache-init) ISPN000556: Starting user marshaller 'org.infinispan.jboss.marshalling.core.JBossUserMarshaller'
+2022-07-28 07:24:30,003 INFO  [org.infinispan.CONTAINER] (keycloak-cache-init) ISPN000128: Infinispan version: Infinispan 'Triskaidekaphobia' 13.0.9.Final
+2022-07-28 07:24:30,198 INFO  [org.keycloak.connections.infinispan.DefaultInfinispanConnectionProviderFactory] (main) Node name: node_68600, Site name: null
+2022-07-28 07:24:30,446 INFO  [io.quarkus] (main) Keycloak 18.0.2 on JVM (powered by Quarkus 2.7.5.Final) started in 2.081s. Listening on: http://0.0.0.0:8080
+2022-07-28 07:24:30,446 INFO  [io.quarkus] (main) Profile dev activated. 
+2022-07-28 07:24:30,446 INFO  [io.quarkus] (main) Installed features: [agroal, cdi, hibernate-orm, jdbc-h2, jdbc-mariadb, jdbc-mssql, jdbc-mysql, jdbc-oracle, jdbc-postgresql, keycloak, narayana-jta, reactive-routes, resteasy, resteasy-jackson, smallrye-context-propagation, smallrye-health, smallrye-metrics, vault, vertx]
+2022-07-28 07:24:30,449 WARN  [org.keycloak.quarkus.runtime.KeycloakMain] (main) Running the server in development mode. DO NOT use this configuration in production.
+2022-07-28 07:25:56,750 WARN  [org.keycloak.events] (executor-thread-1) type=REFRESH_TOKEN_ERROR, realmId=cb2a109d-129f-4f2b-aa83-3702759b931f, clientId=security-admin-console, userId=null, ipAddress=127.0.0.1, error=invalid_token, grant_type=refresh_token, client_auth_method=client-secret
+
+http://127.0.0.1:8080/realms/quarkus/protocol/openid-connect/auth?response_type=code&scope=openid%20email&client_id=myclient&state=4LRjx3k9CFyrZw2B3GFieFAa-zg&redirect_uri=https%3A%2F%2F127.0.0.1%2Fredirect_uri%2F&nonce=GuRoFeo5KqwiNel8MfL444LT9skA40SKL6qy1zUhJZo
+
+http://127.0.0.1:8080/realms/quarkus/protocol/openid-connect/auth?response_type=code&scope=openid%20email&client_id=myclient&state=Og2rCjATHGiW7OAjGOh1IpwOpy8&redirect_uri=https%3A%2F%2F127.0.0.1%2Fredirect_uri%2F&nonce=xBRFwSbxQQU7SeWHxRPsoAa7L-AN6mkaPhjcMhcUNmM
+
+quarkus
+We are sorry...
+Invalid parameter: redirect_uri
+
+fallstechdave@mmrxps17:~/Downloads/keycloak/keycloak-18.0.2$ 
+fallstechdave@mmrxps17:~/Downloads/keycloak/keycloak-18.0.2$ bin/kc.sh start-dev
+2022-07-28 07:48:20,578 INFO  [org.keycloak.quarkus.runtime.hostname.DefaultHostnameProvider] (main) Hostname settings: FrontEnd: <request>, Strict HTTPS: false, Path: <request>, Strict BackChannel: false, Admin: <request>, Port: -1, Proxied: false
+2022-07-28 07:48:20,918 WARN  [org.infinispan.CONFIG] (keycloak-cache-init) ISPN000569: Unable to persist Infinispan internal caches as no global state enabled
+2022-07-28 07:48:20,921 WARN  [org.infinispan.PERSISTENCE] (keycloak-cache-init) ISPN000554: jboss-marshalling is deprecated and planned for removal
+2022-07-28 07:48:20,926 INFO  [org.infinispan.CONTAINER] (keycloak-cache-init) ISPN000556: Starting user marshaller 'org.infinispan.jboss.marshalling.core.JBossUserMarshaller'
+2022-07-28 07:48:21,010 INFO  [org.infinispan.CONTAINER] (keycloak-cache-init) ISPN000128: Infinispan version: Infinispan 'Triskaidekaphobia' 13.0.9.Final
+2022-07-28 07:48:21,189 INFO  [org.keycloak.connections.infinispan.DefaultInfinispanConnectionProviderFactory] (main) Node name: node_577082, Site name: null
+2022-07-28 07:48:21,379 INFO  [io.quarkus] (main) Keycloak 18.0.2 on JVM (powered by Quarkus 2.7.5.Final) started in 1.983s. Listening on: http://0.0.0.0:8080
+2022-07-28 07:48:21,379 INFO  [io.quarkus] (main) Profile dev activated. 
+2022-07-28 07:48:21,379 INFO  [io.quarkus] (main) Installed features: [agroal, cdi, hibernate-orm, jdbc-h2, jdbc-mariadb, jdbc-mssql, jdbc-mysql, jdbc-oracle, jdbc-postgresql, keycloak, narayana-jta, reactive-routes, resteasy, resteasy-jackson, smallrye-context-propagation, smallrye-health, smallrye-metrics, vault, vertx]
+2022-07-28 07:48:21,382 WARN  [org.keycloak.quarkus.runtime.KeycloakMain] (main) Running the server in development mode. DO NOT use this configuration in production.
+2022-07-28 07:56:41,857 WARN  [org.keycloak.events] (executor-thread-0) type=LOGIN_ERROR, realmId=quarkus, clientId=myclient, userId=null, ipAddress=127.0.0.1, error=invalid_redirect_uri, redirect_uri=https://127.0.0.1/redirect_uri/
+2022-07-28 08:00:16,943 WARN  [org.keycloak.events] (executor-thread-1) type=LOGIN_ERROR, realmId=quarkus, clientId=myclient, userId=null, ipAddress=127.0.0.1, error=invalid_redirect_uri, redirect_uri=https://127.0.0.1/redirect_uri/
+
+https://127.0.0.1/redirect_uri/
+
+Error:
+Invalid Request
+Description:
+You've hit an OpenID Connect Redirect URI with no parameters, this is an invalid request; you should not open this URL in your browser directly, or have the server administrator use a different OIDCRedirectURI setting.
+
+
+{
+	"Request Cookies": {
+		"_wire6_session": "Uf3TkO4iWidml89VcALROD3S/p3tQ6iHx2uZXmO23v7GiWNwkTU8SxkIXhzT5FanyrANVSeeAJO1ZVVP8glHHkaZfbjUx6X2PUYw9UW4tvUX89lOgIZe9X2s/H/zvR4Cujpfa2/zvCsCK5VfYaxwLRO8GyoLuP1zAvF2DRsfN0QAOsoStuPLCU5rpeVWnxQryVmbkvhUpjPUi9QLF3Vy2kigb/syQ4js2o/xwBdMhLjTvfkj3VBGCIWdAz440aM2U7UxQDIiCrulhxm8/AGy/85YAlKUBQ==--r+sdkKFyvh/gpInG--FIPbbfA9rWRRRqglyi0hHQ==",
+		"mod_auth_openidc_state_4LRjx3k9CFyrZw2B3GFieFAa-zg": "eyJhbGciOiAiZGlyIiwgImVuYyI6ICJBMjU2R0NNIn0..QqMpq8jdP4jcYZ9X.o-CJGTGVd0i-Vw27jH_lF5Z6Ij3VNE7TWhrt44sONFl_GBeySe7wO7tGNk5Gu-fTEArJXn_XR0JDZW8VRCy27_4vHfYSMcZ8y4IZnvHGeBEkeXYTN7tCnVsKFyaKEhCltv6S2fQqFQxYIjO3_FtQJlADzw0mv9CBT-3QR6wM1VtXpwhHsJTrx9GsmAvPTZCRDhh4AdlLfblemFqNDRt-NBFCjnRIzHYdau4dac6YD40P_8YsCif_qmDOZmaiUcrIPezGjXEBWZxsCd_qosCWoAj78dNPMDLIWpC9Pt2MXs92FmD6N_7pMv1e_5-kinaZPt2Yr-QLb0_uP1n5L2YNn5lBjsRMjPnIFh8z35fBY9kmsu7thyZXNZSHGbsQ7BgVeHRQ.eN2JlLnyTn90kkopUjeJlw",
+		"mod_auth_openidc_state_Og2rCjATHGiW7OAjGOh1IpwOpy8": "eyJhbGciOiAiZGlyIiwgImVuYyI6ICJBMjU2R0NNIn0..TKumWRUlqLy2M048.KacoOAox89_TLWkNDnZmThugHJXuOOAAY85IUBbfSKYEbO1wnwOPT6fn0IDYLzYAys0qm9CexJ3aexwRpKJp1QnUB2eP3haiGXZ1sl6nHdMOu_B8_D7CyAbq6NjL2PROMoH3sL7vVQMchHN4ZKVltgMn-0KyHwROueNCUptERWdDuCqWA4TaDMozfmebVik1kCmSIiogArRMQZJQU4qK2t8gzU4UxEMiE8SuwdxuKtyDAhLcRpatGJFc6NAoXQvfGXiJktCZ6nEn5sespFbEWzqvyheVkb19wqy7lOFFn1JkdKMzcftGKXYWpZgyzbYiBco4SUGd5hDDvd1lr8-j3V4I13gDwUHjcLAtp8e0s_BNBGrHhYEPId5e5Zvvlz7vxQ.Q7tF6TnpmQwyj3rlG47SZQ"
+	}
+}
+
+{
+	"Request Cookies": {
+		"_wire6_session": "Uf3TkO4iWidml89VcALROD3S/p3tQ6iHx2uZXmO23v7GiWNwkTU8SxkIXhzT5FanyrANVSeeAJO1ZVVP8glHHkaZfbjUx6X2PUYw9UW4tvUX89lOgIZe9X2s/H/zvR4Cujpfa2/zvCsCK5VfYaxwLRO8GyoLuP1zAvF2DRsfN0QAOsoStuPLCU5rpeVWnxQryVmbkvhUpjPUi9QLF3Vy2kigb/syQ4js2o/xwBdMhLjTvfkj3VBGCIWdAz440aM2U7UxQDIiCrulhxm8/AGy/85YAlKUBQ==--r+sdkKFyvh/gpInG--FIPbbfA9rWRRRqglyi0hHQ==",
+		"mod_auth_openidc_state_4LRjx3k9CFyrZw2B3GFieFAa-zg": "eyJhbGciOiAiZGlyIiwgImVuYyI6ICJBMjU2R0NNIn0..QqMpq8jdP4jcYZ9X.o-CJGTGVd0i-Vw27jH_lF5Z6Ij3VNE7TWhrt44sONFl_GBeySe7wO7tGNk5Gu-fTEArJXn_XR0JDZW8VRCy27_4vHfYSMcZ8y4IZnvHGeBEkeXYTN7tCnVsKFyaKEhCltv6S2fQqFQxYIjO3_FtQJlADzw0mv9CBT-3QR6wM1VtXpwhHsJTrx9GsmAvPTZCRDhh4AdlLfblemFqNDRt-NBFCjnRIzHYdau4dac6YD40P_8YsCif_qmDOZmaiUcrIPezGjXEBWZxsCd_qosCWoAj78dNPMDLIWpC9Pt2MXs92FmD6N_7pMv1e_5-kinaZPt2Yr-QLb0_uP1n5L2YNn5lBjsRMjPnIFh8z35fBY9kmsu7thyZXNZSHGbsQ7BgVeHRQ.eN2JlLnyTn90kkopUjeJlw",
+		"mod_auth_openidc_state_Og2rCjATHGiW7OAjGOh1IpwOpy8": "eyJhbGciOiAiZGlyIiwgImVuYyI6ICJBMjU2R0NNIn0..TKumWRUlqLy2M048.KacoOAox89_TLWkNDnZmThugHJXuOOAAY85IUBbfSKYEbO1wnwOPT6fn0IDYLzYAys0qm9CexJ3aexwRpKJp1QnUB2eP3haiGXZ1sl6nHdMOu_B8_D7CyAbq6NjL2PROMoH3sL7vVQMchHN4ZKVltgMn-0KyHwROueNCUptERWdDuCqWA4TaDMozfmebVik1kCmSIiogArRMQZJQU4qK2t8gzU4UxEMiE8SuwdxuKtyDAhLcRpatGJFc6NAoXQvfGXiJktCZ6nEn5sespFbEWzqvyheVkb19wqy7lOFFn1JkdKMzcftGKXYWpZgyzbYiBco4SUGd5hDDvd1lr8-j3V4I13gDwUHjcLAtp8e0s_BNBGrHhYEPId5e5Zvvlz7vxQ.Q7tF6TnpmQwyj3rlG47SZQ"
+	}
+}
+
+= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
+
+Disable Cache
+2 requests
+3.55 KB / 5.04 KB transferred
+Finish: 207 ms
+DOMContentLoaded: 98 ms
+load: 217 ms
+	
+GET
+	
+scheme
+	https
+host
+	127.0.0.1
+filename
+	/articles
+Address
+	127.0.0.1:443
+Status
+302
+Found
+VersionHTTP/1.1
+Transferred2.86 KB (1.78 KB size)
+Request PriorityHighest
+
+	
+Cache-Control
+	no-cache, no-store, max-age=0
+Connection
+	Keep-Alive
+Content-Length
+	543
+Content-Type
+	text/html; charset=iso-8859-1
+Date
+	Thu, 28 Jul 2022 12:11:17 GMT
+Keep-Alive
+	timeout=5, max=100
+Location
+	http://127.0.0.1:8080/realms/quarkus/protocol/openid-connect/auth?response_type=code&scope=openid%20email&client_id=myclient&state=l8NNtD-wby1tM1u5B7xWjWc7UW8&redirect_uri=https%3A%2F%2F127.0.0.1%2Fredirect_uri%2F&nonce=RIVFbuHsb7VxKFUbiztj8WOfTMhsOLtHUTdsKwFrIeM
+Server
+	Apache/2.4.41 (Ubuntu)
+Set-Cookie
+	mod_auth_openidc_state_l8NNtD-wby1tM1u5B7xWjWc7UW8=eyJhbGciOiAiZGlyIiwgImVuYyI6ICJBMjU2R0NNIn0..jTZ0I5BbIrr_E6RC.lPKpRQXRh1K8zjg4y6Ie9vJd3VRixFqBfeVr64wVMt6DzL2-8hfmLs9g22OIQoNlcFXs-csA83T-mxLBT2e4n_Y4KsE_ZBjyb9FXcR6u01EjqfYZqE03logTvWEISJooFqKvhsz9uo99fOFNhcRbeeM4FwACdNp9LFhvwy3v5nCo5k4tmIYgaZI7dEgw3IL3EzkuDQm9RuUMirDhg80-lJylg2JbHgjbuMuW1CPcdmu44LrmyJwFCu3xWauvAw8Gn6FPgjLj2XvmMHIROa4WQ57dbItONQd7z7326ZefPUm1R5ISBzivlpX6jU5dggLDITVVQjMTO98ml-T9-MPrF-9AA9lt15oXHQOulWipfQAFtouqv-aeDjUfWTXedyV4vA.zpGIf9AP7o5fAMvJ9G0vmw; Path=/; Secure; HttpOnly; SameSite=None
+	
+Accept
+	text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8
+Accept-Encoding
+	gzip, deflate, br
+Accept-Language
+	en-US,en;q=0.5
+Connection
+	keep-alive
+Host
+	127.0.0.1
+Sec-Fetch-Dest
+	document
+Sec-Fetch-Mode
+	navigate
+Sec-Fetch-Site
+	none
+Sec-Fetch-User
+	?1
+Upgrade-Insecure-Requests
+	1
+User-Agent
+	Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:102.0) Gecko/20100101 Firefox/102.0
+
+= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
+
+Disable Cache
+2 requests
+3.55 KB / 5.04 KB transferred
+Finish: 207 ms
+DOMContentLoaded: 98 ms
+load: 217 ms
+	
+GET
+	http://127.0.0.1:8080/realms/quarkus/protocol/openid-connect/auth?response_type=code&scope=openid email&client_id=myclient&state=l8NNtD-wby1tM1u5B7xWjWc7UW8&redirect_uri=https://127.0.0.1/redirect_uri/&nonce=RIVFbuHsb7VxKFUbiztj8WOfTMhsOLtHUTdsKwFrIeM
+Status
+400
+Bad Request
+VersionHTTP/1.1
+Transferred2.17 KB (1.78 KB size)
+Request PriorityHighest
+
+	
+Content-Language
+	en
+content-length
+	1819
+Content-Security-Policy
+	frame-src 'self'; frame-ancestors 'self'; object-src 'none';
+Content-Type
+	text/html;charset=utf-8
+Referrer-Policy
+	no-referrer
+Strict-Transport-Security
+	max-age=31536000; includeSubDomains
+X-Content-Type-Options
+	nosniff
+X-Frame-Options
+	SAMEORIGIN
+X-Robots-Tag
+	none
+X-XSS-Protection
+	1; mode=block
+	
+Accept
+	text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8
+Accept-Encoding
+	gzip, deflate, br
+Accept-Language
+	en-US,en;q=0.5
+Connection
+	keep-alive
+Cookie
+	mod_auth_openidc_state_l8NNtD-wby1tM1u5B7xWjWc7UW8=eyJhbGciOiAiZGlyIiwgImVuYyI6ICJBMjU2R0NNIn0..jTZ0I5BbIrr_E6RC.lPKpRQXRh1K8zjg4y6Ie9vJd3VRixFqBfeVr64wVMt6DzL2-8hfmLs9g22OIQoNlcFXs-csA83T-mxLBT2e4n_Y4KsE_ZBjyb9FXcR6u01EjqfYZqE03logTvWEISJooFqKvhsz9uo99fOFNhcRbeeM4FwACdNp9LFhvwy3v5nCo5k4tmIYgaZI7dEgw3IL3EzkuDQm9RuUMirDhg80-lJylg2JbHgjbuMuW1CPcdmu44LrmyJwFCu3xWauvAw8Gn6FPgjLj2XvmMHIROa4WQ57dbItONQd7z7326ZefPUm1R5ISBzivlpX6jU5dggLDITVVQjMTO98ml-T9-MPrF-9AA9lt15oXHQOulWipfQAFtouqv-aeDjUfWTXedyV4vA.zpGIf9AP7o5fAMvJ9G0vmw
+Host
+	127.0.0.1:8080
+Sec-Fetch-Dest
+	document
+Sec-Fetch-Mode
+	navigate
+Sec-Fetch-Site
+	none
+Sec-Fetch-User
+	?1
+Upgrade-Insecure-Requests
+	1
+User-Agent
+	Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:102.0) Gecko/20100101 Firefox/102.0
+
+= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
+
+quarkus
+We are sorry...
+Invalid parameter: redirect_uri
+
+
+https://stackoverflow.com/questions/45352880/keycloak-invalid-parameter-redirect-uri
+
+What worked for me was adding wildchar '*'. Although for production builds, I am going to be more specific with the value of this field. But for dev purposes you can do this.
+
+Valid Redirect URIs *
+
+= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
+
+127.0.0.1:443 127.0.0.1 - - [28/Jul/2022:08:39:09 -0400] "GET /articles HTTP/1.1" 500 1332 "-" "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:102.0) Gecko/20100101 Firefox/102.0"
+127.0.0.1:443 127.0.0.1 - - [28/Jul/2022:08:41:37 -0400] "GET /articles HTTP/1.1" 302 3838 "-" "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:102.0) Gecko/20100101 Firefox/102.0"
+127.0.0.1:443 127.0.0.1 - "" [28/Jul/2022:08:41:48 -0400] "GET /redirect_uri/?state=HvcmzdaaHe6-Ye5j98mkfkA-DdM&session_state=cb3e7887-0c70-44d4-943d-54036b1f644c&code=2b165bf2-33ec-4642-89d2-a2051c4a1b91.cb3e7887-0c70-44d4-943d-54036b1f644c.0f627b22-6c43-44e0-b148-eac2ee2a7af4 HTTP/1.1" 200 1234 "-" "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:102.0) Gecko/20100101 Firefox/102.0"
+127.0.0.1:443 127.0.0.1 - - [28/Jul/2022:08:44:20 -0400] "GET /articles HTTP/1.1" 302 3838 "-" "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:102.0) Gecko/20100101 Firefox/102.0"
+127.0.0.1:443 127.0.0.1 - "" [28/Jul/2022:08:44:31 -0400] "GET /redirect_uri/?state=yRc1fgYGQCnjdJcTfoSeFvWZOw4&session_state=e1588bd2-16bc-4148-91d9-0f5ed1bd2c02&code=d5b471e5-d74e-480b-b239-0af10ef9d9ad.e1588bd2-16bc-4148-91d9-0f5ed1bd2c02.0f627b22-6c43-44e0-b148-eac2ee2a7af4 HTTP/1.1" 200 1234 "-" "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:102.0) Gecko/20100101 Firefox/102.0"
+127.0.0.1:443 127.0.0.1 - - [28/Jul/2022:08:44:32 -0400] "GET /favicon.ico HTTP/1.1" 401 698 "https://127.0.0.1/redirect_uri/?state=yRc1fgYGQCnjdJcTfoSeFvWZOw4&session_state=e1588bd2-16bc-4148-91d9-0f5ed1bd2c02&code=d5b471e5-d74e-480b-b239-0af10ef9d9ad.e1588bd2-16bc-4148-91d9-0f5ed1bd2c02.0f627b22-6c43-44e0-b148-eac2ee2a7af4" "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:102.0) Gecko/20100101 Firefox/102.0"
+127.0.0.1:443 127.0.0.1 - - [28/Jul/2022:08:50:36 -0400] "GET /redirect_uri/?state=yRc1fgYGQCnjdJcTfoSeFvWZOw4&session_state=e1588bd2-16bc-4148-91d9-0f5ed1bd2c02&code=e69caf92-deb9-4f44-a69f-8baa33cf9b21.e1588bd2-16bc-4148-91d9-0f5ed1bd2c02.0f627b22-6c43-44e0-b148-eac2ee2a7af4 HTTP/1.1" 400 2668 "-" "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:102.0) Gecko/20100101 Firefox/102.0"
+127.0.0.1:443 127.0.0.1 - - [28/Jul/2022:08:50:47 -0400] "GET / HTTP/1.1" 302 2172 "-" "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:102.0) Gecko/20100101 Firefox/102.0"
+127.0.0.1:443 127.0.0.1 - "" [28/Jul/2022:08:50:47 -0400] "GET /redirect_uri/?state=hQK_dQgvCeHQr859czgHWuVlK10&session_state=e1588bd2-16bc-4148-91d9-0f5ed1bd2c02&code=3d211d28-609a-43a2-8577-d1325165cd8c.e1588bd2-16bc-4148-91d9-0f5ed1bd2c02.0f627b22-6c43-44e0-b148-eac2ee2a7af4 HTTP/1.1" 200 722 "-" "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:102.0) Gecko/20100101 Firefox/102.0"
+127.0.0.1:443 127.0.0.1 - - [28/Jul/2022:08:53:15 -0400] "GET /articles HTTP/1.1" 302 2187 "-" "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:102.0) Gecko/20100101 Firefox/102.0"
+127.0.0.1:443 127.0.0.1 - alice.cooper@gmail.com [28/Jul/2022:08:53:15 -0400] "GET /redirect_uri/?state=7ZEOSRJ9-5sMNFMeYDOlk4OuAvU&session_state=e1588bd2-16bc-4148-91d9-0f5ed1bd2c02&code=e86d0e83-04a4-4a4d-b2c0-2f07401889a4.e1588bd2-16bc-4148-91d9-0f5ed1bd2c02.0f627b22-6c43-44e0-b148-eac2ee2a7af4 HTTP/1.1" 302 819 "-" "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:102.0) Gecko/20100101 Firefox/102.0"
+127.0.0.1:443 127.0.0.1 - alice.cooper@gmail.com [28/Jul/2022:08:53:15 -0400] "GET /articles HTTP/1.1" 200 3341 "-" "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:102.0) Gecko/20100101 Firefox/102.0"
+127.0.0.1:443 127.0.0.1 - - [28/Jul/2022:08:54:05 -0400] "GET /articles HTTP/1.1" 302 2187 "-" "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:102.0) Gecko/20100101 Firefox/102.0"
+127.0.0.1:443 127.0.0.1 - alice.cooper@gmail.com [28/Jul/2022:08:54:17 -0400] "GET /redirect_uri/?state=LpbKOOn-SJtSlIWj3TTQy8V5T6U&session_state=8d4c3524-9552-40be-9aba-87eac341012c&code=fb023c12-edc1-4357-96a6-9b750f327eeb.8d4c3524-9552-40be-9aba-87eac341012c.0f627b22-6c43-44e0-b148-eac2ee2a7af4 HTTP/1.1" 302 1331 "-" "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:102.0) Gecko/20100101 Firefox/102.0"
+127.0.0.1:443 127.0.0.1 - alice.cooper@gmail.com [28/Jul/2022:08:54:17 -0400] "GET /articles HTTP/1.1" 200 3344 "-" "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:102.0) Gecko/20100101 Firefox/102.0"
+
+

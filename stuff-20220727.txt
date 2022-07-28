@@ -1,0 +1,112 @@
+Wed 27 Jul 2022 07:41:07 AM EDT
+
+fallstechdave@mmrxps17:~$ date
+Wed 27 Jul 2022 07:40:48 AM EDT
+fallstechdave@mmrxps17:~$ 
+fallstechdave@mmrxps17:~$ date > stuff-20220727.txt
+fallstechdave@mmrxps17:~$ code   stuff-20220727.txt
+fallstechdave@mmrxps17:~$ 
+
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+https://www.newyorker.com/magazine/2022/07/25/the-vw-bus-took-the-sixties-on-the-road-now-its-getting-a-twenty-first-century-makeover?utm_source=pocket-newtab
+
+https://www.microsoft.com/en-us/microsoft-teams/log-in
+https://www.microsoft.com/en-us/microsoft-teams/log-in
+david.holberton@fallstechnology.com
+david.holberton@fallstechnology.com
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+https://rubygems.org/gems/passenger
+https://rubygems.org/gems/passenger/versions
+https://rubygems.org/gems/passenger/versions/6.0.14
+
+gem 'passenger', '~> 6.0', '>= 6.0.14'
+gem install passenger
+
+https://www.phusionpassenger.com/
+
+https://www.phusionpassenger.com/features
+
+https://www.phusionpassenger.com/docs/tutorials/what_is_passenger/
+https://www.phusionpassenger.com/docs/tutorials/fundamental_concepts/ruby/
+https://www.phusionpassenger.com/docs/tutorials/quickstart/ruby/
+https://www.phusionpassenger.com/docs/tutorials/installation/ruby/
+https://www.phusionpassenger.com/docs/tutorials/the_passenger_command/ruby/
+https://www.phusionpassenger.com/docs/tutorials/process_management/ruby/
+https://www.phusionpassenger.com/docs/tutorials/reloading_code/ruby/
+https://www.phusionpassenger.com/docs/tutorials/the_help_option/ruby/
+https://www.phusionpassenger.com/docs/tutorials/deploy_to_production/
+
+Passenger Open Source
+Passenger Enterprise
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+I believe the passenger gem is not needed when integrating Passenger with either Apache or Nginx. If you add Passenger to your Gemfile, then "rails server" will launch Passenger instead of Puma. You can also choose to launch Passenger directly.
+gem "passenger", ">= 5.3.2", require: "phusion_passenger/rack_handler"
+
+https://ubuntu.com/tutorials/install-and-configure-nginx#1-overview
+https://ubuntu.com/tutorials/install-and-configure-nginx#2-installing-nginx
+https://ubuntu.com/tutorials/install-and-configure-nginx#3-creating-our-own-website
+https://ubuntu.com/tutorials/install-and-configure-nginx#4-setting-up-virtual-host
+https://ubuntu.com/tutorials/install-and-configure-nginx#5-activating-virtual-host-and-testing-results
+https://ubuntu.com/tutorials/install-and-configure-nginx#6-thats-all
+
+https://www.digitalocean.com/community/tutorials/how-to-install-nginx-on-ubuntu-20-04
+
+https://www.phusionpassenger.com/docs/tutorials/deploy_to_production/deploying_your_app/oss/ownserver/ruby/apache/
+cd /var/www/myapp
+sudo -u myappuser -H git clone git://github.com/username/myapp.git code
+/var/www/myapp/code
+
+The site https://www.phusionpassenger.com/ suggests deploying the rails app to /var/www/myapp/code - a valid choice, and probably right for production (?), but I know it is not required for development.
+cd /var/www/myapp
+sudo -u myappuser -H git clone git://github.com/username/myapp.git code
+
+/etc/apache2/sites-available/wire6.conf
+# Tell Apache and Passenger where your app's 'public' directory is
+DocumentRoot /home/fallstechdave/railsprojects/wire6/public
+PassengerRuby /home/fallstechdave/.rbenv/versions/3.1.2/bin/ruby
+
+Working remotely today on PEGA-220, will configure mod_auth_openidc to integrate with PingIdentity as the OIDC provider (previously successfully used Keycloak as provider).
+
+I do not know the merits of using Passenger (vs Puma) during development (bin/rails server).
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+[Yesterday 9:44 AM] david.holberton (Guest)
+I believe the passenger gem is not needed when integrating Passenger with either Apache or Nginx. If you add Passenger to your Gemfile, then "rails server" will launch Passenger instead of Puma. You can also choose to launch Passenger directly.
+gem "passenger", ">= 5.3.2", require: "phusion_passenger/rack_handler"
+
+[Yesterday 10:17 AM] david.holberton (Guest)
+I do not know the merits of using Passenger (vs Puma) during development (bin/rails server).
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+[Yesterday 10:02 AM] david.holberton (Guest)
+The site https://www.phusionpassenger.com/ suggests deploying the rails app to /var/www/myapp/code - a valid choice, and probably right for production (?), but I know it is not required for development.
+cd /var/www/myapp
+sudo -u myappuser -H git clone git://github.com/username/myapp.git code
+
+[Yesterday 10:05 AM] Kyle Mueller
+    There’s ways to trick this in the system, depends if the hardening allows it
+
+[Yesterday 10:11 AM] Kyle Mueller
+    Please capture this in a ticket and this can be something DevOps assists in setting up correctly
+
+[Yesterday 10:12 AM] david.holberton (Guest)
+/etc/apache2/sites-available/wire6.conf
+# Tell Apache and Passenger where your app's 'public' directory is
+DocumentRoot /home/fallstechdave/railsprojects/wire6/public
+PassengerRuby /home/fallstechdave/.rbenv/versions/3.1.2/bin/ruby
+
+[Yesterday 10:17 AM] david.holberton (Guest)
+I do not know the merits of using Passenger (vs Puma) during development (bin/rails server).
+
+[Yesterday 11:58 AM] Daniel Kolb
+    Our current instructions suggest /var/www/myapp (I wasn't familiar with the /code part), but yesterday I did try pointing elsewhere. It hasn't worked yet (though I think for different reasons).
+
+
