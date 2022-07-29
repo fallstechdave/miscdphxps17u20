@@ -1,0 +1,76 @@
+Fri 29 Jul 2022 06:58:05 AM EDT
+
+fallstechdave@mmrxps17:~$ date
+Fri 29 Jul 2022 06:57:46 AM EDT
+fallstechdave@mmrxps17:~$ 
+fallstechdave@mmrxps17:~$ date > stuff-20220729.txt
+fallstechdave@mmrxps17:~$ code   stuff-20220729.txt
+fallstechdave@mmrxps17:~$ 
+
+https://en.wikipedia.org/wiki/Promontory,_Utah
+
+https://www.elastic.co/downloads/
+https://www.elastic.co/downloads/elasticsearch
+https://www.elastic.co/guide/en/elasticsearch/reference/8.3/deb.html#deb-repo
+https://www.elastic.co/guide/en/elasticsearch/reference/current/docker.html
+
+docker pull docker.elastic.co/elasticsearch/elasticsearch:8.3.3
+
+https://www.elastic.co/downloads/kibana
+https://www.elastic.co/guide/en/kibana/8.3/deb.html#deb-repo
+https://www.elastic.co/downloads/past-releases#kibana
+https://www.elastic.co/guide/en/kibana/current/docker.html
+
+docker network create elastic
+docker pull docker.elastic.co/elasticsearch/elasticsearch:8.3.3
+docker run --name es-node01 --net elastic -p 9200:9200 -p 9300:9300 -t docker.elastic.co/elasticsearch/elasticsearch:8.3.3
+
+fallstechdave@mmrxps17:~/Downloads$ 
+fallstechdave@mmrxps17:~/Downloads$ ls -latr
+total 2599724
+-rw-rw-r--  1 fallstechdave fallstechdave  83667280 Jun 30 08:41  code_1.68.1-1655263094_amd64.deb
+-rw-rw-r--  1 fallstechdave fallstechdave 117711933 Jun 30 08:42  code-1.68.1-1655263151.el7.x86_64.rpm
+-rw-rw-r--  1 fallstechdave fallstechdave 116922965 Jun 30 08:42  code-stable-x64-1655263335.tar.gz
+-rw-rw-r--  1 fallstechdave fallstechdave     18012 Jun 30 09:24  mysql-apt-config_0.8.22-1_all.deb
+-rw-rw-r--  1 fallstechdave fallstechdave    178948 Jul  6 08:47  libapache2-mod-auth-openidc_2.4.11.2-1.bionic+1_amd64.deb
+-rw-rw-r--  1 fallstechdave fallstechdave    182556 Jul  6 08:48  libapache2-mod-auth-openidc_2.4.11.2-1.bullseye+1_amd64.deb
+-rw-rw-r--  1 fallstechdave fallstechdave    181724 Jul  6 08:48  libapache2-mod-auth-openidc_2.4.11.2-1.buster+1_amd64.deb
+-rw-rw-r--  1 fallstechdave fallstechdave    180340 Jul  6 08:48  libapache2-mod-auth-openidc_2.4.11.2-1.focal+1_amd64.deb
+-rw-rw-r--  1 fallstechdave fallstechdave    442992 Jul  6 08:48  mod_auth_openidc-2.4.11.2-1.el7.x86_64.rpm
+-rw-rw-r--  1 fallstechdave fallstechdave    201832 Jul  6 08:48  mod_auth_openidc-2.4.11.2-1.el8.x86_64.rpm
+-rw-rw-r--  1 fallstechdave fallstechdave    599513 Jul  6 08:48  mod_auth_openidc-2.4.11.2.tar.gz
+-rw-rw-r--  1 fallstechdave fallstechdave    311947 Jul  6 08:48  mod_auth_openidc-2.4.11.2.zip
+-rw-rw-r--  1 fallstechdave fallstechdave      2030 Jul 12 21:08  keystore.jks
+-rw-rw-r--  1 fallstechdave fallstechdave      3416 Jul 15 14:21  myclient.json
+-rw-rw-r--  1 fallstechdave fallstechdave      3416 Jul 15 14:22 'myclient(1).json'
+-rw-rw-r--  1 fallstechdave fallstechdave      3470 Jul 15 14:54 'myclient(2).json'
+-rw-rw-r--  1 fallstechdave fallstechdave   9968335 Jul 15 16:52  h2-2022-06-13.zip
+drwxrwxr-x  3 fallstechdave fallstechdave      4096 Jul 15 17:00  h2-2022-06-13
+-rw-rw-r--  1 fallstechdave fallstechdave 171675474 Jul 28 04:33  keycloak-19.0.0.zip
+-rw-rw-r--  1 fallstechdave fallstechdave        40 Jul 28 04:34  keycloak-19.0.0.zip.sha1
+-rw-rw-r--  1 fallstechdave fallstechdave 171578039 Jul 28 04:34  keycloak-19.0.0.tar.gz
+-rw-rw-r--  1 fallstechdave fallstechdave        40 Jul 28 04:34  keycloak-19.0.0.tar.gz.sha1
+-rw-rw-r--  1 fallstechdave fallstechdave 183063539 Jul 28 04:41  keycloak-18.0.2.zip
+-rw-rw-r--  1 fallstechdave fallstechdave        40 Jul 28 04:41  keycloak-18.0.2.zip.sha1
+-rw-rw-r--  1 fallstechdave fallstechdave 182976004 Jul 28 04:41  keycloak-18.0.2.tar.gz
+-rw-rw-r--  1 fallstechdave fallstechdave        40 Jul 28 04:41  keycloak-18.0.2.tar.gz.sha1
+drwxrwxr-x  3 fallstechdave fallstechdave      4096 Jul 28 04:49  keycloak
+-rw-rw-r--  1 fallstechdave fallstechdave     71787 Jul 28 05:09  quarkus-realm.json
+drwxr-xr-x 34 fallstechdave fallstechdave      4096 Jul 29 07:02  ..
+-rw-rw-r--  1 fallstechdave fallstechdave 539315339 Jul 29 07:07  elasticsearch-8.3.3-linux-x86_64.tar.gz
+-rw-rw-r--  1 fallstechdave fallstechdave       170 Jul 29 07:07  elasticsearch-8.3.3-linux-x86_64.tar.gz.sha512
+-rw-rw-r--  1 fallstechdave fallstechdave       488 Jul 29 07:07  elasticsearch-8.3.3-linux-x86_64.tar.gz.asc
+-rw-rw-r--  1 fallstechdave fallstechdave 539348360 Jul 29 07:11  elasticsearch-8.3.3-amd64.deb
+-rw-rw-r--  1 fallstechdave fallstechdave       160 Jul 29 07:11  elasticsearch-8.3.3-amd64.deb.sha512
+-rw-rw-r--  1 fallstechdave fallstechdave       488 Jul 29 07:12  elasticsearch-8.3.3-amd64.deb.asc
+-rw-rw-r--  1 fallstechdave fallstechdave 269863559 Jul 29 07:14  kibana-8.3.3-linux-x86_64.tar.gz
+-rw-rw-r--  1 fallstechdave fallstechdave       163 Jul 29 07:14  kibana-8.3.3-linux-x86_64.tar.gz.sha512
+-rw-rw-r--  1 fallstechdave fallstechdave       488 Jul 29 07:14  kibana-8.3.3-linux-x86_64.tar.gz.asc
+-rw-rw-r--  1 fallstechdave fallstechdave 273494176 Jul 29 07:14  kibana-8.3.3-amd64.deb
+-rw-rw-r--  1 fallstechdave fallstechdave       153 Jul 29 07:14  kibana-8.3.3-amd64.deb.sha512
+-rw-rw-r--  1 fallstechdave fallstechdave       488 Jul 29 07:14  kibana-8.3.3-amd64.deb.asc
+drwxr-xr-x  4 fallstechdave fallstechdave      4096 Jul 29 07:18  .
+fallstechdave@mmrxps17:~/Downloads$ 
+fallstechdave@mmrxps17:~/Downloads$ 
+
+
