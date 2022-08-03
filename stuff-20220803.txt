@@ -1,0 +1,520 @@
+Wed 03 Aug 2022 06:20:12 AM EDT
+
+fallstechdave@mmrxps17:~$ date
+Wed 03 Aug 2022 06:20:00 AM EDT
+fallstechdave@mmrxps17:~$ 
+fallstechdave@mmrxps17:~$ date > stuff-20220803.txt
+fallstechdave@mmrxps17:~$ code   stuff-20220803.txt
+fallstechdave@mmrxps17:~$ 
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+fallstechdave@mmrxps17:/var/www$ pwd -P
+/var/www
+fallstechdave@mmrxps17:/var/www$ 
+fallstechdave@mmrxps17:/var/www$ tree
+.
+├── html
+│   ├── index.html
+│   └── index.nginx-debian.html
+├── wire
+│   └── index.html
+├── wire5
+│   └── index.html
+└── wire6
+    └── index.html
+
+4 directories, 5 files
+fallstechdave@mmrxps17:/var/www$ 
+fallstechdave@mmrxps17:/var/www$ cat wire6/index.html 
+<html>
+    <head>
+        <title>Welcome to Your_domain!</title>
+    </head>
+    <body>
+        <h1>Success!  The your_domain virtual host is working!</h1>
+    </body>
+</html>
+
+fallstechdave@mmrxps17:/var/www$ 
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+fallstechdave@mmrxps17:/etc/apache2$ 
+fallstechdave@mmrxps17:/etc/apache2$ date
+Wed 03 Aug 2022 06:52:00 AM EDT
+fallstechdave@mmrxps17:/etc/apache2$ pwd -P
+/etc/apache2
+fallstechdave@mmrxps17:/etc/apache2$ ls -latr
+total 96
+-rw-r--r--   1 root root   320 Feb 23  2021 ports.conf
+-rw-r--r--   1 root root 31063 Feb 23  2021 magic
+-rw-r--r--   1 root root  1782 Feb 23  2021 envvars
+-rw-r--r--   1 root root  7224 Jun 14 09:30 apache2.conf
+drwxr-xr-x   8 root root  4096 Jul  1 07:10 .
+drwxr-xr-x   2 root root  4096 Jul  1 07:52 conf-available
+drwxr-xr-x   2 root root  4096 Jul  1 07:52 conf-enabled
+drwxr-xr-x   2 root root 12288 Jul 17 17:01 mods-available
+drwxr-xr-x   2 root root  4096 Jul 19 15:59 sites-available
+drwxr-xr-x   2 root root  4096 Jul 19 16:00 sites-enabled
+drwxr-xr-x   2 root root  4096 Jul 28 07:55 mods-enabled
+drwxr-xr-x 138 root root 12288 Aug  3 06:50 ..
+fallstechdave@mmrxps17:/etc/apache2$ 
+
+fallstechdave@mmrxps17:/etc/apache2$ cat apache2.conf | grep -v "^#" | sed -e '/^$/d'
+DefaultRuntimeDir ${APACHE_RUN_DIR}
+PidFile ${APACHE_PID_FILE}
+Timeout 300
+KeepAlive On
+MaxKeepAliveRequests 100
+KeepAliveTimeout 5
+User ${APACHE_RUN_USER}
+Group ${APACHE_RUN_GROUP}
+HostnameLookups Off
+ErrorLog ${APACHE_LOG_DIR}/error.log
+LogLevel warn
+IncludeOptional mods-enabled/*.load
+IncludeOptional mods-enabled/*.conf
+Include ports.conf
+<Directory />
+	Options FollowSymLinks
+	AllowOverride None
+	Require all denied
+</Directory>
+<Directory /usr/share>
+	AllowOverride None
+	Require all granted
+</Directory>
+<Directory /var/www/>
+	Options Indexes FollowSymLinks
+	AllowOverride None
+	Require all granted
+</Directory>
+AccessFileName .htaccess
+<FilesMatch "^\.ht">
+	Require all denied
+</FilesMatch>
+LogFormat "%v:%p %h %l %u %t \"%r\" %>s %O \"%{Referer}i\" \"%{User-Agent}i\"" vhost_combined
+LogFormat "%h %l %u %t \"%r\" %>s %O \"%{Referer}i\" \"%{User-Agent}i\"" combined
+LogFormat "%h %l %u %t \"%r\" %>s %O" common
+LogFormat "%{Referer}i -> %U" referer
+LogFormat "%{User-agent}i" agent
+IncludeOptional conf-enabled/*.conf
+IncludeOptional sites-enabled/*.conf
+fallstechdave@mmrxps17:/etc/apache2$ 
+
+fallstechdave@mmrxps17:/etc/apache2$ ls -latr conf-enabled/
+total 8
+drwxr-xr-x 8 root root 4096 Jul  1 07:10 ..
+lrwxrwxrwx 1 root root   30 Jul  1 07:10 charset.conf -> ../conf-available/charset.conf
+lrwxrwxrwx 1 root root   44 Jul  1 07:10 localized-error-pages.conf -> ../conf-available/localized-error-pages.conf
+lrwxrwxrwx 1 root root   46 Jul  1 07:10 other-vhosts-access-log.conf -> ../conf-available/other-vhosts-access-log.conf
+lrwxrwxrwx 1 root root   31 Jul  1 07:10 security.conf -> ../conf-available/security.conf
+lrwxrwxrwx 1 root root   36 Jul  1 07:10 serve-cgi-bin.conf -> ../conf-available/serve-cgi-bin.conf
+lrwxrwxrwx 1 root root   40 Jul  1 07:52 javascript-common.conf -> ../conf-available/javascript-common.conf
+drwxr-xr-x 2 root root 4096 Jul  1 07:52 .
+fallstechdave@mmrxps17:/etc/apache2$ 
+fallstechdave@mmrxps17:/etc/apache2$ ls -latr conf-available/
+total 32
+-rw-r--r-- 1 root root  127 Aug 11  2013 javascript-common.conf
+-rw-r--r-- 1 root root  455 Feb 23  2021 serve-cgi-bin.conf
+-rw-r--r-- 1 root root 2174 Feb 23  2021 security.conf
+-rw-r--r-- 1 root root  189 Feb 23  2021 other-vhosts-access-log.conf
+-rw-r--r-- 1 root root 3224 Feb 23  2021 localized-error-pages.conf
+-rw-r--r-- 1 root root  315 Feb 23  2021 charset.conf
+drwxr-xr-x 8 root root 4096 Jul  1 07:10 ..
+drwxr-xr-x 2 root root 4096 Jul  1 07:52 .
+fallstechdave@mmrxps17:/etc/apache2$ 
+
+fallstechdave@mmrxps17:/etc/apache2$ ls -latr sites-enabled/
+total 8
+drwxr-xr-x 8 root root 4096 Jul  1 07:10 ..
+lrwxrwxrwx 1 root root   29 Jul 19 16:00 wire6.conf -> ../sites-available/wire6.conf
+drwxr-xr-x 2 root root 4096 Jul 19 16:00 .
+fallstechdave@mmrxps17:/etc/apache2$ 
+fallstechdave@mmrxps17:/etc/apache2$ ls -latr sites-available/
+total 36
+-rw-r--r-- 1 root          root          6338 Feb 23  2021 default-ssl.conf
+-rw-r--r-- 1 root          root          1332 Feb 23  2021 000-default.conf
+drwxr-xr-x 8 root          root          4096 Jul  1 07:10 ..
+-rw-r--r-- 1 fallstechdave fallstechdave  239 Jul  1 07:37 wire.conf
+-rw-r--r-- 1 fallstechdave fallstechdave  545 Jul  1 10:45 wire5.conf.save
+-rw-r--r-- 1 fallstechdave fallstechdave 1812 Jul 17 08:48 wire5.conf
+drwxr-xr-x 2 root          root          4096 Jul 19 15:59 .
+-rw-r--r-- 1 fallstechdave fallstechdave 1139 Jul 20 08:11 wire6.conf
+fallstechdave@mmrxps17:/etc/apache2$ 
+
+fallstechdave@mmrxps17:/etc/apache2$ ls -latr mods-enabled/
+total 8
+drwxr-xr-x 8 root root 4096 Jul  1 07:10 ..
+lrwxrwxrwx 1 root root   32 Jul  1 07:10 mpm_event.load -> ../mods-available/mpm_event.load
+lrwxrwxrwx 1 root root   32 Jul  1 07:10 mpm_event.conf -> ../mods-available/mpm_event.conf
+lrwxrwxrwx 1 root root   33 Jul  1 07:10 authz_core.load -> ../mods-available/authz_core.load
+lrwxrwxrwx 1 root root   33 Jul  1 07:10 authz_host.load -> ../mods-available/authz_host.load
+lrwxrwxrwx 1 root root   33 Jul  1 07:10 authn_core.load -> ../mods-available/authn_core.load
+lrwxrwxrwx 1 root root   33 Jul  1 07:10 auth_basic.load -> ../mods-available/auth_basic.load
+lrwxrwxrwx 1 root root   36 Jul  1 07:10 access_compat.load -> ../mods-available/access_compat.load
+lrwxrwxrwx 1 root root   33 Jul  1 07:10 authn_file.load -> ../mods-available/authn_file.load
+lrwxrwxrwx 1 root root   33 Jul  1 07:10 authz_user.load -> ../mods-available/authz_user.load
+lrwxrwxrwx 1 root root   28 Jul  1 07:10 alias.load -> ../mods-available/alias.load
+lrwxrwxrwx 1 root root   28 Jul  1 07:10 alias.conf -> ../mods-available/alias.conf
+lrwxrwxrwx 1 root root   26 Jul  1 07:10 dir.load -> ../mods-available/dir.load
+lrwxrwxrwx 1 root root   26 Jul  1 07:10 dir.conf -> ../mods-available/dir.conf
+lrwxrwxrwx 1 root root   32 Jul  1 07:10 autoindex.conf -> ../mods-available/autoindex.conf
+lrwxrwxrwx 1 root root   32 Jul  1 07:10 autoindex.load -> ../mods-available/autoindex.load
+lrwxrwxrwx 1 root root   26 Jul  1 07:10 env.load -> ../mods-available/env.load
+lrwxrwxrwx 1 root root   27 Jul  1 07:10 mime.load -> ../mods-available/mime.load
+lrwxrwxrwx 1 root root   27 Jul  1 07:10 mime.conf -> ../mods-available/mime.conf
+lrwxrwxrwx 1 root root   34 Jul  1 07:10 negotiation.load -> ../mods-available/negotiation.load
+lrwxrwxrwx 1 root root   34 Jul  1 07:10 negotiation.conf -> ../mods-available/negotiation.conf
+lrwxrwxrwx 1 root root   31 Jul  1 07:10 setenvif.load -> ../mods-available/setenvif.load
+lrwxrwxrwx 1 root root   31 Jul  1 07:10 setenvif.conf -> ../mods-available/setenvif.conf
+lrwxrwxrwx 1 root root   29 Jul  1 07:10 filter.load -> ../mods-available/filter.load
+lrwxrwxrwx 1 root root   30 Jul  1 07:10 deflate.load -> ../mods-available/deflate.load
+lrwxrwxrwx 1 root root   30 Jul  1 07:10 deflate.conf -> ../mods-available/deflate.conf
+lrwxrwxrwx 1 root root   29 Jul  1 07:10 status.load -> ../mods-available/status.load
+lrwxrwxrwx 1 root root   29 Jul  1 07:10 status.conf -> ../mods-available/status.conf
+lrwxrwxrwx 1 root root   33 Jul  1 07:10 reqtimeout.load -> ../mods-available/reqtimeout.load
+lrwxrwxrwx 1 root root   33 Jul  1 07:10 reqtimeout.conf -> ../mods-available/reqtimeout.conf
+lrwxrwxrwx 1 root root   32 Jul  1 07:52 passenger.load -> ../mods-available/passenger.load
+lrwxrwxrwx 1 root root   32 Jul  1 07:52 passenger.conf -> ../mods-available/passenger.conf
+lrwxrwxrwx 1 root root   36 Jul 13 06:31 socache_shmcb.load -> ../mods-available/socache_shmcb.load
+lrwxrwxrwx 1 root root   26 Jul 13 06:31 ssl.load -> ../mods-available/ssl.load
+lrwxrwxrwx 1 root root   26 Jul 13 06:31 ssl.conf -> ../mods-available/ssl.conf
+lrwxrwxrwx 1 root root   35 Jul 28 07:55 auth_openidc.load -> ../mods-available/auth_openidc.load
+lrwxrwxrwx 1 root root   35 Jul 28 07:55 auth_openidc.conf -> ../mods-available/auth_openidc.conf
+drwxr-xr-x 2 root root 4096 Jul 28 07:55 .
+fallstechdave@mmrxps17:/etc/apache2$ 
+fallstechdave@mmrxps17:/etc/apache2$ ls -latr mods-available/
+total 668
+-rw-r--r-- 1 root          root             76 Dec 31  2014 auth_openidc.load.orig
+-rw-r--r-- 1 root          root             76 Dec 31  2014 auth_openidc.load
+-rw-r--r-- 1 root          root          60155 Dec 31  2014 auth_openidc.conf.orig
+-rw-r--r-- 1 root          root             66 Feb 23  2021 xml2enc.load
+-rw-r--r-- 1 root          root             74 Feb 23  2021 vhost_alias.load
+-rw-r--r-- 1 root          root             70 Feb 23  2021 usertrack.load
+-rw-r--r-- 1 root          root             66 Feb 23  2021 userdir.load
+-rw-r--r-- 1 root          root            324 Feb 23  2021 userdir.conf
+-rw-r--r-- 1 root          root             70 Feb 23  2021 unique_id.load
+-rw-r--r-- 1 root          root             64 Feb 23  2021 suexec.load
+-rw-r--r-- 1 root          root             72 Feb 23  2021 substitute.load
+-rw-r--r-- 1 root          root             64 Feb 23  2021 status.load
+-rw-r--r-- 1 root          root            749 Feb 23  2021 status.conf
+-rw-r--r-- 1 root          root             97 Feb 23  2021 ssl.load
+-rw-r--r-- 1 root          root           3110 Feb 23  2021 ssl.conf
+-rw-r--r-- 1 root          root             66 Feb 23  2021 speling.load
+-rw-r--r-- 1 root          root             78 Feb 23  2021 socache_shmcb.load
+-rw-r--r-- 1 root          root             84 Feb 23  2021 socache_memcache.load
+-rw-r--r-- 1 root          root             74 Feb 23  2021 socache_dbm.load
+-rw-r--r-- 1 root          root             74 Feb 23  2021 slotmem_shm.load
+-rw-r--r-- 1 root          root             78 Feb 23  2021 slotmem_plain.load
+-rw-r--r-- 1 root          root             68 Feb 23  2021 setenvif.load
+-rw-r--r-- 1 root          root           1280 Feb 23  2021 setenvif.conf
+-rw-r--r-- 1 root          root             66 Feb 23  2021 session.load
+-rw-r--r-- 1 root          root             93 Feb 23  2021 session_dbd.load
+-rw-r--r-- 1 root          root             99 Feb 23  2021 session_crypto.load
+-rw-r--r-- 1 root          root             99 Feb 23  2021 session_cookie.load
+-rw-r--r-- 1 root          root             58 Feb 23  2021 sed.load
+-rw-r--r-- 1 root          root             66 Feb 23  2021 rewrite.load
+-rw-r--r-- 1 root          root             66 Feb 23  2021 request.load
+-rw-r--r-- 1 root          root             72 Feb 23  2021 reqtimeout.load
+-rw-r--r-- 1 root          root           1190 Feb 23  2021 reqtimeout.conf
+-rw-r--r-- 1 root          root             68 Feb 23  2021 remoteip.load
+-rw-r--r-- 1 root          root             70 Feb 23  2021 reflector.load
+-rw-r--r-- 1 root          root             85 Feb 23  2021 ratelimit.load
+-rw-r--r-- 1 root          root             97 Feb 23  2021 proxy_wstunnel.load
+-rw-r--r-- 1 root          root             89 Feb 23  2021 proxy_scgi.load
+-rw-r--r-- 1 root          root             62 Feb 23  2021 proxy.load
+-rw-r--r-- 1 root          root             89 Feb 23  2021 proxy_http.load
+-rw-r--r-- 1 root          root             97 Feb 23  2021 proxy_http2.load
+-rw-r--r-- 1 root          root             97 Feb 23  2021 proxy_html.load
+-rw-r--r-- 1 root          root           2511 Feb 23  2021 proxy_html.conf
+-rw-r--r-- 1 root          root             93 Feb 23  2021 proxy_hcheck.load
+-rw-r--r-- 1 root          root             87 Feb 23  2021 proxy_ftp.load
+-rw-r--r-- 1 root          root            189 Feb 23  2021 proxy_ftp.conf
+-rw-r--r-- 1 root          root             93 Feb 23  2021 proxy_fdpass.load
+-rw-r--r-- 1 root          root             89 Feb 23  2021 proxy_fcgi.load
+-rw-r--r-- 1 root          root             95 Feb 23  2021 proxy_express.load
+-rw-r--r-- 1 root          root             95 Feb 23  2021 proxy_connect.load
+-rw-r--r-- 1 root          root            822 Feb 23  2021 proxy.conf
+-rw-r--r-- 1 root          root            115 Feb 23  2021 proxy_balancer.load
+-rw-r--r-- 1 root          root            347 Feb 23  2021 proxy_balancer.conf
+-rw-r--r-- 1 root          root             87 Feb 23  2021 proxy_ajp.load
+-rw-r--r-- 1 root          root             74 Feb 23  2021 negotiation.load
+-rw-r--r-- 1 root          root            724 Feb 23  2021 negotiation.conf
+-rw-r--r-- 1 root          root            107 Feb 23  2021 mpm_worker.load
+-rw-r--r-- 1 root          root            836 Feb 23  2021 mpm_worker.conf
+-rw-r--r-- 1 root          root            108 Feb 23  2021 mpm_prefork.load
+-rw-r--r-- 1 root          root            571 Feb 23  2021 mpm_prefork.conf
+-rw-r--r-- 1 root          root            106 Feb 23  2021 mpm_event.load
+-rw-r--r-- 1 root          root            668 Feb 23  2021 mpm_event.conf
+-rw-r--r-- 1 root          root             72 Feb 23  2021 mime_magic.load
+-rw-r--r-- 1 root          root            120 Feb 23  2021 mime_magic.conf
+-rw-r--r-- 1 root          root             60 Feb 23  2021 mime.load
+-rw-r--r-- 1 root          root             62 Feb 23  2021 macro.load
+-rw-r--r-- 1 root          root             58 Feb 23  2021 lua.load
+-rw-r--r-- 1 root          root             76 Feb 23  2021 log_forensic.load
+-rw-r--r-- 1 root          root             70 Feb 23  2021 log_debug.load
+-rw-r--r-- 1 root          root             60 Feb 23  2021 ldap.load
+-rw-r--r-- 1 root          root            121 Feb 23  2021 ldap.conf
+-rw-r--r-- 1 root          root            114 Feb 23  2021 lbmethod_heartbeat.load
+-rw-r--r-- 1 root          root            114 Feb 23  2021 lbmethod_bytraffic.load
+-rw-r--r-- 1 root          root            116 Feb 23  2021 lbmethod_byrequests.load
+-rw-r--r-- 1 root          root            116 Feb 23  2021 lbmethod_bybusyness.load
+-rw-r--r-- 1 root          root             60 Feb 23  2021 info.load
+-rw-r--r-- 1 root          root            402 Feb 23  2021 info.conf
+-rw-r--r-- 1 root          root             82 Feb 23  2021 include.load
+-rw-r--r-- 1 root          root             68 Feb 23  2021 imagemap.load
+-rw-r--r-- 1 root          root             62 Feb 23  2021 ident.load
+-rw-r--r-- 1 root          root             62 Feb 23  2021 http2.load
+-rw-r--r-- 1 root          root            182 Feb 23  2021 heartmonitor.load
+-rw-r--r-- 1 root          root            176 Feb 23  2021 heartbeat.load
+-rw-r--r-- 1 root          root             66 Feb 23  2021 headers.load
+-rw-r--r-- 1 root          root             64 Feb 23  2021 filter.load
+-rw-r--r-- 1 root          root             89 Feb 23  2021 file_cache.load
+-rw-r--r-- 1 root          root             72 Feb 23  2021 ext_filter.load
+-rw-r--r-- 1 root          root             66 Feb 23  2021 expires.load
+-rw-r--r-- 1 root          root             58 Feb 23  2021 env.load
+-rw-r--r-- 1 root          root             60 Feb 23  2021 echo.load
+-rw-r--r-- 1 root          root             64 Feb 23  2021 dump_io.load
+-rw-r--r-- 1 root          root             58 Feb 23  2021 dir.load
+-rw-r--r-- 1 root          root            157 Feb 23  2021 dir.conf
+-rw-r--r-- 1 root          root             64 Feb 23  2021 dialup.load
+-rw-r--r-- 1 root          root             84 Feb 23  2021 deflate.load
+-rw-r--r-- 1 root          root             58 Feb 23  2021 dbd.load
+-rw-r--r-- 1 root          root             68 Feb 23  2021 dav_lock.load
+-rw-r--r-- 1 root          root             79 Feb 23  2021 dav_fs.load
+-rw-r--r-- 1 root          root             83 Feb 23  2021 dav_fs.conf
+-rw-r--r-- 1 root          root             60 Feb 23  2021 data.load
+-rw-r--r-- 1 root          root             76 Feb 23  2021 charset_lite.load
+-rw-r--r-- 1 root          root             58 Feb 23  2021 cgi.load
+-rw-r--r-- 1 root          root             60 Feb 23  2021 cgid.load
+-rw-r--r-- 1 root          root            115 Feb 23  2021 cgid.conf
+-rw-r--r-- 1 root          root             70 Feb 23  2021 cern_meta.load
+-rw-r--r-- 1 root          root             95 Feb 23  2021 cache_socache.load
+-rw-r--r-- 1 root          root             62 Feb 23  2021 cache.load
+-rw-r--r-- 1 root          root             89 Feb 23  2021 cache_disk.load
+-rw-r--r-- 1 root          root            889 Feb 23  2021 cache_disk.conf
+-rw-r--r-- 1 root          root             64 Feb 23  2021 buffer.load
+-rw-r--r-- 1 root          root             70 Feb 23  2021 autoindex.load
+-rw-r--r-- 1 root          root           3374 Feb 23  2021 autoindex.conf
+-rw-r--r-- 1 root          root             94 Feb 23  2021 authz_user.load
+-rw-r--r-- 1 root          root             74 Feb 23  2021 authz_owner.load
+-rw-r--r-- 1 root          root             94 Feb 23  2021 authz_host.load
+-rw-r--r-- 1 root          root            104 Feb 23  2021 authz_groupfile.load
+-rw-r--r-- 1 root          root             92 Feb 23  2021 authz_dbm.load
+-rw-r--r-- 1 root          root             96 Feb 23  2021 authz_dbd.load
+-rw-r--r-- 1 root          root             72 Feb 23  2021 authz_core.load
+-rw-r--r-- 1 root          root             90 Feb 23  2021 authnz_ldap.load
+-rw-r--r-- 1 root          root             74 Feb 23  2021 authnz_fcgi.load
+-rw-r--r-- 1 root          root             78 Feb 23  2021 authn_socache.load
+-rw-r--r-- 1 root          root             72 Feb 23  2021 authn_file.load
+-rw-r--r-- 1 root          root             70 Feb 23  2021 authn_dbm.load
+-rw-r--r-- 1 root          root             85 Feb 23  2021 authn_dbd.load
+-rw-r--r-- 1 root          root             72 Feb 23  2021 authn_core.load
+-rw-r--r-- 1 root          root             72 Feb 23  2021 authn_anon.load
+-rw-r--r-- 1 root          root            100 Feb 23  2021 auth_form.load
+-rw-r--r-- 1 root          root             96 Feb 23  2021 auth_digest.load
+-rw-r--r-- 1 root          root             94 Feb 23  2021 auth_basic.load
+-rw-r--r-- 1 root          root             76 Feb 23  2021 asis.load
+-rw-r--r-- 1 root          root             76 Feb 23  2021 allowmethods.load
+-rw-r--r-- 1 root          root             62 Feb 23  2021 alias.load
+-rw-r--r-- 1 root          root            843 Feb 23  2021 alias.conf
+-rw-r--r-- 1 root          root             66 Feb 23  2021 actions.load
+-rw-r--r-- 1 root          root            377 Feb 23  2021 actions.conf
+-rw-r--r-- 1 root          root            100 Feb 23  2021 access_compat.load
+-rw-r--r-- 1 root          root             78 Apr 26 14:02 socache_redis.load
+-rw-r--r-- 1 root          root             91 Apr 26 14:02 proxy_uwsgi.load
+-rw-r--r-- 1 root          root           7676 Apr 26 14:02 mime.conf
+-rw-r--r-- 1 root          root             56 Apr 26 14:02 md.load
+-rw-r--r-- 1 root          root           1240 Apr 26 14:02 http2.conf
+-rw-r--r-- 1 root          root            395 Apr 26 14:02 deflate.conf
+-rw-r--r-- 1 root          root             58 Apr 26 14:02 dav.load
+-rw-r--r-- 1 root          root             64 Apr 26 14:02 brotli.load
+-rw-r--r-- 1 root          root            206 May  8 14:50 passenger.load
+-rw-r--r-- 1 root          root            305 May  8 15:01 passenger.conf
+drwxr-xr-x 8 root          root           4096 Jul  1 07:10 ..
+-rw-r--r-- 1 fallstechdave fallstechdave  1913 Jul 15 19:31 auth_openidc.conf-backup
+drwxr-xr-x 2 root          root          12288 Jul 17 17:01 .
+-rw-r--r-- 1 fallstechdave fallstechdave  1045 Jul 28 07:45 auth_openidc.conf
+fallstechdave@mmrxps17:/etc/apache2$ 
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+fallstechdave@mmrxps17:/etc/apache2$ cat sites-enabled/wire6.conf 
+<VirtualHost *:443>
+  ServerName 127.0.0.1
+  # Tell Apache and Passenger where your app's 'public' directory is
+  DocumentRoot /home/fallstechdave/railsprojects/wire6/public
+  PassengerRuby /home/fallstechdave/.rbenv/versions/3.1.2/bin/ruby
+  SSLEngine on
+  SSLCertificateFile /etc/ssl/certs/apache-selfsigned.crt
+  SSLCertificateKeyFile /etc/ssl/private/apache-selfsigned.key
+
+  # Relax Apache security settings
+  <Directory /home/fallstechdave/railsprojects/wire6/public>
+    Allow from all
+    Options -MultiViews
+    # Uncomment this if you're on Apache > 2.4:
+    Require all granted
+  </Directory>
+</VirtualHost>
+
+<VirtualHost *:80>
+  ServerName 127.0.0.1
+  # Redirect / https://127.0.0.1/
+
+  # # Tell Apache and Passenger where your app's 'public' directory is
+  DocumentRoot /home/fallstechdave/railsprojects/wire6/public
+  PassengerRuby /home/fallstechdave/.rbenv/versions/3.1.2/bin/ruby
+
+  # Relax Apache security settings
+  <Directory /home/fallstechdave/railsprojects/wire6/public>
+    Allow from all
+    Options -MultiViews
+    # Uncomment this if you're on Apache > 2.4:
+    Require all granted
+  </Directory>
+</VirtualHost>
+fallstechdave@mmrxps17:/etc/apache2$ 
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+fallstechdave@mmrxps17:/etc/apache2$ ls -latr mods-available/ | grep passenger
+-rw-r--r-- 1 root          root            206 May  8 14:50 passenger.load
+-rw-r--r-- 1 root          root            305 May  8 15:01 passenger.conf
+fallstechdave@mmrxps17:/etc/apache2$ 
+fallstechdave@mmrxps17:/etc/apache2$ ls -latr mods-available/ | grep openidc
+-rw-r--r-- 1 root          root             76 Dec 31  2014 auth_openidc.load.orig
+-rw-r--r-- 1 root          root             76 Dec 31  2014 auth_openidc.load
+-rw-r--r-- 1 root          root          60155 Dec 31  2014 auth_openidc.conf.orig
+-rw-r--r-- 1 fallstechdave fallstechdave  1913 Jul 15 19:31 auth_openidc.conf-backup
+-rw-r--r-- 1 fallstechdave fallstechdave  1045 Jul 28 07:45 auth_openidc.conf
+fallstechdave@mmrxps17:/etc/apache2$ 
+
+fallstechdave@mmrxps17:/etc/apache2$ ls -latr mods-enabled/ | grep passenger
+lrwxrwxrwx 1 root root   32 Jul  1 07:52 passenger.load -> ../mods-available/passenger.load
+lrwxrwxrwx 1 root root   32 Jul  1 07:52 passenger.conf -> ../mods-available/passenger.conf
+fallstechdave@mmrxps17:/etc/apache2$ 
+fallstechdave@mmrxps17:/etc/apache2$ ls -latr mods-enabled/ | grep openidc
+lrwxrwxrwx 1 root root   35 Jul 28 07:55 auth_openidc.load -> ../mods-available/auth_openidc.load
+lrwxrwxrwx 1 root root   35 Jul 28 07:55 auth_openidc.conf -> ../mods-available/auth_openidc.conf
+fallstechdave@mmrxps17:/etc/apache2$ 
+
+fallstechdave@mmrxps17:/etc/apache2$ cat mods-available/passenger.load
+### Begin automatically installed Phusion Passenger load snippet ###
+LoadModule passenger_module /usr/lib/apache2/modules/mod_passenger.so
+### End automatically installed Phusion Passenger load snippet ###
+fallstechdave@mmrxps17:/etc/apache2$ 
+fallstechdave@mmrxps17:/etc/apache2$ cat mods-available/auth_openidc.load
+LoadModule auth_openidc_module /usr/lib/apache2/modules/mod_auth_openidc.so
+fallstechdave@mmrxps17:/etc/apache2$ 
+
+fallstechdave@mmrxps17:/etc/apache2$ cat mods-enabled/passenger.conf
+### Begin automatically installed Phusion Passenger config snippet ###
+<IfModule mod_passenger.c>
+  PassengerRoot /usr/lib/ruby/vendor_ruby/phusion_passenger/locations.ini
+  PassengerDefaultRuby /usr/bin/passenger_free_ruby
+</IfModule>
+### End automatically installed Phusion Passenger config snippet ###
+fallstechdave@mmrxps17:/etc/apache2$ 
+
+fallstechdave@mmrxps17:/etc/apache2$ cat mods-enabled/auth_openidc.conf
+# OIDCProviderMetadataURL https://127.0.0.1:8080/auth/realms/myrealm/.well-known/openid-configuration
+# OIDCProviderMetadataURL http://127.0.0.1:8080/auth/realms/quarkus/.well-known/openid-configuration
+OIDCProviderMetadataURL http://127.0.0.1:8080/realms/quarkus/.well-known/openid-configuration
+
+# OIDCRedirectURI https://127.0.0.1/articles/redirect_uri/
+OIDCRedirectURI https://127.0.0.1/redirect_uri/
+
+OIDCCryptoPassphrase 0123456789
+# OIDCClientID <client_id>
+# OIDCClientName <client_name>
+# OIDCClientSecret <client_secret>
+# OIDCProviderTokenEndpointAuth [ client_secret_basic | client_secret_post | client_secret_jwt | private_key_jwt | none ]
+
+OIDCClientID myclient
+# OIDCClientSecret PtfnIgls1mJ18vd4M79PVmOuAdHDeqA7
+# OIDCClientSecret 5NDkdAuOwv2w91qQjKVfrwbVi1XnmCST
+OIDCClientSecret AVMvivcMJq57PmGQHvab5q5dKfg7IDgi
+
+OIDCProviderTokenEndpointAuth client_secret_basic
+# OIDCProviderTokenEndpointAuth none
+
+OIDCRemoteUserClaim email
+OIDCScope "openid email"
+
+<Location "/">
+  Require valid-user
+  AuthType openid-connect
+</Location>
+fallstechdave@mmrxps17:/etc/apache2$ 
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+fallstechdave@mmrxps17:~/railsprojects/wire6$ 
+fallstechdave@mmrxps17:~/railsprojects/wire6$ date
+Wed 03 Aug 2022 07:12:49 AM EDT
+fallstechdave@mmrxps17:~/railsprojects/wire6$ pwd -P
+/home/fallstechdave/railsprojects/wire6
+fallstechdave@mmrxps17:~/railsprojects/wire6$ ls -latr
+total 2000
+-rw-rw-r--  1 fallstechdave fallstechdave      6 Jul 19 15:03  .ruby-version
+-rw-rw-r--  1 fallstechdave fallstechdave    227 Jul 19 15:03  Rakefile
+-rw-rw-r--  1 fallstechdave fallstechdave    246 Jul 19 15:03  .gitattributes
+-rw-rw-r--  1 fallstechdave fallstechdave    160 Jul 19 15:03  config.ru
+drwxrwxr-x  6 fallstechdave fallstechdave   4096 Jul 19 15:03  ..
+-rw-rw-r--  1 fallstechdave fallstechdave   2370 Jul 19 15:03  Gemfile
+drwxrwxr-x  4 fallstechdave fallstechdave   4096 Jul 19 15:03  lib
+drwxrwxr-x 10 fallstechdave fallstechdave   4096 Jul 19 15:03  test
+drwxrwxr-x  2 fallstechdave fallstechdave   4096 Jul 19 15:03  storage
+-rw-rw-r--  1 fallstechdave fallstechdave   5709 Jul 19 15:03  Gemfile.lock
+drwxrwxr-x  3 fallstechdave fallstechdave   4096 Jul 19 15:03  vendor
+drwxrwxr-x 11 fallstechdave fallstechdave   4096 Jul 19 15:03  app
+-rw-rw-r--  1 fallstechdave fallstechdave     63 Jul 19 15:03  Procfile.dev
+-rw-rw-r--  1 fallstechdave fallstechdave    757 Jul 19 15:03  .gitignore
+drwxrwxr-x  5 fallstechdave fallstechdave   4096 Jul 19 15:03  config
+drwxr-xr-x  2 fallstechdave fallstechdave   4096 Jul 19 15:03  bin
+drwxrwxr-x  3 fallstechdave fallstechdave   4096 Jul 19 15:15  db
+drwxrwxr-x  6 fallstechdave fallstechdave   4096 Jul 19 15:17  tmp
+-rw-rw-r--  1 fallstechdave fallstechdave   4018 Jul 19 15:28  wire6-development-mysqldump-20220719.sql
+drwxrwxr-x  2 fallstechdave fallstechdave   4096 Jul 19 15:30  log
+drwxrwxr-x  3 fallstechdave fallstechdave   4096 Jul 19 15:33  public
+-rw-rw-r--  1 fallstechdave fallstechdave 458965 Jul 20 09:44 'Screenshot from 2022-07-20 09-44-39.png'
+-rw-rw-r--  1 fallstechdave fallstechdave 339167 Jul 20 09:45 'Screenshot from 2022-07-20 09-45-44.png'
+-rw-rw-r--  1 fallstechdave fallstechdave 294685 Jul 20 10:01 'Screenshot from 2022-07-20 10-01-59.png'
+-rw-rw-r--  1 fallstechdave fallstechdave 476564 Jul 20 10:09 'Screenshot from 2022-07-20 10-09-57.png'
+-rw-rw-r--  1 fallstechdave fallstechdave 361204 Jul 20 10:10 'Screenshot from 2022-07-20 10-10-07.png'
+drwxrwxr-x 14 fallstechdave fallstechdave   4096 Jul 21 08:33  .
+-rw-rw-r--  1 fallstechdave fallstechdave   5346 Jul 21 08:35  README.md
+drwxrwxr-x  8 fallstechdave fallstechdave   4096 Jul 21 08:36  .git
+fallstechdave@mmrxps17:~/railsprojects/wire6$ 
+fallstechdave@mmrxps17:~/railsprojects/wire6$ grep -i passenger Gemfile
+fallstechdave@mmrxps17:~/railsprojects/wire6$ 
+fallstechdave@mmrxps17:~/railsprojects/wire6$ grep -i passenger Gemfile.lock 
+fallstechdave@mmrxps17:~/railsprojects/wire6$ 
+fallstechdave@mmrxps17:~/railsprojects/wire6$ cat .ruby-version 
+3.1.2
+fallstechdave@mmrxps17:~/railsprojects/wire6$ grep " rails " Gemfile.lock
+    rails (7.0.3.1)
+  rails (~> 7.0.3, >= 7.0.3.1)
+fallstechdave@mmrxps17:~/railsprojects/wire6$ 
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+fallstechdave@mmrxps17:/etc/apache2$ sudo /usr/bin/passenger-config validate-install
+[sudo] password for fallstechdave: 
+What would you like to validate?
+Use <space> to select.
+If the menu doesn't display correctly, press '!'
+
+ ‣ ⬢  Passenger itself
+   ⬡  Apache
+
+-------------------------------------------------------------------------
+
+ * Checking whether this Passenger install is in PATH... ✓
+ * Checking whether there are no other Passenger installations... ✓
+
+Everything looks good. :-)
+fallstechdave@mmrxps17:/etc/apache2$ 
