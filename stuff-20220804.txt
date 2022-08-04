@@ -1,0 +1,51 @@
+Thu 04 Aug 2022 07:14:37 AM EDT
+
+fallstechdave@mmrxps17:~$ date
+Thu 04 Aug 2022 07:14:22 AM EDT
+fallstechdave@mmrxps17:~$ 
+fallstechdave@mmrxps17:~$ date > stuff-20220804.txt
+fallstechdave@mmrxps17:~$ code   stuff-20220804.txt 
+fallstechdave@mmrxps17:~$ 
+
+fallstechdave@mmrxps17:~$ curl -v -k http://localhost
+*   Trying 127.0.0.1:80...
+* TCP_NODELAY set
+* Connected to localhost (127.0.0.1) port 80 (#0)
+> GET / HTTP/1.1
+> Host: localhost
+> User-Agent: curl/7.68.0
+> Accept: */*
+> 
+* Mark bundle as not supporting multiuse
+< HTTP/1.1 500 Internal Server Error
+< Date: Thu, 04 Aug 2022 11:15:45 GMT
+< Server: Apache/2.4.41 (Ubuntu)
+< Content-Length: 606
+< Connection: close
+< Content-Type: text/html; charset=iso-8859-1
+< 
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
+
+fallstechdave@mmrxps17:~$ 
+fallstechdave@mmrxps17:~$ passenger -v
+Phusion Passenger(R) 6.0.14
+fallstechdave@mmrxps17:~$ apache2 -v
+Server version: Apache/2.4.41 (Ubuntu)
+Server built:   2022-06-14T13:30:55
+fallstechdave@mmrxps17:~$ 
+
+Interestingly, running a Rails web app via a more modern Apache (2.4.41) and more modern Passenger (6.0.14), the "Server" response header shows the Apache version but not the Passenger version.  I don't know if that updated behavior is due to Apache or Passenger.
+Server: Apache/2.4.41 (Ubuntu)
+from command line ... passenger -v ==> Phusion Passenger(R) 6.0.14
+from command line ... apache2 -v   ==> Apache/2.4.41 (Ubuntu)
+At work yesterday the "Server" response header I observed was
+Server: Apache/2.4.6 (CentOS) Phusion_Passenger/4.0.53
+
+[7:43 AM] david.holberton (Guest)
+Interestingly, running a Rails web app via a more modern Apache (2.4.41) and more modern Passenger (6.0.14), the "Server" response header shows the Apache version but not the Passenger version.  I don't know if that updated behavior is due to Apache or Passenger.
+Server: Apache/2.4.41 (Ubuntu)
+from command line ... passenger -v ==> Phusion Passenger(R) 6.0.14
+from command line ... apache2 -v   ==> Apache/2.4.41 (Ubuntu)
+At work yesterday the "Server" response header I observed was
+Server: Apache/2.4.6 (CentOS) Phusion_Passenger/4.0.53
+
