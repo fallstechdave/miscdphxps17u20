@@ -1,0 +1,624 @@
+Mon 08 Aug 2022 07:31:53 AM EDT
+
+fallstechdave@mmrxps17:~$ date
+Mon 08 Aug 2022 07:31:37 AM EDT
+fallstechdave@mmrxps17:~$ 
+fallstechdave@mmrxps17:~$ date > stuff-20220808.txt
+fallstechdave@mmrxps17:~$ code   stuff-20220808.txt
+fallstechdave@mmrxps17:~$ 
+
+
+fallstechdave@mmrxps17:~$ apache -v
+
+Command 'apache' not found, did you mean:
+
+  command 'apache2' from deb apache2-bin (2.4.41-4ubuntu3.12)
+
+Try: sudo apt install <deb name>
+
+fallstechdave@mmrxps17:~$ apache2 -v
+Server version: Apache/2.4.41 (Ubuntu)
+Server built:   2022-06-14T13:30:55
+fallstechdave@mmrxps17:~$ 
+fallstechdave@mmrxps17:~$ apachectl help
+Usage: /usr/sbin/apachectl start|stop|restart|graceful|graceful-stop|configtest|status|fullstatus|help
+       /usr/sbin/apachectl <apache2 args>
+       /usr/sbin/apachectl -h            (for help on <apache2 args>)
+fallstechdave@mmrxps17:~$ 
+fallstechdave@mmrxps17:~$ apachectl -h
+Usage: /usr/sbin/apache2 [-D name] [-d directory] [-f file]
+                         [-C "directive"] [-c "directive"]
+                         [-k start|restart|graceful|graceful-stop|stop]
+                         [-v] [-V] [-h] [-l] [-L] [-t] [-T] [-S] [-X]
+Options:
+  -D name            : define a name for use in <IfDefine name> directives
+  -d directory       : specify an alternate initial ServerRoot
+  -f file            : specify an alternate ServerConfigFile
+  -C "directive"     : process directive before reading config files
+  -c "directive"     : process directive after reading config files
+  -e level           : show startup errors of level (see LogLevel)
+  -E file            : log startup errors to file
+  -v                 : show version number
+  -V                 : show compile settings
+  -h                 : list available command line options (this page)
+  -l                 : list compiled in modules
+  -L                 : list available configuration directives
+  -t -D DUMP_VHOSTS  : show parsed vhost settings
+  -t -D DUMP_RUN_CFG : show parsed run settings
+  -S                 : a synonym for -t -D DUMP_VHOSTS -D DUMP_RUN_CFG
+  -t -D DUMP_MODULES : show all loaded modules 
+  -M                 : a synonym for -t -D DUMP_MODULES
+  -t -D DUMP_INCLUDES: show all included configuration files
+  -t                 : run syntax check for config files
+  -T                 : start without DocumentRoot(s) check
+  -X                 : debug mode (only one worker, do not detach)
+Action '-h' failed.
+The Apache error log may have more information.
+fallstechdave@mmrxps17:~$ 
+fallstechdave@mmrxps17:~$ apache2ctl help
+Usage: /usr/sbin/apache2ctl start|stop|restart|graceful|graceful-stop|configtest|status|fullstatus|help
+       /usr/sbin/apache2ctl <apache2 args>
+       /usr/sbin/apache2ctl -h            (for help on <apache2 args>)
+fallstechdave@mmrxps17:~$ 
+fallstechdave@mmrxps17:~$ apache2ctl -h
+Usage: /usr/sbin/apache2 [-D name] [-d directory] [-f file]
+                         [-C "directive"] [-c "directive"]
+                         [-k start|restart|graceful|graceful-stop|stop]
+                         [-v] [-V] [-h] [-l] [-L] [-t] [-T] [-S] [-X]
+Options:
+  -D name            : define a name for use in <IfDefine name> directives
+  -d directory       : specify an alternate initial ServerRoot
+  -f file            : specify an alternate ServerConfigFile
+  -C "directive"     : process directive before reading config files
+  -c "directive"     : process directive after reading config files
+  -e level           : show startup errors of level (see LogLevel)
+  -E file            : log startup errors to file
+  -v                 : show version number
+  -V                 : show compile settings
+  -h                 : list available command line options (this page)
+  -l                 : list compiled in modules
+  -L                 : list available configuration directives
+  -t -D DUMP_VHOSTS  : show parsed vhost settings
+  -t -D DUMP_RUN_CFG : show parsed run settings
+  -S                 : a synonym for -t -D DUMP_VHOSTS -D DUMP_RUN_CFG
+  -t -D DUMP_MODULES : show all loaded modules 
+  -M                 : a synonym for -t -D DUMP_MODULES
+  -t -D DUMP_INCLUDES: show all included configuration files
+  -t                 : run syntax check for config files
+  -T                 : start without DocumentRoot(s) check
+  -X                 : debug mode (only one worker, do not detach)
+Action '-h' failed.
+The Apache error log may have more information.
+fallstechdave@mmrxps17:~$ 
+fallstechdave@mmrxps17:~$ 
+fallstechdave@mmrxps17:~$ apachectl -t -D DUMP_MODULES 
+AH00558: apache2: Could not reliably determine the server's fully qualified domain name, using 127.0.1.1. Set the 'ServerName' directive globally to suppress this message
+Loaded Modules:
+ core_module (static)
+ so_module (static)
+ watchdog_module (static)
+ http_module (static)
+ log_config_module (static)
+ logio_module (static)
+ version_module (static)
+ unixd_module (static)
+ access_compat_module (shared)
+ alias_module (shared)
+ auth_basic_module (shared)
+ authn_core_module (shared)
+ authn_file_module (shared)
+ authz_core_module (shared)
+ authz_host_module (shared)
+ authz_user_module (shared)
+ autoindex_module (shared)
+ deflate_module (shared)
+ dir_module (shared)
+ env_module (shared)
+ filter_module (shared)
+ mime_module (shared)
+ mpm_event_module (shared)
+ negotiation_module (shared)
+ passenger_module (shared)
+ reqtimeout_module (shared)
+ setenvif_module (shared)
+ socache_shmcb_module (shared)
+ ssl_module (shared)
+ status_module (shared)
+fallstechdave@mmrxps17:~$ 
+fallstechdave@mmrxps17:~$ apachectl -t -D DUMP_INCLUDES
+Included configuration files:
+  (*) /etc/apache2/apache2.conf
+    (146) /etc/apache2/mods-enabled/access_compat.load
+    (146) /etc/apache2/mods-enabled/alias.load
+    (146) /etc/apache2/mods-enabled/auth_basic.load
+    (146) /etc/apache2/mods-enabled/authn_core.load
+    (146) /etc/apache2/mods-enabled/authn_file.load
+    (146) /etc/apache2/mods-enabled/authz_core.load
+    (146) /etc/apache2/mods-enabled/authz_host.load
+    (146) /etc/apache2/mods-enabled/authz_user.load
+    (146) /etc/apache2/mods-enabled/autoindex.load
+    (146) /etc/apache2/mods-enabled/deflate.load
+    (146) /etc/apache2/mods-enabled/dir.load
+    (146) /etc/apache2/mods-enabled/env.load
+    (146) /etc/apache2/mods-enabled/filter.load
+    (146) /etc/apache2/mods-enabled/mime.load
+    (146) /etc/apache2/mods-enabled/mpm_event.load
+    (146) /etc/apache2/mods-enabled/negotiation.load
+    (146) /etc/apache2/mods-enabled/passenger.load
+    (146) /etc/apache2/mods-enabled/reqtimeout.load
+    (146) /etc/apache2/mods-enabled/setenvif.load
+    (146) /etc/apache2/mods-enabled/socache_shmcb.load
+    (146) /etc/apache2/mods-enabled/ssl.load
+    (146) /etc/apache2/mods-enabled/status.load
+    (147) /etc/apache2/mods-enabled/alias.conf
+    (147) /etc/apache2/mods-enabled/autoindex.conf
+    (147) /etc/apache2/mods-enabled/deflate.conf
+    (147) /etc/apache2/mods-enabled/dir.conf
+    (147) /etc/apache2/mods-enabled/mime.conf
+    (147) /etc/apache2/mods-enabled/mpm_event.conf
+    (147) /etc/apache2/mods-enabled/negotiation.conf
+    (147) /etc/apache2/mods-enabled/passenger.conf
+    (147) /etc/apache2/mods-enabled/reqtimeout.conf
+    (147) /etc/apache2/mods-enabled/setenvif.conf
+    (147) /etc/apache2/mods-enabled/ssl.conf
+    (147) /etc/apache2/mods-enabled/status.conf
+    (150) /etc/apache2/ports.conf
+    (222) /etc/apache2/conf-enabled/charset.conf
+    (222) /etc/apache2/conf-enabled/javascript-common.conf
+    (222) /etc/apache2/conf-enabled/localized-error-pages.conf
+    (222) /etc/apache2/conf-enabled/other-vhosts-access-log.conf
+    (222) /etc/apache2/conf-enabled/security.conf
+    (222) /etc/apache2/conf-enabled/serve-cgi-bin.conf
+    (225) /etc/apache2/sites-enabled/wire6.conf
+AH00558: apache2: Could not reliably determine the server's fully qualified domain name, using 127.0.1.1. Set the 'ServerName' directive globally to suppress this message
+fallstechdave@mmrxps17:~$ 
+fallstechdave@mmrxps17:~$ apachectl status
+/usr/sbin/apachectl: 113: www-browser: not found
+'www-browser -dump http://localhost:80/server-status' failed.
+Maybe you need to install a package providing www-browser or you
+need to adjust the APACHE_LYNX variable in /etc/apache2/envvars
+fallstechdave@mmrxps17:~$ 
+fallstechdave@mmrxps17:~$ apachectl -t
+AH00558: apache2: Could not reliably determine the server's fully qualified domain name, using 127.0.1.1. Set the 'ServerName' directive globally to suppress this message
+Syntax OK
+fallstechdave@mmrxps17:~$ 
+fallstechdave@mmrxps17:~$ apachectl -t -D DUMP_VHOSTS 
+AH00558: apache2: Could not reliably determine the server's fully qualified domain name, using 127.0.1.1. Set the 'ServerName' directive globally to suppress this message
+VirtualHost configuration:
+*:443                  127.0.0.1 (/etc/apache2/sites-enabled/wire6.conf:1)
+*:80                   127.0.0.1 (/etc/apache2/sites-enabled/wire6.conf:19)
+fallstechdave@mmrxps17:~$ 
+fallstechdave@mmrxps17:~$ 
+fallstechdave@mmrxps17:~$ apachectl -t -D DUMP_RUN_CFG
+AH00558: apache2: Could not reliably determine the server's fully qualified domain name, using 127.0.1.1. Set the 'ServerName' directive globally to suppress this message
+ServerRoot: "/etc/apache2"
+Main DocumentRoot: "/var/www/html"
+Main ErrorLog: "/var/log/apache2/error.log"
+Mutex default: dir="/var/run/apache2/" mechanism=default 
+Mutex watchdog-callback: using_defaults
+Mutex ssl-stapling-refresh: using_defaults
+Mutex ssl-stapling: using_defaults
+Mutex ssl-cache: using_defaults
+PidFile: "/var/run/apache2/apache2.pid"
+Define: DUMP_RUN_CFG
+User: name="www-data" id=33 not_used
+Group: name="www-data" id=33 not_used
+fallstechdave@mmrxps17:~$ 
+fallstechdave@mmrxps17:~$ 
+fallstechdave@mmrxps17:~$ cd /etc/apache2/
+fallstechdave@mmrxps17:/etc/apache2$ du
+4	./conf-enabled
+664	./mods-available
+4	./sites-enabled
+28	./conf-available
+4	./mods-enabled
+32	./sites-available
+788	.
+fallstechdave@mmrxps17:/etc/apache2$ 
+fallstechdave@mmrxps17:/etc/apache2$ ls -latr mods-available | grep -i passenger
+-rw-r--r-- 1 root          root            206 May  8 14:50 passenger.load
+-rw-r--r-- 1 root          root            305 May  8 15:01 passenger.conf
+fallstechdave@mmrxps17:/etc/apache2$ 
+fallstechdave@mmrxps17:/etc/apache2$ cat mods-available/passenger.load 
+### Begin automatically installed Phusion Passenger load snippet ###
+LoadModule passenger_module /usr/lib/apache2/modules/mod_passenger.so
+### End automatically installed Phusion Passenger load snippet ###
+fallstechdave@mmrxps17:/etc/apache2$ 
+fallstechdave@mmrxps17:/etc/apache2$ cat mods-available/passenger.conf
+### Begin automatically installed Phusion Passenger config snippet ###
+<IfModule mod_passenger.c>
+  PassengerRoot /usr/lib/ruby/vendor_ruby/phusion_passenger/locations.ini
+  PassengerDefaultRuby /usr/bin/passenger_free_ruby
+</IfModule>
+### End automatically installed Phusion Passenger config snippet ###
+fallstechdave@mmrxps17:/etc/apache2$ 
+fallstechdave@mmrxps17:/etc/apache2$ ls -latr mods-available | grep -i openidc
+-rw-r--r-- 1 root          root             76 Dec 31  2014 auth_openidc.load.orig
+-rw-r--r-- 1 root          root             76 Dec 31  2014 auth_openidc.load
+-rw-r--r-- 1 root          root          60155 Dec 31  2014 auth_openidc.conf.orig
+-rw-r--r-- 1 fallstechdave fallstechdave  1913 Jul 15 19:31 auth_openidc.conf-backup
+-rw-r--r-- 1 fallstechdave fallstechdave  1045 Jul 28 07:45 auth_openidc.conf
+fallstechdave@mmrxps17:/etc/apache2$ 
+fallstechdave@mmrxps17:/etc/apache2$ cat mods-available/auth_openidc.load
+LoadModule auth_openidc_module /usr/lib/apache2/modules/mod_auth_openidc.so
+fallstechdave@mmrxps17:/etc/apache2$ 
+fallstechdave@mmrxps17:/etc/apache2$ cat mods-available/auth_openidc.conf
+# OIDCProviderMetadataURL https://127.0.0.1:8080/auth/realms/myrealm/.well-known/openid-configuration
+# OIDCProviderMetadataURL http://127.0.0.1:8080/auth/realms/quarkus/.well-known/openid-configuration
+OIDCProviderMetadataURL http://127.0.0.1:8080/realms/quarkus/.well-known/openid-configuration
+
+# OIDCRedirectURI https://127.0.0.1/articles/redirect_uri/
+OIDCRedirectURI https://127.0.0.1/redirect_uri/
+
+OIDCCryptoPassphrase 0123456789
+# OIDCClientID <client_id>
+# OIDCClientName <client_name>
+# OIDCClientSecret <client_secret>
+# OIDCProviderTokenEndpointAuth [ client_secret_basic | client_secret_post | client_secret_jwt | private_key_jwt | none ]
+
+OIDCClientID myclient
+# OIDCClientSecret PtfnIgls1mJ18vd4M79PVmOuAdHDeqA7
+# OIDCClientSecret 5NDkdAuOwv2w91qQjKVfrwbVi1XnmCST
+OIDCClientSecret AVMvivcMJq57PmGQHvab5q5dKfg7IDgi
+
+OIDCProviderTokenEndpointAuth client_secret_basic
+# OIDCProviderTokenEndpointAuth none
+
+OIDCRemoteUserClaim email
+OIDCScope "openid email"
+
+<Location "/">
+  Require valid-user
+  AuthType openid-connect
+</Location>
+fallstechdave@mmrxps17:/etc/apache2$ 
+fallstechdave@mmrxps17:/etc/apache2$ du
+4	./conf-enabled
+664	./mods-available
+4	./sites-enabled
+28	./conf-available
+4	./mods-enabled
+32	./sites-available
+788	.
+fallstechdave@mmrxps17:/etc/apache2$ ls -latr conf-available/
+total 32
+-rw-r--r-- 1 root root  127 Aug 11  2013 javascript-common.conf
+-rw-r--r-- 1 root root  455 Feb 23  2021 serve-cgi-bin.conf
+-rw-r--r-- 1 root root 2174 Feb 23  2021 security.conf
+-rw-r--r-- 1 root root  189 Feb 23  2021 other-vhosts-access-log.conf
+-rw-r--r-- 1 root root 3224 Feb 23  2021 localized-error-pages.conf
+-rw-r--r-- 1 root root  315 Feb 23  2021 charset.conf
+drwxr-xr-x 8 root root 4096 Jul  1 07:10 ..
+drwxr-xr-x 2 root root 4096 Jul  1 07:52 .
+fallstechdave@mmrxps17:/etc/apache2$ 
+fallstechdave@mmrxps17:/etc/apache2$ ls -latr sites-available/
+total 36
+-rw-r--r-- 1 root          root          6338 Feb 23  2021 default-ssl.conf
+-rw-r--r-- 1 root          root          1332 Feb 23  2021 000-default.conf
+drwxr-xr-x 8 root          root          4096 Jul  1 07:10 ..
+-rw-r--r-- 1 fallstechdave fallstechdave  239 Jul  1 07:37 wire.conf
+-rw-r--r-- 1 fallstechdave fallstechdave  545 Jul  1 10:45 wire5.conf.save
+-rw-r--r-- 1 fallstechdave fallstechdave 1812 Jul 17 08:48 wire5.conf
+drwxr-xr-x 2 root          root          4096 Jul 19 15:59 .
+-rw-r--r-- 1 fallstechdave fallstechdave 1139 Jul 20 08:11 wire6.conf
+fallstechdave@mmrxps17:/etc/apache2$ 
+fallstechdave@mmrxps17:/etc/apache2$ cat sites-available/wire6.conf
+<VirtualHost *:443>
+  ServerName 127.0.0.1
+  # Tell Apache and Passenger where your app's 'public' directory is
+  DocumentRoot /home/fallstechdave/railsprojects/wire6/public
+  PassengerRuby /home/fallstechdave/.rbenv/versions/3.1.2/bin/ruby
+  SSLEngine on
+  SSLCertificateFile /etc/ssl/certs/apache-selfsigned.crt
+  SSLCertificateKeyFile /etc/ssl/private/apache-selfsigned.key
+
+  # Relax Apache security settings
+  <Directory /home/fallstechdave/railsprojects/wire6/public>
+    Allow from all
+    Options -MultiViews
+    # Uncomment this if you're on Apache > 2.4:
+    Require all granted
+  </Directory>
+</VirtualHost>
+
+<VirtualHost *:80>
+  ServerName 127.0.0.1
+  # Redirect / https://127.0.0.1/
+
+  # # Tell Apache and Passenger where your app's 'public' directory is
+  DocumentRoot /home/fallstechdave/railsprojects/wire6/public
+  PassengerRuby /home/fallstechdave/.rbenv/versions/3.1.2/bin/ruby
+
+  # Relax Apache security settings
+  <Directory /home/fallstechdave/railsprojects/wire6/public>
+    Allow from all
+    Options -MultiViews
+    # Uncomment this if you're on Apache > 2.4:
+    Require all granted
+  </Directory>
+</VirtualHost>
+fallstechdave@mmrxps17:/etc/apache2$ 
+fallstechdave@mmrxps17:/etc/apache2$ ls -latr
+total 96
+-rw-r--r--   1 root root   320 Feb 23  2021 ports.conf
+-rw-r--r--   1 root root 31063 Feb 23  2021 magic
+-rw-r--r--   1 root root  1782 Feb 23  2021 envvars
+-rw-r--r--   1 root root  7224 Jun 14 09:30 apache2.conf
+drwxr-xr-x   8 root root  4096 Jul  1 07:10 .
+drwxr-xr-x   2 root root  4096 Jul  1 07:52 conf-available
+drwxr-xr-x   2 root root  4096 Jul  1 07:52 conf-enabled
+drwxr-xr-x   2 root root 12288 Jul 17 17:01 mods-available
+drwxr-xr-x   2 root root  4096 Jul 19 15:59 sites-available
+drwxr-xr-x   2 root root  4096 Jul 19 16:00 sites-enabled
+drwxr-xr-x   2 root root  4096 Aug  4 07:20 mods-enabled
+drwxr-xr-x 138 root root 12288 Aug  4 07:42 ..
+fallstechdave@mmrxps17:/etc/apache2$ 
+fallstechdave@mmrxps17:/etc/apache2$ cat ports.conf 
+# If you just change the port or add more ports here, you will likely also
+# have to change the VirtualHost statement in
+# /etc/apache2/sites-enabled/000-default.conf
+
+Listen 80
+
+<IfModule ssl_module>
+	Listen 443
+</IfModule>
+
+<IfModule mod_gnutls.c>
+	Listen 443
+</IfModule>
+
+# vim: syntax=apache ts=4 sw=4 sts=4 sr noet
+fallstechdave@mmrxps17:/etc/apache2$ 
+fallstechdave@mmrxps17:/etc/apache2$ cat envvars 
+# envvars - default environment variables for apache2ctl
+
+# this won't be correct after changing uid
+unset HOME
+
+# for supporting multiple apache2 instances
+if [ "${APACHE_CONFDIR##/etc/apache2-}" != "${APACHE_CONFDIR}" ] ; then
+	SUFFIX="-${APACHE_CONFDIR##/etc/apache2-}"
+else
+	SUFFIX=
+fi
+
+# Since there is no sane way to get the parsed apache2 config in scripts, some
+# settings are defined via environment variables and then used in apache2ctl,
+# /etc/init.d/apache2, /etc/logrotate.d/apache2, etc.
+export APACHE_RUN_USER=www-data
+export APACHE_RUN_GROUP=www-data
+# temporary state file location. This might be changed to /run in Wheezy+1
+export APACHE_PID_FILE=/var/run/apache2$SUFFIX/apache2.pid
+export APACHE_RUN_DIR=/var/run/apache2$SUFFIX
+export APACHE_LOCK_DIR=/var/lock/apache2$SUFFIX
+# Only /var/log/apache2 is handled by /etc/logrotate.d/apache2.
+export APACHE_LOG_DIR=/var/log/apache2$SUFFIX
+
+## The locale used by some modules like mod_dav
+export LANG=C
+## Uncomment the following line to use the system default locale instead:
+#. /etc/default/locale
+
+export LANG
+
+## The command to get the status for 'apache2ctl status'.
+## Some packages providing 'www-browser' need '--dump' instead of '-dump'.
+#export APACHE_LYNX='www-browser -dump'
+
+## If you need a higher file descriptor limit, uncomment and adjust the
+## following line (default is 8192):
+#APACHE_ULIMIT_MAX_FILES='ulimit -n 65536'
+
+## If you would like to pass arguments to the web server, add them below
+## to the APACHE_ARGUMENTS environment.
+#export APACHE_ARGUMENTS=''
+
+## Enable the debug mode for maintainer scripts.
+## This will produce a verbose output on package installations of web server modules and web application
+## installations which interact with Apache
+#export APACHE2_MAINTSCRIPT_DEBUG=1
+fallstechdave@mmrxps17:/etc/apache2$ 
+fallstechdave@mmrxps17:/etc/apache2$ systemctl status apache2
+● apache2.service - The Apache HTTP Server
+     Loaded: loaded (/lib/systemd/system/apache2.service; enabled; vendor preset: enabled)
+     Active: active (running) since Mon 2022-08-08 07:30:39 EDT; 20min ago
+       Docs: https://httpd.apache.org/docs/2.4/
+      Tasks: 108 (limit: 18735)
+     Memory: 31.7M
+     CGroup: /system.slice/apache2.service
+             ├─1111 /usr/sbin/apache2 -k start
+             ├─1113 Passenger watchdog
+             ├─1117 Passenger core
+             ├─1147 /usr/sbin/apache2 -k start
+             └─1148 /usr/sbin/apache2 -k start
+
+Aug 08 07:30:38 mmrxps17 systemd[1]: Starting The Apache HTTP Server...
+Aug 08 07:30:38 mmrxps17 apachectl[910]: AH00558: apache2: Could not reliably determine the server's fully qualified domain name, using 127.0.1.1. Set the 'ServerName' directive globally to suppress thi>
+Aug 08 07:30:39 mmrxps17 systemd[1]: Started The Apache HTTP Server.
+fallstechdave@mmrxps17:/etc/apache2$ 
+
+= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
+
+fallstechdave@mmrxps17:~$ mv stuff*.txt Documents/
+fallstechdave@mmrxps17:~$ cd Documents/
+fallstechdave@mmrxps17:~/Documents$ ls -latr | tail -5
+-rw-rw-r--  1 fallstechdave fallstechdave 28875 Aug  3 07:35 stuff-20220803.txt
+-rw-rw-r--  1 fallstechdave fallstechdave  2127 Aug  4 07:49 stuff-20220804.txt
+-rw-rw-r--  1 fallstechdave fallstechdave 19485 Aug  8 07:52 stuff-20220808.txt
+drwxr-xr-x 34 fallstechdave fallstechdave  4096 Aug  8 07:53 ..
+drwxr-xr-x  2 fallstechdave fallstechdave  4096 Aug  8 07:53 .
+fallstechdave@mmrxps17:~/Documents$ 
+fallstechdave@mmrxps17:~/Documents$ grep -i "fallstechdave@mmrxps17" stuff-20220808.txt
+fallstechdave@mmrxps17:~$ date
+fallstechdave@mmrxps17:~$ date > stuff-20220808.txt
+fallstechdave@mmrxps17:~$ code   stuff-20220808.txt
+fallstechdave@mmrxps17:~$ apache -v
+fallstechdave@mmrxps17:~$ apache2 -v
+fallstechdave@mmrxps17:~$ apachectl help
+fallstechdave@mmrxps17:~$ apachectl -h
+fallstechdave@mmrxps17:~$ apache2ctl help
+fallstechdave@mmrxps17:~$ apache2ctl -h
+fallstechdave@mmrxps17:~$ apachectl -t -D DUMP_MODULES 
+fallstechdave@mmrxps17:~$ apachectl -t -D DUMP_INCLUDES
+fallstechdave@mmrxps17:~$ apachectl status
+fallstechdave@mmrxps17:~$ apachectl -t
+fallstechdave@mmrxps17:~$ apachectl -t -D DUMP_VHOSTS 
+fallstechdave@mmrxps17:~$ apachectl -t -D DUMP_RUN_CFG
+fallstechdave@mmrxps17:~$ cd /etc/apache2/
+fallstechdave@mmrxps17:/etc/apache2$ du
+fallstechdave@mmrxps17:/etc/apache2$ ls -latr mods-available | grep -i passenger
+fallstechdave@mmrxps17:/etc/apache2$ cat mods-available/passenger.load 
+fallstechdave@mmrxps17:/etc/apache2$ cat mods-available/passenger.conf
+fallstechdave@mmrxps17:/etc/apache2$ ls -latr mods-available | grep -i openidc
+fallstechdave@mmrxps17:/etc/apache2$ cat mods-available/auth_openidc.load
+fallstechdave@mmrxps17:/etc/apache2$ cat mods-available/auth_openidc.conf
+fallstechdave@mmrxps17:/etc/apache2$ du
+fallstechdave@mmrxps17:/etc/apache2$ ls -latr conf-available/
+fallstechdave@mmrxps17:/etc/apache2$ ls -latr sites-available/
+fallstechdave@mmrxps17:/etc/apache2$ cat sites-available/wire6.conf
+fallstechdave@mmrxps17:/etc/apache2$ ls -latr
+fallstechdave@mmrxps17:/etc/apache2$ cat ports.conf 
+fallstechdave@mmrxps17:/etc/apache2$ cat envvars 
+fallstechdave@mmrxps17:/etc/apache2$ systemctl status apache2
+
+= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
+
+fallstechdave@mmrxps17:~$ whereis passenger
+passenger: /usr/bin/passenger /usr/lib/passenger /usr/share/passenger
+fallstechdave@mmrxps17:~$ 
+fallstechdave@mmrxps17:~$ ls -latr /usr/bin | grep passenger
+-rwxr-xr-x  1 root root       14464 May  8 15:01 passenger_system_ruby
+-rwxr-xr-x  1 root root       20816 May  8 15:01 passenger-install-nginx-module
+-rwxr-xr-x  1 root root       35190 May  8 15:01 passenger-install-apache2-module
+-rwxr-xr-x  1 root root       14456 May  8 15:01 passenger_free_ruby
+-rwxr-xr-x  1 root root        1657 May  8 15:01 passenger-config
+-rwxr-xr-x  1 root root        1803 May  8 15:01 passenger
+fallstechdave@mmrxps17:~$ 
+fallstechdave@mmrxps17:~$ ls -latr /usr/lib | grep passenger
+drwxr-xr-x   4 root root    4096 Jul  1 07:52 passenger
+fallstechdave@mmrxps17:~$ 
+fallstechdave@mmrxps17:~$ ls -latr /usr/share | grep passenger
+drwxr-xr-x    9 root root  4096 Jul  1 07:52 passenger
+fallstechdave@mmrxps17:~$ 
+
+= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
+
+fallstecfallstechdave@mmrxps17:~$ sudo passenger-memory-stats
+[sudo] password for fallstechdave: 
+Version: 6.0.14
+Date   : 2022-08-08 08:11:19 -0400
+
+--------- Apache processes ----------
+PID   PPID  VMSize     Private  Name
+-------------------------------------
+1111  1     80.3 MB    0.7 MB   /usr/sbin/apache2 -k start
+1147  1111  1961.0 MB  0.7 MB   /usr/sbin/apache2 -k start
+1148  1111  1961.0 MB  0.7 MB   /usr/sbin/apache2 -k start
+### Processes: 3
+### Total private dirty RSS: 2.09 MB
+
+
+-------- Nginx processes --------
+
+### Processes: 0
+### Total private dirty RSS: 0.00 MB
+
+
+----- Passenger processes -----
+PID   VMSize     Private  Name
+-------------------------------
+1113  296.1 MB   2.6 MB   Passenger watchdog
+1117  3377.2 MB  6.0 MB   Passenger core
+### Processes: 2
+### Total private dirty RSS: 8.56 MB
+fallstechdave@mmrxps17:~$ 
+
+
+fallstechdave@mmrxps17:~$ passenger-config validate-install
+What would you like to validate?
+Use <space> to select.
+If the menu doesn't display correctly, press '!'
+
+ ‣ ⬢  Passenger itself
+   ⬡  Apache
+
+-------------------------------------------------------------------------
+
+ * Checking whether this Passenger install is in PATH... ✓
+ * Checking whether there are no other Passenger installations... ✓
+
+Everything looks good. :-)
+fallstechdave@mmrxps17:~$ 
+fallstechdave@mmrxps17:~$ passenger-config validate-install
+What would you like to validate?
+Use <space> to select.
+If the menu doesn't display correctly, press '!'
+
+   ⬢  Passenger itself
+ ‣ ⬢  Apache
+
+-------------------------------------------------------------------------
+
+ * Checking whether this Passenger install is in PATH... ✓
+ * Checking whether there are no other Passenger installations... ✓
+ * Checking whether Apache is installed... ✗
+
+   Unable to validate your Apache installation: more software required
+   
+   This program requires the apxs2 tool in order to be able to validate your
+   Apache installation. This tool is currently not installed. You can solve this
+   as follows:
+   
+   Please install it with apt-get install apache2-dev
+   
+   When done, please re-run this program.
+
+
+Detected 1 error(s), 0 warning(s).
+fallstechdave@mmrxps17:~$ 
+
+fallstechdave@mmrxps17:~$ passenger-config about ruby-command
+passenger-config was invoked through the following Ruby interpreter:
+  Command: /home/fallstechdave/.rbenv/versions/3.1.2/bin/ruby
+  Version: ruby 3.1.2p20 (2022-04-12 revision 4491bb740a) [x86_64-linux]
+  To use in Apache: PassengerRuby /home/fallstechdave/.rbenv/versions/3.1.2/bin/ruby
+  To use in Nginx : passenger_ruby /home/fallstechdave/.rbenv/versions/3.1.2/bin/ruby
+  To use with Standalone: /home/fallstechdave/.rbenv/versions/3.1.2/bin/ruby /usr/bin/passenger start
+
+The following Ruby interpreter was found first in $PATH:
+  Command: /home/fallstechdave/.rbenv/versions/3.1.2/bin/ruby
+  Version: ruby 3.1.2p20 (2022-04-12 revision 4491bb740a) [x86_64-linux]
+  To use in Apache: PassengerRuby /home/fallstechdave/.rbenv/versions/3.1.2/bin/ruby
+  To use in Nginx : passenger_ruby /home/fallstechdave/.rbenv/versions/3.1.2/bin/ruby
+  To use with Standalone: /home/fallstechdave/.rbenv/versions/3.1.2/bin/ruby /usr/bin/passenger start
+
+## Notes for RVM users
+Do you want to know which command to use for a different Ruby interpreter? 'rvm use' that Ruby interpreter, then re-run 'passenger-config about ruby-command'.
+fallstechdave@mmrxps17:~$ 
+
+
+fallstechdave@mmrxps17:~$ cat /usr/lib/ruby/vendor_ruby/phusion_passenger/locations.ini
+[locations]
+packaging_method=deb
+bin_dir=/usr/bin
+support_binaries_dir=/usr/lib/passenger/support-binaries
+lib_dir=/usr/lib/passenger
+helper_scripts_dir=/usr/share/passenger/helper-scripts
+resources_dir=/usr/share/passenger
+include_dir=/usr/share/passenger/include
+doc_dir=/usr/share/doc/passenger
+ruby_libdir=/usr/lib/ruby/vendor_ruby
+node_libdir=/usr/share/passenger/node
+apache2_module_path=/usr/lib/apache2/modules/mod_passenger.so
+ruby_extension_source_dir=/usr/share/passenger/ruby_extension_source
+nginx_module_source_dir=/usr/share/passenger/ngx_http_passenger_module
+fallstechdave@mmrxps17:~$ 
+
+fallstechdave@mmrxps17:~$ ps -aux | grep apache
+root        1111  0.0  0.0  82232  9756 ?        Ss   07:30   0:00 /usr/sbin/apache2 -k start
+www-data    1147  0.0  0.0 2008060 5880 ?        Sl   07:30   0:00 /usr/sbin/apache2 -k start
+www-data    1148  0.0  0.0 2008060 5880 ?        Sl   07:30   0:00 /usr/sbin/apache2 -k start
+fallste+   10863  0.0  0.0   9040  2684 pts/0    S+   08:22   0:00 grep --color=auto apache
+fallstechdave@mmrxps17:~$ 
+fallstechdave@mmrxps17:~$ 
