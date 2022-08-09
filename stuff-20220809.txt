@@ -1,0 +1,359 @@
+
+fallstechdave@mmrxps17:~$ date
+Tue 09 Aug 2022 07:05:17 AM EDT
+fallstechdave@mmrxps17:~$ 
+fallstechdave@mmrxps17:~$ date > stuff-20220809.txt
+fallstechdave@mmrxps17:~$ code   stuff-20220809.txt
+fallstechdave@mmrxps17:~$ 
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+fallstechdave@mmrxps17:~/Downloads$ 
+fallstechdave@mmrxps17:~/Downloads$ ls -latr
+total 5870896
+-rw-rw-r--  1 fallstechdave fallstechdave   83667280 Jun 30 08:41  code_1.68.1-1655263094_amd64.deb
+-rw-rw-r--  1 fallstechdave fallstechdave  117711933 Jun 30 08:42  code-1.68.1-1655263151.el7.x86_64.rpm
+-rw-rw-r--  1 fallstechdave fallstechdave  116922965 Jun 30 08:42  code-stable-x64-1655263335.tar.gz
+-rw-rw-r--  1 fallstechdave fallstechdave      18012 Jun 30 09:24  mysql-apt-config_0.8.22-1_all.deb
+-rw-rw-r--  1 fallstechdave fallstechdave     178948 Jul  6 08:47  libapache2-mod-auth-openidc_2.4.11.2-1.bionic+1_amd64.deb
+-rw-rw-r--  1 fallstechdave fallstechdave     182556 Jul  6 08:48  libapache2-mod-auth-openidc_2.4.11.2-1.bullseye+1_amd64.deb
+-rw-rw-r--  1 fallstechdave fallstechdave     181724 Jul  6 08:48  libapache2-mod-auth-openidc_2.4.11.2-1.buster+1_amd64.deb
+-rw-rw-r--  1 fallstechdave fallstechdave     180340 Jul  6 08:48  libapache2-mod-auth-openidc_2.4.11.2-1.focal+1_amd64.deb
+-rw-rw-r--  1 fallstechdave fallstechdave     442992 Jul  6 08:48  mod_auth_openidc-2.4.11.2-1.el7.x86_64.rpm
+-rw-rw-r--  1 fallstechdave fallstechdave     201832 Jul  6 08:48  mod_auth_openidc-2.4.11.2-1.el8.x86_64.rpm
+-rw-rw-r--  1 fallstechdave fallstechdave     599513 Jul  6 08:48  mod_auth_openidc-2.4.11.2.tar.gz
+-rw-rw-r--  1 fallstechdave fallstechdave     311947 Jul  6 08:48  mod_auth_openidc-2.4.11.2.zip
+-rw-rw-r--  1 fallstechdave fallstechdave       2030 Jul 12 21:08  keystore.jks
+-rw-rw-r--  1 fallstechdave fallstechdave       3416 Jul 15 14:21  myclient.json
+-rw-rw-r--  1 fallstechdave fallstechdave       3416 Jul 15 14:22 'myclient(1).json'
+-rw-rw-r--  1 fallstechdave fallstechdave       3470 Jul 15 14:54 'myclient(2).json'
+-rw-rw-r--  1 fallstechdave fallstechdave    9968335 Jul 15 16:52  h2-2022-06-13.zip
+drwxrwxr-x  3 fallstechdave fallstechdave       4096 Jul 15 17:00  h2-2022-06-13
+-rw-rw-r--  1 fallstechdave fallstechdave  171675474 Jul 28 04:33  keycloak-19.0.0.zip
+-rw-rw-r--  1 fallstechdave fallstechdave         40 Jul 28 04:34  keycloak-19.0.0.zip.sha1
+-rw-rw-r--  1 fallstechdave fallstechdave  171578039 Jul 28 04:34  keycloak-19.0.0.tar.gz
+-rw-rw-r--  1 fallstechdave fallstechdave         40 Jul 28 04:34  keycloak-19.0.0.tar.gz.sha1
+-rw-rw-r--  1 fallstechdave fallstechdave  183063539 Jul 28 04:41  keycloak-18.0.2.zip
+-rw-rw-r--  1 fallstechdave fallstechdave         40 Jul 28 04:41  keycloak-18.0.2.zip.sha1
+-rw-rw-r--  1 fallstechdave fallstechdave  182976004 Jul 28 04:41  keycloak-18.0.2.tar.gz
+-rw-rw-r--  1 fallstechdave fallstechdave         40 Jul 28 04:41  keycloak-18.0.2.tar.gz.sha1
+drwxrwxr-x  3 fallstechdave fallstechdave       4096 Jul 28 04:49  keycloak
+-rw-rw-r--  1 fallstechdave fallstechdave      71787 Jul 28 05:09  quarkus-realm.json
+-rw-rw-r--  1 fallstechdave fallstechdave  539315339 Jul 29 07:07  elasticsearch-8.3.3-linux-x86_64.tar.gz
+-rw-rw-r--  1 fallstechdave fallstechdave        170 Jul 29 07:07  elasticsearch-8.3.3-linux-x86_64.tar.gz.sha512
+-rw-rw-r--  1 fallstechdave fallstechdave        488 Jul 29 07:07  elasticsearch-8.3.3-linux-x86_64.tar.gz.asc
+-rw-rw-r--  1 fallstechdave fallstechdave  539348360 Jul 29 07:11  elasticsearch-8.3.3-amd64.deb
+-rw-rw-r--  1 fallstechdave fallstechdave        160 Jul 29 07:11  elasticsearch-8.3.3-amd64.deb.sha512
+-rw-rw-r--  1 fallstechdave fallstechdave        488 Jul 29 07:12  elasticsearch-8.3.3-amd64.deb.asc
+-rw-rw-r--  1 fallstechdave fallstechdave  269863559 Jul 29 07:14  kibana-8.3.3-linux-x86_64.tar.gz
+-rw-rw-r--  1 fallstechdave fallstechdave        163 Jul 29 07:14  kibana-8.3.3-linux-x86_64.tar.gz.sha512
+-rw-rw-r--  1 fallstechdave fallstechdave        488 Jul 29 07:14  kibana-8.3.3-linux-x86_64.tar.gz.asc
+-rw-rw-r--  1 fallstechdave fallstechdave  273494176 Jul 29 07:14  kibana-8.3.3-amd64.deb
+-rw-rw-r--  1 fallstechdave fallstechdave        153 Jul 29 07:14  kibana-8.3.3-amd64.deb.sha512
+-rw-rw-r--  1 fallstechdave fallstechdave        488 Jul 29 07:14  kibana-8.3.3-amd64.deb.asc
+-rw-rw-r--  1 fallstechdave fallstechdave  609704422 Jul 31 09:12  RubyMine-2022.2.tar.gz
+-rw-rw-r--  1 fallstechdave fallstechdave         89 Jul 31 09:17  RubyMine-2022.2.tar.gz.sha256
+-rw-rw-r--  1 fallstechdave fallstechdave 1037063835 Jul 31 09:25  ideaIU-2022.2.tar.gz
+-rw-rw-r--  1 fallstechdave fallstechdave         87 Jul 31 09:26  ideaIU-2022.2.tar.gz.sha256
+-rw-rw-r--  1 fallstechdave fallstechdave  861972247 Jul 31 09:26  ideaIC-2022.2.tar.gz
+-rw-rw-r--  1 fallstechdave fallstechdave         87 Jul 31 09:26  ideaIC-2022.2.tar.gz.sha256
+-rw-rw-r--  1 fallstechdave fallstechdave  523155188 Jul 31 09:36  eclipse-jee-2022-06-R-linux-gtk-x86_64.tar.gz
+-rw-rw-r--  1 fallstechdave fallstechdave        176 Jul 31 09:38  eclipse-jee-2022-06-R-linux-gtk-x86_64.tar.gz.sha512
+-rw-rw-r--  1 fallstechdave fallstechdave  317733533 Jul 31 09:40  eclipse-java-2022-06-R-linux-gtk-x86_64.tar.gz
+-rw-rw-r--  1 fallstechdave fallstechdave        177 Jul 31 09:42  eclipse-java-2022-06-R-linux-gtk-x86_64.tar.gz.sha512
+drwxr-xr-x  4 fallstechdave fallstechdave       4096 Jul 31 09:42  .
+drwxr-xr-x 34 fallstechdave fallstechdave       4096 Aug  9 07:05  ..
+fallstechdave@mmrxps17:~/Downloads$ 
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+https://www.elastic.co/elasticsearch/
+
+https://www.elastic.co/guide/index.html
+
+https://www.elastic.co/guide/en/welcome-to-elastic/current/getting-started-general-purpose.html
+
+https://www.elastic.co/downloads/elasticsearch
+
+https://www.elastic.co/guide/en/elasticsearch/reference/current/index.html
+https://www.elastic.co/guide/en/elasticsearch/reference/current/install-elasticsearch.html
+https://www.elastic.co/guide/en/elasticsearch/reference/current/zip-windows.html
+https://www.elastic.co/guide/en/elasticsearch/reference/current/targz.html
+https://www.elastic.co/guide/en/elasticsearch/reference/current/deb.html
+
+wget -qO - https://artifacts.elastic.co/GPG-KEY-elasticsearch | sudo gpg --dearmor -o /usr/share/keyrings/elasticsearch-keyring.gpg
+
+wget https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-8.3.3-amd64.deb
+wget https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-8.3.3-amd64.deb.sha512
+shasum -a 512 -c elasticsearch-8.3.3-amd64.deb.sha512 
+sudo dpkg -i elasticsearch-8.3.3-amd64.deb
+
+sudo /bin/systemctl daemon-reload
+sudo /bin/systemctl enable elasticsearch.service
+sudo systemctl start elasticsearch.service
+sudo systemctl stop elasticsearch.service
+
+curl --cacert /etc/elasticsearch/certs/http_ca.crt -u elastic https://localhost:9200
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+https://www.elastic.co/kibana/
+
+https://www.elastic.co/downloads/kibana
+https://www.elastic.co/guide/en/kibana/8.3/settings.html
+
+https://www.elastic.co/guide/en/kibana/current/index.html
+https://www.elastic.co/guide/en/kibana/current/install.html
+https://www.elastic.co/guide/en/kibana/current/windows.html
+https://www.elastic.co/guide/en/kibana/current/targz.html
+https://www.elastic.co/guide/en/kibana/current/deb.html
+
+wget -qO - https://artifacts.elastic.co/GPG-KEY-elasticsearch | sudo gpg --dearmor -o /usr/share/keyrings/elasticsearch-keyring.gpg
+
+wget https://artifacts.elastic.co/downloads/kibana/kibana-8.3.3-amd64.deb
+shasum -a 512 kibana-8.3.3-amd64.deb 
+sudo dpkg -i kibana-8.3.3-amd64.deb
+
+sudo /bin/systemctl daemon-reload
+sudo /bin/systemctl enable kibana.service
+sudo systemctl start kibana.service
+sudo systemctl stop kibana.service
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+CD c:\kibana-8.3.3-windows-x86_64
+
+.\bin\elasticsearch.bat
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+Start Kibana
+Run bin/kibana (or bin\kibana.bat on Windows)
+
+Open Kibana
+Click on the link provided in the terminal, or point your browser at http://localhost:5601 and follow enrollment instructions to connect to Elasticsearch
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+fallstechdave@mmrxps17:~/Downloads$ shasum -a 512 -c elasticsearch-8.3.3-amd64.deb.sha512 
+elasticsearch-8.3.3-amd64.deb: OK
+fallstechdave@mmrxps17:~/Downloads$ 
+fallstechdave@mmrxps17:~/Downloads$ 7z l elasticsearch-8.3.3-linux-x86_64.tar.gz
+
+7-Zip [64] 16.02 : Copyright (c) 1999-2016 Igor Pavlov : 2016-05-21
+p7zip Version 16.02 (locale=en_US.UTF-8,Utf16=on,HugeFiles=on,64 bits,20 CPUs 12th Gen Intel(R) Core(TM) i7-12700H (906A3),ASM,AES-NI)
+
+Scanning the drive for archives:
+1 file, 539315339 bytes (515 MiB)
+
+Listing archive: elasticsearch-8.3.3-linux-x86_64.tar.gz
+
+--
+Path = elasticsearch-8.3.3-linux-x86_64.tar.gz
+Type = gzip
+Headers Size = 10
+
+   Date      Time    Attr         Size   Compressed  Name
+------------------- ----- ------------ ------------  ------------------------
+                    .....   1140346880    539315339  elasticsearch-8.3.3-linux-x86_64.tar
+------------------- ----- ------------ ------------  ------------------------
+                            1140346880    539315339  1 files
+fallstechdave@mmrxps17:~/Downloads$ 
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+fallstechdave@mmrxps17:~/Downloads$ shasum -a 512 -c kibana-8.3.3-linux-x86_64.tar.gz.sha512
+kibana-8.3.3-linux-x86_64.tar.gz: OK
+fallstechdave@mmrxps17:~/Downloads$ 
+fallstechdave@mmrxps17:~/Downloads$ 7z l kibana-8.3.3-linux-x86_64.tar.gz
+
+7-Zip [64] 16.02 : Copyright (c) 1999-2016 Igor Pavlov : 2016-05-21
+p7zip Version 16.02 (locale=en_US.UTF-8,Utf16=on,HugeFiles=on,64 bits,20 CPUs 12th Gen Intel(R) Core(TM) i7-12700H (906A3),ASM,AES-NI)
+
+Scanning the drive for archives:
+1 file, 269863559 bytes (258 MiB)
+
+Listing archive: kibana-8.3.3-linux-x86_64.tar.gz
+
+--
+Path = kibana-8.3.3-linux-x86_64.tar.gz
+Type = gzip
+Headers Size = 10
+
+   Date      Time    Attr         Size   Compressed  Name
+------------------- ----- ------------ ------------  ------------------------
+                    .....    695788544    269863559  kibana-8.3.3-linux-x86_64.tar
+------------------- ----- ------------ ------------  ------------------------
+                             695788544    269863559  1 files
+fallstechdave@mmrxps17:~/Downloads$ 
+
+= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
+
+fallstechdave@mmrxps17:~/Downloads$ 
+fallstechdave@mmrxps17:~/Downloads$ date
+Tue 09 Aug 2022 08:16:09 AM EDT
+fallstechdave@mmrxps17:~/Downloads$ 
+fallstechdave@mmrxps17:~/Downloads$ sudo dpkg -i elasticsearch-8.3.3-amd64.deb
+[sudo] password for fallstechdave: 
+Selecting previously unselected package elasticsearch.
+(Reading database ... 229817 files and directories currently installed.)
+Preparing to unpack elasticsearch-8.3.3-amd64.deb ...
+Creating elasticsearch group... OK
+Creating elasticsearch user... OK
+Unpacking elasticsearch (8.3.3) ...
+Setting up elasticsearch (8.3.3) ...
+--------------------------- Security autoconfiguration information ------------------------------
+
+Authentication and authorization are enabled.
+TLS for the transport and HTTP layers is enabled and configured.
+
+The generated password for the elastic built-in superuser is : ZV_rYv7B5mEolZ560t24
+
+If this node should join an existing cluster, you can reconfigure this with
+'/usr/share/elasticsearch/bin/elasticsearch-reconfigure-node --enrollment-token <token-here>'
+after creating an enrollment token on your existing cluster.
+
+You can complete the following actions at any time:
+
+Reset the password of the elastic built-in superuser with 
+'/usr/share/elasticsearch/bin/elasticsearch-reset-password -u elastic'.
+
+Generate an enrollment token for Kibana instances with 
+ '/usr/share/elasticsearch/bin/elasticsearch-create-enrollment-token -s kibana'.
+
+Generate an enrollment token for Elasticsearch nodes with 
+'/usr/share/elasticsearch/bin/elasticsearch-create-enrollment-token -s node'.
+
+-------------------------------------------------------------------------------------------------
+### NOT starting on installation, please execute the following statements to configure elasticsearch service to start automatically using systemd
+ sudo systemctl daemon-reload
+ sudo systemctl enable elasticsearch.service
+### You can start elasticsearch service by executing
+ sudo systemctl start elasticsearch.service
+fallstechdave@mmrxps17:~/Downloads$ 
+fallstechdave@mmrxps17:~/Downloads$ sudo /bin/systemctl daemon-reload
+fallstechdave@mmrxps17:~/Downloads$ sudo /bin/systemctl enable elasticsearch.service
+Created symlink /etc/systemd/system/multi-user.target.wants/elasticsearch.service → /lib/systemd/system/elasticsearch.service.
+fallstechdave@mmrxps17:~/Downloads$ 
+fallstechdave@mmrxps17:~/Downloads$ sudo systemctl start elasticsearch.service
+fallstechdave@mmrxps17:~/Downloads$ 
+fallstechdave@mmrxps17:~/Downloads$ curl --cacert /etc/elasticsearch/certs/http_ca.crt -u elastic https://localhost:9200
+Enter host password for user 'elastic':
+curl: (77) error setting certificate verify locations:
+  CAfile: /etc/elasticsearch/certs/http_ca.crt
+  CApath: /etc/ssl/certs
+fallstechdave@mmrxps17:~/Downloads$ 
+
+= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
+
+fallstechdave@mmrxps17:~/Downloads$ 
+fallstechdave@mmrxps17:~/Downloads$ sudo dpkg -i kibana-8.3.3-amd64.deb
+Selecting previously unselected package kibana.
+(Reading database ... 231031 files and directories currently installed.)
+Preparing to unpack kibana-8.3.3-amd64.deb ...
+Unpacking kibana (8.3.3) ...
+Setting up kibana (8.3.3) ...
+Creating kibana group... OK
+Creating kibana user... OK
+Created Kibana keystore in /etc/kibana/kibana.keystore
+fallstechdave@mmrxps17:~/Downloads$ 
+fallstechdave@mmrxps17:~/Downloads$ sudo /bin/systemctl daemon-reload
+fallstechdave@mmrxps17:~/Downloads$ sudo /bin/systemctl enable kibana.service
+Created symlink /etc/systemd/system/multi-user.target.wants/kibana.service → /lib/systemd/system/kibana.service.
+fallstechdave@mmrxps17:~/Downloads$ sudo systemctl start kibana.service
+fallstechdave@mmrxps17:~/Downloads$ 
+
+
+
+
+https://localhost:9200
+elastic / ZV_rYv7B5mEolZ560t24
+
+
+	
+name	"mmrxps17"
+cluster_name	"elasticsearch"
+cluster_uuid	"xb5X0-SvT9GOx6ki7DH1lA"
+version	
+number	"8.3.3"
+build_flavor	"default"
+build_type	"deb"
+build_hash	"801fed82df74dbe537f89b71b098ccaff88d2c56"
+build_date	"2022-07-23T19:30:09.227964828Z"
+build_snapshot	false
+lucene_version	"9.2.0"
+minimum_wire_compatibility_version	"7.17.0"
+minimum_index_compatibility_version	"7.0.0"
+tagline	"You Know, for Search"
+
+
+http://localhost:5601/
+
+bin/elasticsearch-create-enrollment-token --scope kibana
+
+root@mmrxps17:/# 
+root@mmrxps17:/# find . -name elasticsearch-create-enrollment-token -print
+find: ‘./run/user/1000/doc’: Permission denied
+find: ‘./run/user/1000/gvfs’: Permission denied
+./usr/share/elasticsearch/bin/elasticsearch-create-enrollment-token
+root@mmrxps17:/# 
+
+fallstechdave@mmrxps17:~$ 
+fallstechdave@mmrxps17:~$ /usr/share/elasticsearch/bin/elasticsearch-create-enrollment-token --scope kibana
+warning: ignoring JAVA_HOME=/home/fallstechdave/.sdkman/candidates/java/current; using bundled JDK
+/usr/share/elasticsearch/bin/elasticsearch-env: line 78: /etc/default/elasticsearch: Permission denied
+fallstechdave@mmrxps17:~$ 
+fallstechdave@mmrxps17:~$ sudo /usr/share/elasticsearch/bin/elasticsearch-create-enrollment-token --scope kibana
+eyJ2ZXIiOiI4LjMuMyIsImFkciI6WyIxOTIuMTY4Ljg2LjI0Nzo5MjAwIl0sImZnciI6IjNjN2VmZWExMDk3ZjQyYTdiOTA1MDkzMjVhOTRkZGRiMDkyNzQzODEwN2QzZWVjYjcxZWZjN2QxNDY5MWE0OWEiLCJrZXkiOiJWQldrZ29JQmRHWFdLUnMyUWxzWTpUVnBFT0QtZ1RtU0hVVGwzM291cnZnIn0=
+fallstechdave@mmrxps17:~$ 
+fallstechdave@mmrxps17:~$ 
+
+eyJ2ZXIiOiI4LjMuMyIsImFkciI6WyIxOTIuMTY4Ljg2LjI0Nzo5MjAwIl0sImZnciI6IjNjN2VmZWExMDk3ZjQyYTdiOTA1MDkzMjVhOTRkZGRiMDkyNzQzODEwN2QzZWVjYjcxZWZjN2QxNDY5MWE0OWEiLCJrZXkiOiJWQldrZ29JQmRHWFdLUnMyUWxzWTpUVnBFT0QtZ1RtU0hVVGwzM291cnZnIn0=
+
+Copy the code from the Kibana server or run bin/kibana-verification-code to retrieve it.
+
+fallstechdave@mmrxps17:~$ sudo su
+root@mmrxps17:/home/fallstechdave# 
+root@mmrxps17:/home/fallstechdave# whoami
+root
+root@mmrxps17:/home/fallstechdave# 
+root@mmrxps17:/home/fallstechdave# cd /
+root@mmrxps17:/# 
+root@mmrxps17:/# find . -name kibana-verification-code -print
+find: ‘./run/user/1000/doc’: Permission denied
+find: ‘./run/user/1000/gvfs’: Permission denied
+./usr/share/kibana/bin/kibana-verification-code
+root@mmrxps17:/# 
+
+fallstechdave@mmrxps17:~/Downloads$ 
+fallstechdave@mmrxps17:~/Downloads$ /usr/share/kibana/bin/kibana-verification-code
+Couldn't find verification code.
+
+If Kibana hasn't been configured yet, restart Kibana to generate a new code.
+
+Otherwise, you can safely ignore this message and start using Kibana.
+fallstechdave@mmrxps17:~/Downloads$ 
+fallstechdave@mmrxps17:~/Downloads$ sudo systemctl stop kibana
+fallstechdave@mmrxps17:~/Downloads$ sudo systemctl start kibana
+fallstechdave@mmrxps17:~/Downloads$ 
+fallstechdave@mmrxps17:~/Downloads$ /usr/share/kibana/bin/kibana-verification-code
+Couldn't find verification code.
+
+If Kibana hasn't been configured yet, restart Kibana to generate a new code.
+
+Otherwise, you can safely ignore this message and start using Kibana.
+fallstechdave@mmrxps17:~/Downloads$ 
+fallstechdave@mmrxps17:~/Downloads$ 
+
+fallstechdave@mmrxps17:/etc$ /usr/share/kibana/bin/kibana-verification-code
+Couldn't find verification code.
+
+If Kibana hasn't been configured yet, restart Kibana to generate a new code.
+
+Otherwise, you can safely ignore this message and start using Kibana.
+fallstechdave@mmrxps17:/etc$ 
+fallstechdave@mmrxps17:/etc$ sudo /usr/share/kibana/bin/kibana-verification-code
+Your verification code is:  572 002 
+fallstechdave@mmrxps17:/etc$ 
+
+
