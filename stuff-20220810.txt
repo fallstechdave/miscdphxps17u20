@@ -1,0 +1,311 @@
+Wed 10 Aug 2022 06:17:34 AM EDT
+
+fallstechdave@mmrxps17:~$ date
+Wed 10 Aug 2022 06:17:12 AM EDT
+fallstechdave@mmrxps17:~$ 
+fallstechdave@mmrxps17:~$ date > stuff-20220810.txt
+fallstechdave@mmrxps17:~$ code   stuff-20220810.txt
+fallstechdave@mmrxps17:~$ 
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+fallstechdave@mmrxps17:~/Downloads$ ls -latr
+total 6188696
+-rw-rw-r--  1 fallstechdave fallstechdave   83667280 Jun 30 08:41  code_1.68.1-1655263094_amd64.deb
+-rw-rw-r--  1 fallstechdave fallstechdave  117711933 Jun 30 08:42  code-1.68.1-1655263151.el7.x86_64.rpm
+-rw-rw-r--  1 fallstechdave fallstechdave  116922965 Jun 30 08:42  code-stable-x64-1655263335.tar.gz
+-rw-rw-r--  1 fallstechdave fallstechdave      18012 Jun 30 09:24  mysql-apt-config_0.8.22-1_all.deb
+-rw-rw-r--  1 fallstechdave fallstechdave     178948 Jul  6 08:47  libapache2-mod-auth-openidc_2.4.11.2-1.bionic+1_amd64.deb
+-rw-rw-r--  1 fallstechdave fallstechdave     182556 Jul  6 08:48  libapache2-mod-auth-openidc_2.4.11.2-1.bullseye+1_amd64.deb
+-rw-rw-r--  1 fallstechdave fallstechdave     181724 Jul  6 08:48  libapache2-mod-auth-openidc_2.4.11.2-1.buster+1_amd64.deb
+-rw-rw-r--  1 fallstechdave fallstechdave     180340 Jul  6 08:48  libapache2-mod-auth-openidc_2.4.11.2-1.focal+1_amd64.deb
+-rw-rw-r--  1 fallstechdave fallstechdave     442992 Jul  6 08:48  mod_auth_openidc-2.4.11.2-1.el7.x86_64.rpm
+-rw-rw-r--  1 fallstechdave fallstechdave     201832 Jul  6 08:48  mod_auth_openidc-2.4.11.2-1.el8.x86_64.rpm
+-rw-rw-r--  1 fallstechdave fallstechdave     599513 Jul  6 08:48  mod_auth_openidc-2.4.11.2.tar.gz
+-rw-rw-r--  1 fallstechdave fallstechdave     311947 Jul  6 08:48  mod_auth_openidc-2.4.11.2.zip
+-rw-rw-r--  1 fallstechdave fallstechdave       2030 Jul 12 21:08  keystore.jks
+-rw-rw-r--  1 fallstechdave fallstechdave       3416 Jul 15 14:21  myclient.json
+-rw-rw-r--  1 fallstechdave fallstechdave       3416 Jul 15 14:22 'myclient(1).json'
+-rw-rw-r--  1 fallstechdave fallstechdave       3470 Jul 15 14:54 'myclient(2).json'
+-rw-rw-r--  1 fallstechdave fallstechdave    9968335 Jul 15 16:52  h2-2022-06-13.zip
+drwxrwxr-x  3 fallstechdave fallstechdave       4096 Jul 15 17:00  h2-2022-06-13
+-rw-rw-r--  1 fallstechdave fallstechdave  171675474 Jul 28 04:33  keycloak-19.0.0.zip
+-rw-rw-r--  1 fallstechdave fallstechdave         40 Jul 28 04:34  keycloak-19.0.0.zip.sha1
+-rw-rw-r--  1 fallstechdave fallstechdave  171578039 Jul 28 04:34  keycloak-19.0.0.tar.gz
+-rw-rw-r--  1 fallstechdave fallstechdave         40 Jul 28 04:34  keycloak-19.0.0.tar.gz.sha1
+-rw-rw-r--  1 fallstechdave fallstechdave  183063539 Jul 28 04:41  keycloak-18.0.2.zip
+-rw-rw-r--  1 fallstechdave fallstechdave         40 Jul 28 04:41  keycloak-18.0.2.zip.sha1
+-rw-rw-r--  1 fallstechdave fallstechdave  182976004 Jul 28 04:41  keycloak-18.0.2.tar.gz
+-rw-rw-r--  1 fallstechdave fallstechdave         40 Jul 28 04:41  keycloak-18.0.2.tar.gz.sha1
+drwxrwxr-x  3 fallstechdave fallstechdave       4096 Jul 28 04:49  keycloak
+-rw-rw-r--  1 fallstechdave fallstechdave      71787 Jul 28 05:09  quarkus-realm.json
+-rw-rw-r--  1 fallstechdave fallstechdave  539315339 Jul 29 07:07  elasticsearch-8.3.3-linux-x86_64.tar.gz
+-rw-rw-r--  1 fallstechdave fallstechdave        170 Jul 29 07:07  elasticsearch-8.3.3-linux-x86_64.tar.gz.sha512
+-rw-rw-r--  1 fallstechdave fallstechdave        488 Jul 29 07:07  elasticsearch-8.3.3-linux-x86_64.tar.gz.asc
+-rw-rw-r--  1 fallstechdave fallstechdave  539348360 Jul 29 07:11  elasticsearch-8.3.3-amd64.deb
+-rw-rw-r--  1 fallstechdave fallstechdave        160 Jul 29 07:11  elasticsearch-8.3.3-amd64.deb.sha512
+-rw-rw-r--  1 fallstechdave fallstechdave        488 Jul 29 07:12  elasticsearch-8.3.3-amd64.deb.asc
+-rw-rw-r--  1 fallstechdave fallstechdave  269863559 Jul 29 07:14  kibana-8.3.3-linux-x86_64.tar.gz
+-rw-rw-r--  1 fallstechdave fallstechdave        163 Jul 29 07:14  kibana-8.3.3-linux-x86_64.tar.gz.sha512
+-rw-rw-r--  1 fallstechdave fallstechdave        488 Jul 29 07:14  kibana-8.3.3-linux-x86_64.tar.gz.asc
+-rw-rw-r--  1 fallstechdave fallstechdave  273494176 Jul 29 07:14  kibana-8.3.3-amd64.deb
+-rw-rw-r--  1 fallstechdave fallstechdave        153 Jul 29 07:14  kibana-8.3.3-amd64.deb.sha512
+-rw-rw-r--  1 fallstechdave fallstechdave        488 Jul 29 07:14  kibana-8.3.3-amd64.deb.asc
+-rw-rw-r--  1 fallstechdave fallstechdave  609704422 Jul 31 09:12  RubyMine-2022.2.tar.gz
+-rw-rw-r--  1 fallstechdave fallstechdave         89 Jul 31 09:17  RubyMine-2022.2.tar.gz.sha256
+-rw-rw-r--  1 fallstechdave fallstechdave 1037063835 Jul 31 09:25  ideaIU-2022.2.tar.gz
+-rw-rw-r--  1 fallstechdave fallstechdave         87 Jul 31 09:26  ideaIU-2022.2.tar.gz.sha256
+-rw-rw-r--  1 fallstechdave fallstechdave  861972247 Jul 31 09:26  ideaIC-2022.2.tar.gz
+-rw-rw-r--  1 fallstechdave fallstechdave         87 Jul 31 09:26  ideaIC-2022.2.tar.gz.sha256
+-rw-rw-r--  1 fallstechdave fallstechdave  523155188 Jul 31 09:36  eclipse-jee-2022-06-R-linux-gtk-x86_64.tar.gz
+-rw-rw-r--  1 fallstechdave fallstechdave        176 Jul 31 09:38  eclipse-jee-2022-06-R-linux-gtk-x86_64.tar.gz.sha512
+-rw-rw-r--  1 fallstechdave fallstechdave  317733533 Jul 31 09:40  eclipse-java-2022-06-R-linux-gtk-x86_64.tar.gz
+-rw-rw-r--  1 fallstechdave fallstechdave        177 Jul 31 09:42  eclipse-java-2022-06-R-linux-gtk-x86_64.tar.gz.sha512
+drwxr-xr-x 34 fallstechdave fallstechdave       4096 Aug 10 06:21  ..
+-rw-rw-r--  1 fallstechdave fallstechdave   85203624 Aug 10 09:25  code_1.70.0-1659589288_amd64.deb
+-rw-rw-r--  1 fallstechdave fallstechdave  120485133 Aug 10 09:25  code-1.70.0-1659589373.el7.x86_64.rpm
+-rw-rw-r--  1 fallstechdave fallstechdave  119734068 Aug 10 09:25  code-stable-x64-1659589559.tar.gz
+drwxr-xr-x  4 fallstechdave fallstechdave       4096 Aug 10 09:25  .
+fallstechdave@mmrxps17:~/Downloads$ 
+
+fallstechdave@mmrxps17:~/Downloads$ curl http://localhost:9200
+curl: (52) Empty reply from server
+fallstechdave@mmrxps17:~/Downloads$ curl -u elastic -p http://localhost:9200
+Enter host password for user 'elastic':
+curl: (52) Empty reply from server
+fallstechdave@mmrxps17:~/Downloads$ curl -XGET -u elastic -p "http://localhost:9200"
+Enter host password for user 'elastic':
+curl: (52) Empty reply from server
+fallstechdave@mmrxps17:~/Downloads$ sudo systemctl status elasticsearch
+[sudo] password for fallstechdave: 
+● elasticsearch.service - Elasticsearch
+     Loaded: loaded (/lib/systemd/system/elasticsearch.service; enabled; vendor preset: enabled)
+     Active: active (running) since Wed 2022-08-10 09:23:07 EDT; 6min ago
+       Docs: https://www.elastic.co
+   Main PID: 1543 (java)
+      Tasks: 123 (limit: 18735)
+     Memory: 8.6G
+     CGroup: /system.slice/elasticsearch.service
+             ├─1543 /usr/share/elasticsearch/jdk/bin/java -Xms4m -Xmx64m -XX:+UseSerialGC -Dcli.name=server -Dcli.script=/usr/share/elasticsearch/bin/elasticsearch -Dcli.libs=lib/tools/server-cli -Des.p>
+             ├─1944 /usr/share/elasticsearch/jdk/bin/java -Des.networkaddress.cache.ttl=60 -Des.networkaddress.cache.negative.ttl=10 -Djava.security.manager=allow -XX:+AlwaysPreTouch -Xss1m -Djava.awt.h>
+             └─1994 /usr/share/elasticsearch/modules/x-pack-ml/platform/linux-x86_64/bin/controller
+
+Aug 10 09:22:56 mmrxps17 systemd[1]: Starting Elasticsearch...
+Aug 10 09:23:07 mmrxps17 systemd[1]: Started Elasticsearch.
+fallstechdave@mmrxps17:~/Downloads$ 
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+https://localhost:9200/
+
+elastic / ZV_rYv7B5mEolZ560t24
+	
+name	"mmrxps17"
+cluster_name	"elasticsearch"
+cluster_uuid	"xb5X0-SvT9GOx6ki7DH1lA"
+version	
+number	"8.3.3"
+build_flavor	"default"
+build_type	"deb"
+build_hash	"801fed82df74dbe537f89b71b098ccaff88d2c56"
+build_date	"2022-07-23T19:30:09.227964828Z"
+build_snapshot	false
+lucene_version	"9.2.0"
+minimum_wire_compatibility_version	"7.17.0"
+minimum_index_compatibility_version	"7.0.0"
+tagline	"You Know, for Search"
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+curl -XGET -u elastic -p "https://localhost:9200"
+
+fallstechdave@mmrxps17:~/Downloads$ curl -XGET -u elastic -p "https://localhost:9200"
+Enter host password for user 'elastic':
+curl: (60) SSL certificate problem: self signed certificate in certificate chain
+More details here: https://curl.haxx.se/docs/sslcerts.html
+
+curl failed to verify the legitimacy of the server and therefore could not
+establish a secure connection to it. To learn more about this situation and
+how to fix it, please visit the web page mentioned above.
+fallstechdave@mmrxps17:~/Downloads$ 
+fallstechdave@mmrxps17:~/Downloads$ 
+
+curl -XGET -vv -k -u elastic -p "https://localhost:9200"
+
+fallstechdave@mmrxps17:~/Downloads$ curl -XGET -vv -k -u elastic -p "https://localhost:9200"
+Enter host password for user 'elastic':
+Note: Unnecessary use of -X or --request, GET is already inferred.
+*   Trying 127.0.0.1:9200...
+* TCP_NODELAY set
+* Connected to localhost (127.0.0.1) port 9200 (#0)
+* ALPN, offering h2
+* ALPN, offering http/1.1
+* successfully set certificate verify locations:
+*   CAfile: /etc/ssl/certs/ca-certificates.crt
+  CApath: /etc/ssl/certs
+* TLSv1.3 (OUT), TLS handshake, Client hello (1):
+* TLSv1.3 (IN), TLS handshake, Server hello (2):
+* TLSv1.3 (IN), TLS handshake, Encrypted Extensions (8):
+* TLSv1.3 (IN), TLS handshake, Certificate (11):
+* TLSv1.3 (IN), TLS handshake, CERT verify (15):
+* TLSv1.3 (IN), TLS handshake, Finished (20):
+* TLSv1.3 (OUT), TLS change cipher, Change cipher spec (1):
+* TLSv1.3 (OUT), TLS handshake, Finished (20):
+* SSL connection using TLSv1.3 / TLS_AES_256_GCM_SHA384
+* ALPN, server did not agree to a protocol
+* Server certificate:
+*  subject: CN=mmrxps17
+*  start date: Aug  9 12:17:23 2022 GMT
+*  expire date: Aug  8 12:17:23 2024 GMT
+*  issuer: CN=Elasticsearch security auto-configuration HTTP CA
+*  SSL certificate verify result: self signed certificate in certificate chain (19), continuing anyway.
+* Server auth using Basic with user 'elastic'
+> GET / HTTP/1.1
+> Host: localhost:9200
+> Authorization: Basic ZWxhc3RpYzpaVl9yWXY3QjVtRW9sWjU2MHQyNA==
+> User-Agent: curl/7.68.0
+> Accept: */*
+> 
+* TLSv1.3 (IN), TLS handshake, Newsession Ticket (4):
+* Mark bundle as not supporting multiuse
+< HTTP/1.1 200 OK
+< X-elastic-product: Elasticsearch
+< content-type: application/json
+< content-length: 531
+< 
+{
+  "name" : "mmrxps17",
+  "cluster_name" : "elasticsearch",
+  "cluster_uuid" : "xb5X0-SvT9GOx6ki7DH1lA",
+  "version" : {
+    "number" : "8.3.3",
+    "build_flavor" : "default",
+    "build_type" : "deb",
+    "build_hash" : "801fed82df74dbe537f89b71b098ccaff88d2c56",
+    "build_date" : "2022-07-23T19:30:09.227964828Z",
+    "build_snapshot" : false,
+    "lucene_version" : "9.2.0",
+    "minimum_wire_compatibility_version" : "7.17.0",
+    "minimum_index_compatibility_version" : "7.0.0"
+  },
+  "tagline" : "You Know, for Search"
+}
+* Connection #0 to host localhost left intact
+fallstechdave@mmrxps17:~/Downloads$ 
+
+= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
+
+curl -XGET -vv -k -u elastic -p "https://localhost:9200/_cat"
+ZV_rYv7B5mEolZ560t24
+
+fallstechdave@mmrxps17:~/Downloads$ curl -XGET -vv -k -u elastic -p "https://localhost:9200/_cat"
+Enter host password for user 'elastic':
+Note: Unnecessary use of -X or --request, GET is already inferred.
+*   Trying 127.0.0.1:9200...
+* TCP_NODELAY set
+* Connected to localhost (127.0.0.1) port 9200 (#0)
+* ALPN, offering h2
+* ALPN, offering http/1.1
+* successfully set certificate verify locations:
+*   CAfile: /etc/ssl/certs/ca-certificates.crt
+  CApath: /etc/ssl/certs
+* TLSv1.3 (OUT), TLS handshake, Client hello (1):
+* TLSv1.3 (IN), TLS handshake, Server hello (2):
+* TLSv1.3 (IN), TLS handshake, Encrypted Extensions (8):
+* TLSv1.3 (IN), TLS handshake, Certificate (11):
+* TLSv1.3 (IN), TLS handshake, CERT verify (15):
+* TLSv1.3 (IN), TLS handshake, Finished (20):
+* TLSv1.3 (OUT), TLS change cipher, Change cipher spec (1):
+* TLSv1.3 (OUT), TLS handshake, Finished (20):
+* SSL connection using TLSv1.3 / TLS_AES_256_GCM_SHA384
+* ALPN, server did not agree to a protocol
+* Server certificate:
+*  subject: CN=mmrxps17
+*  start date: Aug  9 12:17:23 2022 GMT
+*  expire date: Aug  8 12:17:23 2024 GMT
+*  issuer: CN=Elasticsearch security auto-configuration HTTP CA
+*  SSL certificate verify result: self signed certificate in certificate chain (19), continuing anyway.
+* Server auth using Basic with user 'elastic'
+> GET /_cat HTTP/1.1
+> Host: localhost:9200
+> Authorization: Basic ZWxhc3RpYzpaVl9yWXY3QjVtRW9sWjU2MHQyNA==
+> User-Agent: curl/7.68.0
+> Accept: */*
+> 
+* TLSv1.3 (IN), TLS handshake, Newsession Ticket (4):
+* Mark bundle as not supporting multiuse
+< HTTP/1.1 200 OK
+< X-elastic-product: Elasticsearch
+< content-type: text/plain; charset=UTF-8
+< content-length: 806
+< 
+=^.^=
+/_cat/allocation
+/_cat/shards
+/_cat/shards/{index}
+/_cat/master
+/_cat/nodes
+/_cat/tasks
+/_cat/indices
+/_cat/indices/{index}
+/_cat/segments
+/_cat/segments/{index}
+/_cat/count
+/_cat/count/{index}
+/_cat/recovery
+/_cat/recovery/{index}
+/_cat/health
+/_cat/pending_tasks
+/_cat/aliases
+/_cat/aliases/{alias}
+/_cat/thread_pool
+/_cat/thread_pool/{thread_pools}
+/_cat/plugins
+/_cat/fielddata
+/_cat/fielddata/{fields}
+/_cat/nodeattrs
+/_cat/repositories
+/_cat/snapshots/{repository}
+/_cat/templates
+/_cat/component_templates/_cat/transforms
+/_cat/transforms/{transform_id}
+/_cat/ml/anomaly_detectors
+/_cat/ml/anomaly_detectors/{job_id}
+/_cat/ml/trained_models
+/_cat/ml/trained_models/{model_id}
+/_cat/ml/datafeeds
+/_cat/ml/datafeeds/{datafeed_id}
+/_cat/ml/data_frame/analytics
+/_cat/ml/data_frame/analytics/{id}
+* Connection #0 to host localhost left intact
+fallstechdave@mmrxps17:~/Downloads$ 
+
+= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
+
+curl -XGET -k -u elastic -p "https://localhost:9200"
+curl -XGET -k -u elastic -p "https://localhost:9200/_cat"
+curl -XGET -k -u elastic -p "https://localhost:9200/_cat/indices"
+curl -XGET -k -u elastic -p "https://localhost:9200/_cat/indices?v"
+curl -XGET -k -u elastic -p "https://localhost:9200/_cat/count"
+curl -XGET -k -u elastic -p "https://localhost:9200/_cat/count?v"
+
+ZV_rYv7B5mEolZ560t24
+
+fallstechdave@mmrxps17:~/Downloads$ curl -XGET -k -u elastic -p "https://localhost:9200/_cat/indices"
+Enter host password for user 'elastic':
+fallstechdave@mmrxps17:~/Downloads$ 
+fallstechdave@mmrxps17:~/Downloads$ curl -XGET -k -u elastic -p "https://localhost:9200/_cat/indices?v"
+Enter host password for user 'elastic':
+health status index uuid pri rep docs.count docs.deleted store.size pri.store.size
+fallstechdave@mmrxps17:~/Downloads$ 
+fallstechdave@mmrxps17:~/Downloads$ curl -XGET -k -u elastic -p "https://localhost:9200/_cat/count"
+Enter host password for user 'elastic':
+1660139329 13:48:49 0
+fallstechdave@mmrxps17:~/Downloads$ 
+fallstechdave@mmrxps17:~/Downloads$ curl -XGET -k -u elastic -p "https://localhost:9200/_cat/count?v"
+Enter host password for user 'elastic':
+epoch      timestamp count
+1660139372 13:49:32  0
+fallstechdave@mmrxps17:~/Downloads$ 
+
+
