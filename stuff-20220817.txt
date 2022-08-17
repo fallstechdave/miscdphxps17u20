@@ -1,0 +1,903 @@
+Wed 17 Aug 2022 05:40:53 AM EDT
+
+fallstechdave@mmrxps17:~$ 
+fallstechdave@mmrxps17:~$ date
+Wed 17 Aug 2022 05:40:46 AM EDT
+fallstechdave@mmrxps17:~$ 
+fallstechdave@mmrxps17:~$ date > stuff-20220817.txt
+fallstechdave@mmrxps17:~$ code   stuff-20220817.txt
+fallstechdave@mmrxps17:~$ 
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+http://nginx.org/en/docs/http/configuring_https_servers.html
+Configuring HTTPS servers
+
+ To configure an HTTPS server, the ssl parameter must be enabled on listening sockets in the server block, and the locations of the server certificate and private key files should be specified:
+
+    server {
+        listen              443 ssl;
+        server_name         www.example.com;
+        ssl_certificate     www.example.com.crt;
+        ssl_certificate_key www.example.com.key;
+        ssl_protocols       TLSv1 TLSv1.1 TLSv1.2;
+        ssl_ciphers         HIGH:!aNULL:!MD5;
+        ...
+    }
+
+ It is possible to configure a single server that handles both HTTP and HTTPS requests:
+
+    server {
+        listen              80;
+        listen              443 ssl;
+        server_name         www.example.com;
+        ssl_certificate     www.example.com.crt;
+        ssl_certificate_key www.example.com.key;
+        ...
+    }
+
+ The oldest and most robust method to resolve the issue is to assign a separate IP address for every HTTPS server:
+
+    server {
+        listen          192.168.1.1:443 ssl;
+        server_name     www.example.com;
+        ssl_certificate www.example.com.crt;
+        ...
+    }
+
+    server {
+        listen          192.168.1.2:443 ssl;
+        server_name     www.example.org;
+        ssl_certificate www.example.org.crt;
+        ...
+    }
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+https://www.techrepublic.com/article/how-to-enable-ssl-on-nginx/
+How to enable SSL on NGINX
+
+The first step is to generate your self-signed certificate. To do this, log into your server and issue the following command:
+
+sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/ssl/private/nginx-selfsigned.key -out /etc/ssl/certs/nginx-selfsigned.crt
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+Country Name (2 letter code) [AU]:US
+State or Province Name (full name) [Some-State]:VA
+Locality Name (eg, city) []:Ashburn
+Organization Name (eg, company) [Internet Widgits Pty Ltd]:FallsTechnology
+Organizational Unit Name (eg, section) []:Software
+Common Name (e.g. server FQDN or YOUR name) []:127.0.0.1
+Email Address []:david.holberton@fallstechnology.com
+
+fallstechdave@mmrxps17:/etc/ssl$ date
+Wed 17 Aug 2022 05:51:26 AM EDT
+fallstechdave@mmrxps17:/etc/ssl$ pwd -P
+/etc/ssl
+fallstechdave@mmrxps17:/etc/ssl$ ls -latr private/
+total 16
+-rw-r----- 1 root ssl-cert 1704 Jun 30 08:26 ssl-cert-snakeoil.key
+drwxr-xr-x 4 root root     4096 Jul  6 15:58 ..
+-rwxrwxrwx 1 root root     1704 Jul 13 06:34 apache-selfsigned.key
+drwxrwxrwx 2 root ssl-cert 4096 Jul 13 06:34 .
+fallstechdave@mmrxps17:/etc/ssl$ 
+fallstechdave@mmrxps17:/etc/ssl$ ls -latr certs | tail -5
+lrwxrwxrwx 1 root root     23 Jun 30 08:37 002c0b4f.0 -> GlobalSign_Root_R46.pem
+-rw-r--r-- 1 root root 195453 Jun 30 08:37 ca-certificates.crt
+drwxr-xr-x 4 root root   4096 Jul  6 15:58 ..
+-rwxrwxrwx 1 root root   1497 Jul 13 06:36 apache-selfsigned.crt
+drwxrwxrwx 2 root root  16384 Jul 13 06:36 .
+fallstechdave@mmrxps17:/etc/ssl$ 
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+https://www.phusionpassenger.com/docs/tutorials/deploy_to_production/installations/oss/ownserver/ruby/nginx/
+
+
+Ensure the config files are in-place:
+
+if [ ! -f /etc/nginx/modules-enabled/50-mod-http-passenger.conf ]; then sudo ln -s /usr/share/nginx/modules-available/mod-http-passenger.load /etc/nginx/modules-enabled/50-mod-http-passenger.conf ; fi
+
+sudo ls /etc/nginx/conf.d/mod-http-passenger.conf
+
+If you don't see a file at /etc/nginx/conf.d/mod-http-passenger.conf; then you need to create it yourself and set the passenger_ruby and passenger_root config options. For example:
+
+passenger_root /usr/lib/ruby/vendor_ruby/phusion_passenger/locations.ini;
+passenger_ruby /usr/bin/passenger_free_ruby;
+
+When you are finished with this step, restart Nginx:
+
+sudo service nginx restart
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+https://www.phusionpassenger.com/docs/tutorials/deploy_to_production/deploying_your_app/oss/ownserver/ruby/nginx/
+
+Pull code
+
+You need to pick a location in which to permanently store your application's code. A good location is /var/www/APP_NAME. Let us create that directory.
+sudo mkdir -p /var/www/myapp
+sudo chown myappuser: /var/www/myapp
+Replace myapp and myappuser with your app's name and your app user account's name.
+Now let us pull the code from Git:
+cd /var/www/myapp
+sudo -u myappuser -H git clone git://github.com/username/myapp.git code
+
+Edit Nginx configuration file
+
+We need to create an Nginx configuration file and setup a virtual host entry that points to your app. This virtual host entry tells Nginx (and Passenger) where your app is located.
+sudo nano /etc/nginx/sites-enabled/myapp.conf
+Replace myapp with your app's name.
+Put this inside the file:
+server {
+    listen 80;
+    server_name yourserver.com;
+
+    # Tell Nginx and Passenger where your app's 'public' directory is
+    root /var/www/myapp/code/public;
+
+    # Turn on Passenger
+    passenger_enabled on;
+    passenger_ruby /path-to-ruby;
+}
+
+Replace yourserver.com with your server's host name, and replace /var/www/myapp/code with your application's code directory path. However, make sure that Nginx is configured to point to the public subdirectory inside it!
+Replace /path-to-ruby with the Ruby command that you obtained in step 3.1.
+When you are done, restart Nginx:
+sudo service nginx restart
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+fallstechdave@mmrxps17:/etc/nginx$ 
+fallstechdave@mmrxps17:/etc/nginx$ date
+Wed 17 Aug 2022 05:55:46 AM EDT
+fallstechdave@mmrxps17:/etc/nginx$ pwd -P
+/etc/nginx
+fallstechdave@mmrxps17:/etc/nginx$ ls -latrR
+.:
+total 80
+-rw-r--r--   1 root root   664 Feb  4  2019 uwsgi_params
+-rw-r--r--   1 root root   636 Feb  4  2019 scgi_params
+-rw-r--r--   1 root root   180 Feb  4  2019 proxy_params
+-rw-r--r--   1 root root  1490 Feb  4  2019 nginx.conf
+-rw-r--r--   1 root root  3957 Feb  4  2019 mime.types
+-rw-r--r--   1 root root  2223 Feb  4  2019 koi-win
+-rw-r--r--   1 root root  2837 Feb  4  2019 koi-utf
+-rw-r--r--   1 root root  1007 Feb  4  2019 fastcgi_params
+-rw-r--r--   1 root root  1077 Feb  4  2019 fastcgi.conf
+-rw-r--r--   1 root root  3071 Feb  4  2019 win-utf
+drwxr-xr-x   2 root root  4096 Apr 12 04:04 modules-available
+drwxr-xr-x   2 root root  4096 Apr 12 04:04 conf.d
+drwxr-xr-x   2 root root  4096 Jul  2 12:40 snippets
+drwxr-xr-x   2 root root  4096 Jul  2 12:40 sites-available
+drwxr-xr-x   8 root root  4096 Jul  2 12:40 .
+drwxr-xr-x   2 root root  4096 Jul  2 12:40 sites-enabled
+drwxr-xr-x   2 root root  4096 Jul  2 12:40 modules-enabled
+drwxr-xr-x 140 root root 12288 Aug 16 06:17 ..
+
+./modules-available:
+total 8
+drwxr-xr-x 2 root root 4096 Apr 12 04:04 .
+drwxr-xr-x 8 root root 4096 Jul  2 12:40 ..
+
+./conf.d:
+total 8
+drwxr-xr-x 2 root root 4096 Apr 12 04:04 .
+drwxr-xr-x 8 root root 4096 Jul  2 12:40 ..
+
+./snippets:
+total 16
+-rw-r--r-- 1 root root  217 Feb  4  2019 snakeoil.conf
+-rw-r--r-- 1 root root  423 Feb  4  2019 fastcgi-php.conf
+drwxr-xr-x 2 root root 4096 Jul  2 12:40 .
+drwxr-xr-x 8 root root 4096 Jul  2 12:40 ..
+
+./sites-available:
+total 12
+-rw-r--r-- 1 root root 2416 Mar 26  2020 default
+drwxr-xr-x 2 root root 4096 Jul  2 12:40 .
+drwxr-xr-x 8 root root 4096 Jul  2 12:40 ..
+
+./sites-enabled:
+total 8
+drwxr-xr-x 8 root root 4096 Jul  2 12:40 ..
+lrwxrwxrwx 1 root root   34 Jul  2 12:40 default -> /etc/nginx/sites-available/default
+drwxr-xr-x 2 root root 4096 Jul  2 12:40 .
+
+./modules-enabled:
+total 16
+drwxr-xr-x 8 root root 4096 Jul  2 12:40 ..
+lrwxrwxrwx 1 root root   60 Jul  2 12:40 50-mod-http-xslt-filter.conf -> /usr/share/nginx/modules-available/mod-http-xslt-filter.conf
+lrwxrwxrwx 1 root root   48 Jul  2 12:40 50-mod-mail.conf -> /usr/share/nginx/modules-available/mod-mail.conf
+lrwxrwxrwx 1 root root   61 Jul  2 12:40 50-mod-http-image-filter.conf -> /usr/share/nginx/modules-available/mod-http-image-filter.conf
+lrwxrwxrwx 1 root root   50 Jul  2 12:40 50-mod-stream.conf -> /usr/share/nginx/modules-available/mod-stream.conf
+drwxr-xr-x 2 root root 4096 Jul  2 12:40 .
+fallstechdave@mmrxps17:/etc/nginx$ 
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+fallstechdave@mmrxps17:/usr/share/nginx$ 
+fallstechdave@mmrxps17:/usr/share/nginx$ date
+Wed 17 Aug 2022 06:26:37 AM EDT
+fallstechdave@mmrxps17:/usr/share/nginx$ pwd -P
+/usr/share/nginx
+fallstechdave@mmrxps17:/usr/share/nginx$ ls -latrR
+.:
+total 24
+lrwxrwxrwx   1 root root    23 Apr 12 04:04 modules -> ../../lib/nginx/modules
+drwxr-xr-x   2 root root  4096 Jul  2 12:40 html
+drwxr-xr-x   4 root root  4096 Jul  2 12:40 .
+drwxr-xr-x   2 root root  4096 Jul  2 12:40 modules-available
+drwxr-xr-x 275 root root 12288 Aug  9 08:26 ..
+
+./html:
+total 12
+-rw-r--r-- 1 root root  612 Apr 21  2020 index.html
+drwxr-xr-x 2 root root 4096 Jul  2 12:40 .
+drwxr-xr-x 4 root root 4096 Jul  2 12:40 ..
+
+./modules-available:
+total 24
+-rw-r--r-- 1 root root   42 Apr 12 04:04 mod-stream.conf
+-rw-r--r-- 1 root root   40 Apr 12 04:04 mod-mail.conf
+-rw-r--r-- 1 root root   52 Apr 12 04:04 mod-http-xslt-filter.conf
+-rw-r--r-- 1 root root   53 Apr 12 04:04 mod-http-image-filter.conf
+drwxr-xr-x 4 root root 4096 Jul  2 12:40 ..
+drwxr-xr-x 2 root root 4096 Jul  2 12:40 .
+fallstechdave@mmrxps17:/usr/share/nginx$ 
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+fallstechdave@mmrxps17:/usr/lib/nginx$ date
+Wed 17 Aug 2022 06:30:11 AM EDT
+fallstechdave@mmrxps17:/usr/lib/nginx$ pwd -P
+/usr/lib/nginx
+fallstechdave@mmrxps17:/usr/lib/nginx$ ls -latrR
+.:
+total 12
+drwxr-xr-x   3 root root 4096 Jul  2 12:40 .
+drwxr-xr-x   2 root root 4096 Jul  2 12:40 modules
+drwxr-xr-x 131 root root 4096 Jul 28 04:13 ..
+
+./modules:
+total 348
+-rw-r--r-- 1 root root 180792 Apr 12 04:04 ngx_stream_module.so
+-rw-r--r-- 1 root root 108168 Apr 12 04:04 ngx_mail_module.so
+-rw-r--r-- 1 root root  23552 Apr 12 04:04 ngx_http_xslt_filter_module.so
+-rw-r--r-- 1 root root  27728 Apr 12 04:04 ngx_http_image_filter_module.so
+drwxr-xr-x 3 root root   4096 Jul  2 12:40 ..
+drwxr-xr-x 2 root root   4096 Jul  2 12:40 .
+fallstechdave@mmrxps17:/usr/lib/nginx$ 
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+fallstechdave@mmrxps17:~$ 
+fallstechdave@mmrxps17:~$ passenger --version 
+Phusion Passenger(R) 6.0.14
+fallstechdave@mmrxps17:~$ 
+fallstechdave@mmrxps17:~$ passenger-config about ruby-command
+passenger-config was invoked through the following Ruby interpreter:
+  Command: /home/fallstechdave/.rbenv/versions/3.1.2/bin/ruby
+  Version: ruby 3.1.2p20 (2022-04-12 revision 4491bb740a) [x86_64-linux]
+  To use in Apache: PassengerRuby /home/fallstechdave/.rbenv/versions/3.1.2/bin/ruby
+  To use in Nginx : passenger_ruby /home/fallstechdave/.rbenv/versions/3.1.2/bin/ruby
+  To use with Standalone: /home/fallstechdave/.rbenv/versions/3.1.2/bin/ruby /usr/bin/passenger start
+
+The following Ruby interpreter was found first in $PATH:
+  Command: /home/fallstechdave/.rbenv/versions/3.1.2/bin/ruby
+  Version: ruby 3.1.2p20 (2022-04-12 revision 4491bb740a) [x86_64-linux]
+  To use in Apache: PassengerRuby /home/fallstechdave/.rbenv/versions/3.1.2/bin/ruby
+  To use in Nginx : passenger_ruby /home/fallstechdave/.rbenv/versions/3.1.2/bin/ruby
+  To use with Standalone: /home/fallstechdave/.rbenv/versions/3.1.2/bin/ruby /usr/bin/passenger start
+
+## Notes for RVM users
+Do you want to know which command to use for a different Ruby interpreter? 'rvm use' that Ruby interpreter, then re-run 'passenger-config about ruby-command'.
+fallstechdave@mmrxps17:~$ 
+fallstechdave@mmrxps17:~$ sudo /usr/bin/passenger-config validate-install
+What would you like to validate?
+Use <space> to select.
+If the menu doesn't display correctly, press '!'
+
+ ‣ ⬢  Passenger itself
+   ⬡  Apache
+
+-------------------------------------------------------------------------
+
+ * Checking whether this Passenger install is in PATH... ✓
+ * Checking whether there are no other Passenger installations... ✓
+
+Everything looks good. :-)
+fallstechdave@mmrxps17:~$ 
+fallstechdave@mmrxps17:~$ sudo /usr/sbin/passenger-memory-stats
+Version: 6.0.14
+Date   : 2022-08-17 06:04:53 -0400
+
+------- Apache processes --------
+
+### Processes: 0
+### Total private dirty RSS: 0.00 MB
+
+
+---------- Nginx processes ----------
+PID    PPID   VMSize   Private  Name
+-------------------------------------
+14278  1      54.0 MB  0.2 MB   nginx: master process /usr/sbin/nginx -g daemon on; master_process on;
+14279  14278  54.5 MB  0.5 MB   nginx: worker process
+14280  14278  54.5 MB  0.5 MB   nginx: worker process
+14281  14278  54.5 MB  0.5 MB   nginx: worker process
+14282  14278  54.5 MB  0.5 MB   nginx: worker process
+14283  14278  54.5 MB  0.5 MB   nginx: worker process
+14284  14278  54.5 MB  0.5 MB   nginx: worker process
+14285  14278  54.5 MB  0.5 MB   nginx: worker process
+14286  14278  54.5 MB  0.5 MB   nginx: worker process
+14287  14278  54.5 MB  0.5 MB   nginx: worker process
+14288  14278  54.5 MB  0.5 MB   nginx: worker process
+14289  14278  54.5 MB  0.5 MB   nginx: worker process
+14290  14278  54.5 MB  0.5 MB   nginx: worker process
+14291  14278  54.5 MB  0.5 MB   nginx: worker process
+14292  14278  54.5 MB  0.5 MB   nginx: worker process
+14293  14278  54.5 MB  0.5 MB   nginx: worker process
+14294  14278  54.5 MB  0.5 MB   nginx: worker process
+14295  14278  54.5 MB  0.5 MB   nginx: worker process
+14296  14278  54.5 MB  0.5 MB   nginx: worker process
+14297  14278  54.5 MB  0.5 MB   nginx: worker process
+14298  14278  54.5 MB  0.5 MB   nginx: worker process
+### Processes: 21
+### Total private dirty RSS: 10.48 MB
+
+
+--- Passenger processes ---
+
+### Processes: 0
+### Total private dirty RSS: 0.00 MB
+fallstechdave@mmrxps17:~$ 
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+fallstechdave@mmrxps17:/$ 
+fallstechdave@mmrxps17:/$ sudo find . -name "*mod-http-passenger* -print
+> ^C
+fallstechdave@mmrxps17:/$ sudo find . -name "*mod-http-passenger*" -print
+find: ‘./run/user/1000/doc’: Permission denied
+find: ‘./run/user/1000/gvfs’: Permission denied
+./etc/nginx/conf.d/mod-http-passenger.conf
+./etc/nginx/modules-enabled/50-mod-http-passenger.conf
+fallstechdave@mmrxps17:/$ 
+fallstechdave@mmrxps17:/$ cat ./etc/nginx/conf.d/mod-http-passenger.conf
+passenger_root /usr/lib/ruby/vendor_ruby/phusion_passenger/locations.ini;
+# passenger_ruby /usr/bin/passenger_free_ruby;
+passenger_ruby /home/fallstechdave/.rbenv/versions/3.1.2/bin/ruby
+fallstechdave@mmrxps17:/$ 
+fallstechdave@mmrxps17:/$ cat ./etc/nginx/modules-enabled/50-mod-http-passenger.conf
+cat: ./etc/nginx/modules-enabled/50-mod-http-passenger.conf: No such file or directory
+fallstechdave@mmrxps17:/$ 
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+fallstechdave@mmrxps17:~$ sudo systemctl stop ngnix
+Failed to stop ngnix.service: Unit ngnix.service not loaded.
+fallstechdave@mmrxps17:~$ sudo systemctl stop nginx
+fallstechdave@mmrxps17:~$ sudo systemctl start nginx
+Job for nginx.service failed because the control process exited with error code.
+See "systemctl status nginx.service" and "journalctl -xe" for details.
+fallstechdave@mmrxps17:~$ 
+fallstechdave@mmrxps17:~$ sudo ystemctl status nginx.service
+sudo: ystemctl: command not found
+fallstechdave@mmrxps17:~$ sudo systemctl status nginx.service
+● nginx.service - A high performance web server and a reverse proxy server
+     Loaded: loaded (/lib/systemd/system/nginx.service; enabled; vendor preset: enabled)
+     Active: failed (Result: exit-code) since Wed 2022-08-17 06:39:23 EDT; 34s ago
+       Docs: man:nginx(8)
+    Process: 32303 ExecStartPre=/usr/sbin/nginx -t -q -g daemon on; master_process on; (code=exited, status=1/FAILURE)
+
+Aug 17 06:39:23 mmrxps17 systemd[1]: Starting A high performance web server and a reverse proxy server...
+Aug 17 06:39:23 mmrxps17 nginx[32303]: nginx: [emerg] unknown directive "passenger_root" in /etc/nginx/conf.d/mod-http-passenger.conf:1
+Aug 17 06:39:23 mmrxps17 nginx[32303]: nginx: configuration file /etc/nginx/nginx.conf test failed
+Aug 17 06:39:23 mmrxps17 systemd[1]: nginx.service: Control process exited, code=exited, status=1/FAILURE
+Aug 17 06:39:23 mmrxps17 systemd[1]: nginx.service: Failed with result 'exit-code'.
+Aug 17 06:39:23 mmrxps17 systemd[1]: Failed to start A high performance web server and a reverse proxy server.
+fallstechdave@mmrxps17:~$ 
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+fallstechdave@mmrxps17:/usr/share/passenger$ 
+fallstechdave@mmrxps17:/usr/share/passenger$ date
+Wed 17 Aug 2022 06:51:31 AM EDT
+fallstechdave@mmrxps17:/usr/share/passenger$ pwd -P
+/usr/share/passenger
+fallstechdave@mmrxps17:/usr/share/passenger$ ls -latr ngx_http_passenger_module
+total 184
+-rw-r--r-- 1 root root  1788 May  8 15:01 StaticContentHandler.h
+-rw-r--r-- 1 root root  7078 May  8 15:01 StaticContentHandler.c
+-rw-r--r-- 1 root root   369 May  8 15:01 README.md
+-rw-r--r-- 1 root root  2725 May  8 15:01 ngx_http_passenger_module.h
+-rw-r--r-- 1 root root 23727 May  8 15:01 ngx_http_passenger_module.c
+-rw-r--r-- 1 root root  2300 May  8 15:01 ContentHandler.h
+-rw-r--r-- 1 root root 61011 May  8 15:01 ContentHandler.c
+-rw-r--r-- 1 root root  3507 May  8 15:01 Configuration.h
+-rw-r--r-- 1 root root 44454 May  8 15:01 Configuration.c
+-rw-r--r-- 1 root root  5936 May  8 15:01 config
+drwxr-xr-x 9 root root  4096 Jul  1 07:52 ..
+drwxr-xr-x 2 root root  4096 Jul  1 07:52 MainConfig
+drwxr-xr-x 2 root root  4096 Jul  1 07:52 LocationConfig
+drwxr-xr-x 2 root root  4096 Jul  1 07:52 ConfigGeneral
+drwxr-xr-x 5 root root  4096 Jul  1 07:52 .
+fallstechdave@mmrxps17:/usr/share/passenger$ 
+fallstechdave@mmrxps17:/usr/share/passenger$ sudo find . -name "*conf" -print
+fallstechdave@mmrxps17:/usr/share/passenger$ sudo find . -name "*load" -print
+fallstechdave@mmrxps17:/usr/share/passenger$ 
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+fallstechdave@mmrxps17:/lib/passenger$ date
+Wed 17 Aug 2022 06:56:27 AM EDT
+fallstechdave@mmrxps17:/lib/passenger$ pwd -P
+/usr/lib/passenger
+fallstechdave@mmrxps17:/lib/passenger$ du
+172	./common/libpassenger_common/SystemTools
+1324	./common/libpassenger_common/ProcessManagement
+868	./common/libpassenger_common/WrapperRegistry
+16	./common/libpassenger_common/Algorithms
+88	./common/libpassenger_common/vendor-modified
+2920	./common/libpassenger_common/StrIntTools
+2392	./common/libpassenger_common/MemoryKit
+1372	./common/libpassenger_common/Utils
+260	./common/libpassenger_common/ServerKit
+2964	./common/libpassenger_common/IOTools
+508	./common/libpassenger_common/SecurityKit
+2268	./common/libpassenger_common/FileTools
+36	./common/libpassenger_common/DataStructures
+3600	./common/libpassenger_common/JsonTools
+1316	./common/libpassenger_common/AppTypeDetector
+39264	./common/libpassenger_common
+43872	./common
+9420	./support-binaries
+53296	.
+fallstechdave@mmrxps17:/lib/passenger$ 
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+fallstechdave@mmrxps17:~$ 
+fallstechdave@mmrxps17:~$ sudo apt-get install -y libnginx-mod-http-passenger
+Reading package lists... Done
+Building dependency tree       
+Reading state information... Done
+The following packages were automatically installed and are no longer required:
+  chromium-codecs-ffmpeg-extra gstreamer1.0-vaapi libfwupdplugin1 libgstreamer-plugins-bad1.0-0 libnvidia-cfg1-510 libnvidia-common-510 libnvidia-decode-510 libnvidia-encode-510 libnvidia-extra-510
+  libnvidia-fbc1-510 libnvidia-gl-510 libva-wayland2 libx11-xcb1:i386 libxnvctrl0 nvidia-compute-utils-510 nvidia-kernel-source-510 nvidia-settings nvidia-utils-510 screen-resolution-extra
+  xserver-xorg-video-nvidia-510
+Use 'sudo apt autoremove' to remove them.
+The following NEW packages will be installed:
+  libnginx-mod-http-passenger
+0 upgraded, 1 newly installed, 0 to remove and 21 not upgraded.
+Need to get 401 kB of archives.
+After this operation, 1,666 kB of additional disk space will be used.
+Get:1 https://oss-binaries.phusionpassenger.com/apt/passenger focal/main amd64 libnginx-mod-http-passenger amd64 1:6.0.14-1~focal1 [401 kB]
+Fetched 401 kB in 1s (467 kB/s)                     
+Selecting previously unselected package libnginx-mod-http-passenger.
+(Reading database ... 283595 files and directories currently installed.)
+Preparing to unpack .../libnginx-mod-http-passenger_1%3a6.0.14-1~focal1_amd64.deb ...
+Unpacking libnginx-mod-http-passenger (1:6.0.14-1~focal1) ...
+Setting up libnginx-mod-http-passenger (1:6.0.14-1~focal1) ...
+
+Configuration file '/etc/nginx/conf.d/mod-http-passenger.conf'
+ ==> File on system created by you or by a script.
+ ==> File also in package provided by package maintainer.
+   What would you like to do about it ?  Your options are:
+    Y or I  : install the package maintainer's version
+    N or O  : keep your currently-installed version
+      D     : show the differences between the versions
+      Z     : start a shell to examine the situation
+ The default action is to keep your current version.
+*** mod-http-passenger.conf (Y/I/N/O/D/Z) [default=N] ? y
+Installing new version of config file /etc/nginx/conf.d/mod-http-passenger.conf ...
+Processing triggers for nginx-core (1.18.0-0ubuntu1.3) ...
+fallstechdave@mmrxps17:~$ 
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+fallstechdave@mmrxps17:~$ ls -latr /usr/share/nginx/modules-available
+total 28
+-rw-r--r-- 1 root root   42 Apr 12 04:04 mod-stream.conf
+-rw-r--r-- 1 root root   40 Apr 12 04:04 mod-mail.conf
+-rw-r--r-- 1 root root   52 Apr 12 04:04 mod-http-xslt-filter.conf
+-rw-r--r-- 1 root root   53 Apr 12 04:04 mod-http-image-filter.conf
+-rw-r--r-- 1 root root   65 May  8 14:50 mod-http-passenger.load
+drwxr-xr-x 4 root root 4096 Jul  2 12:40 ..
+drwxr-xr-x 2 root root 4096 Aug 17 07:00 .
+fallstechdave@mmrxps17:~$ 
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+fallstechdave@mmrxps17:/etc/nginx$ 
+fallstechdave@mmrxps17:/etc/nginx$ date
+Wed 17 Aug 2022 07:08:46 AM EDT
+fallstechdave@mmrxps17:/etc/nginx$ pwd -P
+/etc/nginx
+fallstechdave@mmrxps17:/etc/nginx$ 
+fallstechdave@mmrxps17:/etc/nginx$ ls -latrR
+.:
+total 80
+-rw-r--r--   1 root root   664 Feb  4  2019 uwsgi_params
+-rw-r--r--   1 root root   636 Feb  4  2019 scgi_params
+-rw-r--r--   1 root root   180 Feb  4  2019 proxy_params
+-rw-r--r--   1 root root  1490 Feb  4  2019 nginx.conf
+-rw-r--r--   1 root root  3957 Feb  4  2019 mime.types
+-rw-r--r--   1 root root  2223 Feb  4  2019 koi-win
+-rw-r--r--   1 root root  2837 Feb  4  2019 koi-utf
+-rw-r--r--   1 root root  1007 Feb  4  2019 fastcgi_params
+-rw-r--r--   1 root root  1077 Feb  4  2019 fastcgi.conf
+-rw-r--r--   1 root root  3071 Feb  4  2019 win-utf
+drwxr-xr-x   2 root root  4096 Apr 12 04:04 modules-available
+drwxr-xr-x   2 root root  4096 Jul  2 12:40 snippets
+drwxr-xr-x   8 root root  4096 Jul  2 12:40 .
+drwxr-xr-x 140 root root 12288 Aug 16 06:17 ..
+drwxr-xr-x   2 root root  4096 Aug 17 06:16 sites-available
+drwxr-xr-x   2 root root  4096 Aug 17 06:48 sites-enabled
+drwxr-xr-x   2 root root  4096 Aug 17 07:01 conf.d
+drwxr-xr-x   2 root root  4096 Aug 17 07:01 modules-enabled
+
+./modules-available:
+total 8
+drwxr-xr-x 2 root root 4096 Apr 12 04:04 .
+drwxr-xr-x 8 root root 4096 Jul  2 12:40 ..
+
+./snippets:
+total 16
+-rw-r--r-- 1 root root  217 Feb  4  2019 snakeoil.conf
+-rw-r--r-- 1 root root  423 Feb  4  2019 fastcgi-php.conf
+drwxr-xr-x 2 root root 4096 Jul  2 12:40 .
+drwxr-xr-x 8 root root 4096 Jul  2 12:40 ..
+
+./sites-available:
+total 16
+-rw-r--r-- 1 root root 2416 Mar 26  2020 default
+drwxr-xr-x 8 root root 4096 Jul  2 12:40 ..
+-rw-r--r-- 1 root root  378 Aug 17 06:16 wire5.conf
+drwxr-xr-x 2 root root 4096 Aug 17 06:16 .
+
+./sites-enabled:
+total 12
+drwxr-xr-x 8 root root 4096 Jul  2 12:40 ..
+lrwxrwxrwx 1 root root   34 Jul  2 12:40 default -> /etc/nginx/sites-available/default
+-rw-r--r-- 1 root root  378 Aug 17 06:16 wire5.conf
+drwxr-xr-x 2 root root 4096 Aug 17 06:48 .
+
+./conf.d:
+total 16
+-rw-r--r-- 1 root root  259 May  8 15:01 mod-http-passenger.conf
+drwxr-xr-x 8 root root 4096 Jul  2 12:40 ..
+-rw-r--r-- 1 root root  187 Aug 17 06:02 mod-http-passenger.conf.dpkg-old
+drwxr-xr-x 2 root root 4096 Aug 17 07:01 .
+
+./modules-enabled:
+total 16
+drwxr-xr-x 8 root root 4096 Jul  2 12:40 ..
+lrwxrwxrwx 1 root root   60 Jul  2 12:40 50-mod-http-xslt-filter.conf -> /usr/share/nginx/modules-available/mod-http-xslt-filter.conf
+lrwxrwxrwx 1 root root   48 Jul  2 12:40 50-mod-mail.conf -> /usr/share/nginx/modules-available/mod-mail.conf
+lrwxrwxrwx 1 root root   61 Jul  2 12:40 50-mod-http-image-filter.conf -> /usr/share/nginx/modules-available/mod-http-image-filter.conf
+lrwxrwxrwx 1 root root   50 Jul  2 12:40 50-mod-stream.conf -> /usr/share/nginx/modules-available/mod-stream.conf
+lrwxrwxrwx 1 root root   58 Aug 17 07:01 50-mod-http-passenger.conf -> /usr/share/nginx/modules-available/mod-http-passenger.load
+drwxr-xr-x 2 root root 4096 Aug 17 07:01 .
+fallstechdave@mmrxps17:/etc/nginx$ 
+fallstechdave@mmrxps17:/etc/nginx$ cat conf.d/mod-http-passenger.conf
+### Begin automatically installed Phusion Passenger config snippet ###
+passenger_root /usr/lib/ruby/vendor_ruby/phusion_passenger/locations.ini;
+passenger_ruby /usr/bin/passenger_free_ruby;
+### End automatically installed Phusion Passenger config snippet ###
+fallstechdave@mmrxps17:/etc/nginx$ 
+fallstechdave@mmrxps17:/etc/nginx$ cat conf.d/mod-http-passenger.conf.dpkg-old 
+passenger_root /usr/lib/ruby/vendor_ruby/phusion_passenger/locations.ini;
+# passenger_ruby /usr/bin/passenger_free_ruby;
+passenger_ruby /home/fallstechdave/.rbenv/versions/3.1.2/bin/ruby
+fallstechdave@mmrxps17:/etc/nginx$ 
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+fallstechdave@mmrxps17:~$ 
+fallstechdave@mmrxps17:~$ sudo service nginx restart
+Job for nginx.service failed because the control process exited with error code.
+See "systemctl status nginx.service" and "journalctl -xe" for details.
+fallstechdave@mmrxps17:~$ 
+fallstechdave@mmrxps17:~$ sudo systemctl stop nginx
+fallstechdave@mmrxps17:~$ sudo systemctl start nginx
+Job for nginx.service failed because the control process exited with error code.
+See "systemctl status nginx.service" and "journalctl -xe" for details.
+fallstechdave@mmrxps17:~$ 
+fallstechdave@mmrxps17:~$ sudo systemctl status nginx
+● nginx.service - A high performance web server and a reverse proxy server
+     Loaded: loaded (/lib/systemd/system/nginx.service; enabled; vendor preset: enabled)
+     Active: failed (Result: exit-code) since Wed 2022-08-17 07:13:29 EDT; 12s ago
+       Docs: man:nginx(8)
+    Process: 34033 ExecStartPre=/usr/sbin/nginx -t -q -g daemon on; master_process on; (code=exited, status=1/FAILURE)
+
+Aug 17 07:13:29 mmrxps17 systemd[1]: Starting A high performance web server and a reverse proxy server...
+Aug 17 07:13:29 mmrxps17 nginx[34033]: nginx: [emerg] unexpected "}" in /etc/nginx/sites-enabled/wire5.conf:13
+Aug 17 07:13:29 mmrxps17 nginx[34033]: nginx: configuration file /etc/nginx/nginx.conf test failed
+Aug 17 07:13:29 mmrxps17 systemd[1]: nginx.service: Control process exited, code=exited, status=1/FAILURE
+Aug 17 07:13:29 mmrxps17 systemd[1]: nginx.service: Failed with result 'exit-code'.
+Aug 17 07:13:29 mmrxps17 systemd[1]: Failed to start A high performance web server and a reverse proxy server.
+fallstechdave@mmrxps17:~$ 
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+fallstechdave@mmrxps17:~$ 
+fallstechdave@mmrxps17:~$ sudo systemctl stop nginx
+[sudo] password for fallstechdave: 
+fallstechdave@mmrxps17:~$ sudo systemctl start nginx
+fallstechdave@mmrxps17:~$ 
+fallstechdave@mmrxps17:~$ sudo systemctl status nginx
+● nginx.service - A high performance web server and a reverse proxy server
+     Loaded: loaded (/lib/systemd/system/nginx.service; enabled; vendor preset: enabled)
+     Active: active (running) since Wed 2022-08-17 07:34:44 EDT; 10s ago
+       Docs: man:nginx(8)
+    Process: 36098 ExecStartPre=/usr/sbin/nginx -t -q -g daemon on; master_process on; (code=exited, status=0/SUCCESS)
+    Process: 36099 ExecStart=/usr/sbin/nginx -g daemon on; master_process on; (code=exited, status=0/SUCCESS)
+   Main PID: 36119 (nginx)
+      Tasks: 74 (limit: 18735)
+     Memory: 32.0M
+     CGroup: /system.slice/nginx.service
+             ├─36100 Passenger watchdog
+             ├─36103 Passenger core
+             ├─36119 nginx: master process /usr/sbin/nginx -g daemon on; master_process on;
+             ├─36124 nginx: worker process
+             ├─36127 nginx: worker process
+             ├─36132 nginx: worker process
+             ├─36135 nginx: worker process
+             ├─36138 nginx: worker process
+             ├─36141 nginx: worker process
+             ├─36144 nginx: worker process
+             ├─36147 nginx: worker process
+             ├─36150 nginx: worker process
+             ├─36153 nginx: worker process
+             ├─36157 nginx: worker process
+             ├─36161 nginx: worker process
+             ├─36164 nginx: worker process
+             ├─36169 nginx: worker process
+             ├─36171 nginx: worker process
+             ├─36172 nginx: worker process
+             ├─36173 nginx: worker process
+             ├─36174 nginx: worker process
+             ├─36175 nginx: worker process
+             └─36176 nginx: worker process
+
+Aug 17 07:34:43 mmrxps17 systemd[1]: Starting A high performance web server and a reverse proxy server...
+Aug 17 07:34:44 mmrxps17 systemd[1]: Started A high performance web server and a reverse proxy server.
+fallstechdave@mmrxps17:~$ 
+fallstechdave@mmrxps17:~$ nginx -V
+nginx version: nginx/1.18.0 (Ubuntu)
+built with OpenSSL 1.1.1f  31 Mar 2020
+TLS SNI support enabled
+configure arguments: --with-cc-opt='-g -O2 -fdebug-prefix-map=/build/nginx-7KvRN5/nginx-1.18.0=. -fstack-protector-strong -Wformat -Werror=format-security -fPIC -Wdate-time -D_FORTIFY_SOURCE=2' --with-ld-opt='-Wl,-Bsymbolic-functions -Wl,-z,relro -Wl,-z,now -fPIC' --prefix=/usr/share/nginx --conf-path=/etc/nginx/nginx.conf --http-log-path=/var/log/nginx/access.log --error-log-path=/var/log/nginx/error.log --lock-path=/var/lock/nginx.lock --pid-path=/run/nginx.pid --modules-path=/usr/lib/nginx/modules --http-client-body-temp-path=/var/lib/nginx/body --http-fastcgi-temp-path=/var/lib/nginx/fastcgi --http-proxy-temp-path=/var/lib/nginx/proxy --http-scgi-temp-path=/var/lib/nginx/scgi --http-uwsgi-temp-path=/var/lib/nginx/uwsgi --with-debug --with-compat --with-pcre-jit --with-http_ssl_module --with-http_stub_status_module --with-http_realip_module --with-http_auth_request_module --with-http_v2_module --with-http_dav_module --with-http_slice_module --with-threads --with-http_addition_module --with-http_gunzip_module --with-http_gzip_static_module --with-http_image_filter_module=dynamic --with-http_sub_module --with-http_xslt_module=dynamic --with-stream=dynamic --with-stream_ssl_module --with-mail=dynamic --with-mail_ssl_module
+fallstechdave@mmrxps17:~$ 
+fallstechdave@mmrxps17:~$ 
+fallstechdave@mmrxps17:~$ passenger --version 
+Phusion Passenger(R) 6.0.14
+fallstechdave@mmrxps17:~$ 
+fallstechdave@mmrxps17:~$ passenger-config about ruby-command
+passenger-config was invoked through the following Ruby interpreter:
+  Command: /home/fallstechdave/.rbenv/versions/3.1.2/bin/ruby
+  Version: ruby 3.1.2p20 (2022-04-12 revision 4491bb740a) [x86_64-linux]
+  To use in Apache: PassengerRuby /home/fallstechdave/.rbenv/versions/3.1.2/bin/ruby
+  To use in Nginx : passenger_ruby /home/fallstechdave/.rbenv/versions/3.1.2/bin/ruby
+  To use with Standalone: /home/fallstechdave/.rbenv/versions/3.1.2/bin/ruby /usr/bin/passenger start
+
+The following Ruby interpreter was found first in $PATH:
+  Command: /home/fallstechdave/.rbenv/versions/3.1.2/bin/ruby
+  Version: ruby 3.1.2p20 (2022-04-12 revision 4491bb740a) [x86_64-linux]
+  To use in Apache: PassengerRuby /home/fallstechdave/.rbenv/versions/3.1.2/bin/ruby
+  To use in Nginx : passenger_ruby /home/fallstechdave/.rbenv/versions/3.1.2/bin/ruby
+  To use with Standalone: /home/fallstechdave/.rbenv/versions/3.1.2/bin/ruby /usr/bin/passenger start
+
+## Notes for RVM users
+Do you want to know which command to use for a different Ruby interpreter? 'rvm use' that Ruby interpreter, then re-run 'passenger-config about ruby-command'.
+fallstechdave@mmrxps17:~$ 
+fallstechdave@mmrxps17:~$ passenger-memory-stats
+Version: 6.0.14
+Date   : 2022-08-17 07:36:54 -0400
+
+------- Apache processes --------
+
+### Processes: 0
+### Total private dirty RSS: 0.00 MB
+
+
+---------- Nginx processes ----------
+PID    PPID   VMSize   Private  Name
+-------------------------------------
+36119  1      56.1 MB  ?        nginx: master process /usr/sbin/nginx -g daemon on; master_process on;
+36124  36119  56.4 MB  ?        nginx: worker process
+36127  36119  56.4 MB  ?        nginx: worker process
+36132  36119  56.4 MB  ?        nginx: worker process
+36135  36119  56.4 MB  ?        nginx: worker process
+36138  36119  56.4 MB  ?        nginx: worker process
+36141  36119  56.4 MB  ?        nginx: worker process
+36144  36119  56.4 MB  ?        nginx: worker process
+36147  36119  56.4 MB  ?        nginx: worker process
+36150  36119  56.4 MB  ?        nginx: worker process
+36153  36119  56.4 MB  ?        nginx: worker process
+36157  36119  56.4 MB  ?        nginx: worker process
+36161  36119  56.4 MB  ?        nginx: worker process
+36164  36119  56.4 MB  ?        nginx: worker process
+36169  36119  56.4 MB  ?        nginx: worker process
+36171  36119  56.4 MB  ?        nginx: worker process
+36172  36119  56.4 MB  ?        nginx: worker process
+36173  36119  56.4 MB  ?        nginx: worker process
+36174  36119  56.4 MB  ?        nginx: worker process
+36175  36119  56.4 MB  ?        nginx: worker process
+36176  36119  56.4 MB  ?        nginx: worker process
+### Processes: 21
+### Total private dirty RSS: 0.00 MB (?)
+
+
+----- Passenger processes ------
+PID    VMSize     Private  Name
+--------------------------------
+36100  296.3 MB   ?        Passenger watchdog
+36103  3377.3 MB  ?        Passenger core
+### Processes: 2
+### Total private dirty RSS: 0.00 MB (?)
+*** WARNING: Please run this tool with sudo. Otherwise the private dirty RSS (a reliable metric for real memory usage) of processes cannot be determined.
+fallstechdave@mmrxps17:~$ 
+fallstechdave@mmrxps17:~$ sudo passenger-memory-stats
+Version: 6.0.14
+Date   : 2022-08-17 07:37:16 -0400
+
+------- Apache processes --------
+
+### Processes: 0
+### Total private dirty RSS: 0.00 MB
+
+
+---------- Nginx processes ----------
+PID    PPID   VMSize   Private  Name
+-------------------------------------
+36119  1      56.1 MB  0.5 MB   nginx: master process /usr/sbin/nginx -g daemon on; master_process on;
+36124  36119  56.4 MB  0.7 MB   nginx: worker process
+36127  36119  56.4 MB  0.7 MB   nginx: worker process
+36132  36119  56.4 MB  0.7 MB   nginx: worker process
+36135  36119  56.4 MB  0.7 MB   nginx: worker process
+36138  36119  56.4 MB  0.7 MB   nginx: worker process
+36141  36119  56.4 MB  0.7 MB   nginx: worker process
+36144  36119  56.4 MB  0.7 MB   nginx: worker process
+36147  36119  56.4 MB  0.7 MB   nginx: worker process
+36150  36119  56.4 MB  0.7 MB   nginx: worker process
+36153  36119  56.4 MB  0.7 MB   nginx: worker process
+36157  36119  56.4 MB  0.7 MB   nginx: worker process
+36161  36119  56.4 MB  0.7 MB   nginx: worker process
+36164  36119  56.4 MB  0.7 MB   nginx: worker process
+36169  36119  56.4 MB  0.7 MB   nginx: worker process
+36171  36119  56.4 MB  0.7 MB   nginx: worker process
+36172  36119  56.4 MB  0.7 MB   nginx: worker process
+36173  36119  56.4 MB  0.7 MB   nginx: worker process
+36174  36119  56.4 MB  0.7 MB   nginx: worker process
+36175  36119  56.4 MB  0.7 MB   nginx: worker process
+36176  36119  56.4 MB  0.7 MB   nginx: worker process
+### Processes: 21
+### Total private dirty RSS: 14.42 MB
+
+
+----- Passenger processes ------
+PID    VMSize     Private  Name
+--------------------------------
+36100  296.3 MB   2.7 MB   Passenger watchdog
+36103  3377.3 MB  6.1 MB   Passenger core
+### Processes: 2
+### Total private dirty RSS: 8.80 MB
+fallstechdave@mmrxps17:~$ 
+fallstechdave@mmrxps17:~$ sudo /usr/bin/passenger-config validate-install
+What would you like to validate?
+Use <space> to select.
+If the menu doesn't display correctly, press '!'
+
+ ‣ ⬢  Passenger itself
+   ⬡  Apache
+
+-------------------------------------------------------------------------
+
+ * Checking whether this Passenger install is in PATH... ✓
+ * Checking whether there are no other Passenger installations... ✓
+
+Everything looks good. :-)
+fallstechdave@mmrxps17:~$ 
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+fallstechdave@mmrxps17:~$ 
+fallstechdave@mmrxps17:~$ sudo systemctl status nginx
+● nginx.service - A high performance web server and a reverse proxy server
+     Loaded: loaded (/lib/systemd/system/nginx.service; enabled; vendor preset: enabled)
+     Active: active (running) since Wed 2022-08-17 07:34:44 EDT; 6min ago
+       Docs: man:nginx(8)
+    Process: 36098 ExecStartPre=/usr/sbin/nginx -t -q -g daemon on; master_process on; (code=exited, status=0/SUCCESS)
+    Process: 36099 ExecStart=/usr/sbin/nginx -g daemon on; master_process on; (code=exited, status=0/SUCCESS)
+   Main PID: 36119 (nginx)
+      Tasks: 83 (limit: 18735)
+     Memory: 159.1M
+     CGroup: /system.slice/nginx.service
+             ├─36100 Passenger watchdog
+             ├─36103 Passenger core
+             ├─36119 nginx: master process /usr/sbin/nginx -g daemon on; master_process on;
+             ├─36124 nginx: worker process
+             ├─36127 nginx: worker process
+             ├─36132 nginx: worker process
+             ├─36135 nginx: worker process
+             ├─36138 nginx: worker process
+             ├─36141 nginx: worker process
+             ├─36144 nginx: worker process
+             ├─36147 nginx: worker process
+             ├─36150 nginx: worker process
+             ├─36153 nginx: worker process
+             ├─36157 nginx: worker process
+             ├─36161 nginx: worker process
+             ├─36164 nginx: worker process
+             ├─36169 nginx: worker process
+             ├─36171 nginx: worker process
+             ├─36172 nginx: worker process
+             ├─36173 nginx: worker process
+             ├─36174 nginx: worker process
+             ├─36175 nginx: worker process
+             ├─36176 nginx: worker process
+             ├─36616 Passenger AppPreloader: /home/fallstechdave/railsprojects/wire5
+             └─36659 Passenger RubyApp: /home/fallstechdave/railsprojects/wire5 (production)
+
+Aug 17 07:34:43 mmrxps17 systemd[1]: Starting A high performance web server and a reverse proxy server...
+Aug 17 07:34:44 mmrxps17 systemd[1]: Started A high performance web server and a reverse proxy server.
+fallstechdave@mmrxps17:~$ 
+fallstechdave@mmrxps17:~$ sudo passenger-memory-stats
+Version: 6.0.14
+Date   : 2022-08-17 07:41:58 -0400
+
+------- Apache processes --------
+
+### Processes: 0
+### Total private dirty RSS: 0.00 MB
+
+
+---------- Nginx processes ----------
+PID    PPID   VMSize   Private  Name
+-------------------------------------
+36119  1      56.1 MB  0.5 MB   nginx: master process /usr/sbin/nginx -g daemon on; master_process on;
+36124  36119  56.7 MB  0.9 MB   nginx: worker process
+36127  36119  56.4 MB  0.7 MB   nginx: worker process
+36132  36119  56.4 MB  0.7 MB   nginx: worker process
+36135  36119  56.4 MB  0.7 MB   nginx: worker process
+36138  36119  56.4 MB  0.7 MB   nginx: worker process
+36141  36119  56.4 MB  0.7 MB   nginx: worker process
+36144  36119  56.4 MB  0.7 MB   nginx: worker process
+36147  36119  56.4 MB  0.7 MB   nginx: worker process
+36150  36119  56.4 MB  0.7 MB   nginx: worker process
+36153  36119  56.4 MB  0.7 MB   nginx: worker process
+36157  36119  56.4 MB  0.7 MB   nginx: worker process
+36161  36119  56.4 MB  0.7 MB   nginx: worker process
+36164  36119  56.4 MB  0.7 MB   nginx: worker process
+36169  36119  56.4 MB  0.7 MB   nginx: worker process
+36171  36119  56.4 MB  0.7 MB   nginx: worker process
+36172  36119  56.4 MB  0.7 MB   nginx: worker process
+36173  36119  56.4 MB  0.7 MB   nginx: worker process
+36174  36119  56.4 MB  0.7 MB   nginx: worker process
+36175  36119  56.4 MB  0.7 MB   nginx: worker process
+36176  36119  56.4 MB  0.7 MB   nginx: worker process
+### Processes: 21
+### Total private dirty RSS: 14.58 MB
+
+
+----- Passenger processes ------
+PID    VMSize     Private  Name
+--------------------------------
+36100  296.3 MB   2.7 MB   Passenger watchdog
+36103  3570.6 MB  6.7 MB   Passenger core
+36616  235.2 MB   24.1 MB  Passenger AppPreloader: /home/fallstechdave/railsprojects/wire5
+36659  367.1 MB   27.4 MB  Passenger RubyApp: /home/fallstechdave/railsprojects/wire5 (production)
+### Processes: 4
+### Total private dirty RSS: 60.96 MB
+fallstechdave@mmrxps17:~$ 
+
+
+http://localhost/articles
+http://localhost/
+http://127.0.0.1/
+
+https://localhost/articles
+
