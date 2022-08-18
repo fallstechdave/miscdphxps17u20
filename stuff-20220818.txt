@@ -1,0 +1,450 @@
+Thu 18 Aug 2022 07:03:53 AM EDT
+
+fallstechdave@mmrxps17:~$ date
+Thu 18 Aug 2022 07:03:34 AM EDT
+fallstechdave@mmrxps17:~$ 
+fallstechdave@mmrxps17:~$ date > stuff-20220818.txt
+fallstechdave@mmrxps17:~$ code   stuff-20220818.txt
+fallstechdave@mmrxps17:~$ 
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+https://www.phusionpassenger.com/
+https://www.phusionpassenger.com/passenger6
+
+https://www.phusionpassenger.com/docs/tutorials/deploy_to_production/installations/oss/ownserver/ruby/apache/
+
+Step 1: install Passenger packages
+
+These commands will install Passenger + Apache module through Phusion's APT repository.
+At this point we assume that you already have Apache installed from your system repository. If not, you should install Apache with the following command:
+
+sudo apt-get install apache2
+
+# Install our PGP key and add HTTPS support for APT
+sudo apt-get install -y dirmngr gnupg apt-transport-https ca-certificates 
+
+sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 561F9B9CAC40B2F7
+
+# Add our APT repository
+sudo sh -c 'echo deb https://oss-binaries.phusionpassenger.com/apt/passenger focal main > /etc/apt/sources.list.d/passenger.list'
+sudo apt-get update
+
+# Install Passenger + Apache module
+sudo apt-get install -y libapache2-mod-passenger
+
+Step 2: enable the Passenger Apache module and restart Apache
+
+sudo a2enmod passenger
+sudo apache2ctl restart
+
+https://www.phusionpassenger.com/docs/tutorials/deploy_to_production/
+https://www.phusionpassenger.com/docs/tutorials/deploy_to_production/installations/oss/ownserver/ruby/nginx/
+https://www.phusionpassenger.com/docs/tutorials/deploy_to_production/installations/oss/ownserver/ruby/apache/
+https://www.phusionpassenger.com/docs/tutorials/deploy_to_production/deploying_your_app/oss/ownserver/ruby/apache/
+
+passenger rpm centos
+
+https://www.phusionpassenger.com/library/install/apache/install/oss/el7/
+
+sudo yum install -y mod_passenger || sudo yum-config-manager --enable cr && sudo yum install -y mod_passenger
+
+https://www.phusionpassenger.com/library/install/standalone/install/oss/el7/
+
+sudo yum install -y passenger || sudo yum-config-manager --enable cr && sudo yum install -y passenger
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+https://centos.pkgs.org/7/epel-x86_64/passenger-4.0.53-4.el7.x86_64.rpm.html
+
+Download
+Type 	URL
+Binary Package 	https://download-ib01.fedoraproject.org/pub/epel/7/x86_64/Packages/p/passenger-4.0.53-4.el7.x86_64.rpm
+Source Package 	https://download-ib01.fedoraproject.org/pub/epel/7/SRPMS/Packages/p/passenger-4.0.53-4.el7.src.rpm
+Mirror 	download-ib01.fedoraproject.org
+
+Changelog
+
+2015-11-04 - Jan Kaluza <jkaluza@redhat.com> - 4.0.53-4
+- fix compatibility with httpd 2.4.17 (#1277689)
+
+2015-01-18 - Mamoru TASAKA <mtasaka@fedoraproject.org> - 4.0.53-3
+- Rebuild for https://fedoraproject.org/wiki/Changes/Ruby_2.2
+
+2014-11-20 - Jan Kaluza <jkaluza@redhat.com> - 4.0.53-2
+- get agents_dir from locations.ini
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+https://centos.pkgs.org/8/epel-x86_64/passenger-devel-6.0.4-3.el8.x86_64.rpm.html
+
+Download
+Type 	URL
+Binary Package 	https://download-ib01.fedoraproject.org/pub/epel/8/Everything/x86_64/Packages/p/passenger-devel-6.0.4-3.el8.x86_64.rpm
+Source Package 	https://download-ib01.fedoraproject.org/pub/epel/8/Everything/SRPMS/Packages/p/passenger-6.0.4-3.el8.src.rpm
+Mirror 	download-ib01.fedoraproject.org
+
+Changelog
+
+2020-04-21 - Gerd Pokorra <gp@zimt.uni-siegen.de> - 6.0.4-3
+- change RUBYLIBDIR to use ruby_vendorlibdir macro
+
+2019-11-27 - Gerd Pokorra <gp@zimt.uni-siegen.de> - 6.0.4-2
+- add license tag
+- remove all empty files
+- remove doc subpackage
+- all header files are now in the devel subpackage
+
+2019-11-24 - Gerd Pokorra <gp@zimt.uni-siegen.de> - 6.0.4-1
+- initial package for EPEL 8
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+fallstechdave@mmrxps17:~$ 
+fallstechdave@mmrxps17:~$ ls -latr ~/Downloads/ | tail
+-rw-rw-r--  1 fallstechdave fallstechdave        176 Jul 31 09:38 eclipse-jee-2022-06-R-linux-gtk-x86_64.tar.gz.sha512
+-rw-rw-r--  1 fallstechdave fallstechdave  317733533 Jul 31 09:40 eclipse-java-2022-06-R-linux-gtk-x86_64.tar.gz
+-rw-rw-r--  1 fallstechdave fallstechdave        177 Jul 31 09:42 eclipse-java-2022-06-R-linux-gtk-x86_64.tar.gz.sha512
+-rw-rw-r--  1 fallstechdave fallstechdave   85203624 Aug 10 09:25 code_1.70.0-1659589288_amd64.deb
+-rw-rw-r--  1 fallstechdave fallstechdave  120485133 Aug 10 09:25 code-1.70.0-1659589373.el7.x86_64.rpm
+-rw-rw-r--  1 fallstechdave fallstechdave  119734068 Aug 10 09:25 code-stable-x64-1659589559.tar.gz
+drwxr-xr-x 34 fallstechdave fallstechdave       4096 Aug 18 07:03 ..
+-rw-rw-r--  1 fallstechdave fallstechdave    1665380 Aug 18 07:22 passenger-4.0.53-4.el7.x86_64.rpm
+-rw-rw-r--  1 fallstechdave fallstechdave    9901676 Aug 18 07:23 passenger-devel-6.0.4-3.el8.x86_64.rpm
+drwxr-xr-x  4 fallstechdave fallstechdave       4096 Aug 18 07:23 .
+fallstechdave@mmrxps17:~$ 
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+https://mediatemple.net/community/products/dv/208281453/install-ruby-on-centos-7-with-passenger
+
+https://passenger.stealthymonkeys.com/
+
+The Phusion Passenger RPM Repository
+
+Welcome to the repository. Here you’ll find RPM packages of Phusion Passenger (aka mod_rails / mod_rack) for Fedora and RedHat Enterprise Linux (and derivatives like CentOS and Scientific Linux).
+[an error occurred while processing this directive]
+
+The easiest way to install Passenger and keep it up to date is to install the passenger-release package:
+
+Fedora Core 18 (COMING SOON!)
+Fedora Core 17 (NEW!):
+    rpm --import http://passenger.stealthymonkeys.com/RPM-GPG-KEY-stealthymonkeys.asc
+    yum install http://passenger.stealthymonkeys.com/fedora/17/passenger-release.noarch.rpm
+Fedora Core 16:
+    rpm --import http://passenger.stealthymonkeys.com/RPM-GPG-KEY-stealthymonkeys.asc
+    yum install http://passenger.stealthymonkeys.com/fedora/16/passenger-release.noarch.rpm
+RHEL 6 / CentOS 6 / ScientificLinux 6: (note, these packages depend on EPEL)
+    rpm --import http://passenger.stealthymonkeys.com/RPM-GPG-KEY-stealthymonkeys.asc
+    yum install http://passenger.stealthymonkeys.com/rhel/6/passenger-release.noarch.rpm
+RHEL 5 / CentOS 5 / ScientificLinux 5: (note, these packages depend on EPEL)
+    rpm -Uvh http://passenger.stealthymonkeys.com/rhel/5/passenger-release.noarch.rpm
+
+From there you can use Yum to install packages. For example:
+yum install nginx-passenger
+or
+yum install mod_passenger
+or
+yum install passenger-standalone
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+https://caen.engin.umich.edu/software/clse/features-for-linux/
+
+Features of the CLSE for Linux
+
+    The CAEN Lab Software Environment (CLSE) for Linux currently uses 64-bit Red Hat Enterprise Linux (RHEL) 8, and runs the GNOME 3 user interface.
+    Students log in using their University of Michigan (U-M) uniqname and UMICH password.
+    Environments can be customized using Linux Environment Modules.
+    Desktop storage and home directories are provided on ITS AFS Personal Storage.
+    The CLSE for Linux is available in many locations across campus.
+    Hosts are managed, monitored, deployed, and patched regularly for security.
+    The operating system and software versions updated as needed each year.
+
+Operating System
+
+The CLSE for Linux is deployed using 64-bit Red Hat Enterprise Linux, a commercial Linux distribution that provides an enterprise-ready software environment to run the licensed software offered by CAEN. It also runs the GNOME 3 user interface.
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+https://en.wikipedia.org/wiki/List_of_Linux_distributions
+https://en.wikipedia.org/wiki/List_of_Linux_distributions#RPM-based
+
+http://www.selinuxproject.org/page/Main_Page
+
+SELinux Project Wiki
+
+This is the official Security Enhanced Linux (SELinux) project page. Here you will find resources for users, administrators, vendors and developers.
+
+For an account, send email to jmorris AT namei.org.
+
+Note: This site is now somewhat historical: please visit https://github.com/SELinuxProject for up to date development information. 
+
+https://github.com/SELinuxProject
+https://github.com/SELinuxProject/selinux
+
+Installation
+SELinux libraries and tools are packaged in several Linux distributions:
+
+    Alpine Linux (https://pkgs.alpinelinux.org/package/edge/testing/x86/policycoreutils)
+    Arch Linux User Repository (https://aur.archlinux.org/packages/policycoreutils/)
+    Buildroot (https://git.buildroot.net/buildroot/tree/package/policycoreutils)
+    Debian and Ubuntu (https://packages.debian.org/sid/policycoreutils)
+    Gentoo (https://packages.gentoo.org/packages/sys-apps/policycoreutils)
+    RHEL and Fedora (https://src.fedoraproject.org/rpms/policycoreutils)
+    Yocto Project (http://git.yoctoproject.org/cgit/cgit.cgi/meta-selinux/tree/recipes-security/selinux)
+    and many more (https://repology.org/project/policycoreutils/versions)
+
+= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
+
+fallstechdave@mmrxps17:~$ 
+fallstechdave@mmrxps17:~$ date
+Thu 18 Aug 2022 07:56:04 AM EDT
+fallstechdave@mmrxps17:~$ 
+fallstechdave@mmrxps17:~$ whoami
+fallstechdave
+fallstechdave@mmrxps17:~$ 
+fallstechdave@mmrxps17:~$ passenger --version
+Phusion Passenger(R) 6.0.14
+fallstechdave@mmrxps17:~$ 
+fallstechdave@mmrxps17:~$ yarn --version
+1.22.19
+fallstechdave@mmrxps17:~$ 
+fallstechdave@mmrxps17:~$ sudo apt update
+[sudo] password for fallstechdave: 
+Hit:1 http://us.archive.ubuntu.com/ubuntu focal InRelease
+Hit:2 http://repo.mysql.com/apt/ubuntu focal InRelease                                                                                                                                                    
+Hit:3 http://packages.microsoft.com/repos/code stable InRelease                                                                                                                                           
+Hit:4 http://us.archive.ubuntu.com/ubuntu focal-updates InRelease                                                                                                                                  
+Hit:5 http://us.archive.ubuntu.com/ubuntu focal-backports InRelease                                                                                                                          
+Hit:6 https://dl.yarnpkg.com/debian stable InRelease                                                                                                                   
+Hit:7 http://security.ubuntu.com/ubuntu focal-security InRelease                                                                               
+Ign:8 https://oss-binaries.phusionpassenger.com/apt/passenger focal InRelease            
+Hit:9 https://oss-binaries.phusionpassenger.com/apt/passenger focal Release
+Reading package lists... Done
+Building dependency tree       
+Reading state information... Done
+21 packages can be upgraded. Run 'apt list --upgradable' to see them.
+N: Skipping acquire of configured file 'main/binary-i386/Packages' as repository 'https://oss-binaries.phusionpassenger.com/apt/passenger focal InRelease' doesn't support architecture 'i386'
+fallstechdave@mmrxps17:~$ 
+fallstechdave@mmrxps17:~$ sudo apt upgrade
+Reading package lists... Done
+Building dependency tree       
+Reading state information... Done
+Calculating upgrade... Done
+The following packages were automatically installed and are no longer required:
+  chromium-codecs-ffmpeg-extra gstreamer1.0-vaapi libfwupdplugin1 libgstreamer-plugins-bad1.0-0 libnvidia-cfg1-510 libnvidia-common-510 libnvidia-decode-510 libnvidia-encode-510 libnvidia-extra-510
+  libnvidia-fbc1-510 libnvidia-gl-510 libva-wayland2 libx11-xcb1:i386 libxnvctrl0 nvidia-compute-utils-510 nvidia-kernel-source-510 nvidia-settings nvidia-utils-510 screen-resolution-extra
+  xserver-xorg-video-nvidia-510
+Use 'sudo apt autoremove' to remove them.
+The following NEW packages will be installed:
+  linux-objects-nvidia-510-5.15.0-46-generic linux-signatures-nvidia-5.15.0-46-generic
+The following packages have been kept back:
+  linux-modules-nvidia-510-generic-hwe-20.04 nvidia-kernel-common-510
+The following packages will be upgraded:
+  code libgstreamer-plugins-bad1.0-0 libmysqlclient-dev libmysqlclient21 libnetplan0 libsnmp-base libsnmp35 linux-firmware mysql-client mysql-common mysql-community-client mysql-community-client-core
+  mysql-community-client-plugins mysql-community-server mysql-community-server-core mysql-server netplan.io tracker-extract tracker-miner-fs
+19 upgraded, 2 newly installed, 0 to remove and 2 not upgraded.
+Need to get 289 MB of archives.
+After this operation, 161 MB of additional disk space will be used.
+Do you want to continue? [Y/n] y
+Get:1 http://packages.microsoft.com/repos/code stable/main amd64 code amd64 1.70.2-1660629410 [85.2 MB]
+Get:2 http://us.archive.ubuntu.com/ubuntu focal-updates/main amd64 netplan.io amd64 0.104-0ubuntu2~20.04.2 [88.0 kB]
+Get:3 http://repo.mysql.com/apt/ubuntu focal/mysql-8.0 amd64 mysql-server amd64 8.0.30-1ubuntu20.04 [68.3 kB]
+Get:4 http://repo.mysql.com/apt/ubuntu focal/mysql-8.0 amd64 mysql-community-client amd64 8.0.30-1ubuntu20.04 [2,949 kB]
+Get:5 http://us.archive.ubuntu.com/ubuntu focal-updates/main amd64 libnetplan0 amd64 0.104-0ubuntu2~20.04.2 [82.5 kB]
+Get:6 http://us.archive.ubuntu.com/ubuntu focal-updates/main amd64 libsnmp-base all 5.8+dfsg-2ubuntu2.5 [206 kB]  
+Get:7 http://us.archive.ubuntu.com/ubuntu focal-updates/main amd64 libsnmp35 amd64 5.8+dfsg-2ubuntu2.5 [980 kB]   
+Get:8 http://repo.mysql.com/apt/ubuntu focal/mysql-8.0 amd64 mysql-community-client-core amd64 8.0.30-1ubuntu20.04 [1,779 kB]
+Get:9 http://repo.mysql.com/apt/ubuntu focal/mysql-8.0 amd64 mysql-community-client-plugins amd64 8.0.30-1ubuntu20.04 [1,274 kB]
+Get:10 http://repo.mysql.com/apt/ubuntu focal/mysql-8.0 amd64 mysql-community-server-core amd64 8.0.30-1ubuntu20.04 [24.2 MB]
+Get:11 http://us.archive.ubuntu.com/ubuntu focal-updates/main amd64 linux-firmware all 1.187.33 [125 MB]              
+Get:12 http://repo.mysql.com/apt/ubuntu focal/mysql-8.0 amd64 mysql-community-server amd64 8.0.30-1ubuntu20.04 [79.3 kB] 
+Get:13 http://repo.mysql.com/apt/ubuntu focal/mysql-8.0 amd64 mysql-client amd64 8.0.30-1ubuntu20.04 [68.3 kB]         
+Get:14 http://repo.mysql.com/apt/ubuntu focal/mysql-8.0 amd64 mysql-common amd64 8.0.30-1ubuntu20.04 [72.1 kB]         
+Get:15 http://repo.mysql.com/apt/ubuntu focal/mysql-8.0 amd64 libmysqlclient-dev amd64 8.0.30-1ubuntu20.04 [1,706 kB]
+Get:16 http://repo.mysql.com/apt/ubuntu focal/mysql-8.0 amd64 libmysqlclient21 amd64 8.0.30-1ubuntu20.04 [1,380 kB]
+Get:17 http://us.archive.ubuntu.com/ubuntu focal-updates/restricted amd64 linux-objects-nvidia-510-5.15.0-46-generic amd64 5.15.0-46.49~20.04.1 [43.5 MB]
+Get:18 http://us.archive.ubuntu.com/ubuntu focal-updates/restricted amd64 linux-signatures-nvidia-5.15.0-46-generic amd64 5.15.0-46.49~20.04.1 [33.9 kB]
+Get:19 http://us.archive.ubuntu.com/ubuntu focal-updates/main amd64 tracker-miner-fs amd64 2.3.3-2ubuntu0.20.04.1 [68.3 kB]
+Get:20 http://us.archive.ubuntu.com/ubuntu focal-updates/main amd64 tracker-extract amd64 2.3.3-2ubuntu0.20.04.1 [279 kB]
+Get:21 http://us.archive.ubuntu.com/ubuntu focal-updates/universe amd64 libgstreamer-plugins-bad1.0-0 amd64 1.16.3-0ubuntu1 [325 kB]
+Fetched 289 MB in 6s (50.9 MB/s)                                                     
+Preconfiguring packages ...
+(Reading database ... 283601 files and directories currently installed.)
+Preparing to unpack .../00-mysql-server_8.0.30-1ubuntu20.04_amd64.deb ...
+Unpacking mysql-server (8.0.30-1ubuntu20.04) over (8.0.29-1ubuntu20.04) ...
+Preparing to unpack .../01-mysql-community-client_8.0.30-1ubuntu20.04_amd64.deb ...
+Unpacking mysql-community-client (8.0.30-1ubuntu20.04) over (8.0.29-1ubuntu20.04) ...
+Preparing to unpack .../02-mysql-community-client-core_8.0.30-1ubuntu20.04_amd64.deb ...
+Unpacking mysql-community-client-core (8.0.30-1ubuntu20.04) over (8.0.29-1ubuntu20.04) ...
+Preparing to unpack .../03-mysql-community-client-plugins_8.0.30-1ubuntu20.04_amd64.deb ...
+Unpacking mysql-community-client-plugins (8.0.30-1ubuntu20.04) over (8.0.29-1ubuntu20.04) ...
+Preparing to unpack .../04-mysql-community-server-core_8.0.30-1ubuntu20.04_amd64.deb ...
+Unpacking mysql-community-server-core (8.0.30-1ubuntu20.04) over (8.0.29-1ubuntu20.04) ...
+Preparing to unpack .../05-mysql-community-server_8.0.30-1ubuntu20.04_amd64.deb ...
+Unpacking mysql-community-server (8.0.30-1ubuntu20.04) over (8.0.29-1ubuntu20.04) ...
+Preparing to unpack .../06-mysql-client_8.0.30-1ubuntu20.04_amd64.deb ...
+Unpacking mysql-client (8.0.30-1ubuntu20.04) over (8.0.29-1ubuntu20.04) ...
+Preparing to unpack .../07-mysql-common_8.0.30-1ubuntu20.04_amd64.deb ...
+Unpacking mysql-common (8.0.30-1ubuntu20.04) over (8.0.29-1ubuntu20.04) ...
+Preparing to unpack .../08-netplan.io_0.104-0ubuntu2~20.04.2_amd64.deb ...
+Unpacking netplan.io (0.104-0ubuntu2~20.04.2) over (0.104-0ubuntu2~20.04.1) ...
+Preparing to unpack .../09-libnetplan0_0.104-0ubuntu2~20.04.2_amd64.deb ...
+Unpacking libnetplan0:amd64 (0.104-0ubuntu2~20.04.2) over (0.104-0ubuntu2~20.04.1) ...
+Preparing to unpack .../10-code_1.70.2-1660629410_amd64.deb ...
+Unpacking code (1.70.2-1660629410) over (1.68.1-1655263094) ...
+Preparing to unpack .../11-libmysqlclient-dev_8.0.30-1ubuntu20.04_amd64.deb ...
+Unpacking libmysqlclient-dev (8.0.30-1ubuntu20.04) over (8.0.30-0ubuntu0.20.04.2) ...
+Preparing to unpack .../12-libmysqlclient21_8.0.30-1ubuntu20.04_amd64.deb ...
+Unpacking libmysqlclient21:amd64 (8.0.30-1ubuntu20.04) over (8.0.30-0ubuntu0.20.04.2) ...
+Preparing to unpack .../13-libsnmp-base_5.8+dfsg-2ubuntu2.5_all.deb ...
+Unpacking libsnmp-base (5.8+dfsg-2ubuntu2.5) over (5.8+dfsg-2ubuntu2.4) ...
+Preparing to unpack .../14-libsnmp35_5.8+dfsg-2ubuntu2.5_amd64.deb ...
+Unpacking libsnmp35:amd64 (5.8+dfsg-2ubuntu2.5) over (5.8+dfsg-2ubuntu2.4) ...
+Preparing to unpack .../15-linux-firmware_1.187.33_all.deb ...
+Unpacking linux-firmware (1.187.33) over (1.187.31) ...
+Selecting previously unselected package linux-objects-nvidia-510-5.15.0-46-generic.
+Preparing to unpack .../16-linux-objects-nvidia-510-5.15.0-46-generic_5.15.0-46.49~20.04.1_amd64.deb ...
+Unpacking linux-objects-nvidia-510-5.15.0-46-generic (5.15.0-46.49~20.04.1) ...
+Selecting previously unselected package linux-signatures-nvidia-5.15.0-46-generic.
+Preparing to unpack .../17-linux-signatures-nvidia-5.15.0-46-generic_5.15.0-46.49~20.04.1_amd64.deb ...
+Unpacking linux-signatures-nvidia-5.15.0-46-generic (5.15.0-46.49~20.04.1) ...
+Preparing to unpack .../18-tracker-miner-fs_2.3.3-2ubuntu0.20.04.1_amd64.deb ...
+Unpacking tracker-miner-fs (2.3.3-2ubuntu0.20.04.1) over (2.3.3-2) ...
+Preparing to unpack .../19-tracker-extract_2.3.3-2ubuntu0.20.04.1_amd64.deb ...
+Unpacking tracker-extract (2.3.3-2ubuntu0.20.04.1) over (2.3.3-2) ...
+Preparing to unpack .../20-libgstreamer-plugins-bad1.0-0_1.16.3-0ubuntu1_amd64.deb ...
+Unpacking libgstreamer-plugins-bad1.0-0:amd64 (1.16.3-0ubuntu1) over (1.16.2-2.1ubuntu1) ...
+Setting up code (1.70.2-1660629410) ...
+Setting up mysql-common (8.0.30-1ubuntu20.04) ...
+Installing new version of config file /etc/mysql/conf.d/mysql.cnf ...
+Installing new version of config file /etc/mysql/my.cnf.fallback ...
+Setting up tracker-extract (2.3.3-2ubuntu0.20.04.1) ...
+Setting up linux-firmware (1.187.33) ...
+update-initramfs: Generating /boot/initrd.img-5.15.0-46-generic
+update-initramfs: Generating /boot/initrd.img-5.15.0-43-generic
+update-initramfs: Generating /boot/initrd.img-5.13.0-30-generic
+Setting up libsnmp-base (5.8+dfsg-2ubuntu2.5) ...
+Setting up libnetplan0:amd64 (0.104-0ubuntu2~20.04.2) ...
+Setting up linux-objects-nvidia-510-5.15.0-46-generic (5.15.0-46.49~20.04.1) ...
+Setting up netplan.io (0.104-0ubuntu2~20.04.2) ...
+Setting up libgstreamer-plugins-bad1.0-0:amd64 (1.16.3-0ubuntu1) ...
+Setting up mysql-community-server-core (8.0.30-1ubuntu20.04) ...
+Setting up linux-signatures-nvidia-5.15.0-46-generic (5.15.0-46.49~20.04.1) ...
+Setting up mysql-community-client-plugins (8.0.30-1ubuntu20.04) ...
+Setting up libmysqlclient21:amd64 (8.0.30-1ubuntu20.04) ...
+Setting up libsnmp35:amd64 (5.8+dfsg-2ubuntu2.5) ...
+Setting up mysql-community-client-core (8.0.30-1ubuntu20.04) ...
+Setting up libmysqlclient-dev (8.0.30-1ubuntu20.04) ...
+Setting up mysql-community-client (8.0.30-1ubuntu20.04) ...
+Installing new version of config file /usr/share/mysql-8.0/charsets/armscii8.xml ...
+Installing new version of config file /usr/share/mysql-8.0/charsets/ascii.xml ...
+Installing new version of config file /usr/share/mysql-8.0/charsets/cp1250.xml ...
+Installing new version of config file /usr/share/mysql-8.0/charsets/cp1251.xml ...
+Installing new version of config file /usr/share/mysql-8.0/charsets/cp1256.xml ...
+Installing new version of config file /usr/share/mysql-8.0/charsets/cp1257.xml ...
+Installing new version of config file /usr/share/mysql-8.0/charsets/cp850.xml ...
+Installing new version of config file /usr/share/mysql-8.0/charsets/cp852.xml ...
+Installing new version of config file /usr/share/mysql-8.0/charsets/cp866.xml ...
+Installing new version of config file /usr/share/mysql-8.0/charsets/dec8.xml ...
+Installing new version of config file /usr/share/mysql-8.0/charsets/geostd8.xml ...
+Installing new version of config file /usr/share/mysql-8.0/charsets/greek.xml ...
+Installing new version of config file /usr/share/mysql-8.0/charsets/hebrew.xml ...
+Installing new version of config file /usr/share/mysql-8.0/charsets/hp8.xml ...
+Installing new version of config file /usr/share/mysql-8.0/charsets/Index.xml ...
+Installing new version of config file /usr/share/mysql-8.0/charsets/keybcs2.xml ...
+Installing new version of config file /usr/share/mysql-8.0/charsets/koi8r.xml ...
+Installing new version of config file /usr/share/mysql-8.0/charsets/koi8u.xml ...
+Installing new version of config file /usr/share/mysql-8.0/charsets/latin1.xml ...
+Installing new version of config file /usr/share/mysql-8.0/charsets/latin2.xml ...
+Installing new version of config file /usr/share/mysql-8.0/charsets/latin5.xml ...
+Installing new version of config file /usr/share/mysql-8.0/charsets/latin7.xml ...
+Installing new version of config file /usr/share/mysql-8.0/charsets/macce.xml ...
+Installing new version of config file /usr/share/mysql-8.0/charsets/macroman.xml ...
+Installing new version of config file /usr/share/mysql-8.0/charsets/swe7.xml ...
+Setting up mysql-client (8.0.30-1ubuntu20.04) ...
+Setting up mysql-community-server (8.0.30-1ubuntu20.04) ...
+Installing new version of config file /etc/mysql/mysql.cnf ...
+Installing new version of config file /etc/mysql/mysql.conf.d/mysqld.cnf ...
+Setting up mysql-server (8.0.30-1ubuntu20.04) ...
+Processing triggers for dbus (1.12.16-2ubuntu2.2) ...
+Processing triggers for shared-mime-info (1.15-1) ...
+Processing triggers for desktop-file-utils (0.24-1ubuntu3) ...
+Processing triggers for mime-support (3.64ubuntu1) ...
+Processing triggers for gnome-menus (3.36.0-1ubuntu1) ...
+Processing triggers for libglib2.0-0:amd64 (2.64.6-1~ubuntu20.04.4) ...
+Processing triggers for libc-bin (2.31-0ubuntu9.9) ...
+Processing triggers for man-db (2.9.1-1) ...
+Setting up tracker-miner-fs (2.3.3-2ubuntu0.20.04.1) ...
+fallstechdave@mmrxps17:~$ 
+fallstechdave@mmrxps17:~$ sudo reboot now
+
+fallstechdave@mmrxps17:~$ date
+Thu 18 Aug 2022 08:03:43 AM EDT
+fallstechdave@mmrxps17:~$ 
+fallstechdave@mmrxps17:~$ uptime
+ 08:03:46 up 0 min,  1 user,  load average: 1.70, 0.51, 0.18
+fallstechdave@mmrxps17:~$ 
+fallstechdave@mmrxps17:~$ passenger --version
+Phusion Passenger(R) 6.0.14
+fallstechdave@mmrxps17:~$ 
+fallstechdave@mmrxps17:~$ yarn --version
+1.22.19
+fallstechdave@mmrxps17:~$ 
+
+https://localhost/articles
+
+fallstechdave@mmrxps17:~$ 
+fallstechdave@mmrxps17:~$ sudo systemctl status apache2
+[sudo] password for fallstechdave: 
+● apache2.service - The Apache HTTP Server
+     Loaded: loaded (/lib/systemd/system/apache2.service; enabled; vendor preset: enabled)
+     Active: active (running) since Thu 2022-08-18 08:18:52 EDT; 6min ago
+       Docs: https://httpd.apache.org/docs/2.4/
+    Process: 5625 ExecStart=/usr/sbin/apachectl start (code=exited, status=0/SUCCESS)
+      Tasks: 113 (limit: 18731)
+     Memory: 152.8M
+     CGroup: /system.slice/apache2.service
+             ├─5688 /usr/sbin/apache2 -k start
+             ├─5690 Passenger watchdog
+             ├─5694 Passenger core
+             ├─5719 /usr/sbin/apache2 -k start
+             ├─5723 /usr/sbin/apache2 -k start
+             └─5901 Passenger RubyApp: /home/fallstechdave/railsprojects/wire6 (production)
+
+Aug 18 08:18:52 mmrxps17 systemd[1]: Starting The Apache HTTP Server...
+Aug 18 08:18:52 mmrxps17 apachectl[5628]: AH00558: apache2: Could not reliably determine the server's fully qualified domain name, using 127.0.1.1. Set the 'ServerName' directive globally to suppress th>
+Aug 18 08:18:52 mmrxps17 systemd[1]: Started The Apache HTTP Server.
+fallstechdave@mmrxps17:~$ 
+fallstechdave@mmrxps17:~$ sudo passenger-memory-stats
+Version: 6.0.14
+Date   : 2022-08-18 08:25:28 -0400
+
+--------- Apache processes ----------
+PID   PPID  VMSize     Private  Name
+-------------------------------------
+5688  1     80.3 MB    0.6 MB   /usr/sbin/apache2 -k start
+5719  5688  1961.1 MB  1.8 MB   /usr/sbin/apache2 -k start
+5723  5688  1961.2 MB  2.4 MB   /usr/sbin/apache2 -k start
+### Processes: 3
+### Total private dirty RSS: 4.84 MB
+
+
+-------- Nginx processes --------
+
+### Processes: 0
+### Total private dirty RSS: 0.00 MB
+
+
+----- Passenger processes -----
+PID   VMSize     Private  Name
+-------------------------------
+5690  296.1 MB   2.6 MB   Passenger watchdog
+5694  3570.5 MB  6.8 MB   Passenger core
+5901  359.5 MB   90.6 MB  Passenger RubyApp: /home/fallstechdave/railsprojects/wire6 (production)
+### Processes: 3
+### Total private dirty RSS: 99.93 MB
+fallstechdave@mmrxps17:~$ 
+fallstechdave@mmrxps17:~$ 
+
