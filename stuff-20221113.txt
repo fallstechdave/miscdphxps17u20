@@ -1,0 +1,495 @@
+Sun 13 Nov 2022 05:16:31 PM EST
+
+fallstechdave@mmrxps17:~$ date
+Sun 13 Nov 2022 05:15:51 PM EST
+fallstechdave@mmrxps17:~$ 
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+fallstechdave@mmrxps17:~$ python --version
+
+Command 'python' not found, did you mean:
+
+  command 'python3' from deb python3
+  command 'python' from deb python-is-python3
+
+fallstechdave@mmrxps17:~$ python3 --version
+Python 3.8.10
+fallstechdave@mmrxps17:~$ whereis python3
+python3: /usr/bin/python3.8 /usr/bin/python3 /usr/lib/python3.8 /usr/lib/python3 /usr/lib/python3.9 /etc/python3.8 /etc/python3 /usr/local/lib/python3.8 /usr/include/python3.8 /usr/share/python3 /usr/share/man/man1/python3.1.gz
+fallstechdave@mmrxps17:~$ 
+fallstechdave@mmrxps17:~$ python3.8 --version
+Python 3.8.10
+fallstechdave@mmrxps17:~$ 
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+https://github.com/pyenv/pyenv
+
+https://realpython.com/intro-to-pyenv/
+
+$ sudo apt-get install -y make build-essential libssl-dev zlib1g-dev \
+libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev \
+libncursesw5-dev xz-utils tk-dev libffi-dev liblzma-dev python-openssl
+
+$ curl https://pyenv.run | bash
+
+https://amaral.northwestern.edu/resources/guides/pyenv-tutorial
+
+https://webinstall.dev/pyenv/
+
+https://webinstall.dev/pyenv/
+
+https://www.newline.co/courses/create-a-serverless-slackbot-with-aws-lambda-and-python/installing-python-3-and-pyenv-on-macos-windows-and-linux
+
+https://ggkbase-help.berkeley.edu/how-to/install-pyenv/
+
+https://brain2life.hashnode.dev/how-to-install-pyenv-python-version-manager-on-ubuntu-2004
+
+sudo apt-get update; sudo apt-get install make build-essential libssl-dev zlib1g-dev \
+libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm \
+libncursesw5-dev xz-utils tk-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev
+
+curl https://pyenv.run | bash
+
+Add the following entries into your ~/.bashrc file:
+
+# pyenv
+export PATH="$HOME/.pyenv/bin:$PATH"
+eval "$(pyenv init --path)"
+eval "$(pyenv virtualenv-init -)"
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+fallstechdave@mmrxps17:~$ date
+Mon 14 Nov 2022 05:56:21 AM EST
+fallstechdave@mmrxps17:~$ 
+
+sudo apt-get update
+
+sudo apt-get install -y make build-essential libssl-dev zlib1g-dev \
+libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev \
+libncursesw5-dev xz-utils tk-dev libffi-dev liblzma-dev python-openssl
+
+sudo apt-get install make build-essential libssl-dev zlib1g-dev \
+libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm \
+libncursesw5-dev xz-utils tk-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev
+
+curl https://pyenv.run | bash
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+fallstechdave@mmrxps17:~$ 
+fallstechdave@mmrxps17:~$ date
+Mon 14 Nov 2022 05:56:21 AM EST
+fallstechdave@mmrxps17:~$ 
+fallstechdave@mmrxps17:~$ sudo apt-get update
+[sudo] password for fallstechdave: 
+Hit:1 http://repo.mysql.com/apt/ubuntu focal InRelease
+Hit:2 http://us.archive.ubuntu.com/ubuntu focal InRelease                                                                           
+Hit:3 http://packages.microsoft.com/repos/code stable InRelease                                                                     
+Hit:4 http://us.archive.ubuntu.com/ubuntu focal-updates InRelease                                                                   
+Hit:5 https://dl.yarnpkg.com/debian stable InRelease                                                                                
+Hit:6 http://us.archive.ubuntu.com/ubuntu focal-backports InRelease                                                                 
+Hit:7 http://security.ubuntu.com/ubuntu focal-security InRelease                                                                    
+Ign:8 https://oss-binaries.phusionpassenger.com/apt/passenger focal InRelease            
+Hit:9 https://oss-binaries.phusionpassenger.com/apt/passenger focal Release
+Reading package lists... Done
+N: Skipping acquire of configured file 'main/binary-i386/Packages' as repository 'https://oss-binaries.phusionpassenger.com/apt/passenger focal InRelease' doesn't support architecture 'i386'
+fallstechdave@mmrxps17:~$ 
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+fallstechdave@mmrxps17:~$ curl https://pyenv.run | bash
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100   270  100   270    0     0   1179      0 --:--:-- --:--:-- --:--:--  1179
+Cloning into '/home/fallstechdave/.pyenv'...
+remote: Enumerating objects: 1016, done.
+remote: Counting objects: 100% (1016/1016), done.
+remote: Compressing objects: 100% (439/439), done.
+remote: Total 1016 (delta 588), reused 715 (delta 447), pack-reused 0
+Receiving objects: 100% (1016/1016), 498.82 KiB | 23.75 MiB/s, done.
+Resolving deltas: 100% (588/588), done.
+Cloning into '/home/fallstechdave/.pyenv/plugins/pyenv-doctor'...
+remote: Enumerating objects: 11, done.
+remote: Counting objects: 100% (11/11), done.
+remote: Compressing objects: 100% (9/9), done.
+remote: Total 11 (delta 1), reused 5 (delta 0), pack-reused 0
+Unpacking objects: 100% (11/11), 38.70 KiB | 6.45 MiB/s, done.
+Cloning into '/home/fallstechdave/.pyenv/plugins/pyenv-installer'...
+remote: Enumerating objects: 16, done.
+remote: Counting objects: 100% (16/16), done.
+remote: Compressing objects: 100% (13/13), done.
+remote: Total 16 (delta 1), reused 7 (delta 0), pack-reused 0
+Unpacking objects: 100% (16/16), 5.86 KiB | 1.95 MiB/s, done.
+Cloning into '/home/fallstechdave/.pyenv/plugins/pyenv-update'...
+remote: Enumerating objects: 10, done.
+remote: Counting objects: 100% (10/10), done.
+remote: Compressing objects: 100% (6/6), done.
+remote: Total 10 (delta 1), reused 6 (delta 0), pack-reused 0
+Unpacking objects: 100% (10/10), 2.53 KiB | 1.26 MiB/s, done.
+Cloning into '/home/fallstechdave/.pyenv/plugins/pyenv-virtualenv'...
+remote: Enumerating objects: 63, done.
+remote: Counting objects: 100% (63/63), done.
+remote: Compressing objects: 100% (55/55), done.
+remote: Total 63 (delta 11), reused 28 (delta 1), pack-reused 0
+Unpacking objects: 100% (63/63), 38.42 KiB | 4.27 MiB/s, done.
+Cloning into '/home/fallstechdave/.pyenv/plugins/pyenv-which-ext'...
+remote: Enumerating objects: 10, done.
+remote: Counting objects: 100% (10/10), done.
+remote: Compressing objects: 100% (6/6), done.
+remote: Total 10 (delta 1), reused 6 (delta 0), pack-reused 0
+Unpacking objects: 100% (10/10), 2.92 KiB | 995.00 KiB/s, done.
+
+WARNING: seems you still have not added 'pyenv' to the load path.
+
+# Load pyenv automatically by appending
+# the following to 
+~/.bash_profile if it exists, otherwise ~/.profile (for login shells)
+and ~/.bashrc (for interactive shells) :
+
+export PYENV_ROOT="$HOME/.pyenv"
+command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
+
+# Restart your shell for the changes to take effect.
+
+# Load pyenv-virtualenv automatically by adding
+# the following to ~/.bashrc:
+
+eval "$(pyenv virtualenv-init -)"
+
+fallstechdave@mmrxps17:~$ 
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+added to file ~/.profile 
+# pyenv
+export PYENV_ROOT="$HOME/.pyenv"
+command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
+
+added to file ~/.bashrc 
+# pyenv
+export PYENV_ROOT="$HOME/.pyenv"
+command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+fallstechdave@mmrxps17:~$ date
+Mon 14 Nov 2022 06:20:20 AM EST
+fallstechdave@mmrxps17:~$ 
+fallstechdave@mmrxps17:~$ pyenv --version
+pyenv 2.3.6
+fallstechdave@mmrxps17:~$ 
+fallstechdave@mmrxps17:~$ code Documents/
+fallstechdave@mmrxps17:~$ 
+fallstechdave@mmrxps17:~$ pyenv global
+system
+fallstechdave@mmrxps17:~$ pyenv versions
+* system (set by /home/fallstechdave/.pyenv/version)
+fallstechdave@mmrxps17:~$ 
+fallstechdave@mmrxps17:~$ which python3
+/usr/bin/python3
+fallstechdave@mmrxps17:~$ 
+fallstechdave@mmrxps17:~$ python3 --version
+Python 3.8.10
+fallstechdave@mmrxps17:~$ 
+fallstechdave@mmrxps17:~$ pyenv install --list | grep " 3\.[678]"
+  3.6.0
+  3.6-dev
+  3.6.1
+  3.6.2
+  3.6.3
+  3.6.4
+  3.6.5
+  3.6.6
+  3.6.7
+  3.6.8
+  3.6.9
+  3.6.10
+  3.6.11
+  3.6.12
+  3.6.13
+  3.6.14
+  3.6.15
+  3.7.0
+  3.7-dev
+  3.7.1
+  3.7.2
+  3.7.3
+  3.7.4
+  3.7.5
+  3.7.6
+  3.7.7
+  3.7.8
+  3.7.9
+  3.7.10
+  3.7.11
+  3.7.12
+  3.7.13
+  3.7.14
+  3.7.15
+  3.8.0
+  3.8-dev
+  3.8.1
+  3.8.2
+  3.8.3
+  3.8.4
+  3.8.5
+  3.8.6
+  3.8.7
+  3.8.8
+  3.8.9
+  3.8.10
+  3.8.11
+  3.8.12
+  3.8.13
+  3.8.14
+  3.8.15
+fallstechdave@mmrxps17:~$ pyenv install --list | tail
+  stackless-2.7.16
+  stackless-3.2.2
+  stackless-3.2.5
+  stackless-3.3.5
+  stackless-3.3.7
+  stackless-3.4-dev
+  stackless-3.4.2
+  stackless-3.4.7
+  stackless-3.5.4
+  stackless-3.7.5
+fallstechdave@mmrxps17:~$ pyenv install --list | head
+Available versions:
+  2.1.3
+  2.2.3
+  2.3.7
+  2.4.0
+  2.4.1
+  2.4.2
+  2.4.3
+  2.4.4
+  2.4.5
+fallstechdave@mmrxps17:~$ 
+fallstechdave@mmrxps17:~$ pyenv install --list | wc
+    593     594    9035
+fallstechdave@mmrxps17:~$ 
+
+  3.8.14
+  3.8.15
+  3.9.0
+  3.9-dev
+  3.9.1
+  3.9.2
+  3.9.4
+  3.9.5
+  3.9.6
+  3.9.7
+  3.9.8
+  3.9.9
+  3.9.10
+  3.9.11
+  3.9.12
+  3.9.13
+  3.9.14
+  3.9.15
+  3.10.0
+  3.10-dev
+  3.10.1
+  3.10.2
+  3.10.3
+  3.10.4
+  3.10.5
+  3.10.6
+  3.10.7
+  3.10.8
+  3.11.0
+  3.11-dev
+  3.12.0a1
+  3.12-dev
+
+
+pyenv install -v 3.11.0
+ls ~/.pyenv/versions/
+pyenv versions
+pyenv which python
+python -v
+pyenv global 3.11.0
+pyenv versions
+python -V
+python3 -V
+
+
+fallstechdave@mmrxps17:~$ ls ~/.pyenv/versions/
+3.11.0
+fallstechdave@mmrxps17:~$ pyenv versions
+* system (set by /home/fallstechdave/.pyenv/version)
+  3.11.0
+fallstechdave@mmrxps17:~$ 
+fallstechdave@mmrxps17:~$ pyenv which python
+pyenv: python: command not found
+
+The `python' command exists in these Python versions:
+  3.11.0
+
+Note: See 'pyenv help global' for tips on allowing both
+      python2 and python3 to be found.
+fallstechdave@mmrxps17:~$ 
+fallstechdave@mmrxps17:~$ python -v
+pyenv: python: command not found
+
+The `python' command exists in these Python versions:
+  3.11.0
+
+Note: See 'pyenv help global' for tips on allowing both
+      python2 and python3 to be found.
+fallstechdave@mmrxps17:~$ 
+fallstechdave@mmrxps17:~$ pyenv global 3.11.0
+fallstechdave@mmrxps17:~$ pyenv versions
+  system
+* 3.11.0 (set by /home/fallstechdave/.pyenv/version)
+fallstechdave@mmrxps17:~$ 
+fallstechdave@mmrxps17:~$ python -V
+Python 3.11.0
+fallstechdave@mmrxps17:~$ python3 -V
+Python 3.8.10
+fallstechdave@mmrxps17:~$ 
+fallstechdave@mmrxps17:~$ 
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+fallstechdave@mmrxps17:~$ ls -latr ~/Downloads/ | grep code
+-rw-rw-r--  1 fallstechdave fallstechdave   83667280 Jun 30 08:41 code_1.68.1-1655263094_amd64.deb
+-rw-rw-r--  1 fallstechdave fallstechdave  117711933 Jun 30 08:42 code-1.68.1-1655263151.el7.x86_64.rpm
+-rw-rw-r--  1 fallstechdave fallstechdave  116922965 Jun 30 08:42 code-stable-x64-1655263335.tar.gz
+-rw-rw-r--  1 fallstechdave fallstechdave   85203624 Aug 10 09:25 code_1.70.0-1659589288_amd64.deb
+-rw-rw-r--  1 fallstechdave fallstechdave  120485133 Aug 10 09:25 code-1.70.0-1659589373.el7.x86_64.rpm
+-rw-rw-r--  1 fallstechdave fallstechdave  119734068 Aug 10 09:25 code-stable-x64-1659589559.tar.gz
+-rw-rw-r--  1 fallstechdave fallstechdave   96706580 Nov 14 06:51 code_1.73.1-1667967334_amd64.deb
+-rw-rw-r--  1 fallstechdave fallstechdave  136288248 Nov 14 06:51 code-1.73.1-1667967421.el7.x86_64.rpm
+-rw-rw-r--  1 fallstechdave fallstechdave  135604445 Nov 14 06:51 code-stable-x64-1667967614.tar.gz
+fallstechdave@mmrxps17:~$ 
+fallstechdave@mmrxps17:~$ whereis code
+code: /usr/bin/code /usr/share/code
+fallstechdave@mmrxps17:~$ 
+fallstechdave@mmrxps17:~$ which code
+/usr/bin/code
+fallstechdave@mmrxps17:~$ 
+fallstechdave@mmrxps17:~/Downloads$ 7z l code-stable-x64-1659589559.tar.gz | more
+
+7-Zip [64] 16.02 : Copyright (c) 1999-2016 Igor Pavlov : 2016-05-21
+p7zip Version 16.02 (locale=en_US.UTF-8,Utf16=on,HugeFiles=on,64 bits,20 CPUs 12th Gen Intel(R) Core(TM) i7-12700H (906A3),ASM,AES-NI)
+
+Scanning the drive for archives:
+1 file, 119734068 bytes (115 MiB)
+
+Listing archive: code-stable-x64-1659589559.tar.gz
+
+--
+Path = code-stable-x64-1659589559.tar.gz
+Type = gzip
+Headers Size = 10
+
+   Date      Time    Attr         Size   Compressed  Name
+------------------- ----- ------------ ------------  ------------------------
+2022-08-04 00:05:59 .....    358287360    119734068  code-stable-x64-1659589559.tar
+------------------- ----- ------------ ------------  ------------------------
+2022-08-04 00:05:59          358287360    119734068  1 files
+fallstechdave@mmrxps17:~/Downloads$ 
+
+https://linuxize.com/post/how-to-install-visual-studio-code-on-ubuntu-20-04/
+
+Version: 1.70.2
+Commit: e4503b30fc78200f846c62cf8091b76ff5547662
+Date: 2022-08-16T05:36:25.715Z
+Electron: 18.3.5
+Chromium: 100.0.4896.160
+Node.js: 16.13.2
+V8: 10.0.139.17-electron.0
+OS: Linux x64 5.15.0-46-generic
+
+fallstechdave@mmrxps17:~$ ls -latr /usr/bin/code
+lrwxrwxrwx 1 root root 24 Aug 18 08:00 /usr/bin/code -> /usr/share/code/bin/code
+fallstechdave@mmrxps17:~$ 
+fallstechdave@mmrxps17:~$ ls -latr /usr/share/code/bin
+total 12
+-rwxrwxr-x 1 root root 2137 Aug 16 01:35 code
+drwxr-xr-x 2 root root 4096 Aug 18 08:00 .
+drwxr-xr-x 6 root root 4096 Aug 18 08:00 ..
+fallstechdave@mmrxps17:~$ 
+fallstechdave@mmrxps17:~$ ls -latr /usr/share/code
+total 173968
+drwxr-xr-x   4 root root      4096 Jun 30 08:40 resources
+-rw-r--r--   1 root root  10284336 Jul 17 12:04 icudtl.dat
+-rwsr-xr-x   1 root root     52536 Jul 17 12:11 chrome-sandbox
+-rwxr-xr-x   1 root root   2594656 Jul 17 12:12 libffmpeg.so
+-rwxr-xr-x   1 root root   5659912 Jul 17 12:13 libvulkan.so.1
+-rw-r--r--   1 root root       107 Jul 17 12:13 vk_swiftshader_icd.json
+-rwxr-xr-x   1 root root   4098912 Jul 17 12:13 libvk_swiftshader.so
+-rwxr-xr-x   1 root root   6175336 Jul 17 12:14 libGLESv2.so
+-rwxr-xr-x   1 root root    241096 Jul 17 12:14 libEGL.so
+-rwxr-xr-x   1 root root   1157208 Jul 17 12:17 chrome_crashpad_handler
+-rw-r--r--   1 root root   4887622 Jul 17 12:19 resources.pak
+-rw-r--r--   1 root root    221103 Jul 17 12:19 chrome_200_percent.pak
+-rw-r--r--   1 root root    148993 Jul 17 12:19 chrome_100_percent.pak
+-rw-r--r--   1 root root    405456 Jul 17 12:33 snapshot_blob.bin
+-rw-r--r--   1 root root    726464 Jul 17 12:35 v8_context_snapshot.bin
+-rwxr-xr-x   1 root root 141431216 Jul 17 12:38 code
+drwxr-xr-x   2 root root      4096 Aug 18 08:00 locales
+drwxr-xr-x   2 root root      4096 Aug 18 08:00 bin
+drwxr-xr-x   2 root root      4096 Aug 18 08:00 swiftshader
+drwxr-xr-x   6 root root      4096 Aug 18 08:00 .
+drwxr-xr-x 279 root root     12288 Nov 14 06:00 ..
+fallstechdave@mmrxps17:~$ 
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+fallstechdave@mmrxps17:~$ neofetch --off
+fallstechdave@mmrxps17 
+---------------------- 
+OS: Ubuntu 20.04.4 LTS x86_64 
+Host: XPS 17 9720 
+Kernel: 5.15.0-46-generic 
+Uptime: 14 hours, 1 min 
+Packages: 1928 (dpkg), 7 (snap) 
+Shell: bash 5.0.17 
+Resolution: 1920x1200 
+DE: GNOME 
+WM: Mutter 
+WM Theme: Adwaita 
+Theme: Yaru [GTK2/3] 
+Icons: Yaru [GTK2/3] 
+Terminal: gnome-terminal 
+CPU: 12th Gen Intel i7-12700H (20) @ 4.600GHz 
+GPU: Intel Device 46a6 
+GPU: NVIDIA 01:00.0 NVIDIA Corporation Device 25a2 
+Memory: 13286MiB / 15684MiB 
+
+fallstechdave@mmrxps17:~$ 
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+https://www.digitalocean.com/community/tutorial_series/how-to-code-in-python-3
+https://www.digitalocean.com/community/tutorials/how-to-write-your-first-python-3-program
+
+create file hello.py
+print("Hello, World!")
+python3 hello.py
+
+https://code.visualstudio.com/docs/languages/python
+https://code.visualstudio.com/docs/python/python-tutorial
+
+create file hello.py
+msg = "Hello World"
+print(msg)
+python3 hello.py
+
+fallstechdave@mmrxps17:~$ 
+fallstechdave@mmrxps17:~$ touch hello.py
+fallstechdave@mmrxps17:~$ code hello.py
+fallstechdave@mmrxps17:~$ python3 hello.py
+Hello World
+fallstechdave@mmrxps17:~$ 
+
